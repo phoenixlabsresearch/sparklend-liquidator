@@ -1,3 +1,4 @@
+const hre = require("hardhat");
 const { interval, shortNum, sleep, retry, exponentialBackoff, valueToBigNumber } = require("./utils");
 const moment = require("moment");
 const { GraphQLClient, gql } = require("graphql-request");
@@ -61,6 +62,7 @@ async function fetchAllRows (query, resolver) {
 class LiquidationWatcher {
 
     logger = (log) => {};
+    unhealthyPositions = [];
 
     constructor() {
     }
@@ -71,7 +73,7 @@ class LiquidationWatcher {
         // Fetch all urns
         this.logger(`Fetching all positions...`);
         const positions = (await fetchAllRows(positionQuery, r => r.users));
-        const unhealthyPositions = positions.filter(p => {
+        const _unhealthyPositions = positions.filter(p => {
             let totalBorrowed = 0;
             let totalCollateralThreshold = 0;
 
@@ -91,26 +93,32 @@ class LiquidationWatcher {
             let healthFactor = totalCollateralThreshold / totalBorrowed;
             return healthFactor <= 1;
         });
-        this.logger(`Found ${unhealthyPositions.length}/${positions.length} unhealthy positions`);
+        this.logger(`Found ${_unhealthyPositions.length}/${positions.length} unhealthy positions`);
 
-        return unhealthyPositions;
+        return _unhealthyPositions;
     }
 
     async triggerLiquidation(position) {
-        this.logger(`Triggering liquidation for position ${position.id}`);
-        const liquidator = await hre.ethers.getContractAt("ILiquidator", "0x7bE1bE0aF7cC2cB2fA9aB9Cf7DcC8fB0Aa1d2a6A");
-        const liquidationTx = await liquidator.liquidate(position.id);
-        this.logger(`Liquidation tx sent: ${liquidationTx.hash}`);
-        await liquidationTx.wait();
-        this.logger(`Liquidation tx mined: ${liquidationTx.hash}`);
+        try {
+            this.logger(`Triggering liquidation for position ${position.id}`);
+            const liquidator = await hre.ethers.getContractAt("LiquidateLoan");
+            const liquidationTx = await liquidator.liquidate(position.id);
+            this.logger(`Liquidation tx sent for position ${position.id}: ${liquidationTx.hash}`);
+            await liquidationTx.wait();
+            this.logger(`Liquidation tx mined for position ${position.id}: ${liquidationTx.hash}`);
+
+            position._completed = true;
+            position._completedTx = liquidationTx.hash;
+        } catch {
+            position._sent = false;
+            this.logger(`Error triggering liquidation for position ${position.id}`);
+        }
     }
 
     async run(_logger) {
         if (_logger != null) this.logger = _logger;
     
         this.logger("Spark Lend Liquidator starting up...");
-
-        const unhealthyPositions = [];
     
         return Promise.all([
             // Once per 1 minute
@@ -118,9 +126,9 @@ class LiquidationWatcher {
                 try {
                     const _unhealthyPositions = await this.queryPositions();
                     for (const p of _unhealthyPositions) {
-                        if (unhealthyPositions.findIndex(up => up.id === p.id) === -1) {
+                        if (this.unhealthyPositions.findIndex(up => up.id === p.id) === -1) {
                             p._sent = false;
-                            unhealthyPositions.push(p);
+                            this.unhealthyPositions.push(p);
                         }
                     }
                 } catch (err) {
@@ -132,7 +140,7 @@ class LiquidationWatcher {
             // Once per 10 seconds
             interval(async () => {
                 try {
-                    for (const p of unhealthyPositions) {
+                    for (const p of this.unhealthyPositions) {
                         if (p._sent) continue;
                         this.triggerLiquidation(p);
                     }
