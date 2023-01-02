@@ -1,3 +1,4 @@
+const BigNumber = require("bignumber.js");
 
 async function sleep (ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -54,10 +55,19 @@ function shortNum(num, digits = 0) {
     return (num / si[i].value).toFixed(digits).replace(rx, "$1") + si[i].symbol;
 }
 
+function valueToBigNumber(amount) {
+    if (amount instanceof BigNumber) {
+      return amount;
+    }
+  
+    return new BigNumber(amount);
+  }
+
 module.exports = {
     sleep,
     retry,
     interval,
     exponentialBackoff,
-    shortNum
+    shortNum,
+    valueToBigNumber
 };

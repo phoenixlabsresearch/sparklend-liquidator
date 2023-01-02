@@ -1,6 +1,7 @@
-const { interval, shortNum, sleep, retry, exponentialBackoff } = require("./utils");
+const { interval, shortNum, sleep, retry, exponentialBackoff, valueToBigNumber } = require("./utils");
 const moment = require("moment");
 const { GraphQLClient, gql } = require("graphql-request");
+const BigNumber = require("bignumber.js");
 
 const dataApi = new GraphQLClient("https://api.studio.thegraph.com/query/40284/sparklend-testnet/v0.0.1");
 const positionQuery = gql`
@@ -71,7 +72,24 @@ class LiquidationWatcher {
         this.logger(`Fetching all positions...`);
         const positions = (await fetchAllRows(positionQuery, r => r.users));
         const unhealthyPositions = positions.filter(p => {
-            
+            let totalBorrowed = 0;
+            let totalCollateralThreshold = 0;
+
+            p.borrowReserve.forEach((borrowReserve, i) => {
+                const priceInUSD = valueToBigNumber(borrowReserve.reserve.price.priceInEth);    // Number is actually in USD despite name
+                const principalBorrowed = valueToBigNumber(borrowReserve.currentTotalDebt);
+                const decimals = valueToBigNumber(borrowReserve.reserve.decimals);
+                totalBorrowed += priceInUSD.multipliedBy(principalBorrowed).div(BigNumber(10).exponentiatedBy(decimals));
+            });
+            p.collateralReserve.forEach((collateralReserve, i) => {
+                const priceInUSD = valueToBigNumber(collateralReserve.reserve.price.priceInEth);
+                const principalATokenBalance = valueToBigNumber(collateralReserve.currentATokenBalance);
+                const liquidationThreshold = valueToBigNumber(collateralReserve.reserve.reserveLiquidationThreshold);
+                const decimals = valueToBigNumber(collateralReserve.reserve.decimals);
+                totalCollateralThreshold += priceInUSD.multipliedBy(principalATokenBalance).multipliedBy(liquidationThreshold.div(10000)).div(BigNumber(10).exponentiatedBy(decimals));
+            });
+            let healthFactor = totalCollateralThreshold / totalBorrowed;
+            return healthFactor <= 1;
         });
         this.logger(`Found ${unhealthyPositions.length}/${positions.length} unhealthy positions`);
     }
