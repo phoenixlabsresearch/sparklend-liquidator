@@ -6,26 +6,26 @@
 // global scope, and execute the script.
 const hre = require("hardhat");
 
+const LENDING_POOL_ADDRESS_PROVIDER = "0x5919a05a22d723A19FC13A84088b1F09663619D9";
+const UNISWAPV3_ROUTER = "0x1F98431c8aD98523631AE4a59f267346ea31F984";
+const TREASURY = "0xfC363d1c6E692a3088ad9fcBd0e0634C4688d4eA";
+
 async function main() {
-  const currentTimestampInSeconds = Math.round(Date.now() / 1000);
-  const ONE_YEAR_IN_SECS = 365 * 24 * 60 * 60;
-  const unlockTime = currentTimestampInSeconds + ONE_YEAR_IN_SECS;
+    const LiquidateLoan = await hre.ethers.getContractFactory("LiquidateLoan");
+    const liquidateLoan = await LiquidateLoan.deploy(
+        LENDING_POOL_ADDRESS_PROVIDER,
+        UNISWAPV3_ROUTER,
+        TREASURY
+    );
 
-  const lockedAmount = hre.ethers.utils.parseEther("1");
+    await lock.deployed();
 
-  const Lock = await hre.ethers.getContractFactory("Lock");
-  const lock = await Lock.deploy(unlockTime, { value: lockedAmount });
-
-  await lock.deployed();
-
-  console.log(
-    `Lock with 1 ETH and unlock timestamp ${unlockTime} deployed to ${lock.address}`
-  );
+    console.log(`LiquidateLoan deployed to ${liquidateLoan.address}`);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
 // and properly handle errors.
 main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
+    console.error(error);
+    process.exitCode = 1;
 });

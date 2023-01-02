@@ -92,23 +92,55 @@ class LiquidationWatcher {
             return healthFactor <= 1;
         });
         this.logger(`Found ${unhealthyPositions.length}/${positions.length} unhealthy positions`);
+
+        return unhealthyPositions;
+    }
+
+    async triggerLiquidation(position) {
+        this.logger(`Triggering liquidation for position ${position.id}`);
+        const liquidator = await hre.ethers.getContractAt("ILiquidator", "0x7bE1bE0aF7cC2cB2fA9aB9Cf7DcC8fB0Aa1d2a6A");
+        const liquidationTx = await liquidator.liquidate(position.id);
+        this.logger(`Liquidation tx sent: ${liquidationTx.hash}`);
+        await liquidationTx.wait();
+        this.logger(`Liquidation tx mined: ${liquidationTx.hash}`);
     }
 
     async run(_logger) {
         if (_logger != null) this.logger = _logger;
     
         this.logger("Spark Lend Liquidator starting up...");
+
+        const unhealthyPositions = [];
     
         return Promise.all([
             // Once per 1 minute
             interval(async () => {
                 try {
-                    await this.queryPositions();
+                    const _unhealthyPositions = await this.queryPositions();
+                    for (const p of _unhealthyPositions) {
+                        if (unhealthyPositions.findIndex(up => up.id === p.id) === -1) {
+                            p._sent = false;
+                            unhealthyPositions.push(p);
+                        }
+                    }
                 } catch (err) {
                     // Intermittent failure -- carry on
                     this.logger(`Intermittent failure. Error = ${err}`);
                 }
-            }, 60 * 1000)
+            }, 60 * 1000),
+
+            // Once per 10 seconds
+            interval(async () => {
+                try {
+                    for (const p of unhealthyPositions) {
+                        if (p._sent) continue;
+                        this.triggerLiquidation(p);
+                    }
+                } catch (err) {
+                    // Intermittent failure -- carry on
+                    this.logger(`Intermittent failure. Error = ${err}`);
+                }
+            }, 10 * 1000)
         ]);
     }
 
