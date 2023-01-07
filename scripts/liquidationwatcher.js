@@ -7,6 +7,11 @@ const BigNumber = require("bignumber.js");
 const dataApi = new GraphQLClient("https://api.studio.thegraph.com/query/40284/sparklend-testnet/v0.0.4");
 const positionQuery = gql`
     query getActivePositions($limit: Int!, $offset: Int!) {
+        _meta {
+            block {
+                number
+            }
+        }
         users(first: $limit, skip: $offset, orderBy: id, orderDirection: desc, where: {borrowedReservesCount_gt: 0}) {
             id
             borrowedReservesCount
@@ -176,6 +181,8 @@ class LiquidationWatcher {
                         if (this.unhealthyPositions.findIndex(up => up.id === p.id) === -1) {
                             p._sent = false;
                             this.unhealthyPositions.push(p);
+                        } else {
+                            // TODO we can still override if completed tx blocknum is < current data from the graph
                         }
                     }
                 } catch (err) {
