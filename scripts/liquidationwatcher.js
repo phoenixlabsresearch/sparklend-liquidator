@@ -4,7 +4,7 @@ const moment = require("moment");
 const { GraphQLClient, gql } = require("graphql-request");
 const BigNumber = require("bignumber.js");
 
-const dataApi = new GraphQLClient("https://api.studio.thegraph.com/query/40284/sparklend-testnet/v0.0.1");
+const dataApi = new GraphQLClient("https://api.studio.thegraph.com/query/40284/sparklend-testnet/v0.0.4");
 const positionQuery = gql`
     query getActivePositions($limit: Int!, $offset: Int!) {
         users(first: $limit, skip: $offset, orderBy: id, orderDirection: desc, where: {borrowedReservesCount_gt: 0}) {
@@ -124,7 +124,7 @@ class LiquidationWatcher {
     }
 
     async liquidate(position) {
-        const liquidator = await hre.ethers.getContractAt("LiquidateLoan", "0x7e94dc6537dbf93c381557c51682f4562744088a");
+        const liquidator = await hre.ethers.getContractAt("LiquidateLoan", "0x577896615Ed7aB76e111aD2b61B83a78dA03cd4D");
         return await liquidator.executeFlashLoans(
             position.largestBorrowAsset,
             position.largestBorrowTokens.toString(),
@@ -196,7 +196,7 @@ class LiquidationWatcher {
                     // Intermittent failure -- carry on
                     this.logger(`Intermittent failure. Error = ${err}`);
                 }
-            }, 3 * 1000)
+            }, 10 * 1000)
         ]);
     }
 
