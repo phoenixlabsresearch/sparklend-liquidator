@@ -259,7 +259,7 @@ contract LiquidateLoan is IFlashLoanReceiver {
     * _amountOutMin - when using uniswap this is used to make sure the swap returns a minimum number of tokens, or will revert
     * _swapPath - the path that uniswap will use to swap tokens back to original tokens
     */
-    function executeFlashLoans(address _assetToLiquidate, uint256 _flashAmt, address _collateral, address _userToLiquidate, uint256 _amountOutMin, address[] memory _swapPath) public {
+    function executeFlashLoans(address _assetToLiquidate, uint256 _flashAmt, address _collateral, address _userToLiquidate, uint256 _amountOutMin, bytes memory _swapPath) public {
         address receiverAddress = address(this);
 
         // the various assets to be flashed

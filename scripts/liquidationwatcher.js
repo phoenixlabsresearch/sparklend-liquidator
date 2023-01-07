@@ -74,22 +74,47 @@ class LiquidationWatcher {
         this.logger(`Fetching all positions...`);
         const positions = (await fetchAllRows(positionQuery, r => r.users));
         const _unhealthyPositions = positions.filter(p => {
-            let totalBorrowed = 0;
-            let totalCollateralThreshold = 0;
+            let totalBorrowed = BigNumber(0);
+            let totalCollateralThreshold = BigNumber(0);
+            let largestBorrowAsset;
+            let largestBorrowAmount = BigNumber(0);
+            let largestBorrowTokens;
+            let largestSupplyAsset;
+            let largestSupplyAmount = BigNumber(0);
 
             p.borrowReserve.forEach((borrowReserve, i) => {
                 const priceInUSD = valueToBigNumber(borrowReserve.reserve.price.priceInEth);    // Number is actually in USD despite name
                 const principalBorrowed = valueToBigNumber(borrowReserve.currentTotalDebt);
                 const decimals = valueToBigNumber(borrowReserve.reserve.decimals);
-                totalBorrowed += priceInUSD.multipliedBy(principalBorrowed).div(BigNumber(10).exponentiatedBy(decimals));
+                const borrowed = priceInUSD.multipliedBy(principalBorrowed).div(BigNumber(10).exponentiatedBy(decimals));
+                totalBorrowed = totalBorrowed.plus(borrowed);
+
+                if (borrowed.isGreaterThan(largestBorrowAmount)) {
+                    largestBorrowAsset = borrowReserve.reserve.underlyingAsset;
+                    largestBorrowAmount = borrowed;
+                    largestBorrowTokens = principalBorrowed;
+                }
             });
             p.collateralReserve.forEach((collateralReserve, i) => {
                 const priceInUSD = valueToBigNumber(collateralReserve.reserve.price.priceInEth);
                 const principalATokenBalance = valueToBigNumber(collateralReserve.currentATokenBalance);
                 const liquidationThreshold = valueToBigNumber(collateralReserve.reserve.reserveLiquidationThreshold);
                 const decimals = valueToBigNumber(collateralReserve.reserve.decimals);
-                totalCollateralThreshold += priceInUSD.multipliedBy(principalATokenBalance).multipliedBy(liquidationThreshold.div(10000)).div(BigNumber(10).exponentiatedBy(decimals));
+                const supplied = priceInUSD.multipliedBy(principalATokenBalance).multipliedBy(liquidationThreshold.div(10000)).div(BigNumber(10).exponentiatedBy(decimals));
+                totalCollateralThreshold = totalCollateralThreshold.plus(supplied);
+
+                if (supplied.isGreaterThan(largestSupplyAmount)) {
+                    largestSupplyAsset = collateralReserve.reserve.underlyingAsset;
+                    largestSupplyAmount = supplied;
+                }
             });
+
+            p.largestBorrowAsset = largestBorrowAsset;
+            p.largestBorrowAmount = largestBorrowAmount;
+            p.largestBorrowTokens = largestBorrowTokens;
+            p.largestSupplyAsset = largestSupplyAsset;
+            p.largestSupplyAmount = largestSupplyAmount;
+
             let healthFactor = totalCollateralThreshold / totalBorrowed;
             return healthFactor <= 1;
         });
@@ -98,20 +123,42 @@ class LiquidationWatcher {
         return _unhealthyPositions;
     }
 
+    async liquidate(position) {
+        const liquidator = await hre.ethers.getContractAt("LiquidateLoan", "0x7e94dc6537dbf93c381557c51682f4562744088a");
+        return await liquidator.executeFlashLoans(
+            position.largestBorrowAsset,
+            position.largestBorrowTokens.toString(),
+            position.largestSupplyAsset,
+            position.id,
+            0,
+            ethers.utils.solidityPack(
+                [
+                    "address",
+                    "uint24",
+                    "address",
+                ],
+                [
+                    position.largestSupplyAsset,
+                    500,
+                    position.largestBorrowAsset,
+                ]
+            )
+        );
+    }
+
     async triggerLiquidation(position) {
         try {
             this.logger(`Triggering liquidation for position ${position.id}`);
-            const liquidator = await hre.ethers.getContractAt("LiquidateLoan");
-            const liquidationTx = await liquidator.liquidate(position.id);
+            const liquidationTx = await this.liquidate(position);
             this.logger(`Liquidation tx sent for position ${position.id}: ${liquidationTx.hash}`);
             await liquidationTx.wait();
             this.logger(`Liquidation tx mined for position ${position.id}: ${liquidationTx.hash}`);
 
             position._completed = true;
             position._completedTx = liquidationTx.hash;
-        } catch {
+        } catch (err) {
             position._sent = false;
-            this.logger(`Error triggering liquidation for position ${position.id}`);
+            this.logger(`Error triggering liquidation for position ${position.id}. Error = ${err}`);
         }
     }
 
@@ -142,13 +189,14 @@ class LiquidationWatcher {
                 try {
                     for (const p of this.unhealthyPositions) {
                         if (p._sent) continue;
+                        p._sent = true;
                         this.triggerLiquidation(p);
                     }
                 } catch (err) {
                     // Intermittent failure -- carry on
                     this.logger(`Intermittent failure. Error = ${err}`);
                 }
-            }, 10 * 1000)
+            }, 3 * 1000)
         ]);
     }
 

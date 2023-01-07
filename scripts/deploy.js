@@ -5,20 +5,17 @@
 // will compile your contracts, add the Hardhat Runtime Environment's members to the
 // global scope, and execute the script.
 const hre = require("hardhat");
-
-const LENDING_POOL_ADDRESS_PROVIDER = "0x5919a05a22d723A19FC13A84088b1F09663619D9";
-const UNISWAPV3_ROUTER = "0xE592427A0AEce92De3Edee1F18E0157C05861564";
-const TREASURY = "0xfC363d1c6E692a3088ad9fcBd0e0634C4688d4eA";
+const addresses = require("./constants").addresses;
 
 async function main() {
     const LiquidateLoan = await hre.ethers.getContractFactory("LiquidateLoan");
     const liquidateLoan = await LiquidateLoan.deploy(
-        LENDING_POOL_ADDRESS_PROVIDER,
-        UNISWAPV3_ROUTER,
-        TREASURY
+        addresses.LENDING_POOL_ADDRESS_PROVIDER,
+        addresses.UNISWAPV3_ROUTER,
+        addresses.TREASURY
     );
 
-    await lock.deployed();
+    await liquidateLoan.deployed();
 
     console.log(`LiquidateLoan deployed to ${liquidateLoan.address}`);
 }
