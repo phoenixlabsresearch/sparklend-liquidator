@@ -205,7 +205,7 @@ contract LiquidateLoan is IFlashLoanReceiver {
             liquidateLoan(collateral, assets[0], userToLiquidate, amounts[0], false);
 
             //swap collateral from liquidate back to asset from flashloan to pay it off
-            swapToBorrowedAsset(collateral, amountOutMin, swapPath);
+            if (collateral != assets[0]) swapToBorrowedAsset(collateral, amountOutMin, swapPath);
         }
 
         //Pay to owner the balance after fees

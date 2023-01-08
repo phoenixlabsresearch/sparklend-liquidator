@@ -7,9 +7,11 @@ async function retry (callback, errorHandler, ms, retries = 5) {
     let count = 0;
     while (count < retries) {
         try {
-            return await callback();
+            return await callback(count);
         } catch (error) {
-            errorHandler(error);
+            if (!errorHandler(error)) {
+                throw error;
+            }
             await sleep(ms);
             count++;
             if (count >= retries) throw error;
@@ -33,6 +35,12 @@ async function exponentialBackoff (callback, retries = 5) {
             if (count >= retries) throw err;
         }
     }
+}
+async function timeout(p, ms) {
+    return Promise.race([
+        p,
+        new Promise((_, reject) => setTimeout(() => reject(new Error("timeout")), ms))
+    ])
 }
 
 function shortNum(num, digits = 0) {
@@ -61,13 +69,14 @@ function valueToBigNumber(amount) {
     }
   
     return new BigNumber(amount);
-  }
+}
 
 module.exports = {
     sleep,
     retry,
     interval,
     exponentialBackoff,
+    timeout,
     shortNum,
     valueToBigNumber
 };
