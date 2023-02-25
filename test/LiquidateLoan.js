@@ -15,7 +15,10 @@ describe("LiquidateLoan", function () {
         const liquidateLoan = await LiquidateLoan.deploy(
             addresses.LENDING_POOL_ADDRESS_PROVIDER,
             addresses.UNISWAPV3_ROUTER,
-            addresses.TREASURY
+            addresses.TREASURY,
+            addresses.DAI,
+            addresses.SDAI,
+            addresses.DSS_FLASH
         );
     
         return { liquidateLoan };
@@ -29,6 +32,9 @@ describe("LiquidateLoan", function () {
             //expect(await liquidateLoan.lendingPool()).to.equal();
             expect(await liquidateLoan.uniswapV3Router()).to.equal(addresses.UNISWAPV3_ROUTER);
             expect(await liquidateLoan.treasury()).to.equal(addresses.TREASURY);
+            expect(await liquidateLoan.dai()).to.equal(addresses.DAI);
+            expect(await liquidateLoan.sdai()).to.equal(addresses.SDAI);
+            expect(await liquidateLoan.daiFlashLender()).to.equal(addresses.DSS_FLASH);
         });
     });
 

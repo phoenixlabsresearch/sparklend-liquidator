@@ -2,11 +2,16 @@
 pragma solidity ^0.8.17;
 
 interface IERC20 {
-  function balanceOf(address account) external view returns (uint256);
-  function transfer(address recipient, uint256 amount) external returns (bool);
-  function transferFrom(address from, address recipient, uint256 amount) external returns (bool);
-  function allowance(address owner, address spender) external view returns (uint256);
-  function approve(address spender, uint256 amount) external returns (bool);
+    function balanceOf(address account) external view returns (uint256);
+    function transfer(address recipient, uint256 amount) external returns (bool);
+    function transferFrom(address from, address recipient, uint256 amount) external returns (bool);
+    function allowance(address owner, address spender) external view returns (uint256);
+    function approve(address spender, uint256 amount) external returns (bool);
+}
+
+interface IERC4626 is IERC20 {
+    function deposit(uint256 assets, address receiver) external returns (uint256 shares);
+    function redeem(uint256 shares, address receiver, address owner) external returns (uint256 assets);
 }
 
 interface IFlashLoanReceiver {
@@ -69,6 +74,63 @@ interface ILendingPool {
         bytes calldata params,
         uint16 referralCode
     ) external;
+}
+
+interface IERC3156FlashBorrower {
+
+    /**
+     * @dev Receive a flash loan.
+     * @param initiator The initiator of the loan.
+     * @param token The loan currency.
+     * @param amount The amount of tokens lent.
+     * @param fee The additional amount of tokens to repay.
+     * @param data Arbitrary data structure, intended to contain user-defined parameters.
+     * @return The keccak256 hash of "ERC3156FlashBorrower.onFlashLoan"
+     */
+    function onFlashLoan(
+        address initiator,
+        address token,
+        uint256 amount,
+        uint256 fee,
+        bytes calldata data
+    ) external returns (bytes32);
+}
+
+interface IERC3156FlashLender {
+
+    /**
+     * @dev The amount of currency available to be lent.
+     * @param token The loan currency.
+     * @return The amount of `token` that can be borrowed.
+     */
+    function maxFlashLoan(
+        address token
+    ) external view returns (uint256);
+
+    /**
+     * @dev The fee to be charged for a given loan.
+     * @param token The loan currency.
+     * @param amount The amount of tokens lent.
+     * @return The amount of `token` to be charged for the loan, on top of the returned principal.
+     */
+    function flashFee(
+        address token,
+        uint256 amount
+    ) external view returns (uint256);
+
+    /**
+     * @dev Initiate a flash loan.
+     * @param receiver The receiver of the tokens in the loan, and the receiver of the callback.
+     * @param token The loan currency.
+     * @param amount The amount of tokens lent.
+     * @param data Arbitrary data structure, intended to contain user-defined parameters.
+     */
+    function flashLoan(
+        IERC3156FlashBorrower receiver,
+        address token,
+        uint256 amount,
+        bytes calldata data
+    ) external returns (bool);
 }
 
 interface IUniswapV3Router {
@@ -165,7 +227,7 @@ library SafeERC20 {
     }
 }
 
-contract LiquidateLoan is IFlashLoanReceiver {
+contract LiquidateLoan is IFlashLoanReceiver, IERC3156FlashBorrower {
 
     using SafeERC20 for IERC20;
 
@@ -173,16 +235,41 @@ contract LiquidateLoan is IFlashLoanReceiver {
     ILendingPool public immutable lendingPool;
     IUniswapV3Router public immutable uniswapV3Router;
     address public immutable treasury;
+    IERC20 public immutable dai;
+    IERC4626 public immutable sdai;
+    IERC3156FlashLender public immutable daiFlashLender;
 
-    constructor(address _addressProvider, address _uniswapV3Router, address _treasury) {
+    constructor(address _addressProvider, address _uniswapV3Router, address _treasury, address _dai, address _sdai, address _daiFlashLender) {
         provider = ILendingPoolAddressesProvider(_addressProvider);
         lendingPool = ILendingPool(provider.getPool());
         uniswapV3Router = IUniswapV3Router(_uniswapV3Router);
         treasury = _treasury;
+        dai = IERC20(_dai);
+        sdai = IERC4626(_sdai);
+        daiFlashLender = IERC3156FlashLender(_daiFlashLender);
+
+        dai.approve(address(sdai), type(uint256).max);
     }
 
     /**
-        This function is called after your contract has received the flash loaned amount
+        Maker DAI flash loan.
+     */
+    function onFlashLoan(
+        address,
+        address token,
+        uint256 amount,
+        uint256 fee,
+        bytes calldata data
+    ) external returns (bytes32) {
+        flashLoanReceived(token, amount, fee, data);
+
+        IERC20(token).approve(address(daiFlashLender), amount + fee);
+        
+        return keccak256("ERC3156FlashBorrower.onFlashLoan");
+    }
+
+    /**
+        Spark Lend flash loan.
      */
     function executeOperation(
         address[] calldata assets,
@@ -195,6 +282,20 @@ contract LiquidateLoan is IFlashLoanReceiver {
         override
         returns (bool)
     {
+        flashLoanReceived(assets[0], amounts[0], premiums[0], params);
+
+        // Approve the pool to reclaim
+        IERC20(assets[0]).approve(address(lendingPool), amounts[0] + premiums[0]);
+
+        return true;
+    }
+
+    function flashLoanReceived(
+        address assetToLiquidiate,
+        uint256 amount,
+        uint256 fee,
+        bytes calldata params
+    ) internal {
         //collateral  the address of the token that we will be compensated in
         //userToLiquidate - id of the user to liquidate
         //amountOutMin - minimum amount of asset paid when swapping collateral
@@ -202,24 +303,35 @@ contract LiquidateLoan is IFlashLoanReceiver {
             (address collateral, address userToLiquidate, uint256 amountOutMin, bytes memory swapPath) = abi.decode(params, (address, address, uint256, bytes));
 
             //liquidate unhealthy loan
-            liquidateLoan(collateral, assets[0], userToLiquidate, amounts[0], false);
+            liquidateLoan(collateral, assetToLiquidiate, userToLiquidate, amount, false);
 
             //swap collateral from liquidate back to asset from flashloan to pay it off
-            if (collateral != assets[0]) swapToBorrowedAsset(collateral, amountOutMin, swapPath);
+            if (collateral != assetToLiquidiate) {
+                // Unwrap sDAI if it's the collateral - there is no paths for sDAI in DEXes
+                if (collateral == address(sdai)) {
+                    sdai.redeem(sdai.balanceOf(address(this)), address(this), address(this));
+                }
+
+                // TODO add support for wsthETH -> ETH in Curve
+
+                // TODO Verify this is the proper check to see if there is a swap
+                if (swapPath.length > 0) swapToBorrowedAsset(collateral, amountOutMin, swapPath);
+
+                // TODO add support for ETH -> wstETH in Curve
+
+                // Wrap to sDAI if it's the liquidated asset (we assume current balance is in DAI)
+                if (assetToLiquidiate == address(sdai)) {
+                    sdai.deposit(dai.balanceOf(address(this)), address(this));
+                }
+            }
         }
 
         //Pay to owner the balance after fees
-        uint256 earnings = IERC20(assets[0]).balanceOf(address(this));
-        uint256 costs = amounts[0] + premiums[0];
+        uint256 earnings = IERC20(assetToLiquidiate).balanceOf(address(this));
+        uint256 costs = amount + fee;
 
         require(earnings >= costs , "No profit");
-        IERC20(assets[0]).transfer(treasury, earnings - costs);
-
-        // Approve the LendingPool contract allowance to *pull* the owed amount
-        // i.e. AAVE V2's way of repaying the flash loan
-        IERC20(assets[0]).approve(address(lendingPool), costs);
-
-        return true;
+        IERC20(assetToLiquidiate).transfer(treasury, earnings - costs);
     }
 
     function liquidateLoan(address _collateral, address _liquidate_asset, address _userToLiquidate, uint256 _amount, bool _receiveaToken) public {
@@ -260,36 +372,29 @@ contract LiquidateLoan is IFlashLoanReceiver {
     * _swapPath - the path that uniswap will use to swap tokens back to original tokens
     */
     function executeFlashLoans(address _assetToLiquidate, uint256 _flashAmt, address _collateral, address _userToLiquidate, uint256 _amountOutMin, bytes memory _swapPath) public {
-        address receiverAddress = address(this);
-
-        // the various assets to be flashed
-        address[] memory assets = new address[](1);
-        assets[0] = _assetToLiquidate;
-
-        // the amount to be flashed for each asset
-        uint256[] memory amounts = new uint256[](1);
-        amounts[0] = _flashAmt;
-
-        // 0 = no debt, 1 = stable, 2 = variable
-        uint256[] memory modes = new uint256[](1);
-        modes[0] = 0;
-
-        address onBehalfOf = address(this);
-        //only for testing. must remove
-
-        // passing these params to executeOperation so that they can be used to liquidate the loan and perform the swap
         bytes memory params = abi.encode(_collateral, _userToLiquidate, _amountOutMin, _swapPath);
-        uint16 referralCode = 0;
-
-        lendingPool.flashLoan(
-            receiverAddress,
-            assets,
-            amounts,
-            modes,
-            onBehalfOf,
-            params,
-            referralCode
-        );
+        
+        if (_assetToLiquidate == address(dai)) {
+            // Use Maker Flash Mint Module
+            daiFlashLender.flashLoan(this, _assetToLiquidate, _flashAmt, params);
+        } else {
+            // Use Spark Lend Flash Loan
+            address[] memory assets = new address[](1);
+            assets[0] = _assetToLiquidate;
+            uint256[] memory amounts = new uint256[](1);
+            amounts[0] = _flashAmt;
+            uint256[] memory modes = new uint256[](1);
+            modes[0] = 0;
+            lendingPool.flashLoan(
+                address(this),
+                assets,
+                amounts,
+                modes,
+                address(this),
+                params,
+                0
+            );
+        }
     }
 
 }

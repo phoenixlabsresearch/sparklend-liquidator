@@ -12,7 +12,10 @@ async function main() {
     const liquidateLoan = await LiquidateLoan.deploy(
         addresses.LENDING_POOL_ADDRESS_PROVIDER,
         addresses.UNISWAPV3_ROUTER,
-        addresses.TREASURY
+        addresses.TREASURY,
+        addresses.DAI,
+        addresses.SDAI,
+        addresses.DSS_FLASH
     );
 
     await liquidateLoan.deployed();
