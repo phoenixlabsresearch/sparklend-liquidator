@@ -227,6 +227,16 @@ library SafeERC20 {
     }
 }
 
+interface CurvePoolLike {
+    function exchange(int128 i, int128 j, uint256 dx, uint256 min_dy) external payable;
+}
+
+interface WrappedSTETHLike is IERC20 {
+    function stETH() external view returns (IERC20);
+    function wrap(uint256 _stETHAmount) external returns (uint256);
+    function unwrap(uint256 _wstETHAmount) external returns (uint256);
+}
+
 contract LiquidateLoan is IFlashLoanReceiver, IERC3156FlashBorrower {
 
     using SafeERC20 for IERC20;
@@ -237,18 +247,39 @@ contract LiquidateLoan is IFlashLoanReceiver, IERC3156FlashBorrower {
     address public immutable treasury;
     IERC20 public immutable dai;
     IERC4626 public immutable sdai;
+    WrappedSTETHLike public immutable wstETH;
+    IERC20 public immutable weth;
+    IERC20 public immutable stETH;
     IERC3156FlashLender public immutable daiFlashLender;
+    CurvePoolLike public immutable stETHCurvePool;
 
-    constructor(address _addressProvider, address _uniswapV3Router, address _treasury, address _dai, address _sdai, address _daiFlashLender) {
+    constructor(
+        address _addressProvider,
+        address _uniswapV3Router,
+        address _treasury,
+        address _dai,
+        address _sdai,
+        address _weth,
+        address _wstETH,
+        address _daiFlashLender,
+        address _stETHCurvePool
+    ) {
         provider = ILendingPoolAddressesProvider(_addressProvider);
         lendingPool = ILendingPool(provider.getPool());
         uniswapV3Router = IUniswapV3Router(_uniswapV3Router);
         treasury = _treasury;
         dai = IERC20(_dai);
         sdai = IERC4626(_sdai);
+        weth = IERC20(_weth);
+        wstETH = WrappedSTETHLike(_wstETH);
+        stETH = wstETH.stETH();
         daiFlashLender = IERC3156FlashLender(_daiFlashLender);
+        stETHCurvePool = CurvePoolLike(_stETHCurvePool);
 
         dai.approve(address(sdai), type(uint256).max);
+        stETH.approve(address(wstETH), type(uint256).max);
+        stETH.approve(address(stETHCurvePool), type(uint256).max);
+        weth.approve(address(stETHCurvePool), type(uint256).max);
     }
 
     /**
@@ -312,12 +343,20 @@ contract LiquidateLoan is IFlashLoanReceiver, IERC3156FlashBorrower {
                     sdai.redeem(sdai.balanceOf(address(this)), address(this), address(this));
                 }
 
-                // TODO add support for wsthETH -> ETH in Curve
+                // Unwrap wstETH and swap to WETH
+                if (collateral == address(wstETH)) {
+                    wstETH.unwrap(wstETH.balanceOf(address(this)));
+                    stETHCurvePool.exchange(1, 0, stETH.balanceOf(address(this)), 0);
+                }
 
-                // TODO Verify this is the proper check to see if there is a swap
+                // Perform Uniswap swaps
                 if (swapPath.length > 0) swapToBorrowedAsset(collateral, amountOutMin, swapPath);
 
-                // TODO add support for ETH -> wstETH in Curve
+                // Swap WETH to stETH and wrap to wstETH
+                if (assetToLiquidiate == address(wstETH)) {
+                    stETHCurvePool.exchange(0, 1, weth.balanceOf(address(this)), 0);
+                    wstETH.wrap(stETH.balanceOf(address(this)));
+                }
 
                 // Wrap to sDAI if it's the liquidated asset (we assume current balance is in DAI)
                 if (assetToLiquidiate == address(sdai)) {

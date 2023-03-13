@@ -12,7 +12,7 @@
     "server-local": "hardhat run --network local scripts/server.js",
     "server-goerli": "hardhat run --network goerli scripts/server.js",
     "server-mainnet": "hardhat run --network mainnet scripts/server.js",
-    "test": "hardhat test"
+    "test": "hardhat test --network mainnet"
   },
   "devDependencies": {
     "@ethersproject/abi": "^5.4.7",

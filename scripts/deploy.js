@@ -14,8 +14,11 @@ async function main() {
         addresses.UNISWAPV3_ROUTER,
         addresses.TREASURY,
         addresses.DAI,
-        addresses.SDAI,
-        addresses.DSS_FLASH
+        addresses.sDAI,
+        addresses.WETH,
+        addresses.wstETH,
+        addresses.DSS_FLASH,
+        addresses.stETHCurvePool
     );
 
     await liquidateLoan.deployed();
