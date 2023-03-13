@@ -1,0 +1,6 @@
+# .graphclientrc.yml
+sources:
+  - name: spark
+    handler:
+      graphql:
+        endpoint: https://api.thegraph.com/subgraphs/id/QmWBJmcdbKVqE6CECdXH8GSetk8iBFzVaHZaemrk3A264F

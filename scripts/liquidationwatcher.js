@@ -1,11 +1,11 @@
 const hre = require("hardhat");
 const { interval, shortNum, sleep, retry, exponentialBackoff, timeout, valueToBigNumber } = require("./utils");
 const moment = require("moment");
-const { GraphQLClient, gql } = require("graphql-request");
+const { gql } = require("graphql-request");
+const { execute } = require("../.graphclient");
 const BigNumber = require("bignumber.js");
 const { addresses, routes } = require("./constants");
 
-const dataApi = new GraphQLClient("https://api.studio.thegraph.com/query/40284/sparklend-testnet/v0.0.4");
 const positionQuery = gql`
     query getActivePositions($limit: Int!, $offset: Int!) {
         _meta {
@@ -13,38 +13,30 @@ const positionQuery = gql`
                 number
             }
         }
-        users(first: $limit, skip: $offset, orderBy: id, orderDirection: desc, where: {borrowedReservesCount_gt: 0}) {
+        accounts(
+            first: $limit,
+            skip: $offset,
+            orderBy: id,
+            orderDirection: desc, 
+            where: {borrows_: {amount_gt: "0"}}
+        ) {
             id
-            borrowedReservesCount
-            collateralReserve:reserves(where: {currentATokenBalance_gt: 0}) {
-            currentATokenBalance
-            reserve {
-                usageAsCollateralEnabled
-                reserveLiquidationThreshold
-                reserveLiquidationBonus
-                borrowingEnabled
-                utilizationRate
-                symbol
-                underlyingAsset
-                price {
-                    priceInEth
-                }
-                decimals
-            }
-            }
-            borrowReserve: reserves(where: {currentTotalDebt_gt: 0}) {
-                currentTotalDebt
-                reserve{
-                    usageAsCollateralEnabled
-                    reserveLiquidationThreshold
-                    borrowingEnabled
-                    utilizationRate
+            deposits {
+                amount
+                amountUSD
+                asset {
                     symbol
-                    underlyingAsset
-                    price {
-                        priceInEth
+                    _market {
+                        canUseAsCollateral
+                        liquidationThreshold
                     }
-                    decimals
+                }
+            }
+            borrows {
+                amount
+                amountUSD
+                asset {
+                    symbol
                 }
             }
         }
@@ -55,13 +47,13 @@ async function fetchAllRows (query, resolver) {
     const rows = [];
     const limit = 1000;
     let offset = 0;
-    let result = await dataApi.request(query, { limit, offset });
-    const blockNumber = result._meta.block.number;
-    for (const r of resolver(result)) rows.push(r);
+    let result = await execute(query, { limit, offset });
+    const blockNumber = result.data._meta.block.number;
+    for (const r of resolver(result.data)) rows.push(r);
     while (offset + limit === rows.length) {
         offset += limit;
-        result = await dataApi.request(query, { limit, offset });
-        for (const r of resolver(result)) rows.push(r);
+        result = await execute(query, { limit, offset });
+        for (const r of resolver(result.data)) rows.push(r);
     }
     return { rows, blockNumber };
 }
@@ -79,56 +71,45 @@ class LiquidationWatcher {
 
         // Fetch all urns
         this.logger(`Fetching all positions...`);
-        const { rows, blockNumber } = (await fetchAllRows(positionQuery, r => r.users));
+        const { rows, blockNumber } = (await fetchAllRows(positionQuery, r => r.accounts));
         const _unhealthyPositions = rows.filter(p => {
-            if (p.collateralReserve.length == 0 || p.borrowReserve.length == 0) return false;
+            if (p.deposits.length == 0 || p.borrows.length == 0) return false;
 
             let totalBorrowed = BigNumber(0);
             let totalCollateralThreshold = BigNumber(0);
-            let largestBorrowAsset;
             let largestBorrowAmount = BigNumber(0);
             let largestBorrowTokens;
             let largestBorrowSymbol;
-            let largestSupplyAsset;
             let largestSupplyAmount = BigNumber(0);
             let largestSupplySymbol;
 
-            p.borrowReserve.forEach((borrowReserve, i) => {
-                const priceInUSD = valueToBigNumber(borrowReserve.reserve.price.priceInEth);    // Number is actually in USD despite name
-                const principalBorrowed = valueToBigNumber(borrowReserve.currentTotalDebt);
-                const decimals = valueToBigNumber(borrowReserve.reserve.decimals);
-                const borrowed = priceInUSD.multipliedBy(principalBorrowed).div(BigNumber(10).exponentiatedBy(decimals));
-                totalBorrowed = totalBorrowed.plus(borrowed);
+            p.borrows.forEach((b, i) => {
+                const borrowed = valueToBigNumber(b.amount);
+                const borrowedUSD = valueToBigNumber(b.amountUSD);
+                totalBorrowed = totalBorrowed.plus(borrowedUSD);
 
-                if (borrowed.isGreaterThan(largestBorrowAmount)) {
-                    largestBorrowAsset = borrowReserve.reserve.underlyingAsset;
-                    largestBorrowAmount = borrowed;
-                    largestBorrowTokens = principalBorrowed;
-                    largestBorrowSymbol = borrowReserve.reserve.symbol;
+                if (borrowedUSD.isGreaterThan(largestBorrowAmount)) {
+                    largestBorrowAmount = borrowedUSD;
+                    largestBorrowTokens = borrowed;
+                    largestBorrowSymbol = b.asset.symbol;
                 }
             });
-            p.collateralReserve.forEach((collateralReserve, i) => {
-                const priceInUSD = valueToBigNumber(collateralReserve.reserve.price.priceInEth);
-                const principalATokenBalance = valueToBigNumber(collateralReserve.currentATokenBalance);
-                const liquidationThreshold = valueToBigNumber(collateralReserve.reserve.reserveLiquidationThreshold);
-                const decimals = valueToBigNumber(collateralReserve.reserve.decimals);
-                const supplied = priceInUSD.multipliedBy(principalATokenBalance).div(BigNumber(10).exponentiatedBy(decimals));
-                totalCollateralThreshold = totalCollateralThreshold.plus(supplied.multipliedBy(liquidationThreshold.div(10000)));
+            p.deposits.filter(d => d.asset._market.canUseAsCollateral).forEach((d, i) => {
+                const depositedUSD = valueToBigNumber(d.amountUSD);
+                const liquidationThreshold = valueToBigNumber(d.asset._market.liquidationThreshold);
+                totalCollateralThreshold = totalCollateralThreshold.plus(depositedUSD.multipliedBy(liquidationThreshold.div(100)));
 
-                if (supplied.isGreaterThan(largestSupplyAmount)) {
-                    largestSupplyAsset = collateralReserve.reserve.underlyingAsset;
-                    largestSupplyAmount = supplied;
-                    largestSupplySymbol = collateralReserve.reserve.symbol;
+                if (depositedUSD.isGreaterThan(largestSupplyAmount)) {
+                    largestSupplyAmount = depositedUSD;
+                    largestSupplySymbol = d.asset.symbol;
                 }
             });
 
             let healthFactor = totalCollateralThreshold.div(totalBorrowed);
-            p.largestBorrowAsset = largestBorrowAsset;
-            p.largestBorrowAmount = largestBorrowAmount.div(BigNumber(10).exponentiatedBy(8));
+            p.largestBorrowAmount = largestBorrowAmount;
             p.largestBorrowTokens = largestBorrowTokens;
             p.largestBorrowSymbol = largestBorrowSymbol;
-            p.largestSupplyAsset = largestSupplyAsset;
-            p.largestSupplyAmount = largestSupplyAmount.div(BigNumber(10).exponentiatedBy(8));
+            p.largestSupplyAmount = largestSupplyAmount;
             p.largestSupplySymbol = largestSupplySymbol;
             p.healthFactor = healthFactor;
 
@@ -142,12 +123,12 @@ class LiquidationWatcher {
     async liquidate(position) {
         const liquidator = await hre.ethers.getContractAt("LiquidateLoan", addresses.LIQUIDATE_LOAN);
         const args = [
-            position.largestBorrowAsset,
+            addresses[position.largestBorrowSymbol],
             position.largestBorrowTokens.toString(),
-            position.largestSupplyAsset,
+            addresses[position.largestSupplySymbol],
             position.id,
             0,
-            routes[position.largestSupplyAsset.toLowerCase()][position.largestBorrowAsset.toLowerCase()]
+            routes[position.largestSupplySymbol][position.largestBorrowSymbol]
         ];
         const feeData = await ethers.provider.getFeeData();
         const [signer] = await ethers.getSigners();
@@ -226,7 +207,7 @@ class LiquidationWatcher {
             }, 60 * 1000),
 
             // Once per 10 seconds
-            interval(async () => {
+            /*interval(async () => {
                 try {
                     // Always make sure this is sorted by largest positions first
                     this.unhealthyPositions.sort((a, b) => b.largestBorrowAmount.comparedTo(a.largestBorrowAmount));
@@ -240,7 +221,7 @@ class LiquidationWatcher {
                     // Intermittent failure -- carry on
                     this.logger(`Intermittent failure. Error = ${err}`);
                 }
-            }, 10 * 1000)
+            }, 10 * 1000)*/
         ]);
     }
 
