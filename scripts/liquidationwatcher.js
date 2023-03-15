@@ -75,6 +75,10 @@ class LiquidationWatcher {
         // Fetch all urns
         this.logger(`Fetching all positions...`);
         const { rows, blockNumber } = (await fetchAllRows(positionQuery, r => r.accounts));
+        let lowHF = BigNumber(0);
+        let highHF = BigNumber(0);
+        let averageHF = BigNumber(0);
+        let averageHFCount = 0;
         const _unhealthyPositions = rows.filter(p => {
             if (p.deposits.length == 0 || p.borrows.length == 0) return false;
 
@@ -116,9 +120,14 @@ class LiquidationWatcher {
             p.largestSupplySymbol = largestSupplySymbol;
             p.healthFactor = healthFactor;
 
+            averageHF = averageHF.plus(healthFactor);
+            averageHFCount++;
+            if (healthFactor.isLessThan(lowHF) || lowHF.isEqualTo(0)) lowHF = healthFactor;
+            if (healthFactor.isGreaterThan(highHF)) highHF = healthFactor;
+
             return healthFactor.isLessThan(1);
         });
-        this.logger(`Found ${_unhealthyPositions.length}/${rows.length} unhealthy positions`);
+        this.logger(`Found ${_unhealthyPositions.length}/${rows.length} unhealthy positions. Low HF = ${lowHF.toFixed(2)}, Average HF = ${averageHF.div(averageHFCount).toFixed(2)},  High HF = ${highHF.toFixed(2)}`);
 
         return { _unhealthyPositions, blockNumber };
     }
