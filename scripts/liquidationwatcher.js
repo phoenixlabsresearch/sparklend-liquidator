@@ -1,10 +1,13 @@
 const hre = require("hardhat");
-const { interval, shortNum, sleep, retry, exponentialBackoff, timeout, valueToBigNumber } = require("./utils");
+const { interval, retry, timeout, valueToBigNumber, readAllFiles, multicall } = require("./utils");
 const moment = require("moment");
 const { gql } = require("graphql-request");
 const { execute } = require("../.graphclient");
 const BigNumber = require("bignumber.js");
 const { addresses, routes } = require("./constants");
+
+const RAY = new BigNumber(10).pow(27);
+const RAD = new BigNumber(10).pow(45);
 
 const positionQuery = gql`
     query getActivePositions($limit: Int!, $offset: Int!) {
@@ -120,16 +123,100 @@ class LiquidationWatcher {
         return { _unhealthyPositions, blockNumber };
     }
 
+    async readAllManualPositions() {
+        let positions = (await readAllFiles("./data")).flatMap(f => {
+            return Object.values(f);
+        }).map(id => {
+            return {
+                id
+            };
+        });
+
+        this.logger(`${positions.length} positions manually specified. Fetching data...`);
+
+        const uiPoolDataProviderV3 = await ethers.getContractAt("IUiPoolDataProviderV3", addresses.UI_POOL_DATA_PROVIDER);
+        const [reserveDataArray, currencyInfo] = await uiPoolDataProviderV3.getReservesData(addresses.LENDING_POOL_ADDRESS_PROVIDER);
+        const userReservesData = await multicall(positions.map(p => {
+            return [addresses.UI_POOL_DATA_PROVIDER, uiPoolDataProviderV3.interface.encodeFunctionData("getUserReservesData", [addresses.LENDING_POOL_ADDRESS_PROVIDER, p.id])];
+        }), r => uiPoolDataProviderV3.interface.decodeFunctionResult("getUserReservesData", r));
+        const reserveData = {};
+        reserveDataArray.forEach(r => {
+            reserveData[r.underlyingAsset] = r;
+        });
+        
+        positions = positions.filter((p, i) => {
+            const userReserveData = userReservesData[i][0];
+
+            let totalBorrowed = BigNumber(0);
+            let totalCollateralThreshold = BigNumber(0);
+            let largestBorrowAmount = BigNumber(0);
+            let largestBorrowTokens;
+            let largestBorrowSymbol;
+            let largestSupplyAmount = BigNumber(0);
+            let largestSupplySymbol;
+
+            userReserveData.forEach(u => {
+                const reserve = reserveData[u.underlyingAsset];
+                const units = new BigNumber(10).pow(reserve.decimals.toString());
+
+                const priceInMarketReferenceCurrency = valueToBigNumber(reserve.priceInMarketReferenceCurrency);
+                const marketReferenceCurrencyUnit = valueToBigNumber(currencyInfo.marketReferenceCurrencyUnit);
+                const scaledATokenBalance = valueToBigNumber(u.scaledATokenBalance);
+                const scaledVariableDebt = valueToBigNumber(u.scaledVariableDebt);
+                const liquidityIndex = valueToBigNumber(reserve.liquidityIndex).div(RAY);
+                const variableBorrowIndex = valueToBigNumber(reserve.variableBorrowIndex).div(RAY);
+                
+                const price = priceInMarketReferenceCurrency.div(marketReferenceCurrencyUnit);
+                const deposited = scaledATokenBalance.multipliedBy(liquidityIndex);
+                const borrowed = scaledVariableDebt.multipliedBy(variableBorrowIndex);      // Spark doesn't use stable debt
+                const depositedUSD = deposited.div(units).multipliedBy(price);
+                const borrowedUSD = borrowed.div(units).multipliedBy(price);
+
+                if (u.usageAsCollateralEnabledOnUser) {
+                    totalCollateralThreshold = totalCollateralThreshold.plus(depositedUSD.multipliedBy(valueToBigNumber(reserve.reserveLiquidationThreshold)).div(10000));
+                    
+                    if (depositedUSD.isGreaterThan(largestSupplyAmount)) {
+                        largestSupplyAmount = depositedUSD;
+                        largestSupplySymbol = reserve.symbol;
+                    }
+                }
+                totalBorrowed = totalBorrowed.plus(borrowedUSD);
+                if (borrowedUSD.isGreaterThan(largestBorrowAmount)) {
+                    largestBorrowAmount = borrowedUSD;
+                    largestBorrowTokens = borrowed;
+                    largestBorrowSymbol = reserve.symbol;
+                }
+            });
+
+            if (totalBorrowed.isEqualTo(0)) return false;
+
+            let healthFactor = totalCollateralThreshold.div(totalBorrowed);
+            p.largestBorrowAmount = largestBorrowAmount;
+            p.largestBorrowTokens = largestBorrowTokens;
+            p.largestBorrowSymbol = largestBorrowSymbol;
+            p.largestSupplyAmount = largestSupplyAmount;
+            p.largestSupplySymbol = largestSupplySymbol;
+            p.healthFactor = healthFactor;
+
+            return healthFactor.isLessThan(1);
+        });
+
+        this.logger(`${positions.length} positions are underwater.`);
+
+        return positions;
+    }
+
     async liquidate(position) {
         const liquidator = await hre.ethers.getContractAt("LiquidateLoan", addresses.LIQUIDATE_LOAN);
         const args = [
             addresses[position.largestBorrowSymbol],
-            position.largestBorrowTokens.toString(),
+            position.largestBorrowTokens.toFixed(0),
             addresses[position.largestSupplySymbol],
             position.id,
             0,
             routes[position.largestSupplySymbol][position.largestBorrowSymbol]
         ];
+        console.log(args);
         const feeData = await ethers.provider.getFeeData();
         const [signer] = await ethers.getSigners();
         const nonce = await signer.getTransactionCount();
@@ -185,6 +272,7 @@ class LiquidationWatcher {
             // Once per 1 minute
             interval(async () => {
                 try {
+                    // TheGraph query to add positions to the list
                     const { _unhealthyPositions, blockNumber } = await this.queryPositions();
                     for (const p of _unhealthyPositions) {
                         const index = this.unhealthyPositions.findIndex(up => up.id === p.id);
@@ -193,7 +281,24 @@ class LiquidationWatcher {
                             p._sent = false;
                             this.unhealthyPositions.push(p);
                             this.logger(`Adding position to be liquidated: ${p.id}`);
-                        } else if (p._completedTx != null && blockNumber > p._completedTx.blockNumber) {
+                        } else if (this.unhealthyPositions[index]._completedTx != null && blockNumber > this.unhealthyPositions[index]._completedTx.blockNumber) {
+                            // Previously seen, but it's been mined and still wants to be liquidated (maybe multiple liquidations on the same position?)
+                            p._sent = false;
+                            this.unhealthyPositions.splice(index, 1, p);
+                            this.logger(`Replacing position to be liquidated: ${p.id}`);
+                        }
+                    }
+
+                    // Manual positions
+                    const manualPositions = await this.readAllManualPositions();
+                    for (const p of manualPositions) {
+                        const index = this.unhealthyPositions.findIndex(up => up.id === p.id);
+                        if (index === -1) {
+                            // New record
+                            p._sent = false;
+                            this.unhealthyPositions.push(p);
+                            this.logger(`Adding position to be liquidated: ${p.id}`);
+                        } else if (this.unhealthyPositions[index]._completedTx != null) {    // Manual positions are always up to date
                             // Previously seen, but it's been mined and still wants to be liquidated (maybe multiple liquidations on the same position?)
                             p._sent = false;
                             this.unhealthyPositions.splice(index, 1, p);
@@ -207,7 +312,7 @@ class LiquidationWatcher {
             }, 60 * 1000),
 
             // Once per 10 seconds
-            /*interval(async () => {
+            interval(async () => {
                 try {
                     // Always make sure this is sorted by largest positions first
                     this.unhealthyPositions.sort((a, b) => b.largestBorrowAmount.comparedTo(a.largestBorrowAmount));
@@ -221,7 +326,7 @@ class LiquidationWatcher {
                     // Intermittent failure -- carry on
                     this.logger(`Intermittent failure. Error = ${err}`);
                 }
-            }, 10 * 1000)*/
+            }, 10 * 1000)
         ]);
     }
 

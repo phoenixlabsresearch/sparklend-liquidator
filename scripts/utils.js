@@ -1,4 +1,7 @@
 const BigNumber = require("bignumber.js");
+const fs = require('fs/promises');
+const { ethers } = require("hardhat");
+const { addresses } = require("./constants");
 
 async function sleep (ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -67,8 +70,34 @@ function valueToBigNumber(amount) {
     if (amount instanceof BigNumber) {
       return amount;
     }
+    if (amount instanceof ethers.BigNumber) {
+      return new BigNumber(amount.toString());
+    }
   
     return new BigNumber(amount);
+}
+
+async function readAllFiles(dir) {
+    const files = await fs.readdir(dir);
+    return Promise.all(files
+        .filter(file => file.endsWith('.json'))
+        .map(async file => JSON.parse(await fs.readFile(`${dir}/${file}`, 'utf8')))
+    );
+}
+
+async function multicall (calls, decoder) {
+    const contract = await ethers.getContractAt("IMulticall", addresses.MULTICALL_ADDRESS);
+    const results = (await contract.aggregate(calls)).returnData;
+    return results.map(r => decoder(r));
+}
+
+function lookupSymbolFromAddress(address) {
+    for (const [symbol, addr] of Object.entries(addresses)) {
+        if (addr.toLowerCase() === address.toLowerCase()) {
+            return symbol;
+        }
+    }
+    return null;
 }
 
 module.exports = {
@@ -78,5 +107,8 @@ module.exports = {
     exponentialBackoff,
     timeout,
     shortNum,
-    valueToBigNumber
+    valueToBigNumber,
+    readAllFiles,
+    multicall,
+    lookupSymbolFromAddress,
 };
