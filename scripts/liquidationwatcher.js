@@ -213,11 +213,8 @@ class LiquidationWatcher {
             position.largestBorrowTokens.toFixed(0),
             addresses[position.largestSupplySymbol],
             position.id,
-            0,
             routes[position.largestSupplySymbol][position.largestBorrowSymbol]
         ];
-        console.log(args);
-        const feeData = await ethers.provider.getFeeData();
         const [signer] = await ethers.getSigners();
         const nonce = await signer.getTransactionCount();
         let gasLimitEstimate = 1000000;

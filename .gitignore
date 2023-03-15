@@ -5,8 +5,8 @@ coverage.json
 typechain
 typechain-types
 yarn-error.log
+data/
 
 # Hardhat files
 cache
 artifacts
-

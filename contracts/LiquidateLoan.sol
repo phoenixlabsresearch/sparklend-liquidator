@@ -228,13 +228,18 @@ library SafeERC20 {
 }
 
 interface CurvePoolLike {
-    function exchange(int128 i, int128 j, uint256 dx, uint256 min_dy) external payable;
+    function exchange(int128 i, int128 j, uint256 dx, uint256 min_dy) external payable returns (uint256 dy);
 }
 
 interface WrappedSTETHLike is IERC20 {
     function stETH() external view returns (IERC20);
     function wrap(uint256 _stETHAmount) external returns (uint256);
     function unwrap(uint256 _wstETHAmount) external returns (uint256);
+}
+
+interface WETHLike is IERC20 {
+    function deposit() external payable;
+    function withdraw(uint256) external;
 }
 
 contract LiquidateLoan is IFlashLoanReceiver, IERC3156FlashBorrower {
@@ -248,7 +253,7 @@ contract LiquidateLoan is IFlashLoanReceiver, IERC3156FlashBorrower {
     IERC20 public immutable dai;
     IERC4626 public immutable sdai;
     WrappedSTETHLike public immutable wstETH;
-    IERC20 public immutable weth;
+    WETHLike public immutable weth;
     IERC20 public immutable stETH;
     IERC3156FlashLender public immutable daiFlashLender;
     CurvePoolLike public immutable stETHCurvePool;
@@ -270,7 +275,7 @@ contract LiquidateLoan is IFlashLoanReceiver, IERC3156FlashBorrower {
         treasury = _treasury;
         dai = IERC20(_dai);
         sdai = IERC4626(_sdai);
-        weth = IERC20(_weth);
+        weth = WETHLike(_weth);
         wstETH = WrappedSTETHLike(_wstETH);
         stETH = wstETH.stETH();
         daiFlashLender = IERC3156FlashLender(_daiFlashLender);
@@ -279,7 +284,6 @@ contract LiquidateLoan is IFlashLoanReceiver, IERC3156FlashBorrower {
         dai.approve(address(sdai), type(uint256).max);
         stETH.approve(address(wstETH), type(uint256).max);
         stETH.approve(address(stETHCurvePool), type(uint256).max);
-        weth.approve(address(stETHCurvePool), type(uint256).max);
     }
 
     /**
@@ -321,6 +325,9 @@ contract LiquidateLoan is IFlashLoanReceiver, IERC3156FlashBorrower {
         return true;
     }
 
+    receive() external payable {
+    }
+
     function flashLoanReceived(
         address assetToLiquidiate,
         uint256 amount,
@@ -331,7 +338,7 @@ contract LiquidateLoan is IFlashLoanReceiver, IERC3156FlashBorrower {
         //userToLiquidate - id of the user to liquidate
         //amountOutMin - minimum amount of asset paid when swapping collateral
         {
-            (address collateral, address userToLiquidate, uint256 amountOutMin, bytes memory swapPath) = abi.decode(params, (address, address, uint256, bytes));
+            (address collateral, address userToLiquidate, bytes memory swapPath) = abi.decode(params, (address, address, bytes));
 
             //liquidate unhealthy loan
             liquidateLoan(collateral, assetToLiquidiate, userToLiquidate, amount, false);
@@ -341,20 +348,25 @@ contract LiquidateLoan is IFlashLoanReceiver, IERC3156FlashBorrower {
                 // Unwrap sDAI if it's the collateral - there is no paths for sDAI in DEXes
                 if (collateral == address(sdai)) {
                     sdai.redeem(sdai.balanceOf(address(this)), address(this), address(this));
+                    collateral = address(dai);
                 }
 
                 // Unwrap wstETH and swap to WETH
                 if (collateral == address(wstETH)) {
-                    wstETH.unwrap(wstETH.balanceOf(address(this)));
-                    stETHCurvePool.exchange(1, 0, stETH.balanceOf(address(this)), 0);
+                    uint256 received = wstETH.unwrap(wstETH.balanceOf(address(this)));
+                    received = stETHCurvePool.exchange(1, 0, received, 0);
+                    weth.deposit{value:received}();
+                    collateral = address(weth);
                 }
 
                 // Perform Uniswap swaps
-                if (swapPath.length > 0) swapToBorrowedAsset(collateral, amountOutMin, swapPath);
+                if (swapPath.length > 0) swapToBorrowedAsset(collateral, swapPath);
 
                 // Swap WETH to stETH and wrap to wstETH
                 if (assetToLiquidiate == address(wstETH)) {
-                    stETHCurvePool.exchange(0, 1, weth.balanceOf(address(this)), 0);
+                    uint256 bal = weth.balanceOf(address(this));
+                    weth.withdraw(bal);
+                    stETHCurvePool.exchange{value:bal}(0, 1, bal, 0);
                     wstETH.wrap(stETH.balanceOf(address(this)));
                 }
 
@@ -376,11 +388,11 @@ contract LiquidateLoan is IFlashLoanReceiver, IERC3156FlashBorrower {
     function liquidateLoan(address _collateral, address _liquidate_asset, address _userToLiquidate, uint256 _amount, bool _receiveaToken) public {
         require(IERC20(_liquidate_asset).approve(address(lendingPool), _amount), "Approval error");
 
-        lendingPool.liquidationCall(_collateral,_liquidate_asset, _userToLiquidate, _amount, _receiveaToken);
+        lendingPool.liquidationCall(_collateral, _liquidate_asset, _userToLiquidate, _amount, _receiveaToken);
     }
 
     //assumes the balance of the token is on the contract
-    function swapToBorrowedAsset(address asset_from, uint amountOutMin, bytes memory path) public {
+    function swapToBorrowedAsset(address asset_from, bytes memory path) public {
         IERC20 asset_fromToken;
         uint256 amountToTrade;
 
@@ -396,7 +408,7 @@ contract LiquidateLoan is IFlashLoanReceiver, IERC3156FlashBorrower {
             recipient: address(this),
             deadline: block.timestamp,
             amountIn: amountToTrade,
-            amountOutMinimum: amountOutMin
+            amountOutMinimum: 0
         }));
     }
 
@@ -407,11 +419,10 @@ contract LiquidateLoan is IFlashLoanReceiver, IERC3156FlashBorrower {
     * _flashAmt - flash loan amount (number of tokens) which is exactly the amount that will be liquidated
     * _collateral - the token address of the collateral. This is the token that will be received after liquidating loans
     * _userToLiquidate - user ID of the loan that will be liquidated
-    * _amountOutMin - when using uniswap this is used to make sure the swap returns a minimum number of tokens, or will revert
     * _swapPath - the path that uniswap will use to swap tokens back to original tokens
     */
-    function executeFlashLoans(address _assetToLiquidate, uint256 _flashAmt, address _collateral, address _userToLiquidate, uint256 _amountOutMin, bytes memory _swapPath) public {
-        bytes memory params = abi.encode(_collateral, _userToLiquidate, _amountOutMin, _swapPath);
+    function executeFlashLoans(address _assetToLiquidate, uint256 _flashAmt, address _collateral, address _userToLiquidate, bytes memory _swapPath) public {
+        bytes memory params = abi.encode(_collateral, _userToLiquidate, _swapPath);
         
         if (_assetToLiquidate == address(dai)) {
             // Use Maker Flash Mint Module
