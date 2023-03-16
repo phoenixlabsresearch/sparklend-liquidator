@@ -114,3 +114,19 @@ interface IUiPoolDataProviderV3 {
     view
     returns (UserReserveData[] memory, uint8);
 }
+
+interface IPool {
+    
+    struct EModeCategory {
+        // each eMode category has a custom ltv and liquidation threshold
+        uint16 ltv;
+        uint16 liquidationThreshold;
+        uint16 liquidationBonus;
+        // each eMode category may or may not have a custom oracle to override the individual assets price oracles
+        address priceSource;
+        string label;
+    }
+
+    function getEModeCategoryData(uint8 id) external view returns (EModeCategory memory);
+
+}

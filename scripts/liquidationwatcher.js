@@ -144,6 +144,7 @@ class LiquidationWatcher {
         this.logger(`${positions.length} positions manually specified. Fetching data...`);
 
         const uiPoolDataProviderV3 = await ethers.getContractAt("IUiPoolDataProviderV3", addresses.UI_POOL_DATA_PROVIDER);
+        const pool = await ethers.getContractAt("IPool", addresses.LENDING_POOL);
         const [reserveDataArray, currencyInfo] = await uiPoolDataProviderV3.getReservesData(addresses.LENDING_POOL_ADDRESS_PROVIDER);
         const userReservesData = await multicall(positions.map(p => {
             return [addresses.UI_POOL_DATA_PROVIDER, uiPoolDataProviderV3.interface.encodeFunctionData("getUserReservesData", [addresses.LENDING_POOL_ADDRESS_PROVIDER, p.id])];
@@ -152,9 +153,16 @@ class LiquidationWatcher {
         reserveDataArray.forEach(r => {
             reserveData[r.underlyingAsset] = r;
         });
+
+        // Fetch e-mode
+        const emodeDatas = {
+            "1": await pool.getEModeCategoryData(1)
+        }
         
         positions = positions.filter((p, i) => {
             const userReserveData = userReservesData[i][0];
+            const emodeCategory = userReservesData[i][1];
+            const emodeData = emodeDatas[emodeCategory.toString()];
 
             let totalBorrowed = BigNumber(0);
             let totalCollateralThreshold = BigNumber(0);
@@ -174,6 +182,8 @@ class LiquidationWatcher {
                 const scaledVariableDebt = valueToBigNumber(u.scaledVariableDebt);
                 const liquidityIndex = valueToBigNumber(reserve.liquidityIndex).div(RAY);
                 const variableBorrowIndex = valueToBigNumber(reserve.variableBorrowIndex).div(RAY);
+                let liquidationThreshold = valueToBigNumber(reserve.reserveLiquidationThreshold);
+                if (emodeData != null) liquidationThreshold = valueToBigNumber(emodeData.liquidationThreshold);
                 
                 const price = priceInMarketReferenceCurrency.div(marketReferenceCurrencyUnit);
                 const deposited = scaledATokenBalance.multipliedBy(liquidityIndex);
@@ -182,7 +192,7 @@ class LiquidationWatcher {
                 const borrowedUSD = borrowed.div(units).multipliedBy(price);
 
                 if (u.usageAsCollateralEnabledOnUser) {
-                    totalCollateralThreshold = totalCollateralThreshold.plus(depositedUSD.multipliedBy(valueToBigNumber(reserve.reserveLiquidationThreshold)).div(10000));
+                    totalCollateralThreshold = totalCollateralThreshold.plus(depositedUSD.multipliedBy(liquidationThreshold).div(10000));
                     
                     if (depositedUSD.isGreaterThan(largestSupplyAmount)) {
                         largestSupplyAmount = depositedUSD;
