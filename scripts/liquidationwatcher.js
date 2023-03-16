@@ -1,13 +1,11 @@
 const hre = require("hardhat");
 const { interval, retry, timeout, valueToBigNumber, readAllFiles, multicall } = require("./utils");
-const moment = require("moment");
 const { gql } = require("graphql-request");
 const { execute } = require("../.graphclient");
 const BigNumber = require("bignumber.js");
 const { addresses, routes } = require("./constants");
 
 const RAY = new BigNumber(10).pow(27);
-const RAD = new BigNumber(10).pow(45);
 
 const positionQuery = gql`
     query getActivePositions($limit: Int!, $offset: Int!) {
@@ -267,7 +265,7 @@ class LiquidationWatcher {
 
     async triggerLiquidation(position) {
         try {
-            this.logger(`Triggering liquidation for position ${position.id}. Borrowed ${position.largestBorrowAmount.toFixed(0)} USD of ${position.largestBorrowSymbol} against ${position.largestSupplyAmount.toFixed(0)} USD of ${position.largestSupplySymbol} collateral${position.largestSupplyAmount.isLessThan(position.largestBorrowAmount) ? "[UNDERWATER!!!]" : ""} (HF: ${position.healthFactor})`);
+            this.logger(`Triggering liquidation for position ${position.id}. Borrowed ${position.largestBorrowAmount.toFixed(0)} USD of ${position.largestBorrowSymbol} against ${position.largestSupplyAmount.toFixed(0)} USD of ${position.largestSupplySymbol} collateral (HF: ${position.healthFactor})`);
             const liquidationTx = await this.liquidate(position);
             await timeout(liquidationTx.wait(), 2 * 60 * 1000);
             this.logger(`Liquidation tx mined for position ${position.id}: ${liquidationTx.hash}`);
