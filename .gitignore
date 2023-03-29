@@ -5,7 +5,8 @@ coverage.json
 typechain
 typechain-types
 yarn-error.log
-data/
+data/*
+!data/place_data_json_here
 
 # Hardhat files
 cache
