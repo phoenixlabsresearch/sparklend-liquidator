@@ -1,6 +1,6 @@
 const hre = require("hardhat");
 let chainId = hre.network.config.chainId;
-chainId = 1;
+chainId = 1;    // Goerli not really working so just force mainnet
 const addresses = chainId === 1 ?
     {
         LENDING_POOL_ADDRESS_PROVIDER: "0x02C3eA4e34C0cBd694D2adFa2c690EECbC1793eE",
@@ -10,7 +10,7 @@ const addresses = chainId === 1 ?
         UNISWAPV3_ROUTER: "0xE592427A0AEce92De3Edee1F18E0157C05861564",
         TREASURY: "0xb137E7d16564c81ae2b0C8ee6B55De81dd46ECe5",
         DSS_FLASH: "0x60744434d6339a6B27d73d9Eda62b6F66a0a04FA",
-        LIQUIDATE_LOAN: "0xbeC6419cD931e29ef41157fe24C6928a0C952f0b",
+        LIQUIDATE_LOAN: "0xa8fC41696F2a230b03F77d258Db39069e9e55F56",
         DAI: "0x6B175474E89094C44Da98b954EedeAC495271d0F",
         sDAI: "0x83f20f44975d03b1b09e64809b757c47f942beea",
         WETH: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",

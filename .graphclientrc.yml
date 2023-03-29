@@ -3,4 +3,4 @@ sources:
   - name: spark
     handler:
       graphql:
-        endpoint: https://api.thegraph.com/subgraphs/id/QmWBJmcdbKVqE6CECdXH8GSetk8iBFzVaHZaemrk3A264F
+        endpoint: https://api.thegraph.com/subgraphs/id/QmUZG6EYqAfmwoZXf9vjeZTZ29pf429CYVDtEDu4Ryh3YT
