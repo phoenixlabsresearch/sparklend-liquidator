@@ -1,10 +1,11 @@
 const hre = require("hardhat");
-const { interval, retry, timeout, valueToBigNumber, readAllFiles, multicall } = require("./utils");
+const { interval, retry, timeout, valueToBigNumber, readAllFiles, multicall, lookupSymbolFromAddress } = require("./utils");
 const { gql } = require("graphql-request");
 const { execute } = require("../.graphclient");
 const BigNumber = require("bignumber.js");
 const { addresses, routes } = require("./constants");
 
+const PRICE_ORACLE_DECIMALS = new BigNumber(10).pow(8);
 const RAY = new BigNumber(10).pow(27);
 
 const positionQuery = gql`
@@ -70,6 +71,27 @@ class LiquidationWatcher {
     async queryPositions() {
         this.urns = [];
 
+        // Fetch oracle prices
+        this.logger(`Fetching latest oracle prices...`);
+        const aaveOracle = await ethers.getContractAt("IAaveOracle", addresses.AAVE_ORACLE);
+        const allAssets = [
+            addresses.DAI,
+            addresses.sDAI,
+            addresses.wstETH,
+            addresses.WETH,
+            addresses.WBTC,
+        ];
+        const prices = await aaveOracle.getAssetsPrices(allAssets);
+        const priceMap = {};
+        const priceText = [];
+        allAssets.forEach((a, i) => {
+            const symbol = lookupSymbolFromAddress(a);
+            const price = valueToBigNumber(prices[i]).div(PRICE_ORACLE_DECIMALS);
+            priceMap[symbol] = price;
+            priceText.push(`${symbol} = ${price.toFixed(2)}`);
+        });
+        this.logger(`Price: ${priceText.join(', ')}`);
+
         // Fetch all urns
         this.logger(`Fetching all positions...`);
         const { rows, blockNumber } = (await fetchAllRows(positionQuery, r => r.accounts));
@@ -90,7 +112,7 @@ class LiquidationWatcher {
 
             p.borrows.forEach((b, i) => {
                 const borrowed = valueToBigNumber(b.amount);
-                const borrowedUSD = valueToBigNumber(b.amountUSD);
+                const borrowedUSD = borrowed.multipliedBy(priceMap[b.asset.symbol]);
                 totalBorrowed = totalBorrowed.plus(borrowedUSD);
 
                 if (borrowedUSD.isGreaterThan(largestBorrowAmount)) {
@@ -100,7 +122,8 @@ class LiquidationWatcher {
                 }
             });
             p.deposits.filter(d => d.asset._market.canUseAsCollateral).forEach((d, i) => {
-                const depositedUSD = valueToBigNumber(d.amountUSD);
+                const deposited = valueToBigNumber(d.amount);
+                const depositedUSD = deposited.multipliedBy(priceMap[d.asset.symbol]);
                 const liquidationThreshold = valueToBigNumber(d.asset._market.liquidationThreshold);
                 totalCollateralThreshold = totalCollateralThreshold.plus(depositedUSD.multipliedBy(liquidationThreshold.div(100)));
 

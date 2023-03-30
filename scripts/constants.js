@@ -17,6 +17,7 @@ const addresses = chainId === 1 ?
         wstETH: "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
         WBTC: "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
         stETHCurvePool: "0xDC24316b9AE028F1497c275EB9192a3Ea0f67022",
+        AAVE_ORACLE: "0x8105f69D9C41644c6A0803fDA7D03Aa70996cFD9",
     }
     :
     {
@@ -34,6 +35,7 @@ const addresses = chainId === 1 ?
         wstETH: "0xfB7acC0A6c832d9d517763a7947E1195b2a06d37",
         WBTC: "0xA15432e9e2e173d2656Bc3B0961d61bafBcfbB22",
         stETHCurvePool: "",
+        AAVE_ORACLE: "",
     };
 
 const {
