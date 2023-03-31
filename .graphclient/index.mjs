@@ -46,7 +46,7 @@ export async function getMeshOptions() {
     const additionalTypeDefs = [];
     const sparkHandler = new GraphqlHandler({
         name: "spark",
-        config: { "endpoint": "https://api.thegraph.com/subgraphs/id/QmdMbJeDMu2ooEtq4urXTG3gMA7u6cXU5w3zYh6q66qr4m" },
+        config: { "endpoint": "https://api.thegraph.com/subgraphs/name/messari/spark-lend-ethereum" },
         baseDir,
         cache,
         pubsub,
