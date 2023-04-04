@@ -23,22 +23,15 @@ const positionQuery = gql`
             where: {borrows_: {amount_gt: "0"}}
         ) {
             id
-            deposits {
-                amount
-                amountUSD
-                asset {
-                    symbol
-                    _market {
-                        canUseAsCollateral
-                        liquidationThreshold
+            positions {
+                balance,
+                isCollateral
+                side
+                market {
+                    liquidationThreshold
+                    inputToken {
+                        symbol
                     }
-                }
-            }
-            borrows {
-                amount
-                amountUSD
-                asset {
-                    symbol
                 }
             }
         }
@@ -100,7 +93,10 @@ class LiquidationWatcher {
         let averageHF = BigNumber(0);
         let averageHFCount = 0;
         const _unhealthyPositions = rows.filter(p => {
-            if (p.deposits.length == 0 || p.borrows.length == 0) return false;
+            if (
+                p.positions.length == 0 ||
+                !p.positions.some(_p => _p.side === 'BORROWER')
+            ) return false;
 
             let totalBorrowed = BigNumber(0);
             let totalCollateralThreshold = BigNumber(0);
@@ -110,26 +106,26 @@ class LiquidationWatcher {
             let largestSupplyAmount = BigNumber(0);
             let largestSupplySymbol;
 
-            p.borrows.forEach((b, i) => {
-                const borrowed = valueToBigNumber(b.amount);
-                const borrowedUSD = borrowed.multipliedBy(priceMap[b.asset.symbol]);
+            p.positions.filter(_p => _p.side === 'BORROWER').forEach((b, i) => {
+                const borrowed = valueToBigNumber(b.balance);
+                const borrowedUSD = borrowed.multipliedBy(priceMap[b.market.inputToken.symbol]);
                 totalBorrowed = totalBorrowed.plus(borrowedUSD);
 
                 if (borrowedUSD.isGreaterThan(largestBorrowAmount)) {
                     largestBorrowAmount = borrowedUSD;
                     largestBorrowTokens = borrowed;
-                    largestBorrowSymbol = b.asset.symbol;
+                    largestBorrowSymbol = b.market.inputToken.symbol;
                 }
             });
-            p.deposits.filter(d => d.asset._market.canUseAsCollateral).forEach((d, i) => {
-                const deposited = valueToBigNumber(d.amount);
-                const depositedUSD = deposited.multipliedBy(priceMap[d.asset.symbol]);
-                const liquidationThreshold = valueToBigNumber(d.asset._market.liquidationThreshold);
+            p.positions.filter(_p => _p.side === 'LENDER' && _p.isCollateral).forEach((d, i) => {
+                const deposited = valueToBigNumber(d.balance);
+                const depositedUSD = deposited.multipliedBy(priceMap[d.market.inputToken.symbol]);
+                const liquidationThreshold = valueToBigNumber(d.market.liquidationThreshold);
                 totalCollateralThreshold = totalCollateralThreshold.plus(depositedUSD.multipliedBy(liquidationThreshold.div(100)));
 
                 if (depositedUSD.isGreaterThan(largestSupplyAmount)) {
                     largestSupplyAmount = depositedUSD;
-                    largestSupplySymbol = d.asset.symbol;
+                    largestSupplySymbol = d.market.inputToken.symbol;
                 }
             });
 
