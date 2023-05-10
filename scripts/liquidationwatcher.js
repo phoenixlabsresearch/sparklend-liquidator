@@ -148,6 +148,7 @@ class LiquidationWatcher {
             // Ignore everything below $100
             if (largestBorrowAmount.isLessThan(minPriceUSD)) return false;
 
+            // FIXME these dont take emode into account
             averageHF = averageHF.plus(healthFactor);
             averageHFCount++;
             if (healthFactor.isLessThan(lowHF) || lowHF.isEqualTo(0)) lowHF = healthFactor;
