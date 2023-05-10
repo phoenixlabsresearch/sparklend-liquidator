@@ -30,7 +30,8 @@ const positionQuery = gql`
                 market {
                     liquidationThreshold
                     inputToken {
-                        symbol
+                        symbol,
+                        decimals
                     }
                 }
             }
@@ -108,7 +109,7 @@ class LiquidationWatcher {
 
             p.positions.filter(_p => _p.side === 'BORROWER').forEach((b, i) => {
                 const borrowed = valueToBigNumber(b.balance);
-                const borrowedUSD = borrowed.multipliedBy(priceMap[b.market.inputToken.symbol]);
+                const borrowedUSD = borrowed.multipliedBy(priceMap[b.market.inputToken.symbol]).div(new BigNumber(10).pow(b.market.inputToken.decimals));
                 totalBorrowed = totalBorrowed.plus(borrowedUSD);
 
                 if (borrowedUSD.isGreaterThan(largestBorrowAmount)) {
@@ -119,7 +120,7 @@ class LiquidationWatcher {
             });
             p.positions.filter(_p => _p.side === 'LENDER' && _p.isCollateral).forEach((d, i) => {
                 const deposited = valueToBigNumber(d.balance);
-                const depositedUSD = deposited.multipliedBy(priceMap[d.market.inputToken.symbol]);
+                const depositedUSD = deposited.multipliedBy(priceMap[d.market.inputToken.symbol]).div(new BigNumber(10).pow(d.market.inputToken.decimals));
                 const liquidationThreshold = valueToBigNumber(d.market.liquidationThreshold);
                 totalCollateralThreshold = totalCollateralThreshold.plus(depositedUSD.multipliedBy(liquidationThreshold.div(100)));
 
@@ -136,6 +137,9 @@ class LiquidationWatcher {
             p.largestSupplyAmount = largestSupplyAmount;
             p.largestSupplySymbol = largestSupplySymbol;
             p.healthFactor = healthFactor;
+            
+            // Ignore everything below $100
+            if (largestBorrowAmount.isLessThan(100)) return false;
 
             averageHF = averageHF.plus(healthFactor);
             averageHFCount++;
@@ -144,7 +148,7 @@ class LiquidationWatcher {
 
             return healthFactor.isLessThan(1);
         });
-        this.logger(`Found ${_unhealthyPositions.length}/${rows.length} unhealthy positions. Low HF = ${lowHF.toFixed(2)}, Average HF = ${averageHF.div(averageHFCount).toFixed(2)},  High HF = ${highHF.toFixed(2)}`);
+        this.logger(`Found ${_unhealthyPositions.length}/${averageHFCount} unhealthy positions (>= $100). Low HF = ${lowHF.toFixed(2)}, Average HF = ${averageHF.div(averageHFCount).toFixed(2)},  High HF = ${highHF.toFixed(2)}`);
 
         return { _unhealthyPositions, blockNumber };
     }
