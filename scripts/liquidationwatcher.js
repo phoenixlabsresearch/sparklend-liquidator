@@ -8,6 +8,9 @@ const { addresses, routes } = require("./constants");
 const PRICE_ORACLE_DECIMALS = new BigNumber(10).pow(8);
 const RAY = new BigNumber(10).pow(27);
 
+const minPriceUSD = 100;
+const healthFactorLiquidate = 0.98;
+
 const positionQuery = gql`
     query getActivePositions($limit: Int!, $offset: Int!) {
         _meta {
@@ -143,14 +146,14 @@ class LiquidationWatcher {
             p.healthFactor = healthFactor;
             
             // Ignore everything below $100
-            if (largestBorrowAmount.isLessThan(100)) return false;
+            if (largestBorrowAmount.isLessThan(minPriceUSD)) return false;
 
             averageHF = averageHF.plus(healthFactor);
             averageHFCount++;
             if (healthFactor.isLessThan(lowHF) || lowHF.isEqualTo(0)) lowHF = healthFactor;
             if (healthFactor.isGreaterThan(highHF)) highHF = healthFactor;
-
-            return healthFactor.isLessThan(1);
+            
+            return healthFactor.isLessThan(healthFactorLiquidate);
         });
 
         // Any positions that are unhealthy double-check that they don't have emode activated and are actually safe
@@ -167,11 +170,15 @@ class LiquidationWatcher {
             const emodeData = emodeDatas[emodeCategory.toString()];
             if (emodeData != null) {
                 const liquidationThreshold = valueToBigNumber(emodeData.liquidationThreshold);
-                return p.totalDesposited.multipliedBy(liquidationThreshold.div(10000)).isLessThan(p.totalBorrowed);
+                const healthFactor = p.totalDesposited.multipliedBy(liquidationThreshold.div(10000)).div(p.totalBorrowed);
+                p.healthFactor = healthFactor;
+                return healthFactor.isLessThan(healthFactorLiquidate);
+            } else {
+                return true;
             }
         });
 
-        this.logger(`Found ${_unhealthyPositions.length}/${averageHFCount} unhealthy positions (>= $100). Low HF = ${lowHF.toFixed(2)}, Average HF = ${averageHF.div(averageHFCount).toFixed(2)},  High HF = ${highHF.toFixed(2)}`);
+        this.logger(`Found ${_unhealthyPositions.length}/${averageHFCount} unhealthy positions (>= $${minPriceUSD}). Low HF = ${lowHF.toFixed(2)}, Average HF = ${averageHF.div(averageHFCount).toFixed(2)},  High HF = ${highHF.toFixed(2)}`);
 
         return { _unhealthyPositions, blockNumber };
     }
