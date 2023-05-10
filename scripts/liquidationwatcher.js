@@ -93,13 +93,14 @@ class LiquidationWatcher {
         let highHF = BigNumber(0);
         let averageHF = BigNumber(0);
         let averageHFCount = 0;
-        const _unhealthyPositions = rows.filter(p => {
+        let _unhealthyPositions = rows.filter(p => {
             if (
                 p.positions.length == 0 ||
                 !p.positions.some(_p => _p.side === 'BORROWER')
             ) return false;
 
             let totalBorrowed = BigNumber(0);
+            let totalDesposited = BigNumber(0);
             let totalCollateralThreshold = BigNumber(0);
             let largestBorrowAmount = BigNumber(0);
             let largestBorrowTokens;
@@ -122,6 +123,7 @@ class LiquidationWatcher {
                 const deposited = valueToBigNumber(d.balance);
                 const depositedUSD = deposited.multipliedBy(priceMap[d.market.inputToken.symbol]).div(new BigNumber(10).pow(d.market.inputToken.decimals));
                 const liquidationThreshold = valueToBigNumber(d.market.liquidationThreshold);
+                totalDesposited = totalDesposited.plus(depositedUSD);
                 totalCollateralThreshold = totalCollateralThreshold.plus(depositedUSD.multipliedBy(liquidationThreshold.div(100)));
 
                 if (depositedUSD.isGreaterThan(largestSupplyAmount)) {
@@ -131,6 +133,8 @@ class LiquidationWatcher {
             });
 
             let healthFactor = totalCollateralThreshold.div(totalBorrowed);
+            p.totalDesposited = totalDesposited;
+            p.totalBorrowed = totalBorrowed;
             p.largestBorrowAmount = largestBorrowAmount;
             p.largestBorrowTokens = largestBorrowTokens;
             p.largestBorrowSymbol = largestBorrowSymbol;
@@ -148,6 +152,25 @@ class LiquidationWatcher {
 
             return healthFactor.isLessThan(1);
         });
+
+        // Any positions that are unhealthy double-check that they don't have emode activated and are actually safe
+        const uiPoolDataProviderV3 = await ethers.getContractAt("IUiPoolDataProviderV3", addresses.UI_POOL_DATA_PROVIDER);
+        const pool = await ethers.getContractAt("IPool", addresses.LENDING_POOL);
+        const emodeDatas = {
+            "1": await pool.getEModeCategoryData(1)
+        }
+        const userReservesData = await multicall(_unhealthyPositions.map(p => {
+            return [addresses.UI_POOL_DATA_PROVIDER, uiPoolDataProviderV3.interface.encodeFunctionData("getUserReservesData", [addresses.LENDING_POOL_ADDRESS_PROVIDER, p.id])];
+        }), r => uiPoolDataProviderV3.interface.decodeFunctionResult("getUserReservesData", r));
+        _unhealthyPositions = _unhealthyPositions.filter((p, i) => {
+            const emodeCategory = userReservesData[i][1];
+            const emodeData = emodeDatas[emodeCategory.toString()];
+            if (emodeData != null) {
+                const liquidationThreshold = valueToBigNumber(emodeData.liquidationThreshold);
+                return p.totalDesposited.multipliedBy(liquidationThreshold.div(10000)).isLessThan(p.totalBorrowed);
+            }
+        });
+
         this.logger(`Found ${_unhealthyPositions.length}/${averageHFCount} unhealthy positions (>= $100). Low HF = ${lowHF.toFixed(2)}, Average HF = ${averageHF.div(averageHFCount).toFixed(2)},  High HF = ${highHF.toFixed(2)}`);
 
         return { _unhealthyPositions, blockNumber };
