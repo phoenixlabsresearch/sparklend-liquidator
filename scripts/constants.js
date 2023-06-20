@@ -16,6 +16,8 @@ const addresses = chainId === 1 ?
         WETH: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
         wstETH: "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
         WBTC: "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+        GNO: "0x6810e776880C02933D47DB1b9fc05908e5386b96",
+        rETH: "0xae78736Cd615f374D3085123A210448E74Fc6393",
         stETHCurvePool: "0xDC24316b9AE028F1497c275EB9192a3Ea0f67022",
         AAVE_ORACLE: "0x8105f69D9C41644c6A0803fDA7D03Aa70996cFD9",
     }
@@ -44,7 +46,19 @@ const {
     WETH,
     wstETH,
     WBTC,
+    GNO,
+    rETH,
 } = addresses;
+
+const tokens = [
+    DAI,
+    sDAI,
+    WETH,
+    wstETH,
+    WBTC,
+    GNO,
+    rETH,
+];
 
 const routes = chainId === 1 ?
     {
@@ -54,6 +68,7 @@ const routes = chainId === 1 ?
             WETH: ethers.utils.solidityPack(["address","uint24","address"],[DAI,3000,WETH]),
             wstETH: ethers.utils.solidityPack(["address","uint24","address"],[DAI,3000,WETH]),
             WBTC: ethers.utils.solidityPack(["address","uint24","address","uint24","address"],[DAI,3000,WETH,3000,WBTC]),
+            rETH: ethers.utils.solidityPack(["address","uint24","address","uint24","address"],[DAI,3000,WETH,3000,rETH]),
         },
         sDAI: {
             DAI: ethers.utils.solidityPack([],[]),
@@ -61,6 +76,7 @@ const routes = chainId === 1 ?
             WETH: ethers.utils.solidityPack(["address","uint24","address"],[DAI,3000,WETH]),
             wstETH: ethers.utils.solidityPack(["address","uint24","address"],[DAI,3000,WETH]),
             WBTC: ethers.utils.solidityPack(["address","uint24","address","uint24","address"],[DAI,3000,WETH,3000,WBTC]),
+            rETH: ethers.utils.solidityPack(["address","uint24","address","uint24","address"],[DAI,3000,WETH,3000,rETH]),
         },
         WETH: {
             DAI: ethers.utils.solidityPack(["address","uint24","address"],[WETH,3000,DAI]),
@@ -68,6 +84,7 @@ const routes = chainId === 1 ?
             WETH: ethers.utils.solidityPack([],[]),
             wstETH: ethers.utils.solidityPack([],[]),
             WBTC: ethers.utils.solidityPack(["address","uint24","address"],[WETH,3000,WBTC]),
+            rETH: ethers.utils.solidityPack(["address","uint24","address"],[WETH,3000,rETH]),
         },
         wstETH: {
             DAI: ethers.utils.solidityPack(["address","uint24","address"],[WETH,3000,DAI]),
@@ -75,6 +92,7 @@ const routes = chainId === 1 ?
             WETH: ethers.utils.solidityPack([],[]),
             wstETH: ethers.utils.solidityPack([],[]),
             WBTC: ethers.utils.solidityPack(["address","uint24","address"],[WETH,3000,WBTC]),
+            rETH: ethers.utils.solidityPack(["address","uint24","address"],[WETH,3000,rETH]),
         },
         WBTC: {
             DAI: ethers.utils.solidityPack(["address","uint24","address","uint24","address"],[WBTC,3000,WETH,3000,DAI]),
@@ -82,7 +100,14 @@ const routes = chainId === 1 ?
             WETH: ethers.utils.solidityPack(["address","uint24","address"],[WBTC,3000,WETH]),
             wstETH: ethers.utils.solidityPack(["address","uint24","address"],[WBTC,3000,WETH]),
             WBTC: ethers.utils.solidityPack([],[]),
-        }
+        },
+        rETH: {
+            DAI: ethers.utils.solidityPack(["address","uint24","address","uint24","address"],[rETH,3000,WETH,3000,DAI]),
+            sDAI: ethers.utils.solidityPack(["address","uint24","address","uint24","address"],[rETH,3000,WETH,3000,DAI]),
+            WETH: ethers.utils.solidityPack(["address","uint24","address"],[rETH,3000,WETH]),
+            wstETH: ethers.utils.solidityPack(["address","uint24","address"],[rETH,3000,WETH]),
+            rETH: ethers.utils.solidityPack([],[]),
+        },
     }
     :
     {
@@ -125,4 +150,5 @@ const routes = chainId === 1 ?
 module.exports = {
     addresses,
     routes,
+    tokens,
 };

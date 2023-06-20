@@ -3,7 +3,7 @@ const { interval, retry, timeout, valueToBigNumber, readAllFiles, multicall, loo
 const { gql } = require("graphql-request");
 const { execute } = require("../.graphclient");
 const BigNumber = require("bignumber.js");
-const { addresses, routes } = require("./constants");
+const { addresses, routes, tokens } = require("./constants");
 
 const PRICE_ORACLE_DECIMALS = new BigNumber(10).pow(8);
 const RAY = new BigNumber(10).pow(27);
@@ -71,13 +71,7 @@ class LiquidationWatcher {
         // Fetch oracle prices
         this.logger(`Fetching latest oracle prices...`);
         const aaveOracle = await ethers.getContractAt("IAaveOracle", addresses.AAVE_ORACLE);
-        const allAssets = [
-            addresses.DAI,
-            addresses.sDAI,
-            addresses.wstETH,
-            addresses.WETH,
-            addresses.WBTC,
-        ];
+        const allAssets = tokens;
         const prices = await aaveOracle.getAssetsPrices(allAssets);
         const priceMap = {};
         const priceText = [];
@@ -134,7 +128,7 @@ class LiquidationWatcher {
                     largestSupplySymbol = d.market.inputToken.symbol;
                 }
             });
-
+            
             let healthFactor = totalCollateralThreshold.div(totalBorrowed);
             p.totalDesposited = totalDesposited;
             p.totalBorrowed = totalBorrowed;
