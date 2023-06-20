@@ -57,6 +57,7 @@ const tokens = [
     wstETH,
     WBTC,
     GNO,
+    rETH,
 ];
 
 const routes = chainId === 1 ?
