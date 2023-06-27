@@ -321,6 +321,7 @@ class LiquidationWatcher {
             position._completedTx = liquidationTx;
         } catch (err) {
             position._sent = false;
+            position._failures++;
             this.logger(`Error triggering liquidation for position ${position.id}. Error = ${err}`);
         }
     }
@@ -341,11 +342,13 @@ class LiquidationWatcher {
                         if (index === -1) {
                             // New record
                             p._sent = false;
+                            p._failures = 0;
                             this.unhealthyPositions.push(p);
                             this.logger(`Adding position to be liquidated: ${p.id}`);
                         } else if (this.unhealthyPositions[index]._completedTx != null && blockNumber > this.unhealthyPositions[index]._completedTx.blockNumber) {
                             // Previously seen, but it's been mined and still wants to be liquidated (maybe multiple liquidations on the same position?)
                             p._sent = false;
+                            p._failures = 0;
                             this.unhealthyPositions.splice(index, 1, p);
                             this.logger(`Replacing position to be liquidated: ${p.id}`);
                         }
@@ -358,15 +361,20 @@ class LiquidationWatcher {
                         if (index === -1) {
                             // New record
                             p._sent = false;
+                            p._failures = 0;
                             this.unhealthyPositions.push(p);
                             this.logger(`Adding position to be liquidated: ${p.id}`);
                         } else if (this.unhealthyPositions[index]._completedTx != null) {    // Manual positions are always up to date
                             // Previously seen, but it's been mined and still wants to be liquidated (maybe multiple liquidations on the same position?)
                             p._sent = false;
+                            p._failures = 0;
                             this.unhealthyPositions.splice(index, 1, p);
                             this.logger(`Replacing position to be liquidated: ${p.id}`);
                         }
                     }
+
+                    // Remove any old positions
+                    this.unhealthyPositions = this.unhealthyPositions.filter(p => p._failures < 10);
                 } catch (err) {
                     // Intermittent failure -- carry on
                     this.logger(`Intermittent failure. Error = ${err}`);
