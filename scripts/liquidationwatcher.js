@@ -1,9 +1,9 @@
 const hre = require("hardhat");
-const { interval, retry, timeout, valueToBigNumber, readAllFiles, multicall, lookupSymbolFromAddress } = require("./utils");
+const { interval, retry, timeout, valueToBigNumber, readAllFiles, multicall } = require("./utils");
 const { gql } = require("graphql-request");
 const { execute } = require("../.graphclient");
 const BigNumber = require("bignumber.js");
-const { addresses, routes, tokens } = require("./constants");
+const { addresses, routes } = require("./constants");
 
 const PRICE_ORACLE_DECIMALS = new BigNumber(10).pow(8);
 const RAY = new BigNumber(10).pow(27);
@@ -68,15 +68,24 @@ class LiquidationWatcher {
     async queryPositions() {
         this.urns = [];
 
+        const aaveOracle = await ethers.getContractAt("IAaveOracle", addresses.AAVE_ORACLE);
+        const uiPoolDataProviderV3 = await ethers.getContractAt("IUiPoolDataProviderV3", addresses.UI_POOL_DATA_PROVIDER);
+        const pool = await ethers.getContractAt("IPool", addresses.LENDING_POOL);
+
         // Fetch oracle prices
         this.logger(`Fetching latest oracle prices...`);
-        const aaveOracle = await ethers.getContractAt("IAaveOracle", addresses.AAVE_ORACLE);
-        const allAssets = tokens;
+        const [reserveDataArray] = await uiPoolDataProviderV3.getReservesData(addresses.LENDING_POOL_ADDRESS_PROVIDER);
+        const reserveData = {};
+        const allAssets = [];
+        reserveDataArray.forEach(r => {
+            reserveData[r.underlyingAsset] = r;
+            allAssets.push(r.underlyingAsset);
+        });
         const prices = await aaveOracle.getAssetsPrices(allAssets);
         const priceMap = {};
         const priceText = [];
         allAssets.forEach((a, i) => {
-            const symbol = lookupSymbolFromAddress(a);
+            const symbol = reserveData[a].symbol;
             const price = valueToBigNumber(prices[i]).div(PRICE_ORACLE_DECIMALS);
             priceMap[symbol] = price;
             priceText.push(`${symbol} = ${price.toFixed(2)}`);
@@ -152,8 +161,6 @@ class LiquidationWatcher {
         });
 
         // Any positions that are unhealthy double-check that they don't have emode activated and are actually safe
-        const uiPoolDataProviderV3 = await ethers.getContractAt("IUiPoolDataProviderV3", addresses.UI_POOL_DATA_PROVIDER);
-        const pool = await ethers.getContractAt("IPool", addresses.LENDING_POOL);
         const emodeDatas = {
             "1": await pool.getEModeCategoryData(1)
         }

@@ -91,15 +91,6 @@ async function multicall (calls, decoder) {
     return results.map(r => decoder(r));
 }
 
-function lookupSymbolFromAddress(address) {
-    for (const [symbol, addr] of Object.entries(addresses)) {
-        if (addr.toLowerCase() === address.toLowerCase()) {
-            return symbol;
-        }
-    }
-    return null;
-}
-
 module.exports = {
     sleep,
     retry,
@@ -110,5 +101,4 @@ module.exports = {
     valueToBigNumber,
     readAllFiles,
     multicall,
-    lookupSymbolFromAddress,
 };
