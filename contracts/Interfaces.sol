@@ -128,7 +128,7 @@ interface IPool {
     }
 
     function getEModeCategoryData(uint8 id) external view returns (EModeCategory memory);
-
+    
 }
 
 interface IAaveOracle {
