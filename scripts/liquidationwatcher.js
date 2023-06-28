@@ -11,6 +11,7 @@ const RAY = new BigNumber(10).pow(27);
 
 const minPriceUSD = 100;
 const healthFactorLiquidate = 0.98;
+const healthFactorThreshold = 0.95;     // Below this threshold the entire position is liquidated
 const maxFailuresBeforeDrop = 10;
 const maxDEXSlippage = 2;
 
@@ -36,8 +37,7 @@ const positionQuery = gql`
                 market {
                     liquidationThreshold
                     inputToken {
-                        symbol,
-                        decimals
+                        id
                     }
                 }
             }
@@ -77,6 +77,37 @@ async function fetchDEXRoute (from, to, amount) {
     })).then(res => res.json());
 }
 
+function getLiquidationParams(position) {
+    // Using logic from https://github.com/aave/aave-v3-core/blob/master/contracts/protocol/libraries/logic/LiquidationLogic.sol#L466
+    const collateral = position.largestSupplyReserve;
+    const debt = position.largestBorrowReserve;
+    let debtToCover = position.largestBorrowAmount;
+    let collateralToLiquidate;
+    if (position.healthFactor.isGreaterThan(healthFactorThreshold)) {
+        debtToCover = debtToCover.div(2);
+    }
+    const baseCollateral = debt.latestPrice.mul(debtToCover).mul(new BigNumber(10).pow(collateral.decimals))
+        .div(collateral.latestPrice.mul(new BigNumber(10).pow(debt.decimals)));
+    // FIXME this needs to take e-mode into account
+    const maxCollateralToLiquidate = baseCollateral.mul(collateral.reserveLiquidationBonus).div(10000);
+
+    if (maxCollateralToLiquidate.isGreaterThan(position.largestSupplyTokens)) {
+        // Amount needed > amount available
+        maxCollateralToLiquidate = position.largestSupplyTokens;
+        debtToCover = collateral.latestPrice.mul(maxCollateralToLiquidate).mul(new BigNumber(10).pow(debt.decimals))
+            .div(debt.latestPrice.mul(new BigNumber(10).pow(collateral.decimals)))
+            .mul(10000).div(collateral.reserveLiquidationBonus);
+    } else {
+        // There is enough collateral available
+        collateralToLiquidate = maxCollateralToLiquidate;
+    }
+
+    return {
+        collateralToLiquidate,
+        debtToCover
+    };
+}
+
 class LiquidationWatcher {
 
     logger = (log) => {};
@@ -89,40 +120,39 @@ class LiquidationWatcher {
     }
 
     async refreshReserves() {
-        this.logger(`Refreshing reserves...`);
         const uiPoolDataProviderV3 = await ethers.getContractAt("IUiPoolDataProviderV3", addresses.UI_POOL_DATA_PROVIDER);
+        const aaveOracle = await ethers.getContractAt("IAaveOracle", addresses.AAVE_ORACLE);
+
+        this.logger(`Refreshing reserves...`);
         const [reserveDataArray, currencyInfo] = await uiPoolDataProviderV3.getReservesData(addresses.LENDING_POOL_ADDRESS_PROVIDER);
         this.reserves = [];
         this.reservesLookup = {};
         this.currencyInfo = currencyInfo;
-        const priceText = [];
-        reserveDataArray.forEach(r => {
+        const reservesText = [];
+        reserveDataArray.forEach(_r => {
+            const r = { ..._r };
             this.reservesLookup[r.underlyingAsset] = r;
             this.reserves.push(r);
-            priceText.push(`${r.symbol}:${r.underlyingAsset}`);
+            reservesText.push(`${r.symbol}:${r.underlyingAsset}`);
         });
-        this.logger(`Found: ${priceText.join(', ')}`);
+        this.logger(`Found: ${reservesText.join(', ')}`);
+
+        this.logger(`Fetching latest oracle prices...`);
+        const prices = await aaveOracle.getAssetsPrices(this.reserves.map(r => r.underlyingAsset));
+        const priceText = [];
+        this.reserves.forEach((r, i) => {
+            const price = valueToBigNumber(prices[i]).div(PRICE_ORACLE_DECIMALS);
+            r.latestPrice = price;
+            priceText.push(`${r.symbol} = ${price.toFixed(2)}`);
+        });
+        this.logger(`Prices: ${priceText.join(', ')}`);
     }
 
     async queryPositions() {
         this.urns = [];
 
-        const aaveOracle = await ethers.getContractAt("IAaveOracle", addresses.AAVE_ORACLE);
         const uiPoolDataProviderV3 = await ethers.getContractAt("IUiPoolDataProviderV3", addresses.UI_POOL_DATA_PROVIDER);
         const pool = await ethers.getContractAt("IPool", addresses.LENDING_POOL);
-
-        // Fetch oracle prices
-        this.logger(`Fetching latest oracle prices...`);
-        const prices = await aaveOracle.getAssetsPrices(this.reserves.map(r => r.underlyingAsset));
-        const priceMap = {};
-        const priceText = [];
-        this.reserves.forEach((r, i) => {
-            const symbol = r.symbol;
-            const price = valueToBigNumber(prices[i]).div(PRICE_ORACLE_DECIMALS);
-            priceMap[symbol] = price;
-            priceText.push(`${symbol} = ${price.toFixed(2)}`);
-        });
-        this.logger(`Price: ${priceText.join(', ')}`);
 
         // Fetch all urns
         this.logger(`Fetching all positions...`);
@@ -142,31 +172,35 @@ class LiquidationWatcher {
             let totalCollateralThreshold = BigNumber(0);
             let largestBorrowAmount = BigNumber(0);
             let largestBorrowTokens;
-            let largestBorrowSymbol;
+            let largestBorrowReserve;
             let largestSupplyAmount = BigNumber(0);
-            let largestSupplySymbol;
+            let largestSupplyTokens;
+            let largestSupplyReserve;
 
             p.positions.filter(_p => _p.side === 'BORROWER').forEach((b, i) => {
+                const reserve = this.reservesLookup[b.market.inputToken.id];
                 const borrowed = valueToBigNumber(b.balance);
-                const borrowedUSD = borrowed.multipliedBy(priceMap[b.market.inputToken.symbol]).div(new BigNumber(10).pow(b.market.inputToken.decimals));
+                const borrowedUSD = borrowed.multipliedBy(reserve.latestPrice).div(new BigNumber(10).pow(reserve.decimals));
                 totalBorrowed = totalBorrowed.plus(borrowedUSD);
 
                 if (borrowedUSD.isGreaterThan(largestBorrowAmount)) {
                     largestBorrowAmount = borrowedUSD;
                     largestBorrowTokens = borrowed;
-                    largestBorrowSymbol = b.market.inputToken.symbol;
+                    largestBorrowReserve = reserve;
                 }
             });
             p.positions.filter(_p => _p.side === 'LENDER' && _p.isCollateral).forEach((d, i) => {
+                const reserve = this.reservesLookup[d.market.inputToken.id];
                 const deposited = valueToBigNumber(d.balance);
-                const depositedUSD = deposited.multipliedBy(priceMap[d.market.inputToken.symbol]).div(new BigNumber(10).pow(d.market.inputToken.decimals));
+                const depositedUSD = deposited.multipliedBy(reserve.latestPrice).div(new BigNumber(10).pow(reserve.decimals));
                 const liquidationThreshold = valueToBigNumber(d.market.liquidationThreshold);
                 totalDesposited = totalDesposited.plus(depositedUSD);
                 totalCollateralThreshold = totalCollateralThreshold.plus(depositedUSD.multipliedBy(liquidationThreshold.div(100)));
 
                 if (depositedUSD.isGreaterThan(largestSupplyAmount)) {
                     largestSupplyAmount = depositedUSD;
-                    largestSupplySymbol = d.market.inputToken.symbol;
+                    largestSupplyTokens = deposited;
+                    largestSupplyReserve = reserve;
                 }
             });
             
@@ -175,9 +209,10 @@ class LiquidationWatcher {
             p.totalBorrowed = totalBorrowed;
             p.largestBorrowAmount = largestBorrowAmount;
             p.largestBorrowTokens = largestBorrowTokens;
-            p.largestBorrowSymbol = largestBorrowSymbol;
+            p.largestBorrowReserve = largestBorrowReserve;
             p.largestSupplyAmount = largestSupplyAmount;
-            p.largestSupplySymbol = largestSupplySymbol;
+            p.largestSupplyTokens = largestSupplyTokens;
+            p.largestSupplyReserve = largestSupplyReserve;
             p.healthFactor = healthFactor;
             
             // Ignore everything below $100
@@ -248,9 +283,10 @@ class LiquidationWatcher {
             let totalCollateralThreshold = BigNumber(0);
             let largestBorrowAmount = BigNumber(0);
             let largestBorrowTokens;
-            let largestBorrowSymbol;
+            let largestBorrowReserve;
             let largestSupplyAmount = BigNumber(0);
-            let largestSupplySymbol;
+            let largestSupplyTokens;
+            let largestSupplyReserve;
 
             userReserveData.forEach(u => {
                 const reserve = this.reservesLookup[u.underlyingAsset];
@@ -276,14 +312,15 @@ class LiquidationWatcher {
                     
                     if (depositedUSD.isGreaterThan(largestSupplyAmount)) {
                         largestSupplyAmount = depositedUSD;
-                        largestSupplySymbol = reserve.symbol;
+                        largestSupplyTokens = deposited;
+                        largestSupplyReserve = reserve;
                     }
                 }
                 totalBorrowed = totalBorrowed.plus(borrowedUSD);
                 if (borrowedUSD.isGreaterThan(largestBorrowAmount)) {
                     largestBorrowAmount = borrowedUSD;
                     largestBorrowTokens = borrowed;
-                    largestBorrowSymbol = reserve.symbol;
+                    largestBorrowReserve = reserve;
                 }
             });
 
@@ -292,12 +329,13 @@ class LiquidationWatcher {
             let healthFactor = totalCollateralThreshold.div(totalBorrowed);
             p.largestBorrowAmount = largestBorrowAmount;
             p.largestBorrowTokens = largestBorrowTokens;
-            p.largestBorrowSymbol = largestBorrowSymbol;
+            p.largestBorrowReserve = largestBorrowReserve;
             p.largestSupplyAmount = largestSupplyAmount;
-            p.largestSupplySymbol = largestSupplySymbol;
+            p.largestSupplyTokens = largestSupplyTokens;
+            p.largestSupplyReserve = largestSupplyReserve;
             p.healthFactor = healthFactor;
 
-            return healthFactor.isLessThan(1);
+            return healthFactor.isLessThan(healthFactorLiquidate);
         });
 
         this.logger(`${positions.length} positions are underwater.`);
@@ -306,12 +344,13 @@ class LiquidationWatcher {
     }
 
     async liquidate(position) {
+        const liquidationParams = getLiquidationParams(position);
         const liquidator = await hre.ethers.getContractAt("LiquidateLoan", addresses.LIQUIDATE_LOAN);
-        const swapResult = await fetchDEXRoute(position.largestBorrowSymbol, position.largestSupplySymbol, position.amount);
+        const swapResult = await fetchDEXRoute(position.largestBorrowReserve.underlyingAsset, position.largestSupplyReserve.underlyingAsset, liquidationParams.collateralToLiquidate);
         const args = [
-            addresses[position.largestBorrowSymbol],
-            position.largestBorrowTokens.toFixed(0),
-            addresses[position.largestSupplySymbol],
+            position.largestBorrowReserve.underlyingAsset,
+            liquidationParams.debtToCover.toFixed(0),
+            position.largestSupplyReserve.underlyingAsset,
             position.id,
             swapResult.tx.to,
             swapResult.tx.data,
@@ -415,7 +454,7 @@ class LiquidationWatcher {
                     this.unhealthyPositions = this.unhealthyPositions.filter(p => p._failures < maxFailuresBeforeDrop);
                 } catch (err) {
                     // Intermittent failure -- carry on
-                    this.logger(`Intermittent failure. Error = ${err}`);
+                    this.logger(`Intermittent failure.\n${err.stack}`);
                 }
             }, 60 * 1000),
 
@@ -432,7 +471,7 @@ class LiquidationWatcher {
                     }
                 } catch (err) {
                     // Intermittent failure -- carry on
-                    this.logger(`Intermittent failure. Error = ${err}`);
+                    this.logger(`Intermittent failure.${err}.\n${err.stack}`);
                 }
             }, 10 * 1000)
         ]);
