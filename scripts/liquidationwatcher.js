@@ -3,13 +3,16 @@ const { interval, retry, timeout, valueToBigNumber, readAllFiles, multicall } = 
 const { gql } = require("graphql-request");
 const { execute } = require("../.graphclient");
 const BigNumber = require("bignumber.js");
-const { addresses, routes } = require("./constants");
+const { addresses, routes, chainId } = require("./constants");
+const fetch = require("node-fetch");
 
 const PRICE_ORACLE_DECIMALS = new BigNumber(10).pow(8);
 const RAY = new BigNumber(10).pow(27);
 
 const minPriceUSD = 100;
 const healthFactorLiquidate = 0.98;
+const maxFailuresBeforeDrop = 10;
+const maxDEXSlippage = 2;
 
 const positionQuery = gql`
     query getActivePositions($limit: Int!, $offset: Int!) {
@@ -57,12 +60,48 @@ async function fetchAllRows (query, resolver) {
     return { rows, blockNumber };
 }
 
+async function fetchDEXRoute (from, to, amount) {
+    const apiBaseUrl = 'https://api.1inch.io/v5.0/' + chainId;
+    function apiRequestUrl(methodName, queryParams) {
+        return apiBaseUrl + methodName + '?' + (new URLSearchParams(queryParams)).toString();
+    }
+
+    return fetch(apiRequestUrl('/swap', {
+        fromTokenAddress: from,
+        toTokenAddress: to,
+        amount: amount,
+        fromAddress: addresses.LIQUIDATE_LOAN,
+        slippage: maxDEXSlippage,
+        allowPartialFill: false,
+        disableEstimate: true,
+    })).then(res => res.json());
+}
+
 class LiquidationWatcher {
 
     logger = (log) => {};
     unhealthyPositions = [];
+    reserves = [];
+    reservesLookup = {};
+    currencyInfo = {};
 
     constructor() {
+    }
+
+    async refreshReserves() {
+        this.logger(`Refreshing reserves...`);
+        const uiPoolDataProviderV3 = await ethers.getContractAt("IUiPoolDataProviderV3", addresses.UI_POOL_DATA_PROVIDER);
+        const [reserveDataArray, currencyInfo] = await uiPoolDataProviderV3.getReservesData(addresses.LENDING_POOL_ADDRESS_PROVIDER);
+        this.reserves = [];
+        this.reservesLookup = {};
+        this.currencyInfo = currencyInfo;
+        const priceText = [];
+        reserveDataArray.forEach(r => {
+            this.reservesLookup[r.underlyingAsset] = r;
+            this.reserves.push(r);
+            priceText.push(`${r.symbol}:${r.underlyingAsset}`);
+        });
+        this.logger(`Found: ${priceText.join(', ')}`);
     }
 
     async queryPositions() {
@@ -74,18 +113,11 @@ class LiquidationWatcher {
 
         // Fetch oracle prices
         this.logger(`Fetching latest oracle prices...`);
-        const [reserveDataArray] = await uiPoolDataProviderV3.getReservesData(addresses.LENDING_POOL_ADDRESS_PROVIDER);
-        const reserveData = {};
-        const allAssets = [];
-        reserveDataArray.forEach(r => {
-            reserveData[r.underlyingAsset] = r;
-            allAssets.push(r.underlyingAsset);
-        });
-        const prices = await aaveOracle.getAssetsPrices(allAssets);
+        const prices = await aaveOracle.getAssetsPrices(this.reserves.map(r => r.underlyingAsset));
         const priceMap = {};
         const priceText = [];
-        allAssets.forEach((a, i) => {
-            const symbol = reserveData[a].symbol;
+        this.reserves.forEach((r, i) => {
+            const symbol = r.symbol;
             const price = valueToBigNumber(prices[i]).div(PRICE_ORACLE_DECIMALS);
             priceMap[symbol] = price;
             priceText.push(`${symbol} = ${price.toFixed(2)}`);
@@ -198,14 +230,9 @@ class LiquidationWatcher {
 
         const uiPoolDataProviderV3 = await ethers.getContractAt("IUiPoolDataProviderV3", addresses.UI_POOL_DATA_PROVIDER);
         const pool = await ethers.getContractAt("IPool", addresses.LENDING_POOL);
-        const [reserveDataArray, currencyInfo] = await uiPoolDataProviderV3.getReservesData(addresses.LENDING_POOL_ADDRESS_PROVIDER);
         const userReservesData = await multicall(positions.map(p => {
             return [addresses.UI_POOL_DATA_PROVIDER, uiPoolDataProviderV3.interface.encodeFunctionData("getUserReservesData", [addresses.LENDING_POOL_ADDRESS_PROVIDER, p.id])];
         }), r => uiPoolDataProviderV3.interface.decodeFunctionResult("getUserReservesData", r));
-        const reserveData = {};
-        reserveDataArray.forEach(r => {
-            reserveData[r.underlyingAsset] = r;
-        });
 
         // Fetch e-mode
         const emodeDatas = {
@@ -226,11 +253,11 @@ class LiquidationWatcher {
             let largestSupplySymbol;
 
             userReserveData.forEach(u => {
-                const reserve = reserveData[u.underlyingAsset];
+                const reserve = this.reservesLookup[u.underlyingAsset];
                 const units = new BigNumber(10).pow(reserve.decimals.toString());
 
                 const priceInMarketReferenceCurrency = valueToBigNumber(reserve.priceInMarketReferenceCurrency);
-                const marketReferenceCurrencyUnit = valueToBigNumber(currencyInfo.marketReferenceCurrencyUnit);
+                const marketReferenceCurrencyUnit = valueToBigNumber(this.currencyInfo.marketReferenceCurrencyUnit);
                 const scaledATokenBalance = valueToBigNumber(u.scaledATokenBalance);
                 const scaledVariableDebt = valueToBigNumber(u.scaledVariableDebt);
                 const liquidityIndex = valueToBigNumber(reserve.liquidityIndex).div(RAY);
@@ -280,12 +307,14 @@ class LiquidationWatcher {
 
     async liquidate(position) {
         const liquidator = await hre.ethers.getContractAt("LiquidateLoan", addresses.LIQUIDATE_LOAN);
+        const swapResult = await fetchDEXRoute(position.largestBorrowSymbol, position.largestSupplySymbol, position.amount);
         const args = [
             addresses[position.largestBorrowSymbol],
             position.largestBorrowTokens.toFixed(0),
             addresses[position.largestSupplySymbol],
             position.id,
-            routes[position.largestSupplySymbol][position.largestBorrowSymbol]
+            swapResult.tx.to,
+            swapResult.tx.data,
         ];
         const [signer] = await ethers.getSigners();
         const nonce = await signer.getTransactionCount();
@@ -342,6 +371,8 @@ class LiquidationWatcher {
             // Once per 1 minute
             interval(async () => {
                 try {
+                    await this.refreshReserves();
+
                     // TheGraph query to add positions to the list
                     const { _unhealthyPositions, blockNumber } = await this.queryPositions();
                     for (const p of _unhealthyPositions) {
@@ -381,7 +412,7 @@ class LiquidationWatcher {
                     }
 
                     // Remove any old positions
-                    this.unhealthyPositions = this.unhealthyPositions.filter(p => p._failures < 10);
+                    this.unhealthyPositions = this.unhealthyPositions.filter(p => p._failures < maxFailuresBeforeDrop);
                 } catch (err) {
                     // Intermittent failure -- carry on
                     this.logger(`Intermittent failure. Error = ${err}`);

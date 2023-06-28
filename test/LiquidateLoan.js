@@ -14,14 +14,9 @@ describe("LiquidateLoan", function () {
         const LiquidateLoan = await ethers.getContractFactory("LiquidateLoan");
         const liquidateLoan = await LiquidateLoan.deploy(
             addresses.LENDING_POOL_ADDRESS_PROVIDER,
-            addresses.UNISWAPV3_ROUTER,
-            addresses.TREASURY,
             addresses.DAI,
             addresses.sDAI,
-            addresses.WETH,
-            addresses.wstETH,
-            addresses.DSS_FLASH,
-            addresses.stETHCurvePool
+            addresses.DSS_FLASH
         );
     
         return { liquidateLoan };
@@ -33,8 +28,6 @@ describe("LiquidateLoan", function () {
             
             //expect(await liquidateLoan.provider()).to.equal(addresses.LENDING_POOL_ADDRESS_PROVIDER);
             //expect(await liquidateLoan.lendingPool()).to.equal();
-            expect(await liquidateLoan.uniswapV3Router()).to.equal(addresses.UNISWAPV3_ROUTER);
-            expect(await liquidateLoan.treasury()).to.equal(addresses.TREASURY);
             expect(await liquidateLoan.dai()).to.equal(addresses.DAI);
             expect(await liquidateLoan.sdai()).to.equal(addresses.SDAI);
             expect(await liquidateLoan.daiFlashLender()).to.equal(addresses.DSS_FLASH);
