@@ -66,37 +66,48 @@ async function fetchDEXRoute (from, to, amount) {
         return apiBaseUrl + methodName + '?' + (new URLSearchParams(queryParams)).toString();
     }
 
-    return fetch(apiRequestUrl('/swap', {
+    const result = await fetch(apiRequestUrl('/swap', {
         fromTokenAddress: from,
         toTokenAddress: to,
-        amount: amount,
+        amount: amount.toFixed(0),
         fromAddress: addresses.LIQUIDATE_LOAN,
         slippage: maxDEXSlippage,
         allowPartialFill: false,
         disableEstimate: true,
     })).then(res => res.json());
+
+    if (!result.error) {
+        return result;
+    } else {
+        throw new Error(`Failed to fetch DEX route.\n${JSON.stringify(result, null, 2)}`);
+    }
 }
 
 function getLiquidationParams(position) {
     // Using logic from https://github.com/aave/aave-v3-core/blob/master/contracts/protocol/libraries/logic/LiquidationLogic.sol#L466
     const collateral = position.largestSupplyReserve;
     const debt = position.largestBorrowReserve;
-    let debtToCover = position.largestBorrowAmount;
+
+    const cdecimals = new BigNumber(10).pow(valueToBigNumber(collateral.decimals));
+    const ddecimals = new BigNumber(10).pow(valueToBigNumber(debt.decimals));
+    const liquidationBonus = valueToBigNumber(collateral.reserveLiquidationBonus);
+
+    let debtToCover = position.largestBorrowTokens;
     let collateralToLiquidate;
     if (position.healthFactor.isGreaterThan(healthFactorThreshold)) {
         debtToCover = debtToCover.div(2);
     }
-    const baseCollateral = debt.latestPrice.mul(debtToCover).mul(new BigNumber(10).pow(collateral.decimals))
-        .div(collateral.latestPrice.mul(new BigNumber(10).pow(debt.decimals)));
+    const baseCollateral = debt.latestPrice.multipliedBy(debtToCover).multipliedBy(cdecimals)
+        .div(collateral.latestPrice.multipliedBy(ddecimals));
     // FIXME this needs to take e-mode into account
-    const maxCollateralToLiquidate = baseCollateral.mul(collateral.reserveLiquidationBonus).div(10000);
+    const maxCollateralToLiquidate = baseCollateral.multipliedBy(liquidationBonus).div(10000);
 
     if (maxCollateralToLiquidate.isGreaterThan(position.largestSupplyTokens)) {
         // Amount needed > amount available
         maxCollateralToLiquidate = position.largestSupplyTokens;
-        debtToCover = collateral.latestPrice.mul(maxCollateralToLiquidate).mul(new BigNumber(10).pow(debt.decimals))
-            .div(debt.latestPrice.mul(new BigNumber(10).pow(collateral.decimals)))
-            .mul(10000).div(collateral.reserveLiquidationBonus);
+        debtToCover = collateral.latestPrice.multipliedBy(maxCollateralToLiquidate).multipliedBy(ddecimals)
+            .div(debt.latestPrice.multipliedBy(cdecimals))
+            .multipliedBy(10000).div(liquidationBonus);
     } else {
         // There is enough collateral available
         collateralToLiquidate = maxCollateralToLiquidate;
@@ -131,7 +142,7 @@ class LiquidationWatcher {
         const reservesText = [];
         reserveDataArray.forEach(_r => {
             const r = { ..._r };
-            this.reservesLookup[r.underlyingAsset] = r;
+            this.reservesLookup[r.underlyingAsset.toLowerCase()] = r;
             this.reserves.push(r);
             reservesText.push(`${r.symbol}:${r.underlyingAsset}`);
         });
@@ -178,7 +189,7 @@ class LiquidationWatcher {
             let largestSupplyReserve;
 
             p.positions.filter(_p => _p.side === 'BORROWER').forEach((b, i) => {
-                const reserve = this.reservesLookup[b.market.inputToken.id];
+                const reserve = this.reservesLookup[b.market.inputToken.id.toLowerCase()];
                 const borrowed = valueToBigNumber(b.balance);
                 const borrowedUSD = borrowed.multipliedBy(reserve.latestPrice).div(new BigNumber(10).pow(reserve.decimals));
                 totalBorrowed = totalBorrowed.plus(borrowedUSD);
@@ -190,7 +201,7 @@ class LiquidationWatcher {
                 }
             });
             p.positions.filter(_p => (_p.side === 'LENDER' || _p.side === 'COLLATERAL') && _p.isCollateral).forEach((d, i) => {
-                const reserve = this.reservesLookup[d.market.inputToken.id];
+                const reserve = this.reservesLookup[d.market.inputToken.id.toLowerCase()];
                 const deposited = valueToBigNumber(d.balance);
                 const depositedUSD = deposited.multipliedBy(reserve.latestPrice).div(new BigNumber(10).pow(reserve.decimals));
                 const liquidationThreshold = valueToBigNumber(d.market.liquidationThreshold);
@@ -289,7 +300,7 @@ class LiquidationWatcher {
             let largestSupplyReserve;
 
             userReserveData.forEach(u => {
-                const reserve = this.reservesLookup[u.underlyingAsset];
+                const reserve = this.reservesLookup[u.underlyingAsset.toLowerCase()];
                 const units = new BigNumber(10).pow(reserve.decimals.toString());
 
                 const priceInMarketReferenceCurrency = valueToBigNumber(reserve.priceInMarketReferenceCurrency);
@@ -346,7 +357,9 @@ class LiquidationWatcher {
     async liquidate(position) {
         const liquidationParams = getLiquidationParams(position);
         const liquidator = await hre.ethers.getContractAt("LiquidateLoan", addresses.LIQUIDATE_LOAN);
-        const swapResult = await fetchDEXRoute(position.largestBorrowReserve.underlyingAsset, position.largestSupplyReserve.underlyingAsset, liquidationParams.collateralToLiquidate);
+        this.logger(`Collateral to Liquidate: ${liquidationParams.collateralToLiquidate.toFixed(0)} ${position.largestSupplyReserve.symbol}, Debt to Cover: ${liquidationParams.debtToCover.toFixed(0)} ${position.largestBorrowReserve.symbol}`);
+        this.logger(`Fetching DEX route for ${liquidationParams.collateralToLiquidate.toFixed(0)} ${position.largestSupplyReserve.symbol} -> ${position.largestBorrowReserve.symbol}...`);
+        const swapResult = await fetchDEXRoute(position.largestSupplyReserve.underlyingAsset, position.largestBorrowReserve.underlyingAsset, liquidationParams.collateralToLiquidate);
         const args = [
             position.largestBorrowReserve.underlyingAsset,
             liquidationParams.debtToCover.toFixed(0),
@@ -363,7 +376,7 @@ class LiquidationWatcher {
                 ...args
             );
         } catch (e) {
-            throw `Gas Estimate Failed. Reason = ${e.reason}`;
+            throw new Error(`Gas Estimate Failed. Reason = ${e.reason}`);
         }
         return await retry(async (attempts) => {
             const feeData = await ethers.provider.getFeeData();
@@ -388,7 +401,7 @@ class LiquidationWatcher {
 
     async triggerLiquidation(position) {
         try {
-            this.logger(`Triggering liquidation for position ${position.id}. Borrowed ${position.largestBorrowAmount.toFixed(0)} USD of ${position.largestBorrowSymbol} against ${position.largestSupplyAmount.toFixed(0)} USD of ${position.largestSupplySymbol} collateral (HF: ${position.healthFactor})`);
+            this.logger(`Triggering liquidation for position ${position.id}. Borrowed ${position.largestBorrowAmount.toFixed(0)} USD of ${position.largestBorrowReserve.symbol} against ${position.largestSupplyAmount.toFixed(0)} USD of ${position.largestSupplyReserve.symbol} collateral (HF: ${position.healthFactor})`);
             const liquidationTx = await this.liquidate(position);
             await timeout(liquidationTx.wait(), 2 * 60 * 1000);
             this.logger(`Liquidation tx mined for position ${position.id}: ${liquidationTx.hash}`);
@@ -397,7 +410,7 @@ class LiquidationWatcher {
         } catch (err) {
             position._sent = false;
             position._failures++;
-            this.logger(`Error triggering liquidation for position ${position.id}. Error = ${err}`);
+            this.logger(`Error triggering liquidation for position ${position.id}.\n${err.stack}`);
         }
     }
 
@@ -471,9 +484,9 @@ class LiquidationWatcher {
                     }
                 } catch (err) {
                     // Intermittent failure -- carry on
-                    this.logger(`Intermittent failure.${err}.\n${err.stack}`);
+                    this.logger(`Intermittent failure.\n${err.stack}`);
                 }
-            }, 10 * 1000)
+            }, 4 * 1000)
         ]);
     }
 
