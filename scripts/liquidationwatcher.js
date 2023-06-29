@@ -61,6 +61,8 @@ async function fetchAllRows (query, resolver) {
 }
 
 async function fetchDEXRoute (from, to, amount) {
+    // FIXME - need to convert from sDAI to DAI (and unit conversion)
+
     const apiBaseUrl = 'https://api.1inch.io/v5.0/' + chainId;
     function apiRequestUrl(methodName, queryParams) {
         return apiBaseUrl + methodName + '?' + (new URLSearchParams(queryParams)).toString();
@@ -114,7 +116,7 @@ function getLiquidationParams(position) {
     }
 
     return {
-        collateralToLiquidate,
+        collateralToLiquidate: collateralToLiquidate.div(1.01),     // FIXME - this should not be some hard coded number to make sure collateral we get back > DEX swap amount
         debtToCover
     };
 }
@@ -486,7 +488,7 @@ class LiquidationWatcher {
                     // Intermittent failure -- carry on
                     this.logger(`Intermittent failure.\n${err.stack}`);
                 }
-            }, 4 * 1000)
+            }, 10 * 1000)
         ]);
     }
 

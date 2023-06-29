@@ -12,6 +12,6 @@ echo "Setting $ASSET to near zero ltv/lt..."
 cast rpc anvil_setBalance $ADMIN 0x10000000000000000 > /dev/null
 cast rpc anvil_impersonateAccount $ADMIN > /dev/null
 
-cast send $CONFIGURATOR 'configureReserveAsCollateral(address,uint256,uint256,uint256)' $ASSET 1 1 10100 $ --from $ADMIN --unlocked
+cast send $CONFIGURATOR 'configureReserveAsCollateral(address,uint256,uint256,uint256)' $ASSET 1 1 10400 $ --from $ADMIN --unlocked
 
 cast rpc anvil_stopImpersonatingAccount $ADMIN > /dev/null

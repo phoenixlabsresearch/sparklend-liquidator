@@ -209,9 +209,9 @@ contract LiquidateLoan is IFlashLoanReceiver, IERC3156FlashBorrower {
         //userToLiquidate - id of the user to liquidate
         //amountOutMin - minimum amount of asset paid when swapping collateral
         {
-
             //liquidate unhealthy loan
-            liquidateLoan(collateral, assetToLiquidiate, userToLiquidate, amount, false);
+            IERC20(assetToLiquidiate).approve(address(lendingPool), amount);
+            lendingPool.liquidationCall(collateral, assetToLiquidiate, userToLiquidate, amount, false);
 
             //swap collateral from liquidate back to asset from flashloan to pay it off
             if (collateral != assetToLiquidiate) {
@@ -225,8 +225,13 @@ contract LiquidateLoan is IFlashLoanReceiver, IERC3156FlashBorrower {
                 if (swapPath.length > 0) {
                     IERC20(collateral).approve(router, IERC20(collateral).balanceOf(address(this)));
                     (bool success,) = router.call(swapPath);
-                    if (!success) {
-                        revert("Swap failed");
+                    if (success == false) {
+                        assembly {
+                            let ptr := mload(0x40)
+                            let size := returndatasize()
+                            returndatacopy(ptr, 0, size)
+                            revert(ptr, size)
+                        }
                     }
                 }
 
@@ -243,12 +248,7 @@ contract LiquidateLoan is IFlashLoanReceiver, IERC3156FlashBorrower {
 
         require(earnings >= costs , "No profit");
         IERC20(assetToLiquidiate).transfer(sender, earnings - costs);
-    }
-
-    function liquidateLoan(address _collateral, address _liquidate_asset, address _userToLiquidate, uint256 _amount, bool _receiveaToken) public {
-        require(IERC20(_liquidate_asset).approve(address(lendingPool), _amount), "Approval error");
-
-        lendingPool.liquidationCall(_collateral, _liquidate_asset, _userToLiquidate, _amount, _receiveaToken);
+        IERC20(collateral).transfer(sender, IERC20(collateral).balanceOf(address(this)));   // May be some dust left
     }
 
     /*
