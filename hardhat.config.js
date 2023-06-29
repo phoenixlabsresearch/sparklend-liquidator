@@ -6,9 +6,6 @@ module.exports = {
   defaultNetwork: "hardhat",
   networks: {
     hardhat: {
-      forking: {
-        url: process.env.GOERLI_RPC_URL,
-      }
     },
     local: {
       url: "http://127.0.0.1:8545/",
