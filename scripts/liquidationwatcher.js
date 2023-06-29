@@ -189,7 +189,7 @@ class LiquidationWatcher {
                     largestBorrowReserve = reserve;
                 }
             });
-            p.positions.filter(_p => _p.side === 'LENDER' && _p.isCollateral).forEach((d, i) => {
+            p.positions.filter(_p => (_p.side === 'LENDER' || _p.side === 'COLLATERAL') && _p.isCollateral).forEach((d, i) => {
                 const reserve = this.reservesLookup[d.market.inputToken.id];
                 const deposited = valueToBigNumber(d.balance);
                 const depositedUSD = deposited.multipliedBy(reserve.latestPrice).div(new BigNumber(10).pow(reserve.decimals));
