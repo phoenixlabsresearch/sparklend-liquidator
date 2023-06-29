@@ -364,7 +364,14 @@ class LiquidationWatcher {
 
     async liquidate(position) {
         const liquidationParams = getLiquidationParams(position);
-        const liquidator = await hre.ethers.getContractAt("LiquidateLoan", addresses.LIQUIDATE_LOAN);
+        let liquidator;
+        const executeUrl = hre.network.config.executeUrl;
+        if (executeUrl) {
+            const provider = new ethers.Wallet(hre.network.config.accounts[0]).connect(new ethers.providers.JsonRpcProvider(executeUrl));
+            liquidator = await hre.ethers.getContractAt("LiquidateLoan", addresses.LIQUIDATE_LOAN, provider);
+        } else {
+            liquidator = await hre.ethers.getContractAt("LiquidateLoan", addresses.LIQUIDATE_LOAN);
+        }
         this.logger(`Collateral to Liquidate: ${liquidationParams.collateralToLiquidate.toFixed(0)} ${position.largestSupplyReserve.symbol}, Debt to Cover: ${liquidationParams.debtToCover.toFixed(0)} ${position.largestBorrowReserve.symbol}`);
         this.logger(`Fetching DEX route for ${liquidationParams.collateralToLiquidate.toFixed(0)} ${position.largestSupplyReserve.symbol} -> ${position.largestBorrowReserve.symbol}...`);
         const swapResult = await this.fetchDEXRoute(position.largestSupplyReserve, position.largestBorrowReserve, liquidationParams.collateralToLiquidate);
