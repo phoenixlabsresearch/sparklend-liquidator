@@ -125,7 +125,7 @@ class LiquidationWatcher {
                     largestBorrowSymbol = b.market.inputToken.symbol;
                 }
             });
-            p.positions.filter(_p => _p.side === 'LENDER' && _p.isCollateral).forEach((d, i) => {
+            p.positions.filter(_p => (_p.side === 'LENDER' || _p.side === 'COLLATERAL') && _p.isCollateral).forEach((d, i) => {
                 const deposited = valueToBigNumber(d.balance);
                 const depositedUSD = deposited.multipliedBy(priceMap[d.market.inputToken.symbol]).div(new BigNumber(10).pow(d.market.inputToken.decimals));
                 const liquidationThreshold = valueToBigNumber(d.market.liquidationThreshold);
