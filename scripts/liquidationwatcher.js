@@ -65,26 +65,22 @@ function getLiquidationParams(position) {
     const collateral = position.largestSupplyReserve;
     const debt = position.largestBorrowReserve;
 
-    const cdecimals = new BigNumber(10).pow(valueToBigNumber(collateral.decimals));
-    const ddecimals = new BigNumber(10).pow(valueToBigNumber(debt.decimals));
-    const liquidationBonus = valueToBigNumber(collateral.reserveLiquidationBonus);
-
     let debtToCover = position.largestBorrowTokens;
     let collateralToLiquidate;
     if (position.healthFactor.isGreaterThan(healthFactorThreshold)) {
         debtToCover = debtToCover.div(2);
     }
-    const baseCollateral = debt.latestPrice.multipliedBy(debtToCover).multipliedBy(cdecimals)
-        .div(collateral.latestPrice.multipliedBy(ddecimals));
+    const baseCollateral = debt.latestPrice.multipliedBy(debtToCover).multipliedBy(collateral.unit)
+        .div(collateral.latestPrice.multipliedBy(debt.unit));
     // FIXME this needs to take e-mode into account
-    const maxCollateralToLiquidate = baseCollateral.multipliedBy(liquidationBonus).div(10000);
+    const maxCollateralToLiquidate = baseCollateral.multipliedBy(collateral.reserveLiquidationBonus).div(10000);
 
     if (maxCollateralToLiquidate.isGreaterThan(position.largestSupplyTokens)) {
         // Amount needed > amount available
         maxCollateralToLiquidate = position.largestSupplyTokens;
-        debtToCover = collateral.latestPrice.multipliedBy(maxCollateralToLiquidate).multipliedBy(ddecimals)
-            .div(debt.latestPrice.multipliedBy(cdecimals))
-            .multipliedBy(10000).div(liquidationBonus);
+        debtToCover = collateral.latestPrice.multipliedBy(maxCollateralToLiquidate).multipliedBy(debt.unit)
+            .div(debt.latestPrice.multipliedBy(collateral.unit))
+            .multipliedBy(10000).div(collateral.reserveLiquidationBonus);
     } else {
         // There is enough collateral available
         collateralToLiquidate = maxCollateralToLiquidate;
@@ -131,6 +127,8 @@ class LiquidationWatcher {
         this.reserves.forEach((r, i) => {
             const price = valueToBigNumber(prices[i]).div(PRICE_ORACLE_DECIMALS);
             r.latestPrice = price;
+            r.unit = new BigNumber(10).pow(valueToBigNumber(r.decimals));
+            r.reserveLiquidationBonus = valueToBigNumber(r.reserveLiquidationBonus);
             priceText.push(`${r.symbol} = ${price.toFixed(2)}`);
         });
         this.logger(`Prices: ${priceText.join(', ')}`);
@@ -168,7 +166,7 @@ class LiquidationWatcher {
             p.positions.filter(_p => _p.side === 'BORROWER').forEach((b, i) => {
                 const reserve = this.reservesLookup[b.market.inputToken.id.toLowerCase()];
                 const borrowed = valueToBigNumber(b.balance);
-                const borrowedUSD = borrowed.multipliedBy(reserve.latestPrice).div(new BigNumber(10).pow(reserve.decimals));
+                const borrowedUSD = borrowed.multipliedBy(reserve.latestPrice).div(reserve.unit);
                 totalBorrowed = totalBorrowed.plus(borrowedUSD);
 
                 if (borrowedUSD.isGreaterThan(largestBorrowAmount)) {
@@ -180,7 +178,7 @@ class LiquidationWatcher {
             p.positions.filter(_p => (_p.side === 'LENDER' || _p.side === 'COLLATERAL') && _p.isCollateral).forEach((d, i) => {
                 const reserve = this.reservesLookup[d.market.inputToken.id.toLowerCase()];
                 const deposited = valueToBigNumber(d.balance);
-                const depositedUSD = deposited.multipliedBy(reserve.latestPrice).div(new BigNumber(10).pow(reserve.decimals));
+                const depositedUSD = deposited.multipliedBy(reserve.latestPrice).div(reserve.unit);
                 const liquidationThreshold = valueToBigNumber(d.market.liquidationThreshold);
                 totalDesposited = totalDesposited.plus(depositedUSD);
                 totalCollateralThreshold = totalCollateralThreshold.plus(depositedUSD.multipliedBy(liquidationThreshold.div(100)));
