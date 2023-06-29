@@ -60,31 +60,6 @@ async function fetchAllRows (query, resolver) {
     return { rows, blockNumber };
 }
 
-async function fetchDEXRoute (from, to, amount) {
-    // FIXME - need to convert from sDAI to DAI (and unit conversion)
-
-    const apiBaseUrl = 'https://api.1inch.io/v5.0/' + chainId;
-    function apiRequestUrl(methodName, queryParams) {
-        return apiBaseUrl + methodName + '?' + (new URLSearchParams(queryParams)).toString();
-    }
-
-    const result = await fetch(apiRequestUrl('/swap', {
-        fromTokenAddress: from,
-        toTokenAddress: to,
-        amount: amount.toFixed(0),
-        fromAddress: addresses.LIQUIDATE_LOAN,
-        slippage: maxDEXSlippage,
-        allowPartialFill: false,
-        disableEstimate: true,
-    })).then(res => res.json());
-
-    if (!result.error) {
-        return result;
-    } else {
-        throw new Error(`Failed to fetch DEX route.\n${JSON.stringify(result, null, 2)}`);
-    }
-}
-
 function getLiquidationParams(position) {
     // Using logic from https://github.com/aave/aave-v3-core/blob/master/contracts/protocol/libraries/logic/LiquidationLogic.sol#L466
     const collateral = position.largestSupplyReserve;
@@ -356,12 +331,45 @@ class LiquidationWatcher {
         return positions;
     }
 
+    async fetchDEXRoute (from, to, amount) {
+        // sDAI is not supported in 1inch so convert to DAI
+        const dai = this.reservesLookup[addresses.DAI.toLowerCase()];
+        const sdai = this.reservesLookup[addresses.sDAI.toLowerCase()];
+        if (from === sdai) {
+            from = dai;
+            amount = amount.multipliedBy(sdai.latestPrice).div(dai.latestPrice);
+        }
+        if (to === sdai) {
+            to = dai;
+        }
+        const apiBaseUrl = 'https://api.1inch.io/v5.0/' + chainId;
+        function apiRequestUrl(methodName, queryParams) {
+            return apiBaseUrl + methodName + '?' + (new URLSearchParams(queryParams)).toString();
+        }
+    
+        const result = await fetch(apiRequestUrl('/swap', {
+            fromTokenAddress: from.underlyingAsset,
+            toTokenAddress: to.underlyingAsset,
+            amount: amount.toFixed(0),
+            fromAddress: addresses.LIQUIDATE_LOAN,
+            slippage: maxDEXSlippage,
+            allowPartialFill: false,
+            disableEstimate: true,
+        })).then(res => res.json());
+    
+        if (!result.error) {
+            return result;
+        } else {
+            throw new Error(`Failed to fetch DEX route.\n${JSON.stringify(result, null, 2)}`);
+        }
+    }
+
     async liquidate(position) {
         const liquidationParams = getLiquidationParams(position);
         const liquidator = await hre.ethers.getContractAt("LiquidateLoan", addresses.LIQUIDATE_LOAN);
         this.logger(`Collateral to Liquidate: ${liquidationParams.collateralToLiquidate.toFixed(0)} ${position.largestSupplyReserve.symbol}, Debt to Cover: ${liquidationParams.debtToCover.toFixed(0)} ${position.largestBorrowReserve.symbol}`);
         this.logger(`Fetching DEX route for ${liquidationParams.collateralToLiquidate.toFixed(0)} ${position.largestSupplyReserve.symbol} -> ${position.largestBorrowReserve.symbol}...`);
-        const swapResult = await fetchDEXRoute(position.largestSupplyReserve.underlyingAsset, position.largestBorrowReserve.underlyingAsset, liquidationParams.collateralToLiquidate);
+        const swapResult = await this.fetchDEXRoute(position.largestSupplyReserve, position.largestBorrowReserve, liquidationParams.collateralToLiquidate);
         const args = [
             position.largestBorrowReserve.underlyingAsset,
             liquidationParams.debtToCover.toFixed(0),
@@ -372,7 +380,7 @@ class LiquidationWatcher {
         ];
         const [signer] = await ethers.getSigners();
         const nonce = await signer.getTransactionCount();
-        let gasLimitEstimate = 1000000;
+        let gasLimitEstimate = 2000000;
         try {
             gasLimitEstimate = await liquidator.estimateGas.executeFlashLoans(
                 ...args
