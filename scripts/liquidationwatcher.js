@@ -10,7 +10,7 @@ const PRICE_ORACLE_DECIMALS = new BigNumber(10).pow(8);
 const RAY = new BigNumber(10).pow(27);
 
 const minPriceUSD = 100;
-const healthFactorLiquidate = 0.98;
+const healthFactorLiquidate = 1;
 const healthFactorThreshold = 0.95;     // Below this threshold the entire position is liquidated
 const maxFailuresBeforeDrop = 10;
 const maxDEXSlippage = 2;
