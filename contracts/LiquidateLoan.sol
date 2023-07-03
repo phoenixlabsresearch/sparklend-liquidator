@@ -133,157 +133,27 @@ interface IERC3156FlashLender {
     ) external returns (bool);
 }
 
-interface IUniswapV3Router {
-    
-    struct ExactInputParams {
-        bytes   path;
-        address recipient;
-        uint256 deadline;
-        uint256 amountIn;
-        uint256 amountOutMinimum;
-    }
-
-    function exactInput(IUniswapV3Router.ExactInputParams calldata params)
-        external payable returns (uint256 amountOut);
-}
-
-library Address {
-    /**
-    * @dev Returns true if `account` is a contract.
-    *
-    * [IMPORTANT]
-    * ====
-    * It is unsafe to assume that an address for which this function returns
-    * false is an externally-owned account (EOA) and not a contract.
-    *
-    * Among others, `isContract` will return false for the following
-    * types of addresses:
-    *
-    *  - an externally-owned account
-    *  - a contract in construction
-    *  - an address where a contract will be created
-    *  - an address where a contract lived, but was destroyed
-    * ====
-    */
-    function isContract(address account) internal view returns (bool) {
-        // According to EIP-1052, 0x0 is the value returned for not-yet created accounts
-        // and 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470 is returned
-        // for accounts without code, i.e. `keccak256('')`
-        bytes32 codehash;
-        bytes32 accountHash = 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470;
-        // solhint-disable-next-line no-inline-assembly
-        assembly {
-            codehash := extcodehash(account)
-        }
-        return (codehash != accountHash && codehash != 0x0);
-    }
-}
-
-library SafeERC20 {
-
-    using Address for address;
-
-    function safeTransfer(
-        IERC20 token,
-        address to,
-        uint256 value
-    ) internal {
-        callOptionalReturn(token, abi.encodeWithSelector(token.transfer.selector, to, value));
-    }
-
-    function safeTransferFrom(
-        IERC20 token,
-        address from,
-        address to,
-        uint256 value
-    ) internal {
-        callOptionalReturn(token, abi.encodeWithSelector(token.transferFrom.selector, from, to, value));
-    }
-
-    function safeApprove(
-        IERC20 token,
-        address spender,
-        uint256 value
-    ) internal {
-        require(
-            (value == 0) || (token.allowance(address(this), spender) == 0),
-            'SafeERC20: approve from non-zero to non-zero allowance'
-        );
-        callOptionalReturn(token, abi.encodeWithSelector(token.approve.selector, spender, value));
-    }
-
-    function callOptionalReturn(IERC20 token, bytes memory data) private {
-        require(address(token).isContract(), 'SafeERC20: call to non-contract');
-
-        // solhint-disable-next-line avoid-low-level-calls
-        (bool success, bytes memory returndata) = address(token).call(data);
-        require(success, 'SafeERC20: low-level call failed');
-
-        if (returndata.length > 0) {
-            // Return data is optional
-            // solhint-disable-next-line max-line-length
-            require(abi.decode(returndata, (bool)), 'SafeERC20: ERC20 operation did not succeed');
-        }
-    }
-}
-
-interface CurvePoolLike {
-    function exchange(int128 i, int128 j, uint256 dx, uint256 min_dy) external payable returns (uint256 dy);
-}
-
-interface WrappedSTETHLike is IERC20 {
-    function stETH() external view returns (IERC20);
-    function wrap(uint256 _stETHAmount) external returns (uint256);
-    function unwrap(uint256 _wstETHAmount) external returns (uint256);
-}
-
-interface WETHLike is IERC20 {
-    function deposit() external payable;
-    function withdraw(uint256) external;
-}
-
 contract LiquidateLoan is IFlashLoanReceiver, IERC3156FlashBorrower {
-
-    using SafeERC20 for IERC20;
 
     ILendingPoolAddressesProvider public immutable provider;
     ILendingPool public immutable lendingPool;
-    IUniswapV3Router public immutable uniswapV3Router;
-    address public immutable treasury;
     IERC20 public immutable dai;
     IERC4626 public immutable sdai;
-    WrappedSTETHLike public immutable wstETH;
-    WETHLike public immutable weth;
-    IERC20 public immutable stETH;
     IERC3156FlashLender public immutable daiFlashLender;
-    CurvePoolLike public immutable stETHCurvePool;
 
     constructor(
         address _addressProvider,
-        address _uniswapV3Router,
-        address _treasury,
         address _dai,
         address _sdai,
-        address _weth,
-        address _wstETH,
-        address _daiFlashLender,
-        address _stETHCurvePool
+        address _daiFlashLender
     ) {
         provider = ILendingPoolAddressesProvider(_addressProvider);
         lendingPool = ILendingPool(provider.getPool());
-        uniswapV3Router = IUniswapV3Router(_uniswapV3Router);
-        treasury = _treasury;
         dai = IERC20(_dai);
         sdai = IERC4626(_sdai);
-        weth = WETHLike(_weth);
-        wstETH = WrappedSTETHLike(_wstETH);
-        stETH = wstETH.stETH();
         daiFlashLender = IERC3156FlashLender(_daiFlashLender);
-        stETHCurvePool = CurvePoolLike(_stETHCurvePool);
 
         dai.approve(address(sdai), type(uint256).max);
-        stETH.approve(address(wstETH), type(uint256).max);
-        stETH.approve(address(stETHCurvePool), type(uint256).max);
     }
 
     /**
@@ -334,40 +204,35 @@ contract LiquidateLoan is IFlashLoanReceiver, IERC3156FlashBorrower {
         uint256 fee,
         bytes calldata params
     ) internal {
+        (address sender, address collateral, address userToLiquidate, address router, bytes memory swapPath) = abi.decode(params, (address, address, address, address, bytes));
         //collateral  the address of the token that we will be compensated in
         //userToLiquidate - id of the user to liquidate
         //amountOutMin - minimum amount of asset paid when swapping collateral
         {
-            (address collateral, address userToLiquidate, bytes memory swapPath) = abi.decode(params, (address, address, bytes));
-
             //liquidate unhealthy loan
-            liquidateLoan(collateral, assetToLiquidiate, userToLiquidate, amount, false);
+            IERC20(assetToLiquidiate).approve(address(lendingPool), amount);
+            lendingPool.liquidationCall(collateral, assetToLiquidiate, userToLiquidate, amount, false);
 
             //swap collateral from liquidate back to asset from flashloan to pay it off
             if (collateral != assetToLiquidiate) {
-                // Unwrap sDAI if it's the collateral - there is no paths for sDAI in DEXes
+                // Unwrap sDAI if it's the collateral - there is no paths for sDAI in DEX aggregators
                 if (collateral == address(sdai)) {
                     sdai.redeem(sdai.balanceOf(address(this)), address(this), address(this));
                     collateral = address(dai);
                 }
 
-                // Unwrap wstETH and swap to WETH
-                if (collateral == address(wstETH)) {
-                    uint256 received = wstETH.unwrap(wstETH.balanceOf(address(this)));
-                    received = stETHCurvePool.exchange(1, 0, received, 0);
-                    weth.deposit{value:received}();
-                    collateral = address(weth);
-                }
-
-                // Perform Uniswap swaps
-                if (swapPath.length > 0) swapToBorrowedAsset(collateral, swapPath);
-
-                // Swap WETH to stETH and wrap to wstETH
-                if (assetToLiquidiate == address(wstETH)) {
-                    uint256 bal = weth.balanceOf(address(this));
-                    weth.withdraw(bal);
-                    stETHCurvePool.exchange{value:bal}(0, 1, bal, 0);
-                    wstETH.wrap(stETH.balanceOf(address(this)));
+                // Perform swap
+                if (swapPath.length > 0) {
+                    IERC20(collateral).approve(router, IERC20(collateral).balanceOf(address(this)));
+                    (bool success,) = router.call(swapPath);
+                    if (success == false) {
+                        assembly {
+                            let ptr := mload(0x40)
+                            let size := returndatasize()
+                            returndatacopy(ptr, 0, size)
+                            revert(ptr, size)
+                        }
+                    }
                 }
 
                 // Wrap to sDAI if it's the liquidated asset (we assume current balance is in DAI)
@@ -382,34 +247,8 @@ contract LiquidateLoan is IFlashLoanReceiver, IERC3156FlashBorrower {
         uint256 costs = amount + fee;
 
         require(earnings >= costs , "No profit");
-        IERC20(assetToLiquidiate).transfer(treasury, earnings - costs);
-    }
-
-    function liquidateLoan(address _collateral, address _liquidate_asset, address _userToLiquidate, uint256 _amount, bool _receiveaToken) public {
-        require(IERC20(_liquidate_asset).approve(address(lendingPool), _amount), "Approval error");
-
-        lendingPool.liquidationCall(_collateral, _liquidate_asset, _userToLiquidate, _amount, _receiveaToken);
-    }
-
-    //assumes the balance of the token is on the contract
-    function swapToBorrowedAsset(address asset_from, bytes memory path) public {
-        IERC20 asset_fromToken;
-        uint256 amountToTrade;
-
-        asset_fromToken = IERC20(asset_from);
-        amountToTrade = asset_fromToken.balanceOf(address(this));
-
-        // grant uniswap access to your token
-        asset_fromToken.approve(address(uniswapV3Router), amountToTrade);
-
-        // Trade 1: Execute swap from asset_from into designated ERC20 (asset_to) token on UniswapV2
-        uniswapV3Router.exactInput(IUniswapV3Router.ExactInputParams({
-            path: path,
-            recipient: address(this),
-            deadline: block.timestamp,
-            amountIn: amountToTrade,
-            amountOutMinimum: 0
-        }));
+        IERC20(assetToLiquidiate).transfer(sender, earnings - costs);
+        IERC20(collateral).transfer(sender, IERC20(collateral).balanceOf(address(this)));   // May be some dust left
     }
 
     /*
@@ -419,10 +258,11 @@ contract LiquidateLoan is IFlashLoanReceiver, IERC3156FlashBorrower {
     * _flashAmt - flash loan amount (number of tokens) which is exactly the amount that will be liquidated
     * _collateral - the token address of the collateral. This is the token that will be received after liquidating loans
     * _userToLiquidate - user ID of the loan that will be liquidated
+    * _router - DEX aggregator router
     * _swapPath - the path that uniswap will use to swap tokens back to original tokens
     */
-    function executeFlashLoans(address _assetToLiquidate, uint256 _flashAmt, address _collateral, address _userToLiquidate, bytes memory _swapPath) public {
-        bytes memory params = abi.encode(_collateral, _userToLiquidate, _swapPath);
+    function executeFlashLoans(address _assetToLiquidate, uint256 _flashAmt, address _collateral, address _userToLiquidate, address _router, bytes memory _swapPath) public {
+        bytes memory params = abi.encode(msg.sender, _collateral, _userToLiquidate, _router, _swapPath);
         
         if (_assetToLiquidate == address(dai)) {
             // Use Maker Flash Mint Module

@@ -6,11 +6,9 @@
   "scripts": {
     "deploy": "hardhat run scripts/deploy.js",
     "deploy-local": "hardhat run --network local scripts/deploy.js",
-    "deploy-goerli": "hardhat run --network goerli scripts/deploy.js",
     "deploy-mainnet": "hardhat run --network mainnet scripts/deploy.js",
     "server": "hardhat run scripts/server.js",
     "server-local": "hardhat run --network local scripts/server.js",
-    "server-goerli": "hardhat run --network goerli scripts/server.js",
     "server-mainnet": "hardhat run --network mainnet scripts/server.js",
     "test": "hardhat test --network mainnet"
   },
@@ -40,6 +38,7 @@
     "dotenv": "^16.0.3",
     "graphql": "^16.6.0",
     "graphql-request": "^5.1.0",
-    "moment": "^2.29.4"
+    "moment": "^2.29.4",
+    "node-fetch": "2"
   }
 }

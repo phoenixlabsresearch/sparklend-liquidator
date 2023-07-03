@@ -11,14 +11,9 @@ async function main() {
     const LiquidateLoan = await hre.ethers.getContractFactory("LiquidateLoan");
     const liquidateLoan = await LiquidateLoan.deploy(
         addresses.LENDING_POOL_ADDRESS_PROVIDER,
-        addresses.UNISWAPV3_ROUTER,
-        addresses.TREASURY,
         addresses.DAI,
         addresses.sDAI,
-        addresses.WETH,
-        addresses.wstETH,
-        addresses.DSS_FLASH,
-        addresses.stETHCurvePool
+        addresses.DSS_FLASH
     );
 
     await liquidateLoan.deployed();
