@@ -353,7 +353,11 @@ class LiquidationWatcher {
             slippage: maxDEXSlippage,
             allowPartialFill: false,
             disableEstimate: true,
-        })).then(res => res.json());
+        }), {
+            headers: {
+                'Authorization': 'Bearer ' + process.env.ONEINCH_API_KEY
+            }
+        }).then(res => res.json());
     
         if (!result.error) {
             return result;
