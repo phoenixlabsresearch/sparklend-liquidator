@@ -340,7 +340,7 @@ class LiquidationWatcher {
         if (to === sdai) {
             to = dai;
         }
-        const apiBaseUrl = 'https://api.1inch.io/v5.0/' + chainId;
+        const apiBaseUrl = `${process.env.ONEINCH_URL}/v5.0/${chainId}`;
         function apiRequestUrl(methodName, queryParams) {
             return apiBaseUrl + methodName + '?' + (new URLSearchParams(queryParams)).toString();
         }
@@ -355,7 +355,7 @@ class LiquidationWatcher {
             disableEstimate: true,
         }), {
             headers: {
-                'Authorization': 'Bearer ' + process.env.ONEINCH_API_KEY
+                'Authorization': `Bearer ${process.env.ONEINCH_API_KEY}`
             }
         }).then(res => res.json());
     
