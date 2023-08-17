@@ -9,7 +9,7 @@ const fetch = require("node-fetch");
 const PRICE_ORACLE_DECIMALS = new BigNumber(10).pow(8);
 const RAY = new BigNumber(10).pow(27);
 
-const minPriceUSD = 100;
+const minPriceUSD = parseFloat(process.env.MIN_PRICE);
 const healthFactorLiquidate = 1;
 const healthFactorThreshold = 0.95;     // Below this threshold the entire position is liquidated
 const maxFailuresBeforeDrop = 10;
