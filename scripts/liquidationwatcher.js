@@ -215,7 +215,8 @@ class LiquidationWatcher {
 
         // Any positions that are unhealthy double-check that they don't have emode activated and are actually safe
         const emodeDatas = {
-            "1": await pool.getEModeCategoryData(1)
+            "1": await pool.getEModeCategoryData(1),
+            "2": await pool.getEModeCategoryData(2)
         }
         const userReservesData = await multicall(_unhealthyPositions.map(p => {
             return [addresses.UI_POOL_DATA_PROVIDER, uiPoolDataProviderV3.interface.encodeFunctionData("getUserReservesData", [addresses.LENDING_POOL_ADDRESS_PROVIDER, p.id])];
@@ -257,7 +258,8 @@ class LiquidationWatcher {
 
         // Fetch e-mode
         const emodeDatas = {
-            "1": await pool.getEModeCategoryData(1)
+            "1": await pool.getEModeCategoryData(1),
+            "2": await pool.getEModeCategoryData(2)
         }
         
         positions = positions.filter((p, i) => {
