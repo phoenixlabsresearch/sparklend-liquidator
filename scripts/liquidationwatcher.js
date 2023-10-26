@@ -98,6 +98,7 @@ class LiquidationWatcher {
     unhealthyPositions = [];
     reserves = [];
     reservesLookup = {};
+    emodeCategories = {};
     currencyInfo = {};
 
     constructor() {
@@ -117,6 +118,11 @@ class LiquidationWatcher {
             const r = { ..._r };
             this.reservesLookup[r.underlyingAsset.toLowerCase()] = r;
             this.reserves.push(r);
+            this.emodeCategories[r.eModeCategoryId] = {
+                ltv: r.eModeLtv,
+                liquidationThreshold: r.eModeLiquidationThreshold,
+                liquidationBonus: r.eModeLiquidationBonus
+            };
             reservesText.push(`${r.symbol}:${r.underlyingAsset}`);
         });
         this.logger(`Found: ${reservesText.join(', ')}`);
@@ -214,16 +220,12 @@ class LiquidationWatcher {
         });
 
         // Any positions that are unhealthy double-check that they don't have emode activated and are actually safe
-        const emodeDatas = {
-            "1": await pool.getEModeCategoryData(1),
-            "2": await pool.getEModeCategoryData(2)
-        }
         const userReservesData = await multicall(_unhealthyPositions.map(p => {
             return [addresses.UI_POOL_DATA_PROVIDER, uiPoolDataProviderV3.interface.encodeFunctionData("getUserReservesData", [addresses.LENDING_POOL_ADDRESS_PROVIDER, p.id])];
         }), r => uiPoolDataProviderV3.interface.decodeFunctionResult("getUserReservesData", r));
         _unhealthyPositions = _unhealthyPositions.filter((p, i) => {
             const emodeCategory = userReservesData[i][1];
-            const emodeData = emodeDatas[emodeCategory.toString()];
+            const emodeData = this.emodeCategories[emodeCategory.toString()];
             if (emodeData != null) {
                 const liquidationThreshold = valueToBigNumber(emodeData.liquidationThreshold);
                 const healthFactor = p.totalDesposited.multipliedBy(liquidationThreshold.div(10000)).div(p.totalBorrowed);
@@ -255,17 +257,11 @@ class LiquidationWatcher {
         const userReservesData = await multicall(positions.map(p => {
             return [addresses.UI_POOL_DATA_PROVIDER, uiPoolDataProviderV3.interface.encodeFunctionData("getUserReservesData", [addresses.LENDING_POOL_ADDRESS_PROVIDER, p.id])];
         }), r => uiPoolDataProviderV3.interface.decodeFunctionResult("getUserReservesData", r));
-
-        // Fetch e-mode
-        const emodeDatas = {
-            "1": await pool.getEModeCategoryData(1),
-            "2": await pool.getEModeCategoryData(2)
-        }
         
         positions = positions.filter((p, i) => {
             const userReserveData = userReservesData[i][0];
             const emodeCategory = userReservesData[i][1];
-            const emodeData = emodeDatas[emodeCategory.toString()];
+            const emodeData = this.emodeCategories[emodeCategory.toString()];
 
             let totalBorrowed = BigNumber(0);
             let totalCollateralThreshold = BigNumber(0);
