@@ -3,7 +3,7 @@ const { interval, retry, timeout, valueToBigNumber, readAllFiles, multicall } = 
 const { gql } = require("graphql-request");
 const { execute } = require("../.graphclient");
 const BigNumber = require("bignumber.js");
-const { addresses, routes, chainId } = require("./constants");
+const { addresses, chainId } = require("./constants");
 const fetch = require("node-fetch");
 
 const PRICE_ORACLE_DECIMALS = new BigNumber(10).pow(8);
@@ -141,11 +141,9 @@ class LiquidationWatcher {
     }
 
     async queryPositions() {
-        this.urns = [];
-
         const uiPoolDataProviderV3 = await ethers.getContractAt("IUiPoolDataProviderV3", addresses.UI_POOL_DATA_PROVIDER);
 
-        // Fetch all urns
+        // Fetch all positions
         this.logger(`Fetching all positions...`);
         const { rows, blockNumber } = (await fetchAllRows(positionQuery, r => r.accounts));
         let lowHF = BigNumber(0);

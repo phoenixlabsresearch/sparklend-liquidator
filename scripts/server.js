@@ -1,4 +1,4 @@
-const LiquidationWatcher = require("./liquidationwatcher");
+const Daemon = require("../src/Daemon");
 const hre = require("hardhat");
 const moment = require("moment");
 
@@ -15,7 +15,7 @@ async function main() {
         log(`Using RPC: ${rpc}`);
     }
 
-    await new LiquidationWatcher().run(log);
+    await new Daemon(log).run();
 }
 
 // We recommend this pattern to be able to use async/await everywhere
