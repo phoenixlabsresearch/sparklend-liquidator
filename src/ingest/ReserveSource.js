@@ -4,15 +4,14 @@ const { valueToBigNumber } = require("../utils");
 
 class ReserveSource {
 
-    constructor(poolAddressProvider, uiDataProvider) {
-        this.poolAddressProvider = poolAddressProvider;
-        this.uiDataProvider = uiDataProvider;
+    constructor(network) {
+        this.network = network;
     }
 
     async fetchAll() {
-        const uiPoolDataProviderV3 = await ethers.getContractAt("IUiPoolDataProviderV3", this.uiDataProvider);
+        const uiPoolDataProvider = await this.network.getUIPoolDataProvider();
 
-        const [reserveDataArray, currencyInfo] = await uiPoolDataProviderV3.getReservesData(this.poolAddressProvider);
+        const [reserveDataArray, currencyInfo] = await uiPoolDataProvider.getReservesData(this.network.poolAddressProvider);
         return reserveDataArray.map(r => {
             return new Reserve({
                 symbol: r.symbol,

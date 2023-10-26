@@ -4,7 +4,7 @@ class PositionSet {
     constructor(positions) {
         this.positions = new Map();
         for (const p of positions) {
-            positions.set(p.id, p);
+            this.positions.set(p.id, p);
         }
     }
 
@@ -24,6 +24,10 @@ class PositionSet {
             return true;
         }));
     }*/
+
+    toString() {
+        return `PositionSet(${this.positions.size})`;
+    }
 
 }
 

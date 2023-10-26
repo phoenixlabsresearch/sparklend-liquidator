@@ -36,32 +36,33 @@ const positionQuery = gql`
     }
 `;
 
-async function fetchAllRows (query, resolver) {
-    const rows = [];
-    const limit = 1000;
-    let offset = 0;
-    let result = await execute(query, { limit, offset });
-    const blockNumber = result.data._meta.block.number;
-    for (const r of resolver(result.data)) rows.push(r);
-    while (offset + limit === rows.length) {
-        offset += limit;
-        result = await execute(query, { limit, offset });
-        for (const r of resolver(result.data)) rows.push(r);
-    }
-    return { rows, blockNumber };
-}
-
 class GraphQLSource {
 
-    constructor() {
-        // TODO specify non-default graph
+    constructor(network) {
+        this.network = network;
+    }
+
+    async fetchAllRows (query, resolver) {
+        const rows = [];
+        const limit = 1000;
+        let offset = 0;
+        let result = await execute(query, { limit, offset });
+        const blockNumber = result.data._meta.block.number;
+        for (const r of resolver(result.data)) rows.push(r);
+        while (offset + limit === rows.length) {
+            offset += limit;
+            result = await execute(query, { limit, offset });
+            for (const r of resolver(result.data)) rows.push(r);
+        }
+        return { rows, blockNumber };
     }
 
     async fetchAll() {
-        const { rows, blockNumber } = await fetchAllRows(positionQuery, r => r.accounts);
+        const { rows, blockNumber } = await this.fetchAllRows(positionQuery, r => r.accounts);
 
         return new PositionSet(rows.map(r => {
             return new Position(
+                this.network,
                 blockNumber,
                 r.id.toLowerCase(),
                 r.positions

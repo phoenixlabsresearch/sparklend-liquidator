@@ -1,6 +1,7 @@
 class Position {
 
-    constructor(blockNumber, id, deposits, borrows) {
+    constructor(network, blockNumber, id, deposits, borrows) {
+        this.network = network;
         this.blockNumber = blockNumber;
         this.id = id;
         this.deposits = deposits;

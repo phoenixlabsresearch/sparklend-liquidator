@@ -18,9 +18,8 @@ async function readAllFiles(dir) {
 
 class ManualSource {
 
-    constructor(poolAddressProvider, uiDataProvider, dir = "./data") {
-        this.poolAddressProvider = poolAddressProvider;
-        this.uiDataProvider = uiDataProvider;
+    constructor(network, dir = "./data") {
+        this.network = network;
         this.dir = dir;
     }
 
@@ -29,10 +28,11 @@ class ManualSource {
             return Object.values(f);
         });
 
-        const uiPoolDataProviderV3 = await ethers.getContractAt("IUiPoolDataProviderV3", this.dataProvider);
+        const uiPoolDataProvider = await this.network.getUIPoolDataProvider();
+        const blockNumber = await hre.ethers.provider.getBlock("latest");
         const userReservesData = await multicall(ids.map(id => {
-            return [this.dataProvider, uiPoolDataProviderV3.interface.encodeFunctionData("getUserReservesData", [this.poolAddressProvider, id])];
-        }), r => uiPoolDataProviderV3.interface.decodeFunctionResult("getUserReservesData", r));
+            return [this.dataProvider, uiPoolDataProvider.interface.encodeFunctionData("getUserReservesData", [this.network.poolAddressProvider, id])];
+        }), r => uiPoolDataProvider.interface.decodeFunctionResult("getUserReservesData", r));
 
         return new PositionSet(ids.map((id, i) => {
             const userReserveData = userReservesData[i][0];
@@ -71,6 +71,8 @@ class ManualSource {
             });
 
             const position = new Position(
+                network,
+                blockNumber,
                 id.toLowerCase(),
                 deposits,
                 borrows

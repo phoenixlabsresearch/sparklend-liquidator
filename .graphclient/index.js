@@ -7,17 +7,21 @@ const utils_2 = require("@graphql-mesh/utils");
 const cache_localforage_1 = tslib_1.__importDefault(require("@graphql-mesh/cache-localforage"));
 const fetch_1 = require("@whatwg-node/fetch");
 const graphql_1 = tslib_1.__importDefault(require("@graphql-mesh/graphql"));
-const merger_bare_1 = tslib_1.__importDefault(require("@graphql-mesh/merger-bare"));
+const merger_stitching_1 = tslib_1.__importDefault(require("@graphql-mesh/merger-stitching"));
 const http_1 = require("@graphql-mesh/http");
 const runtime_1 = require("@graphql-mesh/runtime");
 const store_1 = require("@graphql-mesh/store");
 const cross_helpers_1 = require("@graphql-mesh/cross-helpers");
+const importedModule$0 = tslib_1.__importStar(require("./sources/gnosisPrimary/introspectionSchema.json"));
+const importedModule$1 = tslib_1.__importStar(require("./sources/ethereumPrimary/introspectionSchema.json"));
 const baseDir = cross_helpers_1.path.join(typeof __dirname === 'string' ? __dirname : '/', '..');
 const importFn = (moduleId) => {
     const relativeModuleId = (cross_helpers_1.path.isAbsolute(moduleId) ? cross_helpers_1.path.relative(baseDir, moduleId) : moduleId).split('\\').join('/').replace(baseDir + '/', '');
     switch (relativeModuleId) {
-        case ".graphclient/sources/spark/introspectionSchema.json":
-            return Promise.resolve().then(() => tslib_1.__importStar(require("./sources/spark/introspectionSchema.json")));
+        case ".graphclient/sources/gnosisPrimary/introspectionSchema.json":
+            return Promise.resolve(importedModule$0);
+        case ".graphclient/sources/ethereumPrimary/introspectionSchema.json":
+            return Promise.resolve(importedModule$1);
         default:
             return Promise.reject(new Error(`Cannot find module '${relativeModuleId}'.`));
     }
@@ -45,29 +49,45 @@ async function getMeshOptions() {
     const sources = [];
     const transforms = [];
     const additionalEnvelopPlugins = [];
-    const sparkTransforms = [];
+    const ethereumPrimaryTransforms = [];
+    const gnosisPrimaryTransforms = [];
     const additionalTypeDefs = [];
-    const sparkHandler = new graphql_1.default({
-        name: "spark",
+    const ethereumPrimaryHandler = new graphql_1.default({
+        name: "ethereumPrimary",
         config: { "endpoint": "https://api.thegraph.com/subgraphs/name/messari/spark-lend-ethereum" },
         baseDir,
         cache,
         pubsub,
-        store: sourcesStore.child("spark"),
-        logger: logger.child("spark"),
+        store: sourcesStore.child("ethereumPrimary"),
+        logger: logger.child("ethereumPrimary"),
+        importFn,
+    });
+    const gnosisPrimaryHandler = new graphql_1.default({
+        name: "gnosisPrimary",
+        config: { "endpoint": "https://api.thegraph.com/subgraphs/name/messari/spark-lend-gnosis" },
+        baseDir,
+        cache,
+        pubsub,
+        store: sourcesStore.child("gnosisPrimary"),
+        logger: logger.child("gnosisPrimary"),
         importFn,
     });
     sources[0] = {
-        name: 'spark',
-        handler: sparkHandler,
-        transforms: sparkTransforms
+        name: 'ethereumPrimary',
+        handler: ethereumPrimaryHandler,
+        transforms: ethereumPrimaryTransforms
+    };
+    sources[1] = {
+        name: 'gnosisPrimary',
+        handler: gnosisPrimaryHandler,
+        transforms: gnosisPrimaryTransforms
     };
     const additionalResolvers = [];
-    const merger = new merger_bare_1.default({
+    const merger = new merger_stitching_1.default({
         cache,
         pubsub,
-        logger: logger.child('bareMerger'),
-        store: rootStore.child('bareMerger')
+        logger: logger.child('stitchingMerger'),
+        store: rootStore.child('stitchingMerger')
     });
     return {
         sources,

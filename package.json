@@ -10,7 +10,8 @@
     "server": "hardhat run scripts/server.js",
     "server-local": "hardhat run --network local scripts/server.js",
     "server-mainnet": "hardhat run --network mainnet scripts/server.js",
-    "test": "hardhat test --network mainnet"
+    "test": "hardhat test --network mainnet",
+    "build-thegraph": "graphclient build --fileType json"
   },
   "devDependencies": {
     "@ethersproject/abi": "^5.4.7",
