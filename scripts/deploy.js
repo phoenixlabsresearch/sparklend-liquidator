@@ -10,10 +10,7 @@ const addresses = require("./constants").addresses;
 async function main() {
     const LiquidateLoan = await hre.ethers.getContractFactory("LiquidateLoan");
     const liquidateLoan = await LiquidateLoan.deploy(
-        addresses.LENDING_POOL_ADDRESS_PROVIDER,
-        addresses.DAI,
-        addresses.sDAI,
-        addresses.DSS_FLASH
+        addresses.LENDING_POOL_ADDRESS_PROVIDER
     );
 
     await liquidateLoan.deployed();

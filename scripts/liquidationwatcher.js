@@ -144,7 +144,6 @@ class LiquidationWatcher {
         this.urns = [];
 
         const uiPoolDataProviderV3 = await ethers.getContractAt("IUiPoolDataProviderV3", addresses.UI_POOL_DATA_PROVIDER);
-        const pool = await ethers.getContractAt("IPool", addresses.LENDING_POOL);
 
         // Fetch all urns
         this.logger(`Fetching all positions...`);
@@ -253,7 +252,6 @@ class LiquidationWatcher {
         this.logger(`${positions.length} positions manually specified. Fetching data...`);
 
         const uiPoolDataProviderV3 = await ethers.getContractAt("IUiPoolDataProviderV3", addresses.UI_POOL_DATA_PROVIDER);
-        const pool = await ethers.getContractAt("IPool", addresses.LENDING_POOL);
         const userReservesData = await multicall(positions.map(p => {
             return [addresses.UI_POOL_DATA_PROVIDER, uiPoolDataProviderV3.interface.encodeFunctionData("getUserReservesData", [addresses.LENDING_POOL_ADDRESS_PROVIDER, p.id])];
         }), r => uiPoolDataProviderV3.interface.decodeFunctionResult("getUserReservesData", r));
@@ -328,16 +326,6 @@ class LiquidationWatcher {
     }
 
     async fetchDEXRoute (from, to, amount) {
-        // sDAI is not supported in 1inch so convert to DAI
-        const dai = this.reservesLookup[addresses.DAI.toLowerCase()];
-        const sdai = this.reservesLookup[addresses.sDAI.toLowerCase()];
-        if (from === sdai) {
-            from = dai;
-            amount = amount.multipliedBy(sdai.latestPrice).div(dai.latestPrice);
-        }
-        if (to === sdai) {
-            to = dai;
-        }
         const apiBaseUrl = `${process.env.ONEINCH_URL}/v5.0/${chainId}`;
         function apiRequestUrl(methodName, queryParams) {
             return apiBaseUrl + methodName + '?' + (new URLSearchParams(queryParams)).toString();
