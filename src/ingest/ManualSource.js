@@ -2,7 +2,6 @@ const Deposit = require("../model/Deposit");
 const Borrow = require("../model/Borrow");
 const Position = require("../model/Position");
 const PositionSet = require("../model/PositionSet");
-const EModeCategory = require("../model/EModeCategory");
 const BigNumber = require("bignumber.js");
 const { valueToBigNumber } = require("../utils");
 
@@ -15,18 +14,16 @@ class ManualSource {
         this.ids = ids;
     }
 
-    async multicall (calls, decoder) {
-        const contract = await ethers.getContractAt("IMulticall", this.network.multicall);
-        const results = (await contract.aggregate(calls)).returnData;
-        return results.map(r => decoder(r));
-    }
-
     async fetchAll() {
         const uiPoolDataProvider = await this.network.getUIPoolDataProvider();
-        const blockNumber = await hre.ethers.provider.getBlock("latest").number;
-        const userReservesData = await this.multicall(this.ids.map(id => {
+        // Using https://github.com/mds1/multicall
+        const multicall = await ethers.getContractAt("IMulticall", "0xcA11bde05977b3631167028862bE2a173976CA11", this.network.getReadProvider());
+        const calls = this.ids.map(id => {
             return [this.network.uiPoolDataProvider, uiPoolDataProvider.interface.encodeFunctionData("getUserReservesData", [this.network.poolAddressProvider, id])];
-        }), r => uiPoolDataProvider.interface.decodeFunctionResult("getUserReservesData", r));
+        });
+        const mcresults = await multicall.aggregate(calls);
+        const blockNumber = valueToBigNumber(mcresults.blockNumber).toNumber();
+        const userReservesData = mcresults.returnData.map(r => uiPoolDataProvider.interface.decodeFunctionResult("getUserReservesData", r));
 
         const positions = this.ids.map((id, i) => {
             const userReserveData = userReservesData[i][0];

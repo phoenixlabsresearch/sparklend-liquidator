@@ -7,16 +7,22 @@ class Network {
         this.theGraphPrefix = v.theGraphPrefix;
         this.readRpc = v.readRpc;
         this.writeRpc = v.writeRpc;
-        this.multicall = v.multicall;
         this.poolAddressProvider = v.poolAddressProvider;
         this.uiPoolDataProvider = v.uiPoolDataProvider;
         this.liquidateLoan = v.liquidateLoan;
         this.reserves = [];
     }
 
+    getReadProvider() {
+        return new ethers.Wallet(hre.network.config.accounts[0]).connect(new ethers.providers.JsonRpcProvider(this.readRpc));
+    }
+
+    getWriteProvider() {
+        return new ethers.Wallet(hre.network.config.accounts[0]).connect(new ethers.providers.JsonRpcProvider(this.writeRpc));
+    }
+
     async getUIPoolDataProvider() {
-        const provider = new ethers.Wallet(hre.network.config.accounts[0]).connect(new ethers.providers.JsonRpcProvider(this.readRpc));
-        return await ethers.getContractAt("IUiPoolDataProviderV3", this.uiPoolDataProvider, provider);
+        return await ethers.getContractAt("IUiPoolDataProviderV3", this.uiPoolDataProvider, this.getReadProvider());
     }
 
     async refreshReserves() {

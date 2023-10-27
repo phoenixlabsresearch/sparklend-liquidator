@@ -1,6 +1,4 @@
 const GraphQLSource = require("./ingest/GraphQLSource");
-const ManualSource = require("./ingest/ManualSource");
-const ReserveSource = require("./ingest/ReserveSource");
 const Network = require("./model/Network");
 const { interval } = require("./Utils");
 const config = require("./config");
@@ -30,7 +28,7 @@ class Daemon {
             await network.refreshReserves();
             const positions = await (new GraphQLSource(network)).fetchAll();
             const underwaterPositions = positions.filter({ underwaterOnly:true });
-            //await underwaterPositions.resolveEMode();
+            await underwaterPositions.resolveEMode();
             this.logger(network.name + ": " + underwaterPositions.filter({ underwaterOnly:true }));
         }));
     
