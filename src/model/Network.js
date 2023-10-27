@@ -25,12 +25,13 @@ class Network {
         return await ethers.getContractAt("IUiPoolDataProviderV3", this.uiPoolDataProvider, this.getReadProvider());
     }
 
-    async refreshReserves() {
+    async init() {
+        this.chainId = (await this.getReadProvider().provider.getNetwork()).chainId;
         this.reserves = await new ReserveSource(this).fetchAll();
     }
 
     getReserve(asset) {
-        return this.reserves.find(r => r.asset === asset);
+        return this.reserves.find(r => r.asset.toLowerCase() === asset.toLowerCase());
     }
 
     toString() {
