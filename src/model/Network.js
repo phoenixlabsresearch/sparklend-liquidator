@@ -4,7 +4,7 @@ class Network {
 
     constructor(v) {
         this.name = v.name;
-        this.theGraphEndpoint = v.theGraphEndpoint;
+        this.theGraphPrefix = v.theGraphPrefix;
         this.readRpc = v.readRpc;
         this.writeRpc = v.writeRpc;
         this.multicall = v.multicall;
@@ -15,7 +15,8 @@ class Network {
     }
 
     async getUIPoolDataProvider() {
-        return await ethers.getContractAt("IUiPoolDataProviderV3", this.uiPoolDataProvider);
+        const provider = new ethers.Wallet(hre.network.config.accounts[0]).connect(new ethers.providers.JsonRpcProvider(this.readRpc));
+        return await ethers.getContractAt("IUiPoolDataProviderV3", this.uiPoolDataProvider, provider);
     }
 
     async refreshReserves() {
@@ -24,6 +25,10 @@ class Network {
 
     getReserve(asset) {
         return this.reserves.find(r => r.asset === asset);
+    }
+
+    toString() {
+        return this.name;
     }
 
 }

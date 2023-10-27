@@ -3,6 +3,7 @@ const ManualSource = require("./ingest/ManualSource");
 const ReserveSource = require("./ingest/ReserveSource");
 const Network = require("./model/Network");
 const { interval } = require("./Utils");
+const config = require("./config");
 
 class Daemon {
 
@@ -24,21 +25,14 @@ class Daemon {
     async run() {
         this.logger("SparkLend Liquidator starting up...");
 
-        const network = new Network({
-            name: "Ethereum",
-            theGraphEndpoint: "ethereumPrimary",
-            readRpc: hre.network.config.url,
-            writeRpc: hre.network.config.url,
-            multicall: "0x5e227AD1969Ea493B43F840cfF78d08a6fc17796",
-            poolAddressProvider: "0x02C3eA4e34C0cBd694D2adFa2c690EECbC1793eE",
-            uiPoolDataProvider: "0xF028c2F4b19898718fD0F77b9b881CbfdAa5e8Bb",
-            liquidateLoan: "0x0"
-        });
-        await network.refreshReserves();
-        const positions = await (new GraphQLSource(network)).fetchAll();
-        const underwaterPositions = positions.filter({ underwaterOnly:true, minBorrowUSDValue:1000 });
-        await underwaterPositions.resolveEMode();
-        this.logger(underwaterPositions.filter({ underwaterOnly:true }));
+        await Promise.all(config.networks.map(async (d) => {
+            const network = new Network(d);
+            await network.refreshReserves();
+            const positions = await (new GraphQLSource(network)).fetchAll();
+            const underwaterPositions = positions.filter({ underwaterOnly:true });
+            //await underwaterPositions.resolveEMode();
+            this.logger(network.name + ": " + underwaterPositions.filter({ underwaterOnly:true }));
+        }));
     
         return Promise.all([
             // Once per 1 minute

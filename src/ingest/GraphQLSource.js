@@ -6,40 +6,43 @@ const Deposit = require("../model/Deposit");
 const Borrow = require("../model/Borrow");
 const { valueToBigNumber } = require("../utils");
 
-const positionQuery = gql`
-    query getActivePositions($limit: Int!, $offset: Int!) {
-        _meta {
-            block {
-                number
+function buildQuery(prefix) {
+    return gql`
+        query getActivePositions($limit: Int!, $offset: Int!) {
+            ${prefix}_meta {
+                block {
+                    number
+                }
             }
-        }
-        accounts(
-            first: $limit,
-            skip: $offset,
-            orderBy: id,
-            orderDirection: desc, 
-            where: {borrows_: {amount_gt: "0"}}
-        ) {
-            id
-            positions {
-                balance,
-                isCollateral
-                side
-                market {
-                    liquidationThreshold
-                    inputToken {
-                        id
+            ${prefix}accounts(
+                first: $limit,
+                skip: $offset,
+                orderBy: id,
+                orderDirection: desc, 
+                where: {borrows_: {amount_gt: "0"}}
+            ) {
+                id
+                positions {
+                    balance,
+                    isCollateral
+                    side
+                    market {
+                        liquidationThreshold
+                        inputToken {
+                            id
+                        }
                     }
                 }
             }
         }
-    }
-`;
+    `;
+}
 
 class GraphQLSource {
 
     constructor(network) {
         this.network = network;
+        this.positionQuery = buildQuery(network.theGraphPrefix);
     }
 
     async fetchAllRows (query, resolver) {
@@ -47,7 +50,7 @@ class GraphQLSource {
         const limit = 1000;
         let offset = 0;
         let result = await execute(query, { limit, offset });
-        const blockNumber = result.data._meta.block.number;
+        const blockNumber = result.data[this.network.theGraphPrefix + "_meta"].block.number;
         for (const r of resolver(result.data)) rows.push(r);
         while (offset + limit === rows.length) {
             offset += limit;
@@ -58,7 +61,7 @@ class GraphQLSource {
     }
 
     async fetchAll() {
-        const { rows, blockNumber } = await this.fetchAllRows(positionQuery, r => r.accounts);
+        const { rows, blockNumber } = await this.fetchAllRows(this.positionQuery, r => r[this.network.theGraphPrefix + "accounts"]);
 
         const positions = rows.map(r => {
             return new Position({

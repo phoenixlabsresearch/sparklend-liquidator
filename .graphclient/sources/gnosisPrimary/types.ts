@@ -3,7 +3,7 @@
 import { InContextSdkMethod } from '@graphql-mesh/types';
 import { MeshContext } from '@graphql-mesh/runtime';
 
-export namespace EthereumPrimaryTypes {
+export namespace GnosisPrimaryTypes {
   export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -16,19 +16,19 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  ethereumPrimaryBigDecimal: any;
+  gnosisPrimaryBigDecimal: any;
   BigInt: any;
-  ethereumPrimaryBytes: any;
-  ethereumPrimaryInt8: any;
+  gnosisPrimaryBytes: any;
+  gnosisPrimaryInt8: any;
 };
 
-export type ethereumPrimaryAccount = {
+export type gnosisPrimaryAccount = {
   /**  { Account address }  */
-  id: Scalars['ethereumPrimaryBytes'];
+  id: Scalars['gnosisPrimaryBytes'];
   /**  Number of positions this account has  */
   positionCount: Scalars['Int'];
   /**  All positions that belong to this account  */
-  positions: Array<ethereumPrimaryPosition>;
+  positions: Array<gnosisPrimaryPosition>;
   /**  Number of open positions this account has  */
   openPositionCount: Scalars['Int'];
   /**  Number of closed positions this account has  */
@@ -36,157 +36,157 @@ export type ethereumPrimaryAccount = {
   /**  Number of deposits this account made  */
   depositCount: Scalars['Int'];
   /**  All deposit events of this account  */
-  deposits: Array<ethereumPrimaryDeposit>;
+  deposits: Array<gnosisPrimaryDeposit>;
   /**  Number of withdrawals this account made  */
   withdrawCount: Scalars['Int'];
   /**  All withdraw events of this account  */
-  withdraws: Array<ethereumPrimaryWithdraw>;
+  withdraws: Array<gnosisPrimaryWithdraw>;
   /**  Number of borrows this account made  */
   borrowCount: Scalars['Int'];
   /**  All borrow events of this account  */
-  borrows: Array<ethereumPrimaryBorrow>;
+  borrows: Array<gnosisPrimaryBorrow>;
   /**  Number of repays this account made  */
   repayCount: Scalars['Int'];
   /**  All repay events of this account  */
-  repays: Array<ethereumPrimaryRepay>;
+  repays: Array<gnosisPrimaryRepay>;
   /**  Number of times this account liquidated a position  */
   liquidateCount: Scalars['Int'];
   /**  All liquidation events where this account was the liquidator  */
-  liquidates: Array<ethereumPrimaryLiquidate>;
+  liquidates: Array<gnosisPrimaryLiquidate>;
   /**  Number of times this account has been liquidated  */
   liquidationCount: Scalars['Int'];
   /**  All liquidation events where this account got liquidated  */
-  liquidations: Array<ethereumPrimaryLiquidate>;
+  liquidations: Array<gnosisPrimaryLiquidate>;
   /**  Number of times this account has transferred  */
   transferredCount: Scalars['Int'];
   /**  All transfer events where this account was the sender  */
-  transfers: Array<ethereumPrimaryTransfer>;
+  transfers: Array<gnosisPrimaryTransfer>;
   /**  Number of times this account has received a transfer  */
   receivedCount: Scalars['Int'];
   /**  All transfer events where this account was the receiver  */
-  receives: Array<ethereumPrimaryTransfer>;
+  receives: Array<gnosisPrimaryTransfer>;
   /**  Number of times this account has executed a flashloan  */
   flashloanCount: Scalars['Int'];
   /**  All flashloan events where this account executed it  */
-  flashloans: Array<ethereumPrimaryFlashloan>;
+  flashloans: Array<gnosisPrimaryFlashloan>;
   /**  The amount of rewards claimed by this account in USD (use the USD value at the time of claiming)  */
-  rewardsClaimedUSD?: Maybe<Scalars['ethereumPrimaryBigDecimal']>;
+  rewardsClaimedUSD?: Maybe<Scalars['gnosisPrimaryBigDecimal']>;
   /**  Markets that the account is using as collateral  */
-  _enabledCollaterals?: Maybe<Array<ethereumPrimaryMarket>>;
+  _enabledCollaterals?: Maybe<Array<gnosisPrimaryMarket>>;
   /**  efficient mode flag  */
   _eMode?: Maybe<Scalars['Boolean']>;
 };
 
 
-export type ethereumPrimaryAccountpositionsArgs = {
+export type gnosisPrimaryAccountpositionsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryPosition_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryPosition_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryPosition_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryPosition_filter>;
 };
 
 
-export type ethereumPrimaryAccountdepositsArgs = {
+export type gnosisPrimaryAccountdepositsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryDeposit_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryDeposit_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryDeposit_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryDeposit_filter>;
 };
 
 
-export type ethereumPrimaryAccountwithdrawsArgs = {
+export type gnosisPrimaryAccountwithdrawsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryWithdraw_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryWithdraw_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryWithdraw_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryWithdraw_filter>;
 };
 
 
-export type ethereumPrimaryAccountborrowsArgs = {
+export type gnosisPrimaryAccountborrowsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryBorrow_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryBorrow_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryBorrow_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryBorrow_filter>;
 };
 
 
-export type ethereumPrimaryAccountrepaysArgs = {
+export type gnosisPrimaryAccountrepaysArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryRepay_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryRepay_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryRepay_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryRepay_filter>;
 };
 
 
-export type ethereumPrimaryAccountliquidatesArgs = {
+export type gnosisPrimaryAccountliquidatesArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryLiquidate_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryLiquidate_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryLiquidate_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryLiquidate_filter>;
 };
 
 
-export type ethereumPrimaryAccountliquidationsArgs = {
+export type gnosisPrimaryAccountliquidationsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryLiquidate_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryLiquidate_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryLiquidate_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryLiquidate_filter>;
 };
 
 
-export type ethereumPrimaryAccounttransfersArgs = {
+export type gnosisPrimaryAccounttransfersArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryTransfer_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryTransfer_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryTransfer_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryTransfer_filter>;
 };
 
 
-export type ethereumPrimaryAccountreceivesArgs = {
+export type gnosisPrimaryAccountreceivesArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryTransfer_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryTransfer_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryTransfer_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryTransfer_filter>;
 };
 
 
-export type ethereumPrimaryAccountflashloansArgs = {
+export type gnosisPrimaryAccountflashloansArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryFlashloan_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryFlashloan_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryFlashloan_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryFlashloan_filter>;
 };
 
 
-export type ethereumPrimaryAccount_enabledCollateralsArgs = {
+export type gnosisPrimaryAccount_enabledCollateralsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryMarket_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryMarket_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryMarket_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryMarket_filter>;
 };
 
-export type ethereumPrimaryAccount_filter = {
-  id?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
+export type gnosisPrimaryAccount_filter = {
+  id?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
   positionCount?: InputMaybe<Scalars['Int']>;
   positionCount_not?: InputMaybe<Scalars['Int']>;
   positionCount_gt?: InputMaybe<Scalars['Int']>;
@@ -195,7 +195,7 @@ export type ethereumPrimaryAccount_filter = {
   positionCount_lte?: InputMaybe<Scalars['Int']>;
   positionCount_in?: InputMaybe<Array<Scalars['Int']>>;
   positionCount_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  positions_?: InputMaybe<ethereumPrimaryPosition_filter>;
+  positions_?: InputMaybe<gnosisPrimaryPosition_filter>;
   openPositionCount?: InputMaybe<Scalars['Int']>;
   openPositionCount_not?: InputMaybe<Scalars['Int']>;
   openPositionCount_gt?: InputMaybe<Scalars['Int']>;
@@ -220,7 +220,7 @@ export type ethereumPrimaryAccount_filter = {
   depositCount_lte?: InputMaybe<Scalars['Int']>;
   depositCount_in?: InputMaybe<Array<Scalars['Int']>>;
   depositCount_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  deposits_?: InputMaybe<ethereumPrimaryDeposit_filter>;
+  deposits_?: InputMaybe<gnosisPrimaryDeposit_filter>;
   withdrawCount?: InputMaybe<Scalars['Int']>;
   withdrawCount_not?: InputMaybe<Scalars['Int']>;
   withdrawCount_gt?: InputMaybe<Scalars['Int']>;
@@ -229,7 +229,7 @@ export type ethereumPrimaryAccount_filter = {
   withdrawCount_lte?: InputMaybe<Scalars['Int']>;
   withdrawCount_in?: InputMaybe<Array<Scalars['Int']>>;
   withdrawCount_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  withdraws_?: InputMaybe<ethereumPrimaryWithdraw_filter>;
+  withdraws_?: InputMaybe<gnosisPrimaryWithdraw_filter>;
   borrowCount?: InputMaybe<Scalars['Int']>;
   borrowCount_not?: InputMaybe<Scalars['Int']>;
   borrowCount_gt?: InputMaybe<Scalars['Int']>;
@@ -238,7 +238,7 @@ export type ethereumPrimaryAccount_filter = {
   borrowCount_lte?: InputMaybe<Scalars['Int']>;
   borrowCount_in?: InputMaybe<Array<Scalars['Int']>>;
   borrowCount_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  borrows_?: InputMaybe<ethereumPrimaryBorrow_filter>;
+  borrows_?: InputMaybe<gnosisPrimaryBorrow_filter>;
   repayCount?: InputMaybe<Scalars['Int']>;
   repayCount_not?: InputMaybe<Scalars['Int']>;
   repayCount_gt?: InputMaybe<Scalars['Int']>;
@@ -247,7 +247,7 @@ export type ethereumPrimaryAccount_filter = {
   repayCount_lte?: InputMaybe<Scalars['Int']>;
   repayCount_in?: InputMaybe<Array<Scalars['Int']>>;
   repayCount_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  repays_?: InputMaybe<ethereumPrimaryRepay_filter>;
+  repays_?: InputMaybe<gnosisPrimaryRepay_filter>;
   liquidateCount?: InputMaybe<Scalars['Int']>;
   liquidateCount_not?: InputMaybe<Scalars['Int']>;
   liquidateCount_gt?: InputMaybe<Scalars['Int']>;
@@ -256,7 +256,7 @@ export type ethereumPrimaryAccount_filter = {
   liquidateCount_lte?: InputMaybe<Scalars['Int']>;
   liquidateCount_in?: InputMaybe<Array<Scalars['Int']>>;
   liquidateCount_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  liquidates_?: InputMaybe<ethereumPrimaryLiquidate_filter>;
+  liquidates_?: InputMaybe<gnosisPrimaryLiquidate_filter>;
   liquidationCount?: InputMaybe<Scalars['Int']>;
   liquidationCount_not?: InputMaybe<Scalars['Int']>;
   liquidationCount_gt?: InputMaybe<Scalars['Int']>;
@@ -265,7 +265,7 @@ export type ethereumPrimaryAccount_filter = {
   liquidationCount_lte?: InputMaybe<Scalars['Int']>;
   liquidationCount_in?: InputMaybe<Array<Scalars['Int']>>;
   liquidationCount_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  liquidations_?: InputMaybe<ethereumPrimaryLiquidate_filter>;
+  liquidations_?: InputMaybe<gnosisPrimaryLiquidate_filter>;
   transferredCount?: InputMaybe<Scalars['Int']>;
   transferredCount_not?: InputMaybe<Scalars['Int']>;
   transferredCount_gt?: InputMaybe<Scalars['Int']>;
@@ -274,7 +274,7 @@ export type ethereumPrimaryAccount_filter = {
   transferredCount_lte?: InputMaybe<Scalars['Int']>;
   transferredCount_in?: InputMaybe<Array<Scalars['Int']>>;
   transferredCount_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  transfers_?: InputMaybe<ethereumPrimaryTransfer_filter>;
+  transfers_?: InputMaybe<gnosisPrimaryTransfer_filter>;
   receivedCount?: InputMaybe<Scalars['Int']>;
   receivedCount_not?: InputMaybe<Scalars['Int']>;
   receivedCount_gt?: InputMaybe<Scalars['Int']>;
@@ -283,7 +283,7 @@ export type ethereumPrimaryAccount_filter = {
   receivedCount_lte?: InputMaybe<Scalars['Int']>;
   receivedCount_in?: InputMaybe<Array<Scalars['Int']>>;
   receivedCount_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  receives_?: InputMaybe<ethereumPrimaryTransfer_filter>;
+  receives_?: InputMaybe<gnosisPrimaryTransfer_filter>;
   flashloanCount?: InputMaybe<Scalars['Int']>;
   flashloanCount_not?: InputMaybe<Scalars['Int']>;
   flashloanCount_gt?: InputMaybe<Scalars['Int']>;
@@ -292,33 +292,33 @@ export type ethereumPrimaryAccount_filter = {
   flashloanCount_lte?: InputMaybe<Scalars['Int']>;
   flashloanCount_in?: InputMaybe<Array<Scalars['Int']>>;
   flashloanCount_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  flashloans_?: InputMaybe<ethereumPrimaryFlashloan_filter>;
-  rewardsClaimedUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  rewardsClaimedUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  rewardsClaimedUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  rewardsClaimedUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  rewardsClaimedUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  rewardsClaimedUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  rewardsClaimedUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  rewardsClaimedUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  flashloans_?: InputMaybe<gnosisPrimaryFlashloan_filter>;
+  rewardsClaimedUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  rewardsClaimedUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  rewardsClaimedUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  rewardsClaimedUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  rewardsClaimedUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  rewardsClaimedUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  rewardsClaimedUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  rewardsClaimedUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   _enabledCollaterals?: InputMaybe<Array<Scalars['String']>>;
   _enabledCollaterals_not?: InputMaybe<Array<Scalars['String']>>;
   _enabledCollaterals_contains?: InputMaybe<Array<Scalars['String']>>;
   _enabledCollaterals_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
   _enabledCollaterals_not_contains?: InputMaybe<Array<Scalars['String']>>;
   _enabledCollaterals_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  _enabledCollaterals_?: InputMaybe<ethereumPrimaryMarket_filter>;
+  _enabledCollaterals_?: InputMaybe<gnosisPrimaryMarket_filter>;
   _eMode?: InputMaybe<Scalars['Boolean']>;
   _eMode_not?: InputMaybe<Scalars['Boolean']>;
   _eMode_in?: InputMaybe<Array<Scalars['Boolean']>>;
   _eMode_not_in?: InputMaybe<Array<Scalars['Boolean']>>;
   /** Filter for the block changed event. */
-  _change_block?: InputMaybe<ethereumPrimaryBlockChangedFilter>;
-  and?: InputMaybe<Array<InputMaybe<ethereumPrimaryAccount_filter>>>;
-  or?: InputMaybe<Array<InputMaybe<ethereumPrimaryAccount_filter>>>;
+  _change_block?: InputMaybe<gnosisPrimaryBlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<gnosisPrimaryAccount_filter>>>;
+  or?: InputMaybe<Array<InputMaybe<gnosisPrimaryAccount_filter>>>;
 };
 
-export type ethereumPrimaryAccount_orderBy =
+export type gnosisPrimaryAccount_orderBy =
   | 'id'
   | 'positionCount'
   | 'positions'
@@ -346,21 +346,21 @@ export type ethereumPrimaryAccount_orderBy =
   | '_enabledCollaterals'
   | '_eMode';
 
-export type ethereumPrimaryBlockChangedFilter = {
+export type gnosisPrimaryBlockChangedFilter = {
   number_gte: Scalars['Int'];
 };
 
-export type ethereumPrimaryBlock_height = {
-  hash?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
+export type gnosisPrimaryBlock_height = {
+  hash?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
   number?: InputMaybe<Scalars['Int']>;
   number_gte?: InputMaybe<Scalars['Int']>;
 };
 
-export type ethereumPrimaryBorrow = ethereumPrimaryEvent & {
+export type gnosisPrimaryBorrow = gnosisPrimaryEvent & {
   /**  { Transaction hash }{ Log index }  */
-  id: Scalars['ethereumPrimaryBytes'];
+  id: Scalars['gnosisPrimaryBytes'];
   /**  Transaction hash of the transaction that emitted this event  */
-  hash: Scalars['ethereumPrimaryBytes'];
+  hash: Scalars['gnosisPrimaryBytes'];
   /**  Nonce of the transaction that emitted this event  */
   nonce: Scalars['BigInt'];
   /**  Event log index. For transactions that don't emit event, create arbitrary index starting from 0  */
@@ -376,42 +376,42 @@ export type ethereumPrimaryBorrow = ethereumPrimaryEvent & {
   /**  Timestamp of this event  */
   timestamp: Scalars['BigInt'];
   /**  Account that controls incurs debt in this transaction  */
-  account: ethereumPrimaryAccount;
+  account: gnosisPrimaryAccount;
   /**  Account that receives the funds from the new debt  */
-  accountActor?: Maybe<ethereumPrimaryAccount>;
+  accountActor?: Maybe<gnosisPrimaryAccount>;
   /**  The market tokens are borrowed/minted from  */
-  market: ethereumPrimaryMarket;
+  market: gnosisPrimaryMarket;
   /**  The user position changed by this event  */
-  position: ethereumPrimaryPosition;
+  position: gnosisPrimaryPosition;
   /**  Token borrowed  */
-  asset: ethereumPrimaryToken;
+  asset: gnosisPrimaryToken;
   /**  Amount of token borrowed in native units  */
   amount: Scalars['BigInt'];
   /**  Amount of token borrowed in USD  */
-  amountUSD: Scalars['ethereumPrimaryBigDecimal'];
+  amountUSD: Scalars['gnosisPrimaryBigDecimal'];
 };
 
-export type ethereumPrimaryBorrow_filter = {
-  id?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_not?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_gt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_lt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_gte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_lte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  hash_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  hash_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_not_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
+export type gnosisPrimaryBorrow_filter = {
+  id?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_not?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_gt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_lt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_gte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_lte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  hash_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  hash_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_not_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
   nonce?: InputMaybe<Scalars['BigInt']>;
   nonce_not?: InputMaybe<Scalars['BigInt']>;
   nonce_gt?: InputMaybe<Scalars['BigInt']>;
@@ -488,7 +488,7 @@ export type ethereumPrimaryBorrow_filter = {
   account_ends_with_nocase?: InputMaybe<Scalars['String']>;
   account_not_ends_with?: InputMaybe<Scalars['String']>;
   account_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  account_?: InputMaybe<ethereumPrimaryAccount_filter>;
+  account_?: InputMaybe<gnosisPrimaryAccount_filter>;
   accountActor?: InputMaybe<Scalars['String']>;
   accountActor_not?: InputMaybe<Scalars['String']>;
   accountActor_gt?: InputMaybe<Scalars['String']>;
@@ -509,7 +509,7 @@ export type ethereumPrimaryBorrow_filter = {
   accountActor_ends_with_nocase?: InputMaybe<Scalars['String']>;
   accountActor_not_ends_with?: InputMaybe<Scalars['String']>;
   accountActor_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  accountActor_?: InputMaybe<ethereumPrimaryAccount_filter>;
+  accountActor_?: InputMaybe<gnosisPrimaryAccount_filter>;
   market?: InputMaybe<Scalars['String']>;
   market_not?: InputMaybe<Scalars['String']>;
   market_gt?: InputMaybe<Scalars['String']>;
@@ -530,7 +530,7 @@ export type ethereumPrimaryBorrow_filter = {
   market_ends_with_nocase?: InputMaybe<Scalars['String']>;
   market_not_ends_with?: InputMaybe<Scalars['String']>;
   market_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  market_?: InputMaybe<ethereumPrimaryMarket_filter>;
+  market_?: InputMaybe<gnosisPrimaryMarket_filter>;
   position?: InputMaybe<Scalars['String']>;
   position_not?: InputMaybe<Scalars['String']>;
   position_gt?: InputMaybe<Scalars['String']>;
@@ -551,7 +551,7 @@ export type ethereumPrimaryBorrow_filter = {
   position_ends_with_nocase?: InputMaybe<Scalars['String']>;
   position_not_ends_with?: InputMaybe<Scalars['String']>;
   position_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  position_?: InputMaybe<ethereumPrimaryPosition_filter>;
+  position_?: InputMaybe<gnosisPrimaryPosition_filter>;
   asset?: InputMaybe<Scalars['String']>;
   asset_not?: InputMaybe<Scalars['String']>;
   asset_gt?: InputMaybe<Scalars['String']>;
@@ -572,7 +572,7 @@ export type ethereumPrimaryBorrow_filter = {
   asset_ends_with_nocase?: InputMaybe<Scalars['String']>;
   asset_not_ends_with?: InputMaybe<Scalars['String']>;
   asset_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  asset_?: InputMaybe<ethereumPrimaryToken_filter>;
+  asset_?: InputMaybe<gnosisPrimaryToken_filter>;
   amount?: InputMaybe<Scalars['BigInt']>;
   amount_not?: InputMaybe<Scalars['BigInt']>;
   amount_gt?: InputMaybe<Scalars['BigInt']>;
@@ -581,21 +581,21 @@ export type ethereumPrimaryBorrow_filter = {
   amount_lte?: InputMaybe<Scalars['BigInt']>;
   amount_in?: InputMaybe<Array<Scalars['BigInt']>>;
   amount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  amountUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  amountUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  amountUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  amountUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   /** Filter for the block changed event. */
-  _change_block?: InputMaybe<ethereumPrimaryBlockChangedFilter>;
-  and?: InputMaybe<Array<InputMaybe<ethereumPrimaryBorrow_filter>>>;
-  or?: InputMaybe<Array<InputMaybe<ethereumPrimaryBorrow_filter>>>;
+  _change_block?: InputMaybe<gnosisPrimaryBlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<gnosisPrimaryBorrow_filter>>>;
+  or?: InputMaybe<Array<InputMaybe<gnosisPrimaryBorrow_filter>>>;
 };
 
-export type ethereumPrimaryBorrow_orderBy =
+export type gnosisPrimaryBorrow_orderBy =
   | 'id'
   | 'hash'
   | 'nonce'
@@ -735,7 +735,7 @@ export type ethereumPrimaryBorrow_orderBy =
   | 'amount'
   | 'amountUSD';
 
-export type ethereumPrimaryCollateralizationType =
+export type gnosisPrimaryCollateralizationType =
   /**  Over collateralized protocols require users to put up more collateral than the amount borrowed.  */
   | 'OVER_COLLATERALIZED'
   /**  Protocols that allow users to borrow more than their collateral locked.   */
@@ -743,11 +743,11 @@ export type ethereumPrimaryCollateralizationType =
   /**  Protocols that allow users to borrow without any collateral. Generally this protocol is KYC'd and only whitelist users can do this  */
   | 'UNCOLLATERALIZED';
 
-export type ethereumPrimaryDeposit = ethereumPrimaryEvent & {
+export type gnosisPrimaryDeposit = gnosisPrimaryEvent & {
   /**  { Transaction hash }{ Log index }  */
-  id: Scalars['ethereumPrimaryBytes'];
+  id: Scalars['gnosisPrimaryBytes'];
   /**  Transaction hash of the transaction that emitted this event  */
-  hash: Scalars['ethereumPrimaryBytes'];
+  hash: Scalars['gnosisPrimaryBytes'];
   /**  Nonce of the transaction that emitted this event  */
   nonce: Scalars['BigInt'];
   /**  Event log index. For transactions that don't emit event, create arbitrary index starting from 0  */
@@ -763,42 +763,42 @@ export type ethereumPrimaryDeposit = ethereumPrimaryEvent & {
   /**  Timestamp of this event  */
   timestamp: Scalars['BigInt'];
   /** Account where deposit was executed (e.g. a deposit on behalf of account) */
-  account: ethereumPrimaryAccount;
+  account: gnosisPrimaryAccount;
   /**  Account that executed the deposit (e.g. a deposit on behalf of account)  */
-  accountActor?: Maybe<ethereumPrimaryAccount>;
+  accountActor?: Maybe<gnosisPrimaryAccount>;
   /**  The market tokens are deposited to  */
-  market: ethereumPrimaryMarket;
+  market: gnosisPrimaryMarket;
   /**  The user position changed by this event  */
-  position: ethereumPrimaryPosition;
+  position: gnosisPrimaryPosition;
   /**  Token deposited  */
-  asset: ethereumPrimaryToken;
+  asset: gnosisPrimaryToken;
   /**  Amount of token deposited in native units  */
   amount: Scalars['BigInt'];
   /**  Amount of token deposited in USD  */
-  amountUSD: Scalars['ethereumPrimaryBigDecimal'];
+  amountUSD: Scalars['gnosisPrimaryBigDecimal'];
 };
 
-export type ethereumPrimaryDeposit_filter = {
-  id?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_not?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_gt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_lt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_gte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_lte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  hash_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  hash_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_not_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
+export type gnosisPrimaryDeposit_filter = {
+  id?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_not?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_gt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_lt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_gte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_lte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  hash_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  hash_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_not_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
   nonce?: InputMaybe<Scalars['BigInt']>;
   nonce_not?: InputMaybe<Scalars['BigInt']>;
   nonce_gt?: InputMaybe<Scalars['BigInt']>;
@@ -875,7 +875,7 @@ export type ethereumPrimaryDeposit_filter = {
   account_ends_with_nocase?: InputMaybe<Scalars['String']>;
   account_not_ends_with?: InputMaybe<Scalars['String']>;
   account_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  account_?: InputMaybe<ethereumPrimaryAccount_filter>;
+  account_?: InputMaybe<gnosisPrimaryAccount_filter>;
   accountActor?: InputMaybe<Scalars['String']>;
   accountActor_not?: InputMaybe<Scalars['String']>;
   accountActor_gt?: InputMaybe<Scalars['String']>;
@@ -896,7 +896,7 @@ export type ethereumPrimaryDeposit_filter = {
   accountActor_ends_with_nocase?: InputMaybe<Scalars['String']>;
   accountActor_not_ends_with?: InputMaybe<Scalars['String']>;
   accountActor_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  accountActor_?: InputMaybe<ethereumPrimaryAccount_filter>;
+  accountActor_?: InputMaybe<gnosisPrimaryAccount_filter>;
   market?: InputMaybe<Scalars['String']>;
   market_not?: InputMaybe<Scalars['String']>;
   market_gt?: InputMaybe<Scalars['String']>;
@@ -917,7 +917,7 @@ export type ethereumPrimaryDeposit_filter = {
   market_ends_with_nocase?: InputMaybe<Scalars['String']>;
   market_not_ends_with?: InputMaybe<Scalars['String']>;
   market_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  market_?: InputMaybe<ethereumPrimaryMarket_filter>;
+  market_?: InputMaybe<gnosisPrimaryMarket_filter>;
   position?: InputMaybe<Scalars['String']>;
   position_not?: InputMaybe<Scalars['String']>;
   position_gt?: InputMaybe<Scalars['String']>;
@@ -938,7 +938,7 @@ export type ethereumPrimaryDeposit_filter = {
   position_ends_with_nocase?: InputMaybe<Scalars['String']>;
   position_not_ends_with?: InputMaybe<Scalars['String']>;
   position_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  position_?: InputMaybe<ethereumPrimaryPosition_filter>;
+  position_?: InputMaybe<gnosisPrimaryPosition_filter>;
   asset?: InputMaybe<Scalars['String']>;
   asset_not?: InputMaybe<Scalars['String']>;
   asset_gt?: InputMaybe<Scalars['String']>;
@@ -959,7 +959,7 @@ export type ethereumPrimaryDeposit_filter = {
   asset_ends_with_nocase?: InputMaybe<Scalars['String']>;
   asset_not_ends_with?: InputMaybe<Scalars['String']>;
   asset_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  asset_?: InputMaybe<ethereumPrimaryToken_filter>;
+  asset_?: InputMaybe<gnosisPrimaryToken_filter>;
   amount?: InputMaybe<Scalars['BigInt']>;
   amount_not?: InputMaybe<Scalars['BigInt']>;
   amount_gt?: InputMaybe<Scalars['BigInt']>;
@@ -968,21 +968,21 @@ export type ethereumPrimaryDeposit_filter = {
   amount_lte?: InputMaybe<Scalars['BigInt']>;
   amount_in?: InputMaybe<Array<Scalars['BigInt']>>;
   amount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  amountUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  amountUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  amountUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  amountUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   /** Filter for the block changed event. */
-  _change_block?: InputMaybe<ethereumPrimaryBlockChangedFilter>;
-  and?: InputMaybe<Array<InputMaybe<ethereumPrimaryDeposit_filter>>>;
-  or?: InputMaybe<Array<InputMaybe<ethereumPrimaryDeposit_filter>>>;
+  _change_block?: InputMaybe<gnosisPrimaryBlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<gnosisPrimaryDeposit_filter>>>;
+  or?: InputMaybe<Array<InputMaybe<gnosisPrimaryDeposit_filter>>>;
 };
 
-export type ethereumPrimaryDeposit_orderBy =
+export type gnosisPrimaryDeposit_orderBy =
   | 'id'
   | 'hash'
   | 'nonce'
@@ -1131,11 +1131,11 @@ export type ethereumPrimaryDeposit_orderBy =
  * contracts.
  *
  */
-export type ethereumPrimaryEvent = {
+export type gnosisPrimaryEvent = {
   /**  { Transaction hash }{ Log index }  */
-  id: Scalars['ethereumPrimaryBytes'];
+  id: Scalars['gnosisPrimaryBytes'];
   /**  Transaction hash of the transaction that emitted this event  */
-  hash: Scalars['ethereumPrimaryBytes'];
+  hash: Scalars['gnosisPrimaryBytes'];
   /**  Nonce of the transaction that emitted this event  */
   nonce: Scalars['BigInt'];
   /**  Event log index. For transactions that don't emit event, create arbitrary index starting from 0  */
@@ -1151,36 +1151,36 @@ export type ethereumPrimaryEvent = {
   /**  Timestamp of this event  */
   timestamp: Scalars['BigInt'];
   /**  The market tokens are deposited to  */
-  market: ethereumPrimaryMarket;
+  market: gnosisPrimaryMarket;
   /**  Token deposited  */
-  asset: ethereumPrimaryToken;
+  asset: gnosisPrimaryToken;
   /**  Amount of token deposited in native units  */
   amount: Scalars['BigInt'];
   /**  Amount of token deposited in USD  */
-  amountUSD: Scalars['ethereumPrimaryBigDecimal'];
+  amountUSD: Scalars['gnosisPrimaryBigDecimal'];
 };
 
-export type ethereumPrimaryEvent_filter = {
-  id?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_not?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_gt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_lt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_gte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_lte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  hash_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  hash_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_not_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
+export type gnosisPrimaryEvent_filter = {
+  id?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_not?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_gt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_lt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_gte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_lte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  hash_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  hash_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_not_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
   nonce?: InputMaybe<Scalars['BigInt']>;
   nonce_not?: InputMaybe<Scalars['BigInt']>;
   nonce_gt?: InputMaybe<Scalars['BigInt']>;
@@ -1257,7 +1257,7 @@ export type ethereumPrimaryEvent_filter = {
   market_ends_with_nocase?: InputMaybe<Scalars['String']>;
   market_not_ends_with?: InputMaybe<Scalars['String']>;
   market_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  market_?: InputMaybe<ethereumPrimaryMarket_filter>;
+  market_?: InputMaybe<gnosisPrimaryMarket_filter>;
   asset?: InputMaybe<Scalars['String']>;
   asset_not?: InputMaybe<Scalars['String']>;
   asset_gt?: InputMaybe<Scalars['String']>;
@@ -1278,7 +1278,7 @@ export type ethereumPrimaryEvent_filter = {
   asset_ends_with_nocase?: InputMaybe<Scalars['String']>;
   asset_not_ends_with?: InputMaybe<Scalars['String']>;
   asset_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  asset_?: InputMaybe<ethereumPrimaryToken_filter>;
+  asset_?: InputMaybe<gnosisPrimaryToken_filter>;
   amount?: InputMaybe<Scalars['BigInt']>;
   amount_not?: InputMaybe<Scalars['BigInt']>;
   amount_gt?: InputMaybe<Scalars['BigInt']>;
@@ -1287,21 +1287,21 @@ export type ethereumPrimaryEvent_filter = {
   amount_lte?: InputMaybe<Scalars['BigInt']>;
   amount_in?: InputMaybe<Array<Scalars['BigInt']>>;
   amount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  amountUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  amountUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  amountUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  amountUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   /** Filter for the block changed event. */
-  _change_block?: InputMaybe<ethereumPrimaryBlockChangedFilter>;
-  and?: InputMaybe<Array<InputMaybe<ethereumPrimaryEvent_filter>>>;
-  or?: InputMaybe<Array<InputMaybe<ethereumPrimaryEvent_filter>>>;
+  _change_block?: InputMaybe<gnosisPrimaryBlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<gnosisPrimaryEvent_filter>>>;
+  or?: InputMaybe<Array<InputMaybe<gnosisPrimaryEvent_filter>>>;
 };
 
-export type ethereumPrimaryEvent_orderBy =
+export type gnosisPrimaryEvent_orderBy =
   | 'id'
   | 'hash'
   | 'nonce'
@@ -1387,18 +1387,18 @@ export type ethereumPrimaryEvent_orderBy =
   | 'amount'
   | 'amountUSD';
 
-export type ethereumPrimaryFee = {
+export type gnosisPrimaryFee = {
   /**  { Fee type }  */
   id: Scalars['ID'];
   /**  Fee in percentage. E.g. 5.21% should be stored as 5.21  */
-  rate?: Maybe<Scalars['ethereumPrimaryBigDecimal']>;
+  rate?: Maybe<Scalars['gnosisPrimaryBigDecimal']>;
   /**  A flat fee in the native token. This may be a base fee in addition to the rate, or the only fee.  */
-  flatFee?: Maybe<Scalars['ethereumPrimaryBigDecimal']>;
+  flatFee?: Maybe<Scalars['gnosisPrimaryBigDecimal']>;
   /**  The type of fee (e.g. liquidation, admin, etc.)  */
-  type: ethereumPrimaryFeeType;
+  type: gnosisPrimaryFeeType;
 };
 
-export type ethereumPrimaryFeeType =
+export type gnosisPrimaryFeeType =
   /**  Fees from liquidations  */
   | 'LIQUIDATION_FEE'
   /**  Fees given to an admin  */
@@ -1416,7 +1416,7 @@ export type ethereumPrimaryFeeType =
   /**  Any fee not represented here. Please make a github issue for this to be added: https://github.com/messari/subgraphs/issues/new  */
   | 'OTHER';
 
-export type ethereumPrimaryFee_filter = {
+export type gnosisPrimaryFee_filter = {
   id?: InputMaybe<Scalars['ID']>;
   id_not?: InputMaybe<Scalars['ID']>;
   id_gt?: InputMaybe<Scalars['ID']>;
@@ -1425,106 +1425,106 @@ export type ethereumPrimaryFee_filter = {
   id_lte?: InputMaybe<Scalars['ID']>;
   id_in?: InputMaybe<Array<Scalars['ID']>>;
   id_not_in?: InputMaybe<Array<Scalars['ID']>>;
-  rate?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  rate_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  rate_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  rate_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  rate_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  rate_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  rate_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  rate_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  flatFee?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  flatFee_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  flatFee_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  flatFee_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  flatFee_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  flatFee_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  flatFee_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  flatFee_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  type?: InputMaybe<ethereumPrimaryFeeType>;
-  type_not?: InputMaybe<ethereumPrimaryFeeType>;
-  type_in?: InputMaybe<Array<ethereumPrimaryFeeType>>;
-  type_not_in?: InputMaybe<Array<ethereumPrimaryFeeType>>;
+  rate?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  rate_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  rate_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  rate_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  rate_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  rate_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  rate_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  rate_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  flatFee?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  flatFee_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  flatFee_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  flatFee_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  flatFee_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  flatFee_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  flatFee_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  flatFee_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  type?: InputMaybe<gnosisPrimaryFeeType>;
+  type_not?: InputMaybe<gnosisPrimaryFeeType>;
+  type_in?: InputMaybe<Array<gnosisPrimaryFeeType>>;
+  type_not_in?: InputMaybe<Array<gnosisPrimaryFeeType>>;
   /** Filter for the block changed event. */
-  _change_block?: InputMaybe<ethereumPrimaryBlockChangedFilter>;
-  and?: InputMaybe<Array<InputMaybe<ethereumPrimaryFee_filter>>>;
-  or?: InputMaybe<Array<InputMaybe<ethereumPrimaryFee_filter>>>;
+  _change_block?: InputMaybe<gnosisPrimaryBlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<gnosisPrimaryFee_filter>>>;
+  or?: InputMaybe<Array<InputMaybe<gnosisPrimaryFee_filter>>>;
 };
 
-export type ethereumPrimaryFee_orderBy =
+export type gnosisPrimaryFee_orderBy =
   | 'id'
   | 'rate'
   | 'flatFee'
   | 'type';
 
-export type ethereumPrimaryFinancialsDailySnapshot = {
+export type gnosisPrimaryFinancialsDailySnapshot = {
   /**  ID is # of days since Unix epoch time  */
-  id: Scalars['ethereumPrimaryBytes'];
+  id: Scalars['gnosisPrimaryBytes'];
   /**  Number of days since Unix epoch time  */
   days: Scalars['Int'];
   /**  Protocol this snapshot is associated with  */
-  protocol: ethereumPrimaryLendingProtocol;
+  protocol: gnosisPrimaryLendingProtocol;
   /**  Block number of this snapshot  */
   blockNumber: Scalars['BigInt'];
   /**  Timestamp of this snapshot  */
   timestamp: Scalars['BigInt'];
   /**  Current TVL (Total Value Locked) of the entire protocol  */
-  totalValueLockedUSD: Scalars['ethereumPrimaryBigDecimal'];
+  totalValueLockedUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Current PCV (Protocol Controlled Value). Only relevant for protocols with PCV.  */
-  protocolControlledValueUSD?: Maybe<Scalars['ethereumPrimaryBigDecimal']>;
+  protocolControlledValueUSD?: Maybe<Scalars['gnosisPrimaryBigDecimal']>;
   /**  Total supply of minted tokens in native amounts, with same ordering as mintedTokens. Only applies to CDP  */
   mintedTokenSupplies?: Maybe<Array<Scalars['BigInt']>>;
   /**  Revenue claimed by suppliers to the protocol. LPs on DEXs (e.g. 0.25% of the swap fee in Sushiswap). Depositors on Lending Protocols. NFT sellers on OpenSea.  */
-  dailySupplySideRevenueUSD: Scalars['ethereumPrimaryBigDecimal'];
+  dailySupplySideRevenueUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Revenue claimed by suppliers to the protocol. LPs on DEXs (e.g. 0.25% of the swap fee in Sushiswap). Depositors on Lending Protocols. NFT sellers on OpenSea.  */
-  cumulativeSupplySideRevenueUSD: Scalars['ethereumPrimaryBigDecimal'];
+  cumulativeSupplySideRevenueUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Gross revenue for the protocol (revenue claimed by protocol). Examples: AMM protocol fee (Sushi’s 0.05%). OpenSea 10% sell fee.  */
-  dailyProtocolSideRevenueUSD: Scalars['ethereumPrimaryBigDecimal'];
+  dailyProtocolSideRevenueUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Gross revenue for the protocol (revenue claimed by protocol). Examples: AMM protocol fee (Sushi’s 0.05%). OpenSea 10% sell fee.  */
-  cumulativeProtocolSideRevenueUSD: Scalars['ethereumPrimaryBigDecimal'];
+  cumulativeProtocolSideRevenueUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  All revenue generated by the protocol. e.g. 0.30% of swap fee in Sushiswap, all yield generated by Yearn.  */
-  dailyTotalRevenueUSD: Scalars['ethereumPrimaryBigDecimal'];
+  dailyTotalRevenueUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  All revenue generated by the protocol. e.g. 0.30% of swap fee in Sushiswap, all yield generated by Yearn.  */
-  cumulativeTotalRevenueUSD: Scalars['ethereumPrimaryBigDecimal'];
+  cumulativeTotalRevenueUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Details of revenue sources and amounts  */
-  revenueDetail?: Maybe<ethereumPrimaryRevenueDetail>;
+  revenueDetail?: Maybe<gnosisPrimaryRevenueDetail>;
   /**  Current balance of all deposited assets, in USD. Note this metric should be the same as TVL.  */
-  totalDepositBalanceUSD: Scalars['ethereumPrimaryBigDecimal'];
+  totalDepositBalanceUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Total assets deposited on a given day, in USD  */
-  dailyDepositUSD: Scalars['ethereumPrimaryBigDecimal'];
+  dailyDepositUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Sum of all historical deposits in USD (only considers deposits and not withdrawals)  */
-  cumulativeDepositUSD: Scalars['ethereumPrimaryBigDecimal'];
+  cumulativeDepositUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Current balance of all borrowed/minted assets, in USD.  */
-  totalBorrowBalanceUSD: Scalars['ethereumPrimaryBigDecimal'];
+  totalBorrowBalanceUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Total assets borrowed/minted on a given day, in USD.  */
-  dailyBorrowUSD: Scalars['ethereumPrimaryBigDecimal'];
+  dailyBorrowUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Sum of all historical borrows/mints in USD (i.e. total loan origination).  */
-  cumulativeBorrowUSD: Scalars['ethereumPrimaryBigDecimal'];
+  cumulativeBorrowUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Total assets liquidated on a given day, in USD.  */
-  dailyLiquidateUSD: Scalars['ethereumPrimaryBigDecimal'];
+  dailyLiquidateUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Sum of all historical liquidations in USD  */
-  cumulativeLiquidateUSD: Scalars['ethereumPrimaryBigDecimal'];
+  cumulativeLiquidateUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Total assets withdrawn on a given day, in USD.  */
-  dailyWithdrawUSD: Scalars['ethereumPrimaryBigDecimal'];
+  dailyWithdrawUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Total assets repaid on a given day, in USD.  */
-  dailyRepayUSD: Scalars['ethereumPrimaryBigDecimal'];
+  dailyRepayUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Total assets transferred on a given day, in USD.  */
-  dailyTransferUSD: Scalars['ethereumPrimaryBigDecimal'];
+  dailyTransferUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Total flashloans executed on a given day, in USD.  */
-  dailyFlashloanUSD: Scalars['ethereumPrimaryBigDecimal'];
+  dailyFlashloanUSD: Scalars['gnosisPrimaryBigDecimal'];
 };
 
-export type ethereumPrimaryFinancialsDailySnapshot_filter = {
-  id?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
+export type gnosisPrimaryFinancialsDailySnapshot_filter = {
+  id?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
   days?: InputMaybe<Scalars['Int']>;
   days_not?: InputMaybe<Scalars['Int']>;
   days_gt?: InputMaybe<Scalars['Int']>;
@@ -1553,7 +1553,7 @@ export type ethereumPrimaryFinancialsDailySnapshot_filter = {
   protocol_ends_with_nocase?: InputMaybe<Scalars['String']>;
   protocol_not_ends_with?: InputMaybe<Scalars['String']>;
   protocol_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  protocol_?: InputMaybe<ethereumPrimaryLendingProtocol_filter>;
+  protocol_?: InputMaybe<gnosisPrimaryLendingProtocol_filter>;
   blockNumber?: InputMaybe<Scalars['BigInt']>;
   blockNumber_not?: InputMaybe<Scalars['BigInt']>;
   blockNumber_gt?: InputMaybe<Scalars['BigInt']>;
@@ -1570,76 +1570,76 @@ export type ethereumPrimaryFinancialsDailySnapshot_filter = {
   timestamp_lte?: InputMaybe<Scalars['BigInt']>;
   timestamp_in?: InputMaybe<Array<Scalars['BigInt']>>;
   timestamp_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  totalValueLockedUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalValueLockedUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalValueLockedUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalValueLockedUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalValueLockedUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalValueLockedUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalValueLockedUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  totalValueLockedUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  protocolControlledValueUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  protocolControlledValueUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  protocolControlledValueUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  protocolControlledValueUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  protocolControlledValueUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  protocolControlledValueUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  protocolControlledValueUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  protocolControlledValueUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  totalValueLockedUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalValueLockedUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalValueLockedUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalValueLockedUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalValueLockedUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalValueLockedUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalValueLockedUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  totalValueLockedUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  protocolControlledValueUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  protocolControlledValueUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  protocolControlledValueUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  protocolControlledValueUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  protocolControlledValueUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  protocolControlledValueUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  protocolControlledValueUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  protocolControlledValueUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   mintedTokenSupplies?: InputMaybe<Array<Scalars['BigInt']>>;
   mintedTokenSupplies_not?: InputMaybe<Array<Scalars['BigInt']>>;
   mintedTokenSupplies_contains?: InputMaybe<Array<Scalars['BigInt']>>;
   mintedTokenSupplies_contains_nocase?: InputMaybe<Array<Scalars['BigInt']>>;
   mintedTokenSupplies_not_contains?: InputMaybe<Array<Scalars['BigInt']>>;
   mintedTokenSupplies_not_contains_nocase?: InputMaybe<Array<Scalars['BigInt']>>;
-  dailySupplySideRevenueUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailySupplySideRevenueUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailySupplySideRevenueUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailySupplySideRevenueUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailySupplySideRevenueUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailySupplySideRevenueUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailySupplySideRevenueUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  dailySupplySideRevenueUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeSupplySideRevenueUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeSupplySideRevenueUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeSupplySideRevenueUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeSupplySideRevenueUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeSupplySideRevenueUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeSupplySideRevenueUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeSupplySideRevenueUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeSupplySideRevenueUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  dailyProtocolSideRevenueUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyProtocolSideRevenueUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyProtocolSideRevenueUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyProtocolSideRevenueUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyProtocolSideRevenueUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyProtocolSideRevenueUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyProtocolSideRevenueUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  dailyProtocolSideRevenueUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeProtocolSideRevenueUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeProtocolSideRevenueUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeProtocolSideRevenueUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeProtocolSideRevenueUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeProtocolSideRevenueUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeProtocolSideRevenueUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeProtocolSideRevenueUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeProtocolSideRevenueUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  dailyTotalRevenueUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyTotalRevenueUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyTotalRevenueUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyTotalRevenueUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyTotalRevenueUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyTotalRevenueUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyTotalRevenueUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  dailyTotalRevenueUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeTotalRevenueUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTotalRevenueUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTotalRevenueUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTotalRevenueUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTotalRevenueUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTotalRevenueUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTotalRevenueUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeTotalRevenueUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  dailySupplySideRevenueUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailySupplySideRevenueUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailySupplySideRevenueUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailySupplySideRevenueUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailySupplySideRevenueUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailySupplySideRevenueUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailySupplySideRevenueUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  dailySupplySideRevenueUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeSupplySideRevenueUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeSupplySideRevenueUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeSupplySideRevenueUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeSupplySideRevenueUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeSupplySideRevenueUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeSupplySideRevenueUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeSupplySideRevenueUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeSupplySideRevenueUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  dailyProtocolSideRevenueUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyProtocolSideRevenueUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyProtocolSideRevenueUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyProtocolSideRevenueUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyProtocolSideRevenueUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyProtocolSideRevenueUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyProtocolSideRevenueUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  dailyProtocolSideRevenueUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeProtocolSideRevenueUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeProtocolSideRevenueUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeProtocolSideRevenueUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeProtocolSideRevenueUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeProtocolSideRevenueUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeProtocolSideRevenueUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeProtocolSideRevenueUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeProtocolSideRevenueUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  dailyTotalRevenueUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyTotalRevenueUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyTotalRevenueUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyTotalRevenueUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyTotalRevenueUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyTotalRevenueUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyTotalRevenueUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  dailyTotalRevenueUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeTotalRevenueUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTotalRevenueUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTotalRevenueUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTotalRevenueUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTotalRevenueUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTotalRevenueUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTotalRevenueUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeTotalRevenueUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   revenueDetail?: InputMaybe<Scalars['String']>;
   revenueDetail_not?: InputMaybe<Scalars['String']>;
   revenueDetail_gt?: InputMaybe<Scalars['String']>;
@@ -1660,110 +1660,110 @@ export type ethereumPrimaryFinancialsDailySnapshot_filter = {
   revenueDetail_ends_with_nocase?: InputMaybe<Scalars['String']>;
   revenueDetail_not_ends_with?: InputMaybe<Scalars['String']>;
   revenueDetail_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  revenueDetail_?: InputMaybe<ethereumPrimaryRevenueDetail_filter>;
-  totalDepositBalanceUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalDepositBalanceUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalDepositBalanceUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalDepositBalanceUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalDepositBalanceUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalDepositBalanceUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalDepositBalanceUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  totalDepositBalanceUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  dailyDepositUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyDepositUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyDepositUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyDepositUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyDepositUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyDepositUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyDepositUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  dailyDepositUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeDepositUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeDepositUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeDepositUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeDepositUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeDepositUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeDepositUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeDepositUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeDepositUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  totalBorrowBalanceUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalBorrowBalanceUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalBorrowBalanceUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalBorrowBalanceUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalBorrowBalanceUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalBorrowBalanceUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalBorrowBalanceUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  totalBorrowBalanceUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  dailyBorrowUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyBorrowUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyBorrowUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyBorrowUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyBorrowUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyBorrowUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyBorrowUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  dailyBorrowUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeBorrowUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeBorrowUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeBorrowUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeBorrowUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeBorrowUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeBorrowUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeBorrowUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeBorrowUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  dailyLiquidateUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyLiquidateUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyLiquidateUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyLiquidateUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyLiquidateUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyLiquidateUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyLiquidateUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  dailyLiquidateUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeLiquidateUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeLiquidateUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeLiquidateUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeLiquidateUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeLiquidateUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeLiquidateUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeLiquidateUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeLiquidateUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  dailyWithdrawUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyWithdrawUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyWithdrawUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyWithdrawUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyWithdrawUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyWithdrawUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyWithdrawUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  dailyWithdrawUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  dailyRepayUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyRepayUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyRepayUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyRepayUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyRepayUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyRepayUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyRepayUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  dailyRepayUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  dailyTransferUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyTransferUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyTransferUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyTransferUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyTransferUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyTransferUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyTransferUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  dailyTransferUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  dailyFlashloanUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyFlashloanUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyFlashloanUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyFlashloanUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyFlashloanUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyFlashloanUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyFlashloanUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  dailyFlashloanUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  revenueDetail_?: InputMaybe<gnosisPrimaryRevenueDetail_filter>;
+  totalDepositBalanceUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalDepositBalanceUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalDepositBalanceUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalDepositBalanceUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalDepositBalanceUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalDepositBalanceUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalDepositBalanceUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  totalDepositBalanceUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  dailyDepositUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyDepositUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyDepositUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyDepositUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyDepositUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyDepositUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyDepositUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  dailyDepositUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeDepositUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeDepositUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeDepositUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeDepositUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeDepositUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeDepositUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeDepositUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeDepositUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  totalBorrowBalanceUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalBorrowBalanceUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalBorrowBalanceUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalBorrowBalanceUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalBorrowBalanceUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalBorrowBalanceUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalBorrowBalanceUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  totalBorrowBalanceUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  dailyBorrowUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyBorrowUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyBorrowUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyBorrowUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyBorrowUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyBorrowUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyBorrowUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  dailyBorrowUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeBorrowUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeBorrowUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeBorrowUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeBorrowUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeBorrowUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeBorrowUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeBorrowUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeBorrowUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  dailyLiquidateUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyLiquidateUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyLiquidateUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyLiquidateUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyLiquidateUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyLiquidateUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyLiquidateUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  dailyLiquidateUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeLiquidateUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeLiquidateUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeLiquidateUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeLiquidateUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeLiquidateUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeLiquidateUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeLiquidateUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeLiquidateUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  dailyWithdrawUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyWithdrawUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyWithdrawUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyWithdrawUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyWithdrawUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyWithdrawUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyWithdrawUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  dailyWithdrawUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  dailyRepayUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyRepayUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyRepayUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyRepayUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyRepayUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyRepayUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyRepayUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  dailyRepayUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  dailyTransferUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyTransferUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyTransferUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyTransferUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyTransferUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyTransferUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyTransferUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  dailyTransferUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  dailyFlashloanUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyFlashloanUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyFlashloanUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyFlashloanUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyFlashloanUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyFlashloanUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyFlashloanUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  dailyFlashloanUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   /** Filter for the block changed event. */
-  _change_block?: InputMaybe<ethereumPrimaryBlockChangedFilter>;
-  and?: InputMaybe<Array<InputMaybe<ethereumPrimaryFinancialsDailySnapshot_filter>>>;
-  or?: InputMaybe<Array<InputMaybe<ethereumPrimaryFinancialsDailySnapshot_filter>>>;
+  _change_block?: InputMaybe<gnosisPrimaryBlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<gnosisPrimaryFinancialsDailySnapshot_filter>>>;
+  or?: InputMaybe<Array<InputMaybe<gnosisPrimaryFinancialsDailySnapshot_filter>>>;
 };
 
-export type ethereumPrimaryFinancialsDailySnapshot_orderBy =
+export type gnosisPrimaryFinancialsDailySnapshot_orderBy =
   | 'id'
   | 'days'
   | 'protocol'
@@ -1834,11 +1834,11 @@ export type ethereumPrimaryFinancialsDailySnapshot_orderBy =
   | 'dailyTransferUSD'
   | 'dailyFlashloanUSD';
 
-export type ethereumPrimaryFlashloan = ethereumPrimaryEvent & {
+export type gnosisPrimaryFlashloan = gnosisPrimaryEvent & {
   /**  { Transaction hash }{ Log index }  */
-  id: Scalars['ethereumPrimaryBytes'];
+  id: Scalars['gnosisPrimaryBytes'];
   /**  Transaction hash of the transaction that emitted this event  */
-  hash: Scalars['ethereumPrimaryBytes'];
+  hash: Scalars['gnosisPrimaryBytes'];
   /**  Nonce of the transaction that emitted this event  */
   nonce: Scalars['BigInt'];
   /**  Event log index. For transactions that don't emit event, create arbitrary index starting from 0  */
@@ -1854,44 +1854,44 @@ export type ethereumPrimaryFlashloan = ethereumPrimaryEvent & {
   /**  Timestamp of this event  */
   timestamp: Scalars['BigInt'];
   /**  Account that receives the funds from the flashloan  */
-  account: ethereumPrimaryAccount;
+  account: gnosisPrimaryAccount;
   /**  Account that initiates the flashloan  */
-  accountActor?: Maybe<ethereumPrimaryAccount>;
+  accountActor?: Maybe<gnosisPrimaryAccount>;
   /**  The market in which this flashloan is executed  */
-  market: ethereumPrimaryMarket;
+  market: gnosisPrimaryMarket;
   /**  Asset borrowed  */
-  asset: ethereumPrimaryToken;
+  asset: gnosisPrimaryToken;
   /**  Amount of asset borrowed in native units  */
   amount: Scalars['BigInt'];
   /**  Amount of asset borrowed in USD  */
-  amountUSD: Scalars['ethereumPrimaryBigDecimal'];
+  amountUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Amount of asset taken by protocol as a fee in native units  */
   feeAmount?: Maybe<Scalars['BigInt']>;
   /**  Amount of asset taken by protocol as a fee in USD  */
-  feeAmountUSD?: Maybe<Scalars['ethereumPrimaryBigDecimal']>;
+  feeAmountUSD?: Maybe<Scalars['gnosisPrimaryBigDecimal']>;
 };
 
-export type ethereumPrimaryFlashloan_filter = {
-  id?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_not?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_gt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_lt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_gte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_lte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  hash_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  hash_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_not_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
+export type gnosisPrimaryFlashloan_filter = {
+  id?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_not?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_gt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_lt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_gte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_lte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  hash_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  hash_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_not_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
   nonce?: InputMaybe<Scalars['BigInt']>;
   nonce_not?: InputMaybe<Scalars['BigInt']>;
   nonce_gt?: InputMaybe<Scalars['BigInt']>;
@@ -1968,7 +1968,7 @@ export type ethereumPrimaryFlashloan_filter = {
   account_ends_with_nocase?: InputMaybe<Scalars['String']>;
   account_not_ends_with?: InputMaybe<Scalars['String']>;
   account_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  account_?: InputMaybe<ethereumPrimaryAccount_filter>;
+  account_?: InputMaybe<gnosisPrimaryAccount_filter>;
   accountActor?: InputMaybe<Scalars['String']>;
   accountActor_not?: InputMaybe<Scalars['String']>;
   accountActor_gt?: InputMaybe<Scalars['String']>;
@@ -1989,7 +1989,7 @@ export type ethereumPrimaryFlashloan_filter = {
   accountActor_ends_with_nocase?: InputMaybe<Scalars['String']>;
   accountActor_not_ends_with?: InputMaybe<Scalars['String']>;
   accountActor_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  accountActor_?: InputMaybe<ethereumPrimaryAccount_filter>;
+  accountActor_?: InputMaybe<gnosisPrimaryAccount_filter>;
   market?: InputMaybe<Scalars['String']>;
   market_not?: InputMaybe<Scalars['String']>;
   market_gt?: InputMaybe<Scalars['String']>;
@@ -2010,7 +2010,7 @@ export type ethereumPrimaryFlashloan_filter = {
   market_ends_with_nocase?: InputMaybe<Scalars['String']>;
   market_not_ends_with?: InputMaybe<Scalars['String']>;
   market_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  market_?: InputMaybe<ethereumPrimaryMarket_filter>;
+  market_?: InputMaybe<gnosisPrimaryMarket_filter>;
   asset?: InputMaybe<Scalars['String']>;
   asset_not?: InputMaybe<Scalars['String']>;
   asset_gt?: InputMaybe<Scalars['String']>;
@@ -2031,7 +2031,7 @@ export type ethereumPrimaryFlashloan_filter = {
   asset_ends_with_nocase?: InputMaybe<Scalars['String']>;
   asset_not_ends_with?: InputMaybe<Scalars['String']>;
   asset_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  asset_?: InputMaybe<ethereumPrimaryToken_filter>;
+  asset_?: InputMaybe<gnosisPrimaryToken_filter>;
   amount?: InputMaybe<Scalars['BigInt']>;
   amount_not?: InputMaybe<Scalars['BigInt']>;
   amount_gt?: InputMaybe<Scalars['BigInt']>;
@@ -2040,14 +2040,14 @@ export type ethereumPrimaryFlashloan_filter = {
   amount_lte?: InputMaybe<Scalars['BigInt']>;
   amount_in?: InputMaybe<Array<Scalars['BigInt']>>;
   amount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  amountUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  amountUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  amountUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  amountUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   feeAmount?: InputMaybe<Scalars['BigInt']>;
   feeAmount_not?: InputMaybe<Scalars['BigInt']>;
   feeAmount_gt?: InputMaybe<Scalars['BigInt']>;
@@ -2056,21 +2056,21 @@ export type ethereumPrimaryFlashloan_filter = {
   feeAmount_lte?: InputMaybe<Scalars['BigInt']>;
   feeAmount_in?: InputMaybe<Array<Scalars['BigInt']>>;
   feeAmount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  feeAmountUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  feeAmountUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  feeAmountUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  feeAmountUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  feeAmountUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  feeAmountUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  feeAmountUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  feeAmountUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  feeAmountUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  feeAmountUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  feeAmountUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  feeAmountUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  feeAmountUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  feeAmountUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  feeAmountUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  feeAmountUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   /** Filter for the block changed event. */
-  _change_block?: InputMaybe<ethereumPrimaryBlockChangedFilter>;
-  and?: InputMaybe<Array<InputMaybe<ethereumPrimaryFlashloan_filter>>>;
-  or?: InputMaybe<Array<InputMaybe<ethereumPrimaryFlashloan_filter>>>;
+  _change_block?: InputMaybe<gnosisPrimaryBlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<gnosisPrimaryFlashloan_filter>>>;
+  or?: InputMaybe<Array<InputMaybe<gnosisPrimaryFlashloan_filter>>>;
 };
 
-export type ethereumPrimaryFlashloan_orderBy =
+export type gnosisPrimaryFlashloan_orderBy =
   | 'id'
   | 'hash'
   | 'nonce'
@@ -2190,30 +2190,30 @@ export type ethereumPrimaryFlashloan_orderBy =
   | 'feeAmount'
   | 'feeAmountUSD';
 
-export type ethereumPrimaryInterestRate = {
+export type gnosisPrimaryInterestRate = {
   /**  { Interest rate side }-{ Interest rate type }-{ Market ID }-{ Optional: Tranche }-{ Optional: # days/hours since epoch time }  */
   id: Scalars['ID'];
   /**  Interest rate in percentage APY. E.g. 5.21% should be stored as 5.21  */
-  rate: Scalars['ethereumPrimaryBigDecimal'];
+  rate: Scalars['gnosisPrimaryBigDecimal'];
   /**  Duration of the loan in days. Only applies to fixed term lending (e.g. Notional)  */
   duration?: Maybe<Scalars['Int']>;
   /**  Maturity of the loan in block height. Only applies to fixed term lending (e.g. Notional)  */
   maturityBlock?: Maybe<Scalars['BigInt']>;
   /**  The party the interest is paid to / received from  */
-  side: ethereumPrimaryInterestRateSide;
+  side: gnosisPrimaryInterestRateSide;
   /**  The type of interest rate (e.g. stable, fixed, variable, etc)  */
-  type: ethereumPrimaryInterestRateType;
+  type: gnosisPrimaryInterestRateType;
   /**  The level of debt priority at this interest rate  */
-  tranche?: Maybe<ethereumPrimaryTranche>;
+  tranche?: Maybe<gnosisPrimaryTranche>;
 };
 
-export type ethereumPrimaryInterestRateSide =
+export type gnosisPrimaryInterestRateSide =
   /**  Interest rate accrued by lenders  */
   | 'LENDER'
   /**  Interest rate paid by borrowers  */
   | 'BORROWER';
 
-export type ethereumPrimaryInterestRateType =
+export type gnosisPrimaryInterestRateType =
   /**  Stable interest rate (e.g. Aave)  */
   | 'STABLE'
   /**  Variable interest rate (e.g. Compound)  */
@@ -2221,7 +2221,7 @@ export type ethereumPrimaryInterestRateType =
   /**  Fixed interest rate (e.g. Notional)  */
   | 'FIXED';
 
-export type ethereumPrimaryInterestRate_filter = {
+export type gnosisPrimaryInterestRate_filter = {
   id?: InputMaybe<Scalars['ID']>;
   id_not?: InputMaybe<Scalars['ID']>;
   id_gt?: InputMaybe<Scalars['ID']>;
@@ -2230,14 +2230,14 @@ export type ethereumPrimaryInterestRate_filter = {
   id_lte?: InputMaybe<Scalars['ID']>;
   id_in?: InputMaybe<Array<Scalars['ID']>>;
   id_not_in?: InputMaybe<Array<Scalars['ID']>>;
-  rate?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  rate_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  rate_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  rate_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  rate_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  rate_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  rate_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  rate_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  rate?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  rate_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  rate_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  rate_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  rate_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  rate_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  rate_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  rate_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   duration?: InputMaybe<Scalars['Int']>;
   duration_not?: InputMaybe<Scalars['Int']>;
   duration_gt?: InputMaybe<Scalars['Int']>;
@@ -2254,25 +2254,25 @@ export type ethereumPrimaryInterestRate_filter = {
   maturityBlock_lte?: InputMaybe<Scalars['BigInt']>;
   maturityBlock_in?: InputMaybe<Array<Scalars['BigInt']>>;
   maturityBlock_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  side?: InputMaybe<ethereumPrimaryInterestRateSide>;
-  side_not?: InputMaybe<ethereumPrimaryInterestRateSide>;
-  side_in?: InputMaybe<Array<ethereumPrimaryInterestRateSide>>;
-  side_not_in?: InputMaybe<Array<ethereumPrimaryInterestRateSide>>;
-  type?: InputMaybe<ethereumPrimaryInterestRateType>;
-  type_not?: InputMaybe<ethereumPrimaryInterestRateType>;
-  type_in?: InputMaybe<Array<ethereumPrimaryInterestRateType>>;
-  type_not_in?: InputMaybe<Array<ethereumPrimaryInterestRateType>>;
-  tranche?: InputMaybe<ethereumPrimaryTranche>;
-  tranche_not?: InputMaybe<ethereumPrimaryTranche>;
-  tranche_in?: InputMaybe<Array<ethereumPrimaryTranche>>;
-  tranche_not_in?: InputMaybe<Array<ethereumPrimaryTranche>>;
+  side?: InputMaybe<gnosisPrimaryInterestRateSide>;
+  side_not?: InputMaybe<gnosisPrimaryInterestRateSide>;
+  side_in?: InputMaybe<Array<gnosisPrimaryInterestRateSide>>;
+  side_not_in?: InputMaybe<Array<gnosisPrimaryInterestRateSide>>;
+  type?: InputMaybe<gnosisPrimaryInterestRateType>;
+  type_not?: InputMaybe<gnosisPrimaryInterestRateType>;
+  type_in?: InputMaybe<Array<gnosisPrimaryInterestRateType>>;
+  type_not_in?: InputMaybe<Array<gnosisPrimaryInterestRateType>>;
+  tranche?: InputMaybe<gnosisPrimaryTranche>;
+  tranche_not?: InputMaybe<gnosisPrimaryTranche>;
+  tranche_in?: InputMaybe<Array<gnosisPrimaryTranche>>;
+  tranche_not_in?: InputMaybe<Array<gnosisPrimaryTranche>>;
   /** Filter for the block changed event. */
-  _change_block?: InputMaybe<ethereumPrimaryBlockChangedFilter>;
-  and?: InputMaybe<Array<InputMaybe<ethereumPrimaryInterestRate_filter>>>;
-  or?: InputMaybe<Array<InputMaybe<ethereumPrimaryInterestRate_filter>>>;
+  _change_block?: InputMaybe<gnosisPrimaryBlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<gnosisPrimaryInterestRate_filter>>>;
+  or?: InputMaybe<Array<InputMaybe<gnosisPrimaryInterestRate_filter>>>;
 };
 
-export type ethereumPrimaryInterestRate_orderBy =
+export type gnosisPrimaryInterestRate_orderBy =
   | 'id'
   | 'rate'
   | 'duration'
@@ -2281,9 +2281,9 @@ export type ethereumPrimaryInterestRate_orderBy =
   | 'type'
   | 'tranche';
 
-export type ethereumPrimaryLendingProtocol = ethereumPrimaryProtocol & {
+export type gnosisPrimaryLendingProtocol = gnosisPrimaryProtocol & {
   /**  Smart contract address of the protocol's main contract (Factory, Registry, etc)  */
-  id: Scalars['ethereumPrimaryBytes'];
+  id: Scalars['gnosisPrimaryBytes'];
   /**  Base name of the protocol, excluding transformations. e.g. Aave  */
   protocol: Scalars['String'];
   /**  Name of the protocol, including version. e.g. Aave v2  */
@@ -2297,25 +2297,25 @@ export type ethereumPrimaryLendingProtocol = ethereumPrimaryProtocol & {
   /**  Version of the methodology used to compute metrics, loosely based on SemVer format (e.g. 1.0.0)  */
   methodologyVersion: Scalars['String'];
   /**  The blockchain network this subgraph is indexing on  */
-  network: ethereumPrimaryNetwork;
+  network: gnosisPrimaryNetwork;
   /**  The type of protocol (e.g. DEX, Lending, Yield, etc)  */
-  type: ethereumPrimaryProtocolType;
+  type: gnosisPrimaryProtocolType;
   /**  The specific lending protocol type  */
-  lendingType?: Maybe<ethereumPrimaryLendingType>;
+  lendingType?: Maybe<gnosisPrimaryLendingType>;
   /**  The specific permissions required to lend in this protocol  */
-  lenderPermissionType?: Maybe<ethereumPrimaryPermissionType>;
+  lenderPermissionType?: Maybe<gnosisPrimaryPermissionType>;
   /**  The specific permissions required to borrow from this protocol  */
-  borrowerPermissionType?: Maybe<ethereumPrimaryPermissionType>;
+  borrowerPermissionType?: Maybe<gnosisPrimaryPermissionType>;
   /**  The specific permissions required to create a pool (market) in this protocol  */
-  poolCreatorPermissionType?: Maybe<ethereumPrimaryPermissionType>;
+  poolCreatorPermissionType?: Maybe<gnosisPrimaryPermissionType>;
   /**  Risk type of the lending protocol  */
-  riskType?: Maybe<ethereumPrimaryRiskType>;
+  riskType?: Maybe<gnosisPrimaryRiskType>;
   /**  The way a positions can be collateralized  */
-  collateralizationType?: Maybe<ethereumPrimaryCollateralizationType>;
+  collateralizationType?: Maybe<gnosisPrimaryCollateralizationType>;
   /**  Tokens that can be minted. Only applies to CDP (usually stable coins)  */
-  mintedTokens?: Maybe<Array<ethereumPrimaryToken>>;
+  mintedTokens?: Maybe<Array<gnosisPrimaryToken>>;
   /**  Additional tokens that are given as reward for position in a protocol, usually in liquidity mining programs.  */
-  rewardTokens?: Maybe<Array<ethereumPrimaryRewardToken>>;
+  rewardTokens?: Maybe<Array<gnosisPrimaryRewardToken>>;
   /**  Number of cumulative unique users. e.g. accounts that spent gas to interact with this protocol  */
   cumulativeUniqueUsers: Scalars['Int'];
   /**  Number of cumulative depositors  */
@@ -2327,29 +2327,29 @@ export type ethereumPrimaryLendingProtocol = ethereumPrimaryProtocol & {
   /**  Number of cumulative liquidatees (accounts that got liquidated)  */
   cumulativeUniqueLiquidatees: Scalars['Int'];
   /**  Current TVL (Total Value Locked) of the entire protocol  */
-  totalValueLockedUSD: Scalars['ethereumPrimaryBigDecimal'];
+  totalValueLockedUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Current PCV (Protocol Controlled Value). Only relevant for protocols with PCV.  */
-  protocolControlledValueUSD?: Maybe<Scalars['ethereumPrimaryBigDecimal']>;
+  protocolControlledValueUSD?: Maybe<Scalars['gnosisPrimaryBigDecimal']>;
   /**  Revenue claimed by suppliers to the protocol. LPs on DEXs (e.g. 0.25% of the swap fee in Sushiswap). Depositors on Lending Protocols. NFT sellers on OpenSea.  */
-  cumulativeSupplySideRevenueUSD: Scalars['ethereumPrimaryBigDecimal'];
+  cumulativeSupplySideRevenueUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Gross revenue for the protocol (revenue claimed by protocol). Examples: AMM protocol fee (Sushi’s 0.05%). OpenSea 10% sell fee.  */
-  cumulativeProtocolSideRevenueUSD: Scalars['ethereumPrimaryBigDecimal'];
+  cumulativeProtocolSideRevenueUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  All revenue generated by the protocol. e.g. 0.30% of swap fee in Sushiswap, all yield generated by Yearn.  */
-  cumulativeTotalRevenueUSD: Scalars['ethereumPrimaryBigDecimal'];
+  cumulativeTotalRevenueUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  All fees in the protocol. Fee should be in percentage format. e.g. 0.30% liquidation fee  */
-  fees?: Maybe<Array<ethereumPrimaryFee>>;
+  fees?: Maybe<Array<gnosisPrimaryFee>>;
   /**  Details of revenue sources and amounts  */
-  revenueDetail?: Maybe<ethereumPrimaryRevenueDetail>;
+  revenueDetail?: Maybe<gnosisPrimaryRevenueDetail>;
   /**  Current balance of all deposited assets, in USD. Note this metric should be the same as TVL.  */
-  totalDepositBalanceUSD: Scalars['ethereumPrimaryBigDecimal'];
+  totalDepositBalanceUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Sum of all historical deposits in USD (only considers deposits and not withdrawals)  */
-  cumulativeDepositUSD: Scalars['ethereumPrimaryBigDecimal'];
+  cumulativeDepositUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Current balance of all borrowed/minted assets (not historical cumulative), in USD.  */
-  totalBorrowBalanceUSD: Scalars['ethereumPrimaryBigDecimal'];
+  totalBorrowBalanceUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Sum of all historical borrows/mints in USD (i.e. total loan origination).  */
-  cumulativeBorrowUSD: Scalars['ethereumPrimaryBigDecimal'];
+  cumulativeBorrowUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Sum of all historical liquidations in USD  */
-  cumulativeLiquidateUSD: Scalars['ethereumPrimaryBigDecimal'];
+  cumulativeLiquidateUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Total supply of minted tokens in native amounts, with same ordering as mintedTokens. Only applies to CDP  */
   mintedTokenSupplies?: Maybe<Array<Scalars['BigInt']>>;
   /**  Total number of pools  */
@@ -2377,91 +2377,91 @@ export type ethereumPrimaryLendingProtocol = ethereumPrimaryProtocol & {
   /**  Per-block reward token emission as of the current block normalized to a day, in token's native amount. This should be ideally calculated as the theoretical rate instead of the realized amount.  */
   rewardTokenEmissionsAmount?: Maybe<Array<Scalars['BigInt']>>;
   /**  Per-block reward token emission as of the current block normalized to a day, in USD value. This should be ideally calculated as the theoretical rate instead of the realized amount.  */
-  rewardTokenEmissionsUSD?: Maybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  rewardTokenEmissionsUSD?: Maybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   /**  Daily usage metrics for this protocol  */
-  dailyUsageMetrics: Array<ethereumPrimaryUsageMetricsDailySnapshot>;
+  dailyUsageMetrics: Array<gnosisPrimaryUsageMetricsDailySnapshot>;
   /**  Hourly usage metrics for this protocol  */
-  hourlyUsageMetrics: Array<ethereumPrimaryUsageMetricsHourlySnapshot>;
+  hourlyUsageMetrics: Array<gnosisPrimaryUsageMetricsHourlySnapshot>;
   /**  Daily financial metrics for this protocol  */
-  financialMetrics: Array<ethereumPrimaryFinancialsDailySnapshot>;
+  financialMetrics: Array<gnosisPrimaryFinancialsDailySnapshot>;
   /**  All markets that belong to this protocol  */
-  markets: Array<ethereumPrimaryMarket>;
+  markets: Array<gnosisPrimaryMarket>;
 };
 
 
-export type ethereumPrimaryLendingProtocolmintedTokensArgs = {
+export type gnosisPrimaryLendingProtocolmintedTokensArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryToken_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryToken_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryToken_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryToken_filter>;
 };
 
 
-export type ethereumPrimaryLendingProtocolrewardTokensArgs = {
+export type gnosisPrimaryLendingProtocolrewardTokensArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryRewardToken_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryRewardToken_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryRewardToken_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryRewardToken_filter>;
 };
 
 
-export type ethereumPrimaryLendingProtocolfeesArgs = {
+export type gnosisPrimaryLendingProtocolfeesArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryFee_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryFee_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryFee_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryFee_filter>;
 };
 
 
-export type ethereumPrimaryLendingProtocoldailyUsageMetricsArgs = {
+export type gnosisPrimaryLendingProtocoldailyUsageMetricsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryUsageMetricsDailySnapshot_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryUsageMetricsDailySnapshot_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryUsageMetricsDailySnapshot_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryUsageMetricsDailySnapshot_filter>;
 };
 
 
-export type ethereumPrimaryLendingProtocolhourlyUsageMetricsArgs = {
+export type gnosisPrimaryLendingProtocolhourlyUsageMetricsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryUsageMetricsHourlySnapshot_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryUsageMetricsHourlySnapshot_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryUsageMetricsHourlySnapshot_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryUsageMetricsHourlySnapshot_filter>;
 };
 
 
-export type ethereumPrimaryLendingProtocolfinancialMetricsArgs = {
+export type gnosisPrimaryLendingProtocolfinancialMetricsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryFinancialsDailySnapshot_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryFinancialsDailySnapshot_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryFinancialsDailySnapshot_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryFinancialsDailySnapshot_filter>;
 };
 
 
-export type ethereumPrimaryLendingProtocolmarketsArgs = {
+export type gnosisPrimaryLendingProtocolmarketsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryMarket_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryMarket_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryMarket_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryMarket_filter>;
 };
 
-export type ethereumPrimaryLendingProtocol_filter = {
-  id?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
+export type gnosisPrimaryLendingProtocol_filter = {
+  id?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
   protocol?: InputMaybe<Scalars['String']>;
   protocol_not?: InputMaybe<Scalars['String']>;
   protocol_gt?: InputMaybe<Scalars['String']>;
@@ -2582,52 +2582,52 @@ export type ethereumPrimaryLendingProtocol_filter = {
   methodologyVersion_ends_with_nocase?: InputMaybe<Scalars['String']>;
   methodologyVersion_not_ends_with?: InputMaybe<Scalars['String']>;
   methodologyVersion_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  network?: InputMaybe<ethereumPrimaryNetwork>;
-  network_not?: InputMaybe<ethereumPrimaryNetwork>;
-  network_in?: InputMaybe<Array<ethereumPrimaryNetwork>>;
-  network_not_in?: InputMaybe<Array<ethereumPrimaryNetwork>>;
-  type?: InputMaybe<ethereumPrimaryProtocolType>;
-  type_not?: InputMaybe<ethereumPrimaryProtocolType>;
-  type_in?: InputMaybe<Array<ethereumPrimaryProtocolType>>;
-  type_not_in?: InputMaybe<Array<ethereumPrimaryProtocolType>>;
-  lendingType?: InputMaybe<ethereumPrimaryLendingType>;
-  lendingType_not?: InputMaybe<ethereumPrimaryLendingType>;
-  lendingType_in?: InputMaybe<Array<ethereumPrimaryLendingType>>;
-  lendingType_not_in?: InputMaybe<Array<ethereumPrimaryLendingType>>;
-  lenderPermissionType?: InputMaybe<ethereumPrimaryPermissionType>;
-  lenderPermissionType_not?: InputMaybe<ethereumPrimaryPermissionType>;
-  lenderPermissionType_in?: InputMaybe<Array<ethereumPrimaryPermissionType>>;
-  lenderPermissionType_not_in?: InputMaybe<Array<ethereumPrimaryPermissionType>>;
-  borrowerPermissionType?: InputMaybe<ethereumPrimaryPermissionType>;
-  borrowerPermissionType_not?: InputMaybe<ethereumPrimaryPermissionType>;
-  borrowerPermissionType_in?: InputMaybe<Array<ethereumPrimaryPermissionType>>;
-  borrowerPermissionType_not_in?: InputMaybe<Array<ethereumPrimaryPermissionType>>;
-  poolCreatorPermissionType?: InputMaybe<ethereumPrimaryPermissionType>;
-  poolCreatorPermissionType_not?: InputMaybe<ethereumPrimaryPermissionType>;
-  poolCreatorPermissionType_in?: InputMaybe<Array<ethereumPrimaryPermissionType>>;
-  poolCreatorPermissionType_not_in?: InputMaybe<Array<ethereumPrimaryPermissionType>>;
-  riskType?: InputMaybe<ethereumPrimaryRiskType>;
-  riskType_not?: InputMaybe<ethereumPrimaryRiskType>;
-  riskType_in?: InputMaybe<Array<ethereumPrimaryRiskType>>;
-  riskType_not_in?: InputMaybe<Array<ethereumPrimaryRiskType>>;
-  collateralizationType?: InputMaybe<ethereumPrimaryCollateralizationType>;
-  collateralizationType_not?: InputMaybe<ethereumPrimaryCollateralizationType>;
-  collateralizationType_in?: InputMaybe<Array<ethereumPrimaryCollateralizationType>>;
-  collateralizationType_not_in?: InputMaybe<Array<ethereumPrimaryCollateralizationType>>;
+  network?: InputMaybe<gnosisPrimaryNetwork>;
+  network_not?: InputMaybe<gnosisPrimaryNetwork>;
+  network_in?: InputMaybe<Array<gnosisPrimaryNetwork>>;
+  network_not_in?: InputMaybe<Array<gnosisPrimaryNetwork>>;
+  type?: InputMaybe<gnosisPrimaryProtocolType>;
+  type_not?: InputMaybe<gnosisPrimaryProtocolType>;
+  type_in?: InputMaybe<Array<gnosisPrimaryProtocolType>>;
+  type_not_in?: InputMaybe<Array<gnosisPrimaryProtocolType>>;
+  lendingType?: InputMaybe<gnosisPrimaryLendingType>;
+  lendingType_not?: InputMaybe<gnosisPrimaryLendingType>;
+  lendingType_in?: InputMaybe<Array<gnosisPrimaryLendingType>>;
+  lendingType_not_in?: InputMaybe<Array<gnosisPrimaryLendingType>>;
+  lenderPermissionType?: InputMaybe<gnosisPrimaryPermissionType>;
+  lenderPermissionType_not?: InputMaybe<gnosisPrimaryPermissionType>;
+  lenderPermissionType_in?: InputMaybe<Array<gnosisPrimaryPermissionType>>;
+  lenderPermissionType_not_in?: InputMaybe<Array<gnosisPrimaryPermissionType>>;
+  borrowerPermissionType?: InputMaybe<gnosisPrimaryPermissionType>;
+  borrowerPermissionType_not?: InputMaybe<gnosisPrimaryPermissionType>;
+  borrowerPermissionType_in?: InputMaybe<Array<gnosisPrimaryPermissionType>>;
+  borrowerPermissionType_not_in?: InputMaybe<Array<gnosisPrimaryPermissionType>>;
+  poolCreatorPermissionType?: InputMaybe<gnosisPrimaryPermissionType>;
+  poolCreatorPermissionType_not?: InputMaybe<gnosisPrimaryPermissionType>;
+  poolCreatorPermissionType_in?: InputMaybe<Array<gnosisPrimaryPermissionType>>;
+  poolCreatorPermissionType_not_in?: InputMaybe<Array<gnosisPrimaryPermissionType>>;
+  riskType?: InputMaybe<gnosisPrimaryRiskType>;
+  riskType_not?: InputMaybe<gnosisPrimaryRiskType>;
+  riskType_in?: InputMaybe<Array<gnosisPrimaryRiskType>>;
+  riskType_not_in?: InputMaybe<Array<gnosisPrimaryRiskType>>;
+  collateralizationType?: InputMaybe<gnosisPrimaryCollateralizationType>;
+  collateralizationType_not?: InputMaybe<gnosisPrimaryCollateralizationType>;
+  collateralizationType_in?: InputMaybe<Array<gnosisPrimaryCollateralizationType>>;
+  collateralizationType_not_in?: InputMaybe<Array<gnosisPrimaryCollateralizationType>>;
   mintedTokens?: InputMaybe<Array<Scalars['String']>>;
   mintedTokens_not?: InputMaybe<Array<Scalars['String']>>;
   mintedTokens_contains?: InputMaybe<Array<Scalars['String']>>;
   mintedTokens_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
   mintedTokens_not_contains?: InputMaybe<Array<Scalars['String']>>;
   mintedTokens_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  mintedTokens_?: InputMaybe<ethereumPrimaryToken_filter>;
+  mintedTokens_?: InputMaybe<gnosisPrimaryToken_filter>;
   rewardTokens?: InputMaybe<Array<Scalars['String']>>;
   rewardTokens_not?: InputMaybe<Array<Scalars['String']>>;
   rewardTokens_contains?: InputMaybe<Array<Scalars['String']>>;
   rewardTokens_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
   rewardTokens_not_contains?: InputMaybe<Array<Scalars['String']>>;
   rewardTokens_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  rewardTokens_?: InputMaybe<ethereumPrimaryRewardToken_filter>;
+  rewardTokens_?: InputMaybe<gnosisPrimaryRewardToken_filter>;
   cumulativeUniqueUsers?: InputMaybe<Scalars['Int']>;
   cumulativeUniqueUsers_not?: InputMaybe<Scalars['Int']>;
   cumulativeUniqueUsers_gt?: InputMaybe<Scalars['Int']>;
@@ -2668,53 +2668,53 @@ export type ethereumPrimaryLendingProtocol_filter = {
   cumulativeUniqueLiquidatees_lte?: InputMaybe<Scalars['Int']>;
   cumulativeUniqueLiquidatees_in?: InputMaybe<Array<Scalars['Int']>>;
   cumulativeUniqueLiquidatees_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  totalValueLockedUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalValueLockedUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalValueLockedUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalValueLockedUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalValueLockedUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalValueLockedUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalValueLockedUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  totalValueLockedUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  protocolControlledValueUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  protocolControlledValueUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  protocolControlledValueUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  protocolControlledValueUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  protocolControlledValueUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  protocolControlledValueUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  protocolControlledValueUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  protocolControlledValueUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeSupplySideRevenueUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeSupplySideRevenueUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeSupplySideRevenueUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeSupplySideRevenueUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeSupplySideRevenueUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeSupplySideRevenueUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeSupplySideRevenueUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeSupplySideRevenueUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeProtocolSideRevenueUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeProtocolSideRevenueUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeProtocolSideRevenueUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeProtocolSideRevenueUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeProtocolSideRevenueUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeProtocolSideRevenueUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeProtocolSideRevenueUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeProtocolSideRevenueUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeTotalRevenueUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTotalRevenueUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTotalRevenueUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTotalRevenueUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTotalRevenueUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTotalRevenueUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTotalRevenueUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeTotalRevenueUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  totalValueLockedUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalValueLockedUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalValueLockedUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalValueLockedUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalValueLockedUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalValueLockedUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalValueLockedUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  totalValueLockedUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  protocolControlledValueUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  protocolControlledValueUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  protocolControlledValueUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  protocolControlledValueUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  protocolControlledValueUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  protocolControlledValueUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  protocolControlledValueUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  protocolControlledValueUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeSupplySideRevenueUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeSupplySideRevenueUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeSupplySideRevenueUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeSupplySideRevenueUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeSupplySideRevenueUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeSupplySideRevenueUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeSupplySideRevenueUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeSupplySideRevenueUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeProtocolSideRevenueUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeProtocolSideRevenueUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeProtocolSideRevenueUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeProtocolSideRevenueUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeProtocolSideRevenueUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeProtocolSideRevenueUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeProtocolSideRevenueUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeProtocolSideRevenueUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeTotalRevenueUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTotalRevenueUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTotalRevenueUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTotalRevenueUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTotalRevenueUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTotalRevenueUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTotalRevenueUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeTotalRevenueUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   fees?: InputMaybe<Array<Scalars['String']>>;
   fees_not?: InputMaybe<Array<Scalars['String']>>;
   fees_contains?: InputMaybe<Array<Scalars['String']>>;
   fees_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
   fees_not_contains?: InputMaybe<Array<Scalars['String']>>;
   fees_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  fees_?: InputMaybe<ethereumPrimaryFee_filter>;
+  fees_?: InputMaybe<gnosisPrimaryFee_filter>;
   revenueDetail?: InputMaybe<Scalars['String']>;
   revenueDetail_not?: InputMaybe<Scalars['String']>;
   revenueDetail_gt?: InputMaybe<Scalars['String']>;
@@ -2735,47 +2735,47 @@ export type ethereumPrimaryLendingProtocol_filter = {
   revenueDetail_ends_with_nocase?: InputMaybe<Scalars['String']>;
   revenueDetail_not_ends_with?: InputMaybe<Scalars['String']>;
   revenueDetail_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  revenueDetail_?: InputMaybe<ethereumPrimaryRevenueDetail_filter>;
-  totalDepositBalanceUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalDepositBalanceUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalDepositBalanceUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalDepositBalanceUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalDepositBalanceUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalDepositBalanceUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalDepositBalanceUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  totalDepositBalanceUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeDepositUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeDepositUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeDepositUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeDepositUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeDepositUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeDepositUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeDepositUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeDepositUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  totalBorrowBalanceUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalBorrowBalanceUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalBorrowBalanceUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalBorrowBalanceUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalBorrowBalanceUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalBorrowBalanceUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalBorrowBalanceUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  totalBorrowBalanceUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeBorrowUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeBorrowUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeBorrowUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeBorrowUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeBorrowUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeBorrowUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeBorrowUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeBorrowUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeLiquidateUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeLiquidateUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeLiquidateUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeLiquidateUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeLiquidateUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeLiquidateUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeLiquidateUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeLiquidateUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  revenueDetail_?: InputMaybe<gnosisPrimaryRevenueDetail_filter>;
+  totalDepositBalanceUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalDepositBalanceUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalDepositBalanceUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalDepositBalanceUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalDepositBalanceUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalDepositBalanceUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalDepositBalanceUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  totalDepositBalanceUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeDepositUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeDepositUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeDepositUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeDepositUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeDepositUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeDepositUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeDepositUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeDepositUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  totalBorrowBalanceUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalBorrowBalanceUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalBorrowBalanceUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalBorrowBalanceUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalBorrowBalanceUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalBorrowBalanceUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalBorrowBalanceUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  totalBorrowBalanceUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeBorrowUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeBorrowUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeBorrowUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeBorrowUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeBorrowUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeBorrowUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeBorrowUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeBorrowUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeLiquidateUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeLiquidateUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeLiquidateUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeLiquidateUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeLiquidateUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeLiquidateUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeLiquidateUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeLiquidateUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   mintedTokenSupplies?: InputMaybe<Array<Scalars['BigInt']>>;
   mintedTokenSupplies_not?: InputMaybe<Array<Scalars['BigInt']>>;
   mintedTokenSupplies_contains?: InputMaybe<Array<Scalars['BigInt']>>;
@@ -2876,23 +2876,23 @@ export type ethereumPrimaryLendingProtocol_filter = {
   rewardTokenEmissionsAmount_contains_nocase?: InputMaybe<Array<Scalars['BigInt']>>;
   rewardTokenEmissionsAmount_not_contains?: InputMaybe<Array<Scalars['BigInt']>>;
   rewardTokenEmissionsAmount_not_contains_nocase?: InputMaybe<Array<Scalars['BigInt']>>;
-  rewardTokenEmissionsUSD?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  rewardTokenEmissionsUSD_not?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  rewardTokenEmissionsUSD_contains?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  rewardTokenEmissionsUSD_contains_nocase?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  rewardTokenEmissionsUSD_not_contains?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  rewardTokenEmissionsUSD_not_contains_nocase?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  dailyUsageMetrics_?: InputMaybe<ethereumPrimaryUsageMetricsDailySnapshot_filter>;
-  hourlyUsageMetrics_?: InputMaybe<ethereumPrimaryUsageMetricsHourlySnapshot_filter>;
-  financialMetrics_?: InputMaybe<ethereumPrimaryFinancialsDailySnapshot_filter>;
-  markets_?: InputMaybe<ethereumPrimaryMarket_filter>;
+  rewardTokenEmissionsUSD?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  rewardTokenEmissionsUSD_not?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  rewardTokenEmissionsUSD_contains?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  rewardTokenEmissionsUSD_contains_nocase?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  rewardTokenEmissionsUSD_not_contains?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  rewardTokenEmissionsUSD_not_contains_nocase?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  dailyUsageMetrics_?: InputMaybe<gnosisPrimaryUsageMetricsDailySnapshot_filter>;
+  hourlyUsageMetrics_?: InputMaybe<gnosisPrimaryUsageMetricsHourlySnapshot_filter>;
+  financialMetrics_?: InputMaybe<gnosisPrimaryFinancialsDailySnapshot_filter>;
+  markets_?: InputMaybe<gnosisPrimaryMarket_filter>;
   /** Filter for the block changed event. */
-  _change_block?: InputMaybe<ethereumPrimaryBlockChangedFilter>;
-  and?: InputMaybe<Array<InputMaybe<ethereumPrimaryLendingProtocol_filter>>>;
-  or?: InputMaybe<Array<InputMaybe<ethereumPrimaryLendingProtocol_filter>>>;
+  _change_block?: InputMaybe<gnosisPrimaryBlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<gnosisPrimaryLendingProtocol_filter>>>;
+  or?: InputMaybe<Array<InputMaybe<gnosisPrimaryLendingProtocol_filter>>>;
 };
 
-export type ethereumPrimaryLendingProtocol_orderBy =
+export type gnosisPrimaryLendingProtocol_orderBy =
   | 'id'
   | 'protocol'
   | 'name'
@@ -2947,17 +2947,17 @@ export type ethereumPrimaryLendingProtocol_orderBy =
   | 'financialMetrics'
   | 'markets';
 
-export type ethereumPrimaryLendingType =
+export type gnosisPrimaryLendingType =
   /**  Collateralized Debt Position (CDP) protocols have singular isolated positions created by users. We aggregate them to give a single view of a market  */
   | 'CDP'
   /**  Pooled protocols pool all users assets into a single market  */
   | 'POOLED';
 
-export type ethereumPrimaryLiquidate = ethereumPrimaryEvent & {
+export type gnosisPrimaryLiquidate = gnosisPrimaryEvent & {
   /**  { Transaction hash }{ Log index }  */
-  id: Scalars['ethereumPrimaryBytes'];
+  id: Scalars['gnosisPrimaryBytes'];
   /**  Transaction hash of the transaction that emitted this event  */
-  hash: Scalars['ethereumPrimaryBytes'];
+  hash: Scalars['gnosisPrimaryBytes'];
   /**  Nonce of the transaction that emitted this event  */
   nonce: Scalars['BigInt'];
   /**  Event log index. For transactions that don't emit event, create arbitrary index starting from 0  */
@@ -2973,53 +2973,53 @@ export type ethereumPrimaryLiquidate = ethereumPrimaryEvent & {
   /**  Timestamp of this event  */
   timestamp: Scalars['BigInt'];
   /**  Account that carried out the liquidation  */
-  liquidator: ethereumPrimaryAccount;
+  liquidator: gnosisPrimaryAccount;
   /**  Account that got liquidated  */
-  liquidatee: ethereumPrimaryAccount;
+  liquidatee: gnosisPrimaryAccount;
   /**  The market of the collateral being used  */
-  market: ethereumPrimaryMarket;
+  market: gnosisPrimaryMarket;
   /**  The user position changed by this event  */
-  positions: Array<ethereumPrimaryPosition>;
+  positions: Array<gnosisPrimaryPosition>;
   /**  Asset repaid (borrowed)  */
-  asset: ethereumPrimaryToken;
+  asset: gnosisPrimaryToken;
   /**  Amount of collateral liquidated in native units  */
   amount: Scalars['BigInt'];
   /**  Amount of collateral liquidated in USD  */
-  amountUSD: Scalars['ethereumPrimaryBigDecimal'];
+  amountUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Amount of profit from liquidation in USD  */
-  profitUSD: Scalars['ethereumPrimaryBigDecimal'];
+  profitUSD: Scalars['gnosisPrimaryBigDecimal'];
 };
 
 
-export type ethereumPrimaryLiquidatepositionsArgs = {
+export type gnosisPrimaryLiquidatepositionsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryPosition_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryPosition_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryPosition_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryPosition_filter>;
 };
 
-export type ethereumPrimaryLiquidate_filter = {
-  id?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_not?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_gt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_lt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_gte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_lte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  hash_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  hash_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_not_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
+export type gnosisPrimaryLiquidate_filter = {
+  id?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_not?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_gt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_lt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_gte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_lte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  hash_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  hash_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_not_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
   nonce?: InputMaybe<Scalars['BigInt']>;
   nonce_not?: InputMaybe<Scalars['BigInt']>;
   nonce_gt?: InputMaybe<Scalars['BigInt']>;
@@ -3096,7 +3096,7 @@ export type ethereumPrimaryLiquidate_filter = {
   liquidator_ends_with_nocase?: InputMaybe<Scalars['String']>;
   liquidator_not_ends_with?: InputMaybe<Scalars['String']>;
   liquidator_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  liquidator_?: InputMaybe<ethereumPrimaryAccount_filter>;
+  liquidator_?: InputMaybe<gnosisPrimaryAccount_filter>;
   liquidatee?: InputMaybe<Scalars['String']>;
   liquidatee_not?: InputMaybe<Scalars['String']>;
   liquidatee_gt?: InputMaybe<Scalars['String']>;
@@ -3117,7 +3117,7 @@ export type ethereumPrimaryLiquidate_filter = {
   liquidatee_ends_with_nocase?: InputMaybe<Scalars['String']>;
   liquidatee_not_ends_with?: InputMaybe<Scalars['String']>;
   liquidatee_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  liquidatee_?: InputMaybe<ethereumPrimaryAccount_filter>;
+  liquidatee_?: InputMaybe<gnosisPrimaryAccount_filter>;
   market?: InputMaybe<Scalars['String']>;
   market_not?: InputMaybe<Scalars['String']>;
   market_gt?: InputMaybe<Scalars['String']>;
@@ -3138,14 +3138,14 @@ export type ethereumPrimaryLiquidate_filter = {
   market_ends_with_nocase?: InputMaybe<Scalars['String']>;
   market_not_ends_with?: InputMaybe<Scalars['String']>;
   market_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  market_?: InputMaybe<ethereumPrimaryMarket_filter>;
+  market_?: InputMaybe<gnosisPrimaryMarket_filter>;
   positions?: InputMaybe<Array<Scalars['String']>>;
   positions_not?: InputMaybe<Array<Scalars['String']>>;
   positions_contains?: InputMaybe<Array<Scalars['String']>>;
   positions_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
   positions_not_contains?: InputMaybe<Array<Scalars['String']>>;
   positions_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  positions_?: InputMaybe<ethereumPrimaryPosition_filter>;
+  positions_?: InputMaybe<gnosisPrimaryPosition_filter>;
   asset?: InputMaybe<Scalars['String']>;
   asset_not?: InputMaybe<Scalars['String']>;
   asset_gt?: InputMaybe<Scalars['String']>;
@@ -3166,7 +3166,7 @@ export type ethereumPrimaryLiquidate_filter = {
   asset_ends_with_nocase?: InputMaybe<Scalars['String']>;
   asset_not_ends_with?: InputMaybe<Scalars['String']>;
   asset_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  asset_?: InputMaybe<ethereumPrimaryToken_filter>;
+  asset_?: InputMaybe<gnosisPrimaryToken_filter>;
   amount?: InputMaybe<Scalars['BigInt']>;
   amount_not?: InputMaybe<Scalars['BigInt']>;
   amount_gt?: InputMaybe<Scalars['BigInt']>;
@@ -3175,29 +3175,29 @@ export type ethereumPrimaryLiquidate_filter = {
   amount_lte?: InputMaybe<Scalars['BigInt']>;
   amount_in?: InputMaybe<Array<Scalars['BigInt']>>;
   amount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  amountUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  amountUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  profitUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  profitUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  profitUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  profitUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  profitUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  profitUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  profitUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  profitUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  amountUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  amountUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  profitUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  profitUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  profitUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  profitUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  profitUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  profitUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  profitUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  profitUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   /** Filter for the block changed event. */
-  _change_block?: InputMaybe<ethereumPrimaryBlockChangedFilter>;
-  and?: InputMaybe<Array<InputMaybe<ethereumPrimaryLiquidate_filter>>>;
-  or?: InputMaybe<Array<InputMaybe<ethereumPrimaryLiquidate_filter>>>;
+  _change_block?: InputMaybe<gnosisPrimaryBlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<gnosisPrimaryLiquidate_filter>>>;
+  or?: InputMaybe<Array<InputMaybe<gnosisPrimaryLiquidate_filter>>>;
 };
 
-export type ethereumPrimaryLiquidate_orderBy =
+export type gnosisPrimaryLiquidate_orderBy =
   | 'id'
   | 'hash'
   | 'nonce'
@@ -3323,11 +3323,11 @@ export type ethereumPrimaryLiquidate_orderBy =
  * e.g. there may be related markets as they only act as collateral for other markets.
  *
  */
-export type ethereumPrimaryMarket = {
+export type gnosisPrimaryMarket = {
   /**  Smart contract address of the market  */
-  id: Scalars['ethereumPrimaryBytes'];
+  id: Scalars['gnosisPrimaryBytes'];
   /**  The protocol this pool belongs to  */
-  protocol: ethereumPrimaryLendingProtocol;
+  protocol: gnosisPrimaryLendingProtocol;
   /**  Name of market  */
   name?: Maybe<Scalars['String']>;
   /**  Is this market active or is it frozen  */
@@ -3337,11 +3337,11 @@ export type ethereumPrimaryMarket = {
   /**  Can you use the output token as collateral  */
   canUseAsCollateral: Scalars['Boolean'];
   /**  Maximum loan-to-value ratio as a percentage value (e.g. 75% for DAI in Aave)  */
-  maximumLTV: Scalars['ethereumPrimaryBigDecimal'];
+  maximumLTV: Scalars['gnosisPrimaryBigDecimal'];
   /**  Liquidation threshold as a percentage value (e.g. 80% for DAI in Aave). When it is reached, the position is defined as undercollateralised and could be liquidated  */
-  liquidationThreshold: Scalars['ethereumPrimaryBigDecimal'];
+  liquidationThreshold: Scalars['gnosisPrimaryBigDecimal'];
   /**  Liquidation penalty (or the liquidation bonus for liquidators) as a percentage value. It is the penalty/bonus price on the collateral when liquidators purchase it as part of the liquidation of a loan that has passed the liquidation threshold  */
-  liquidationPenalty: Scalars['ethereumPrimaryBigDecimal'];
+  liquidationPenalty: Scalars['gnosisPrimaryBigDecimal'];
   /**  Can the user choose to isolate assets in this market. e.g. only this market's collateral can be used for a borrow in Aave V3  */
   canIsolate: Scalars['Boolean'];
   /**  Creation timestamp  */
@@ -3349,39 +3349,39 @@ export type ethereumPrimaryMarket = {
   /**  Creation block number  */
   createdBlockNumber: Scalars['BigInt'];
   /**  Details about the price oracle used to get this token's price  */
-  oracle?: Maybe<ethereumPrimaryOracle>;
+  oracle?: Maybe<gnosisPrimaryOracle>;
   /**  A unique identifier that can relate multiple markets. e.g. a common address that is the same for each related market. This is useful for markets with multiple input tokens  */
-  relation?: Maybe<Scalars['ethereumPrimaryBytes']>;
+  relation?: Maybe<Scalars['gnosisPrimaryBytes']>;
   /**  Additional tokens that are given as reward for position in a protocol, usually in liquidity mining programs. e.g. SUSHI in the Onsen program, MATIC for Aave Polygon  */
-  rewardTokens?: Maybe<Array<ethereumPrimaryRewardToken>>;
+  rewardTokens?: Maybe<Array<gnosisPrimaryRewardToken>>;
   /**  Per-block reward token emission as of the current block normalized to a day, in token's native amount. This should be ideally calculated as the theoretical rate instead of the realized amount.  */
   rewardTokenEmissionsAmount?: Maybe<Array<Scalars['BigInt']>>;
   /**  Per-block reward token emission as of the current block normalized to a day, in USD value. This should be ideally calculated as the theoretical rate instead of the realized amount.  */
-  rewardTokenEmissionsUSD?: Maybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  rewardTokenEmissionsUSD?: Maybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   /**  Total supply of output tokens that are staked. Used to calculate reward APY.  */
   stakedOutputTokenAmount?: Maybe<Scalars['BigInt']>;
   /**  Token that need to be deposited in this market to take a position in protocol (should be alphabetized)  */
-  inputToken: ethereumPrimaryToken;
+  inputToken: gnosisPrimaryToken;
   /**  Amount of input token in the market (same order as inputTokens)  */
   inputTokenBalance: Scalars['BigInt'];
   /**  Prices in USD of the input token (same order as inputTokens)  */
-  inputTokenPriceUSD: Scalars['ethereumPrimaryBigDecimal'];
+  inputTokenPriceUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Tokens that are minted to track ownership of position in protocol (e.g. aToken, cToken). Leave as null if doesn't exist (should be alphabetized)  */
-  outputToken?: Maybe<ethereumPrimaryToken>;
+  outputToken?: Maybe<gnosisPrimaryToken>;
   /**  Total supply of output token (same order as outputTokens)  */
   outputTokenSupply?: Maybe<Scalars['BigInt']>;
   /**  Prices in USD of the output token (same order as outputTokens)  */
-  outputTokenPriceUSD?: Maybe<Scalars['ethereumPrimaryBigDecimal']>;
+  outputTokenPriceUSD?: Maybe<Scalars['gnosisPrimaryBigDecimal']>;
   /**  Amount of input token per full share of output token. Only applies when the output token exists (note this is a ratio and not a percentage value, i.e. 1.05 instead of 105%)  */
-  exchangeRate?: Maybe<Scalars['ethereumPrimaryBigDecimal']>;
+  exchangeRate?: Maybe<Scalars['gnosisPrimaryBigDecimal']>;
   /**  All interest rates for this input token. Should be in APR format  */
-  rates?: Maybe<Array<ethereumPrimaryInterestRate>>;
+  rates?: Maybe<Array<gnosisPrimaryInterestRate>>;
   /**  Total amount of reserves (in USD)  */
-  reserves?: Maybe<Scalars['ethereumPrimaryBigDecimal']>;
+  reserves?: Maybe<Scalars['gnosisPrimaryBigDecimal']>;
   /**  The amount of revenue that is converted to reserves at the current time. 20% reserve factor should be in format 0.20  */
-  reserveFactor?: Maybe<Scalars['ethereumPrimaryBigDecimal']>;
+  reserveFactor?: Maybe<Scalars['gnosisPrimaryBigDecimal']>;
   /**  The token that can be borrowed (e.g. inputToken in POOLED and generally a stable in CDPs)  */
-  borrowedToken?: Maybe<ethereumPrimaryToken>;
+  borrowedToken?: Maybe<gnosisPrimaryToken>;
   /**  Amount of input tokens borrowed in this market using variable interest rates (in native terms)  */
   variableBorrowedTokenBalance?: Maybe<Scalars['BigInt']>;
   /**  Amount of input tokens borrowed in this market using stable interest rates (in native terms)  */
@@ -3397,29 +3397,29 @@ export type ethereumPrimaryMarket = {
   /**  Allowed limit for how much of the underlying asset can be borrowed from this market.  */
   borrowCap?: Maybe<Scalars['BigInt']>;
   /**  Current TVL (Total Value Locked) of this market  */
-  totalValueLockedUSD: Scalars['ethereumPrimaryBigDecimal'];
+  totalValueLockedUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  All revenue generated by the market, accrued to the supply side.  */
-  cumulativeSupplySideRevenueUSD: Scalars['ethereumPrimaryBigDecimal'];
+  cumulativeSupplySideRevenueUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  All revenue generated by the market, accrued to the protocol.  */
-  cumulativeProtocolSideRevenueUSD: Scalars['ethereumPrimaryBigDecimal'];
+  cumulativeProtocolSideRevenueUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  All revenue generated by the market.  */
-  cumulativeTotalRevenueUSD: Scalars['ethereumPrimaryBigDecimal'];
+  cumulativeTotalRevenueUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Details of revenue sources and amounts  */
-  revenueDetail?: Maybe<ethereumPrimaryRevenueDetail>;
+  revenueDetail?: Maybe<gnosisPrimaryRevenueDetail>;
   /**  Current balance of all deposited assets (not historical cumulative), in USD  */
-  totalDepositBalanceUSD: Scalars['ethereumPrimaryBigDecimal'];
+  totalDepositBalanceUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Sum of all historical deposits in USD (only considers deposits and not withdrawals)  */
-  cumulativeDepositUSD: Scalars['ethereumPrimaryBigDecimal'];
+  cumulativeDepositUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Current balance of all borrowed/minted assets (not historical cumulative), in USD  */
-  totalBorrowBalanceUSD: Scalars['ethereumPrimaryBigDecimal'];
+  totalBorrowBalanceUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Sum of all historical borrows/mints in USD (i.e. total loan origination)  */
-  cumulativeBorrowUSD: Scalars['ethereumPrimaryBigDecimal'];
+  cumulativeBorrowUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Sum of all historical liquidations in USD  */
-  cumulativeLiquidateUSD: Scalars['ethereumPrimaryBigDecimal'];
+  cumulativeLiquidateUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Sum of all historical transfers in USD  */
-  cumulativeTransferUSD: Scalars['ethereumPrimaryBigDecimal'];
+  cumulativeTransferUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Sum of all historical flashloans in USD  */
-  cumulativeFlashloanUSD: Scalars['ethereumPrimaryBigDecimal'];
+  cumulativeFlashloanUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Total number of transactions  */
   transactionCount: Scalars['Int'];
   /**  Total number of deposits  */
@@ -3451,7 +3451,7 @@ export type ethereumPrimaryMarket = {
   /**  Number of cumulative accounts that performed flashloans  */
   cumulativeUniqueFlashloaners: Scalars['Int'];
   /**  All positions in this market  */
-  positions: Array<ethereumPrimaryPosition>;
+  positions: Array<gnosisPrimaryPosition>;
   /**  Number of positions in this market  */
   positionCount: Scalars['Int'];
   /**  Number of open positions in this market  */
@@ -3463,37 +3463,37 @@ export type ethereumPrimaryMarket = {
   /**  Number of borrowing positions in this market. Note: this is cumulative and strictly increasing  */
   borrowingPositionCount: Scalars['Int'];
   /**  Market daily snapshots  */
-  dailySnapshots: Array<ethereumPrimaryMarketDailySnapshot>;
+  dailySnapshots: Array<gnosisPrimaryMarketDailySnapshot>;
   /**  Market hourly snapshots  */
-  hourlySnapshots: Array<ethereumPrimaryMarketHourlySnapshot>;
+  hourlySnapshots: Array<gnosisPrimaryMarketHourlySnapshot>;
   /**  All deposits made to this market  */
-  deposits: Array<ethereumPrimaryDeposit>;
+  deposits: Array<gnosisPrimaryDeposit>;
   /**  All withdrawals made from this market  */
-  withdraws: Array<ethereumPrimaryWithdraw>;
+  withdraws: Array<gnosisPrimaryWithdraw>;
   /**  All borrows from this market  */
-  borrows: Array<ethereumPrimaryBorrow>;
+  borrows: Array<gnosisPrimaryBorrow>;
   /**  All repayments to this market  */
-  repays: Array<ethereumPrimaryRepay>;
+  repays: Array<gnosisPrimaryRepay>;
   /**  All liquidations made to this market  */
-  liquidates: Array<ethereumPrimaryLiquidate>;
+  liquidates: Array<gnosisPrimaryLiquidate>;
   /**  All transfers made in this market  */
-  transfers: Array<ethereumPrimaryTransfer>;
+  transfers: Array<gnosisPrimaryTransfer>;
   /**  All flashloans made in this market */
-  flashloans: Array<ethereumPrimaryFlashloan>;
+  flashloans: Array<gnosisPrimaryFlashloan>;
   /**  Rewards borrow speed for this market */
   _baseTrackingBorrowSpeed?: Maybe<Scalars['BigInt']>;
   /**  Rewards supply speed for this market */
   _baseTrackingSupplySpeed?: Maybe<Scalars['BigInt']>;
   /**  The variable debt token address correlated to the reserve asset  */
-  _vToken?: Maybe<ethereumPrimaryToken>;
+  _vToken?: Maybe<gnosisPrimaryToken>;
   /**  The stable debt token address correlated to the reserve asset  */
-  _sToken?: Maybe<ethereumPrimaryToken>;
+  _sToken?: Maybe<gnosisPrimaryToken>;
   /**  The state of the protocol prior to being paused (isActive / canUseAsCollateral / canBorrowFrom)  */
   _prePauseState?: Maybe<Array<Scalars['Boolean']>>;
   /**  Aux: Timestamp of the last time rewards were calculated for this market.  */
   _lastRewardsUpdated?: Maybe<Scalars['BigInt']>;
   /**  proportion of liquidation bonus (liquidation penalty) going to the protocol  */
-  _liquidationProtocolFee?: Maybe<Scalars['ethereumPrimaryBigDecimal']>;
+  _liquidationProtocolFee?: Maybe<Scalars['gnosisPrimaryBigDecimal']>;
   _siloedBorrowing?: Maybe<Scalars['Boolean']>;
 };
 
@@ -3504,12 +3504,12 @@ export type ethereumPrimaryMarket = {
  * e.g. there may be related markets as they only act as collateral for other markets.
  *
  */
-export type ethereumPrimaryMarketrewardTokensArgs = {
+export type gnosisPrimaryMarketrewardTokensArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryRewardToken_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryRewardToken_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryRewardToken_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryRewardToken_filter>;
 };
 
 
@@ -3519,12 +3519,12 @@ export type ethereumPrimaryMarketrewardTokensArgs = {
  * e.g. there may be related markets as they only act as collateral for other markets.
  *
  */
-export type ethereumPrimaryMarketratesArgs = {
+export type gnosisPrimaryMarketratesArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryInterestRate_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryInterestRate_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryInterestRate_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryInterestRate_filter>;
 };
 
 
@@ -3534,12 +3534,12 @@ export type ethereumPrimaryMarketratesArgs = {
  * e.g. there may be related markets as they only act as collateral for other markets.
  *
  */
-export type ethereumPrimaryMarketpositionsArgs = {
+export type gnosisPrimaryMarketpositionsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryPosition_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryPosition_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryPosition_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryPosition_filter>;
 };
 
 
@@ -3549,12 +3549,12 @@ export type ethereumPrimaryMarketpositionsArgs = {
  * e.g. there may be related markets as they only act as collateral for other markets.
  *
  */
-export type ethereumPrimaryMarketdailySnapshotsArgs = {
+export type gnosisPrimaryMarketdailySnapshotsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryMarketDailySnapshot_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryMarketDailySnapshot_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryMarketDailySnapshot_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryMarketDailySnapshot_filter>;
 };
 
 
@@ -3564,12 +3564,12 @@ export type ethereumPrimaryMarketdailySnapshotsArgs = {
  * e.g. there may be related markets as they only act as collateral for other markets.
  *
  */
-export type ethereumPrimaryMarkethourlySnapshotsArgs = {
+export type gnosisPrimaryMarkethourlySnapshotsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryMarketHourlySnapshot_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryMarketHourlySnapshot_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryMarketHourlySnapshot_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryMarketHourlySnapshot_filter>;
 };
 
 
@@ -3579,12 +3579,12 @@ export type ethereumPrimaryMarkethourlySnapshotsArgs = {
  * e.g. there may be related markets as they only act as collateral for other markets.
  *
  */
-export type ethereumPrimaryMarketdepositsArgs = {
+export type gnosisPrimaryMarketdepositsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryDeposit_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryDeposit_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryDeposit_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryDeposit_filter>;
 };
 
 
@@ -3594,12 +3594,12 @@ export type ethereumPrimaryMarketdepositsArgs = {
  * e.g. there may be related markets as they only act as collateral for other markets.
  *
  */
-export type ethereumPrimaryMarketwithdrawsArgs = {
+export type gnosisPrimaryMarketwithdrawsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryWithdraw_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryWithdraw_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryWithdraw_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryWithdraw_filter>;
 };
 
 
@@ -3609,12 +3609,12 @@ export type ethereumPrimaryMarketwithdrawsArgs = {
  * e.g. there may be related markets as they only act as collateral for other markets.
  *
  */
-export type ethereumPrimaryMarketborrowsArgs = {
+export type gnosisPrimaryMarketborrowsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryBorrow_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryBorrow_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryBorrow_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryBorrow_filter>;
 };
 
 
@@ -3624,12 +3624,12 @@ export type ethereumPrimaryMarketborrowsArgs = {
  * e.g. there may be related markets as they only act as collateral for other markets.
  *
  */
-export type ethereumPrimaryMarketrepaysArgs = {
+export type gnosisPrimaryMarketrepaysArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryRepay_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryRepay_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryRepay_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryRepay_filter>;
 };
 
 
@@ -3639,12 +3639,12 @@ export type ethereumPrimaryMarketrepaysArgs = {
  * e.g. there may be related markets as they only act as collateral for other markets.
  *
  */
-export type ethereumPrimaryMarketliquidatesArgs = {
+export type gnosisPrimaryMarketliquidatesArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryLiquidate_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryLiquidate_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryLiquidate_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryLiquidate_filter>;
 };
 
 
@@ -3654,12 +3654,12 @@ export type ethereumPrimaryMarketliquidatesArgs = {
  * e.g. there may be related markets as they only act as collateral for other markets.
  *
  */
-export type ethereumPrimaryMarkettransfersArgs = {
+export type gnosisPrimaryMarkettransfersArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryTransfer_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryTransfer_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryTransfer_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryTransfer_filter>;
 };
 
 
@@ -3669,53 +3669,53 @@ export type ethereumPrimaryMarkettransfersArgs = {
  * e.g. there may be related markets as they only act as collateral for other markets.
  *
  */
-export type ethereumPrimaryMarketflashloansArgs = {
+export type gnosisPrimaryMarketflashloansArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryFlashloan_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryFlashloan_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryFlashloan_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryFlashloan_filter>;
 };
 
-export type ethereumPrimaryMarketDailySnapshot = {
+export type gnosisPrimaryMarketDailySnapshot = {
   /**  { Smart contract address of the market }{ # of days since Unix epoch time }  */
-  id: Scalars['ethereumPrimaryBytes'];
+  id: Scalars['gnosisPrimaryBytes'];
   /**  Number of days since Unix epoch time  */
   days: Scalars['Int'];
   /**  The protocol this snapshot belongs to  */
-  protocol: ethereumPrimaryLendingProtocol;
+  protocol: gnosisPrimaryLendingProtocol;
   /**  The pool this snapshot belongs to  */
-  market: ethereumPrimaryMarket;
+  market: gnosisPrimaryMarket;
   /**  Block number of this snapshot  */
   blockNumber: Scalars['BigInt'];
   /**  Timestamp of this snapshot  */
   timestamp: Scalars['BigInt'];
   /**  A unique identifier that can relate multiple markets together. e.g. a common address that they all share. This is useful for markets with multiple input tokens  */
-  relation?: Maybe<Scalars['ethereumPrimaryBytes']>;
+  relation?: Maybe<Scalars['gnosisPrimaryBytes']>;
   /**  Additional tokens that are given as reward for position in a protocol, usually in liquidity mining programs. e.g. SUSHI in the Onsen program, MATIC for Aave Polygon  */
-  rewardTokens?: Maybe<Array<ethereumPrimaryRewardToken>>;
+  rewardTokens?: Maybe<Array<gnosisPrimaryRewardToken>>;
   /**  Per-block reward token emission as of the current block normalized to a day, in token's native amount. This should be ideally calculated as the theoretical rate instead of the realized amount.  */
   rewardTokenEmissionsAmount?: Maybe<Array<Scalars['BigInt']>>;
   /**  Per-block reward token emission as of the current block normalized to a day, in USD value. This should be ideally calculated as the theoretical rate instead of the realized amount.  */
-  rewardTokenEmissionsUSD?: Maybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  rewardTokenEmissionsUSD?: Maybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   /**  Total supply of output tokens that are staked. Used to calculate reward APY.  */
   stakedOutputTokenAmount?: Maybe<Scalars['BigInt']>;
   /**  Amount of input token in the market (same order as inputTokens)  */
   inputTokenBalance: Scalars['BigInt'];
   /**  Prices in USD of the input token (same order as inputTokens)  */
-  inputTokenPriceUSD: Scalars['ethereumPrimaryBigDecimal'];
+  inputTokenPriceUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Total supply of output token (same order as outputTokens)  */
   outputTokenSupply?: Maybe<Scalars['BigInt']>;
   /**  Prices in USD of the output token (same order as outputTokens)  */
-  outputTokenPriceUSD?: Maybe<Scalars['ethereumPrimaryBigDecimal']>;
+  outputTokenPriceUSD?: Maybe<Scalars['gnosisPrimaryBigDecimal']>;
   /**  Amount of input token per full share of output token. Only applies when the output token exists (note this is a ratio and not a percentage value, i.e. 1.05 instead of 105%)  */
-  exchangeRate?: Maybe<Scalars['ethereumPrimaryBigDecimal']>;
+  exchangeRate?: Maybe<Scalars['gnosisPrimaryBigDecimal']>;
   /**  All interest rates for this input token. Should be in APR format  */
-  rates?: Maybe<Array<ethereumPrimaryInterestRate>>;
+  rates?: Maybe<Array<gnosisPrimaryInterestRate>>;
   /**  Total amount of reserves (in USD)  */
-  reserves?: Maybe<Scalars['ethereumPrimaryBigDecimal']>;
+  reserves?: Maybe<Scalars['gnosisPrimaryBigDecimal']>;
   /**  The amount of revenue that is converted to reserves at the current time. 20% reserve factor should be in format 0.20  */
-  reserveFactor?: Maybe<Scalars['ethereumPrimaryBigDecimal']>;
+  reserveFactor?: Maybe<Scalars['gnosisPrimaryBigDecimal']>;
   /**  Amount of input tokens borrowed in this market using variable interest rates (in native terms)  */
   variableBorrowedTokenBalance?: Maybe<Scalars['BigInt']>;
   /**  Amount of input tokens borrowed in this market using stable interest rates (in native terms)  */
@@ -3725,63 +3725,63 @@ export type ethereumPrimaryMarketDailySnapshot = {
   /**  Allowed limit for how much of the underlying asset can be borrowed from this market.  */
   borrowCap?: Maybe<Scalars['BigInt']>;
   /**  Current TVL (Total Value Locked) of this market  */
-  totalValueLockedUSD: Scalars['ethereumPrimaryBigDecimal'];
+  totalValueLockedUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  All revenue generated by the market, accrued to the supply side.  */
-  cumulativeSupplySideRevenueUSD: Scalars['ethereumPrimaryBigDecimal'];
+  cumulativeSupplySideRevenueUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Daily revenue generated by the market, accrued to the supply side.  */
-  dailySupplySideRevenueUSD: Scalars['ethereumPrimaryBigDecimal'];
+  dailySupplySideRevenueUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  All revenue generated by the market, accrued to the protocol.  */
-  cumulativeProtocolSideRevenueUSD: Scalars['ethereumPrimaryBigDecimal'];
+  cumulativeProtocolSideRevenueUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Daily revenue generated by the market, accrued to the protocol.  */
-  dailyProtocolSideRevenueUSD: Scalars['ethereumPrimaryBigDecimal'];
+  dailyProtocolSideRevenueUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  All revenue generated by the market.  */
-  cumulativeTotalRevenueUSD: Scalars['ethereumPrimaryBigDecimal'];
+  cumulativeTotalRevenueUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Daily revenue generated by the market.  */
-  dailyTotalRevenueUSD: Scalars['ethereumPrimaryBigDecimal'];
+  dailyTotalRevenueUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Details of revenue sources and amounts  */
-  revenueDetail?: Maybe<ethereumPrimaryRevenueDetail>;
+  revenueDetail?: Maybe<gnosisPrimaryRevenueDetail>;
   /**  Current balance of all deposited assets (not historical cumulative), in USD. Same as pool TVL.  */
-  totalDepositBalanceUSD: Scalars['ethereumPrimaryBigDecimal'];
+  totalDepositBalanceUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Sum of all deposits made on a given day, in USD  */
-  dailyDepositUSD: Scalars['ethereumPrimaryBigDecimal'];
+  dailyDepositUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Sum of all the deposits on a given day, in native units  */
   dailyNativeDeposit: Scalars['BigInt'];
   /**  Sum of all historical deposits in USD (only considers deposits and not withdrawals)  */
-  cumulativeDepositUSD: Scalars['ethereumPrimaryBigDecimal'];
+  cumulativeDepositUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Current balance of all borrowed/minted assets (not historical cumulative), in USD.  */
-  totalBorrowBalanceUSD: Scalars['ethereumPrimaryBigDecimal'];
+  totalBorrowBalanceUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Sum of all borrows/mints made on a given day, in USD  */
-  dailyBorrowUSD: Scalars['ethereumPrimaryBigDecimal'];
+  dailyBorrowUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Sum of all the borrows on a given day, in native units  */
   dailyNativeBorrow: Scalars['BigInt'];
   /**  Sum of all historical borrows/mints in USD (i.e. total loan origination)  */
-  cumulativeBorrowUSD: Scalars['ethereumPrimaryBigDecimal'];
+  cumulativeBorrowUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Total assets liquidated on a given day, in USD.  */
-  dailyLiquidateUSD: Scalars['ethereumPrimaryBigDecimal'];
+  dailyLiquidateUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Total assets liquidated on a given day, in native units.  */
   dailyNativeLiquidate: Scalars['BigInt'];
   /**  Sum of all historical liquidations in USD  */
-  cumulativeLiquidateUSD: Scalars['ethereumPrimaryBigDecimal'];
+  cumulativeLiquidateUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Total assets withdrawn on a given day, in USD.  */
-  dailyWithdrawUSD: Scalars['ethereumPrimaryBigDecimal'];
+  dailyWithdrawUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Total assets withdrawn on a given day, in native units.  */
   dailyNativeWithdraw: Scalars['BigInt'];
   /**  Total assets repaid on a given day, in USD.  */
-  dailyRepayUSD: Scalars['ethereumPrimaryBigDecimal'];
+  dailyRepayUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Total assets repaid on a given day, in native units.  */
   dailyNativeRepay: Scalars['BigInt'];
   /**  Total assets transferred on a given day, in USD.  */
-  dailyTransferUSD: Scalars['ethereumPrimaryBigDecimal'];
+  dailyTransferUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Total assets transferred on a given day, in native units.  */
   dailyNativeTransfer: Scalars['BigInt'];
   /**  Sum of all historical transfers in USD  */
-  cumulativeTransferUSD: Scalars['ethereumPrimaryBigDecimal'];
+  cumulativeTransferUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Total assets flashloaned on a given day, in USD.  */
-  dailyFlashloanUSD: Scalars['ethereumPrimaryBigDecimal'];
+  dailyFlashloanUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Total assets flashloaned on a given day, in native units.  */
   dailyNativeFlashloan: Scalars['BigInt'];
   /**  Sum of all historical flashloans in USD  */
-  cumulativeFlashloanUSD: Scalars['ethereumPrimaryBigDecimal'];
+  cumulativeFlashloanUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Number of unique daily active users. e.g. accounts that spent gas to interact with this market  */
   dailyActiveUsers: Scalars['Int'];
   /**  Number of unique daily depositors  */
@@ -3827,34 +3827,34 @@ export type ethereumPrimaryMarketDailySnapshot = {
 };
 
 
-export type ethereumPrimaryMarketDailySnapshotrewardTokensArgs = {
+export type gnosisPrimaryMarketDailySnapshotrewardTokensArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryRewardToken_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryRewardToken_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryRewardToken_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryRewardToken_filter>;
 };
 
 
-export type ethereumPrimaryMarketDailySnapshotratesArgs = {
+export type gnosisPrimaryMarketDailySnapshotratesArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryInterestRate_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryInterestRate_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryInterestRate_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryInterestRate_filter>;
 };
 
-export type ethereumPrimaryMarketDailySnapshot_filter = {
-  id?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
+export type gnosisPrimaryMarketDailySnapshot_filter = {
+  id?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
   days?: InputMaybe<Scalars['Int']>;
   days_not?: InputMaybe<Scalars['Int']>;
   days_gt?: InputMaybe<Scalars['Int']>;
@@ -3883,7 +3883,7 @@ export type ethereumPrimaryMarketDailySnapshot_filter = {
   protocol_ends_with_nocase?: InputMaybe<Scalars['String']>;
   protocol_not_ends_with?: InputMaybe<Scalars['String']>;
   protocol_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  protocol_?: InputMaybe<ethereumPrimaryLendingProtocol_filter>;
+  protocol_?: InputMaybe<gnosisPrimaryLendingProtocol_filter>;
   market?: InputMaybe<Scalars['String']>;
   market_not?: InputMaybe<Scalars['String']>;
   market_gt?: InputMaybe<Scalars['String']>;
@@ -3904,7 +3904,7 @@ export type ethereumPrimaryMarketDailySnapshot_filter = {
   market_ends_with_nocase?: InputMaybe<Scalars['String']>;
   market_not_ends_with?: InputMaybe<Scalars['String']>;
   market_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  market_?: InputMaybe<ethereumPrimaryMarket_filter>;
+  market_?: InputMaybe<gnosisPrimaryMarket_filter>;
   blockNumber?: InputMaybe<Scalars['BigInt']>;
   blockNumber_not?: InputMaybe<Scalars['BigInt']>;
   blockNumber_gt?: InputMaybe<Scalars['BigInt']>;
@@ -3921,35 +3921,35 @@ export type ethereumPrimaryMarketDailySnapshot_filter = {
   timestamp_lte?: InputMaybe<Scalars['BigInt']>;
   timestamp_in?: InputMaybe<Array<Scalars['BigInt']>>;
   timestamp_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  relation?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  relation_not?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  relation_gt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  relation_lt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  relation_gte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  relation_lte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  relation_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  relation_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  relation_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  relation_not_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
+  relation?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  relation_not?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  relation_gt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  relation_lt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  relation_gte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  relation_lte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  relation_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  relation_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  relation_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  relation_not_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
   rewardTokens?: InputMaybe<Array<Scalars['String']>>;
   rewardTokens_not?: InputMaybe<Array<Scalars['String']>>;
   rewardTokens_contains?: InputMaybe<Array<Scalars['String']>>;
   rewardTokens_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
   rewardTokens_not_contains?: InputMaybe<Array<Scalars['String']>>;
   rewardTokens_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  rewardTokens_?: InputMaybe<ethereumPrimaryRewardToken_filter>;
+  rewardTokens_?: InputMaybe<gnosisPrimaryRewardToken_filter>;
   rewardTokenEmissionsAmount?: InputMaybe<Array<Scalars['BigInt']>>;
   rewardTokenEmissionsAmount_not?: InputMaybe<Array<Scalars['BigInt']>>;
   rewardTokenEmissionsAmount_contains?: InputMaybe<Array<Scalars['BigInt']>>;
   rewardTokenEmissionsAmount_contains_nocase?: InputMaybe<Array<Scalars['BigInt']>>;
   rewardTokenEmissionsAmount_not_contains?: InputMaybe<Array<Scalars['BigInt']>>;
   rewardTokenEmissionsAmount_not_contains_nocase?: InputMaybe<Array<Scalars['BigInt']>>;
-  rewardTokenEmissionsUSD?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  rewardTokenEmissionsUSD_not?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  rewardTokenEmissionsUSD_contains?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  rewardTokenEmissionsUSD_contains_nocase?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  rewardTokenEmissionsUSD_not_contains?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  rewardTokenEmissionsUSD_not_contains_nocase?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  rewardTokenEmissionsUSD?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  rewardTokenEmissionsUSD_not?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  rewardTokenEmissionsUSD_contains?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  rewardTokenEmissionsUSD_contains_nocase?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  rewardTokenEmissionsUSD_not_contains?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  rewardTokenEmissionsUSD_not_contains_nocase?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   stakedOutputTokenAmount?: InputMaybe<Scalars['BigInt']>;
   stakedOutputTokenAmount_not?: InputMaybe<Scalars['BigInt']>;
   stakedOutputTokenAmount_gt?: InputMaybe<Scalars['BigInt']>;
@@ -3966,14 +3966,14 @@ export type ethereumPrimaryMarketDailySnapshot_filter = {
   inputTokenBalance_lte?: InputMaybe<Scalars['BigInt']>;
   inputTokenBalance_in?: InputMaybe<Array<Scalars['BigInt']>>;
   inputTokenBalance_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  inputTokenPriceUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  inputTokenPriceUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  inputTokenPriceUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  inputTokenPriceUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  inputTokenPriceUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  inputTokenPriceUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  inputTokenPriceUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  inputTokenPriceUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  inputTokenPriceUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  inputTokenPriceUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  inputTokenPriceUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  inputTokenPriceUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  inputTokenPriceUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  inputTokenPriceUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  inputTokenPriceUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  inputTokenPriceUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   outputTokenSupply?: InputMaybe<Scalars['BigInt']>;
   outputTokenSupply_not?: InputMaybe<Scalars['BigInt']>;
   outputTokenSupply_gt?: InputMaybe<Scalars['BigInt']>;
@@ -3982,45 +3982,45 @@ export type ethereumPrimaryMarketDailySnapshot_filter = {
   outputTokenSupply_lte?: InputMaybe<Scalars['BigInt']>;
   outputTokenSupply_in?: InputMaybe<Array<Scalars['BigInt']>>;
   outputTokenSupply_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  outputTokenPriceUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  outputTokenPriceUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  outputTokenPriceUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  outputTokenPriceUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  outputTokenPriceUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  outputTokenPriceUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  outputTokenPriceUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  outputTokenPriceUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  exchangeRate?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  exchangeRate_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  exchangeRate_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  exchangeRate_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  exchangeRate_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  exchangeRate_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  exchangeRate_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  exchangeRate_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  outputTokenPriceUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  outputTokenPriceUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  outputTokenPriceUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  outputTokenPriceUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  outputTokenPriceUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  outputTokenPriceUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  outputTokenPriceUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  outputTokenPriceUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  exchangeRate?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  exchangeRate_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  exchangeRate_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  exchangeRate_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  exchangeRate_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  exchangeRate_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  exchangeRate_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  exchangeRate_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   rates?: InputMaybe<Array<Scalars['String']>>;
   rates_not?: InputMaybe<Array<Scalars['String']>>;
   rates_contains?: InputMaybe<Array<Scalars['String']>>;
   rates_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
   rates_not_contains?: InputMaybe<Array<Scalars['String']>>;
   rates_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  rates_?: InputMaybe<ethereumPrimaryInterestRate_filter>;
-  reserves?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  reserves_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  reserves_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  reserves_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  reserves_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  reserves_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  reserves_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  reserves_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  reserveFactor?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  reserveFactor_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  reserveFactor_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  reserveFactor_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  reserveFactor_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  reserveFactor_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  reserveFactor_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  reserveFactor_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  rates_?: InputMaybe<gnosisPrimaryInterestRate_filter>;
+  reserves?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  reserves_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  reserves_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  reserves_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  reserves_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  reserves_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  reserves_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  reserves_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  reserveFactor?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  reserveFactor_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  reserveFactor_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  reserveFactor_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  reserveFactor_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  reserveFactor_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  reserveFactor_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  reserveFactor_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   variableBorrowedTokenBalance?: InputMaybe<Scalars['BigInt']>;
   variableBorrowedTokenBalance_not?: InputMaybe<Scalars['BigInt']>;
   variableBorrowedTokenBalance_gt?: InputMaybe<Scalars['BigInt']>;
@@ -4053,62 +4053,62 @@ export type ethereumPrimaryMarketDailySnapshot_filter = {
   borrowCap_lte?: InputMaybe<Scalars['BigInt']>;
   borrowCap_in?: InputMaybe<Array<Scalars['BigInt']>>;
   borrowCap_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  totalValueLockedUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalValueLockedUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalValueLockedUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalValueLockedUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalValueLockedUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalValueLockedUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalValueLockedUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  totalValueLockedUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeSupplySideRevenueUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeSupplySideRevenueUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeSupplySideRevenueUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeSupplySideRevenueUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeSupplySideRevenueUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeSupplySideRevenueUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeSupplySideRevenueUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeSupplySideRevenueUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  dailySupplySideRevenueUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailySupplySideRevenueUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailySupplySideRevenueUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailySupplySideRevenueUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailySupplySideRevenueUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailySupplySideRevenueUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailySupplySideRevenueUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  dailySupplySideRevenueUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeProtocolSideRevenueUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeProtocolSideRevenueUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeProtocolSideRevenueUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeProtocolSideRevenueUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeProtocolSideRevenueUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeProtocolSideRevenueUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeProtocolSideRevenueUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeProtocolSideRevenueUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  dailyProtocolSideRevenueUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyProtocolSideRevenueUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyProtocolSideRevenueUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyProtocolSideRevenueUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyProtocolSideRevenueUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyProtocolSideRevenueUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyProtocolSideRevenueUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  dailyProtocolSideRevenueUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeTotalRevenueUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTotalRevenueUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTotalRevenueUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTotalRevenueUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTotalRevenueUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTotalRevenueUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTotalRevenueUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeTotalRevenueUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  dailyTotalRevenueUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyTotalRevenueUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyTotalRevenueUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyTotalRevenueUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyTotalRevenueUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyTotalRevenueUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyTotalRevenueUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  dailyTotalRevenueUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  totalValueLockedUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalValueLockedUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalValueLockedUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalValueLockedUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalValueLockedUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalValueLockedUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalValueLockedUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  totalValueLockedUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeSupplySideRevenueUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeSupplySideRevenueUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeSupplySideRevenueUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeSupplySideRevenueUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeSupplySideRevenueUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeSupplySideRevenueUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeSupplySideRevenueUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeSupplySideRevenueUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  dailySupplySideRevenueUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailySupplySideRevenueUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailySupplySideRevenueUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailySupplySideRevenueUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailySupplySideRevenueUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailySupplySideRevenueUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailySupplySideRevenueUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  dailySupplySideRevenueUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeProtocolSideRevenueUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeProtocolSideRevenueUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeProtocolSideRevenueUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeProtocolSideRevenueUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeProtocolSideRevenueUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeProtocolSideRevenueUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeProtocolSideRevenueUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeProtocolSideRevenueUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  dailyProtocolSideRevenueUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyProtocolSideRevenueUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyProtocolSideRevenueUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyProtocolSideRevenueUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyProtocolSideRevenueUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyProtocolSideRevenueUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyProtocolSideRevenueUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  dailyProtocolSideRevenueUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeTotalRevenueUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTotalRevenueUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTotalRevenueUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTotalRevenueUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTotalRevenueUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTotalRevenueUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTotalRevenueUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeTotalRevenueUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  dailyTotalRevenueUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyTotalRevenueUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyTotalRevenueUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyTotalRevenueUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyTotalRevenueUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyTotalRevenueUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyTotalRevenueUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  dailyTotalRevenueUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   revenueDetail?: InputMaybe<Scalars['String']>;
   revenueDetail_not?: InputMaybe<Scalars['String']>;
   revenueDetail_gt?: InputMaybe<Scalars['String']>;
@@ -4129,23 +4129,23 @@ export type ethereumPrimaryMarketDailySnapshot_filter = {
   revenueDetail_ends_with_nocase?: InputMaybe<Scalars['String']>;
   revenueDetail_not_ends_with?: InputMaybe<Scalars['String']>;
   revenueDetail_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  revenueDetail_?: InputMaybe<ethereumPrimaryRevenueDetail_filter>;
-  totalDepositBalanceUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalDepositBalanceUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalDepositBalanceUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalDepositBalanceUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalDepositBalanceUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalDepositBalanceUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalDepositBalanceUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  totalDepositBalanceUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  dailyDepositUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyDepositUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyDepositUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyDepositUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyDepositUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyDepositUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyDepositUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  dailyDepositUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  revenueDetail_?: InputMaybe<gnosisPrimaryRevenueDetail_filter>;
+  totalDepositBalanceUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalDepositBalanceUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalDepositBalanceUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalDepositBalanceUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalDepositBalanceUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalDepositBalanceUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalDepositBalanceUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  totalDepositBalanceUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  dailyDepositUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyDepositUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyDepositUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyDepositUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyDepositUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyDepositUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyDepositUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  dailyDepositUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   dailyNativeDeposit?: InputMaybe<Scalars['BigInt']>;
   dailyNativeDeposit_not?: InputMaybe<Scalars['BigInt']>;
   dailyNativeDeposit_gt?: InputMaybe<Scalars['BigInt']>;
@@ -4154,30 +4154,30 @@ export type ethereumPrimaryMarketDailySnapshot_filter = {
   dailyNativeDeposit_lte?: InputMaybe<Scalars['BigInt']>;
   dailyNativeDeposit_in?: InputMaybe<Array<Scalars['BigInt']>>;
   dailyNativeDeposit_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  cumulativeDepositUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeDepositUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeDepositUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeDepositUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeDepositUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeDepositUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeDepositUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeDepositUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  totalBorrowBalanceUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalBorrowBalanceUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalBorrowBalanceUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalBorrowBalanceUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalBorrowBalanceUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalBorrowBalanceUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalBorrowBalanceUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  totalBorrowBalanceUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  dailyBorrowUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyBorrowUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyBorrowUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyBorrowUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyBorrowUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyBorrowUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyBorrowUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  dailyBorrowUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  cumulativeDepositUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeDepositUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeDepositUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeDepositUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeDepositUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeDepositUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeDepositUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeDepositUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  totalBorrowBalanceUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalBorrowBalanceUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalBorrowBalanceUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalBorrowBalanceUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalBorrowBalanceUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalBorrowBalanceUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalBorrowBalanceUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  totalBorrowBalanceUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  dailyBorrowUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyBorrowUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyBorrowUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyBorrowUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyBorrowUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyBorrowUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyBorrowUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  dailyBorrowUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   dailyNativeBorrow?: InputMaybe<Scalars['BigInt']>;
   dailyNativeBorrow_not?: InputMaybe<Scalars['BigInt']>;
   dailyNativeBorrow_gt?: InputMaybe<Scalars['BigInt']>;
@@ -4186,22 +4186,22 @@ export type ethereumPrimaryMarketDailySnapshot_filter = {
   dailyNativeBorrow_lte?: InputMaybe<Scalars['BigInt']>;
   dailyNativeBorrow_in?: InputMaybe<Array<Scalars['BigInt']>>;
   dailyNativeBorrow_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  cumulativeBorrowUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeBorrowUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeBorrowUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeBorrowUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeBorrowUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeBorrowUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeBorrowUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeBorrowUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  dailyLiquidateUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyLiquidateUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyLiquidateUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyLiquidateUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyLiquidateUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyLiquidateUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyLiquidateUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  dailyLiquidateUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  cumulativeBorrowUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeBorrowUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeBorrowUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeBorrowUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeBorrowUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeBorrowUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeBorrowUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeBorrowUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  dailyLiquidateUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyLiquidateUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyLiquidateUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyLiquidateUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyLiquidateUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyLiquidateUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyLiquidateUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  dailyLiquidateUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   dailyNativeLiquidate?: InputMaybe<Scalars['BigInt']>;
   dailyNativeLiquidate_not?: InputMaybe<Scalars['BigInt']>;
   dailyNativeLiquidate_gt?: InputMaybe<Scalars['BigInt']>;
@@ -4210,22 +4210,22 @@ export type ethereumPrimaryMarketDailySnapshot_filter = {
   dailyNativeLiquidate_lte?: InputMaybe<Scalars['BigInt']>;
   dailyNativeLiquidate_in?: InputMaybe<Array<Scalars['BigInt']>>;
   dailyNativeLiquidate_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  cumulativeLiquidateUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeLiquidateUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeLiquidateUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeLiquidateUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeLiquidateUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeLiquidateUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeLiquidateUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeLiquidateUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  dailyWithdrawUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyWithdrawUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyWithdrawUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyWithdrawUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyWithdrawUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyWithdrawUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyWithdrawUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  dailyWithdrawUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  cumulativeLiquidateUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeLiquidateUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeLiquidateUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeLiquidateUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeLiquidateUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeLiquidateUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeLiquidateUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeLiquidateUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  dailyWithdrawUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyWithdrawUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyWithdrawUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyWithdrawUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyWithdrawUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyWithdrawUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyWithdrawUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  dailyWithdrawUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   dailyNativeWithdraw?: InputMaybe<Scalars['BigInt']>;
   dailyNativeWithdraw_not?: InputMaybe<Scalars['BigInt']>;
   dailyNativeWithdraw_gt?: InputMaybe<Scalars['BigInt']>;
@@ -4234,14 +4234,14 @@ export type ethereumPrimaryMarketDailySnapshot_filter = {
   dailyNativeWithdraw_lte?: InputMaybe<Scalars['BigInt']>;
   dailyNativeWithdraw_in?: InputMaybe<Array<Scalars['BigInt']>>;
   dailyNativeWithdraw_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  dailyRepayUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyRepayUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyRepayUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyRepayUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyRepayUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyRepayUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyRepayUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  dailyRepayUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  dailyRepayUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyRepayUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyRepayUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyRepayUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyRepayUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyRepayUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyRepayUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  dailyRepayUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   dailyNativeRepay?: InputMaybe<Scalars['BigInt']>;
   dailyNativeRepay_not?: InputMaybe<Scalars['BigInt']>;
   dailyNativeRepay_gt?: InputMaybe<Scalars['BigInt']>;
@@ -4250,14 +4250,14 @@ export type ethereumPrimaryMarketDailySnapshot_filter = {
   dailyNativeRepay_lte?: InputMaybe<Scalars['BigInt']>;
   dailyNativeRepay_in?: InputMaybe<Array<Scalars['BigInt']>>;
   dailyNativeRepay_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  dailyTransferUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyTransferUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyTransferUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyTransferUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyTransferUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyTransferUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyTransferUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  dailyTransferUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  dailyTransferUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyTransferUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyTransferUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyTransferUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyTransferUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyTransferUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyTransferUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  dailyTransferUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   dailyNativeTransfer?: InputMaybe<Scalars['BigInt']>;
   dailyNativeTransfer_not?: InputMaybe<Scalars['BigInt']>;
   dailyNativeTransfer_gt?: InputMaybe<Scalars['BigInt']>;
@@ -4266,22 +4266,22 @@ export type ethereumPrimaryMarketDailySnapshot_filter = {
   dailyNativeTransfer_lte?: InputMaybe<Scalars['BigInt']>;
   dailyNativeTransfer_in?: InputMaybe<Array<Scalars['BigInt']>>;
   dailyNativeTransfer_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  cumulativeTransferUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTransferUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTransferUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTransferUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTransferUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTransferUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTransferUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeTransferUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  dailyFlashloanUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyFlashloanUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyFlashloanUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyFlashloanUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyFlashloanUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyFlashloanUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  dailyFlashloanUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  dailyFlashloanUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  cumulativeTransferUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTransferUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTransferUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTransferUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTransferUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTransferUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTransferUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeTransferUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  dailyFlashloanUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyFlashloanUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyFlashloanUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyFlashloanUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyFlashloanUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyFlashloanUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  dailyFlashloanUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  dailyFlashloanUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   dailyNativeFlashloan?: InputMaybe<Scalars['BigInt']>;
   dailyNativeFlashloan_not?: InputMaybe<Scalars['BigInt']>;
   dailyNativeFlashloan_gt?: InputMaybe<Scalars['BigInt']>;
@@ -4290,14 +4290,14 @@ export type ethereumPrimaryMarketDailySnapshot_filter = {
   dailyNativeFlashloan_lte?: InputMaybe<Scalars['BigInt']>;
   dailyNativeFlashloan_in?: InputMaybe<Array<Scalars['BigInt']>>;
   dailyNativeFlashloan_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  cumulativeFlashloanUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeFlashloanUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeFlashloanUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeFlashloanUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeFlashloanUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeFlashloanUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeFlashloanUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeFlashloanUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  cumulativeFlashloanUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeFlashloanUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeFlashloanUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeFlashloanUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeFlashloanUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeFlashloanUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeFlashloanUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeFlashloanUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   dailyActiveUsers?: InputMaybe<Scalars['Int']>;
   dailyActiveUsers_not?: InputMaybe<Scalars['Int']>;
   dailyActiveUsers_gt?: InputMaybe<Scalars['Int']>;
@@ -4467,12 +4467,12 @@ export type ethereumPrimaryMarketDailySnapshot_filter = {
   dailyActiveBorrowingPositionCount_in?: InputMaybe<Array<Scalars['Int']>>;
   dailyActiveBorrowingPositionCount_not_in?: InputMaybe<Array<Scalars['Int']>>;
   /** Filter for the block changed event. */
-  _change_block?: InputMaybe<ethereumPrimaryBlockChangedFilter>;
-  and?: InputMaybe<Array<InputMaybe<ethereumPrimaryMarketDailySnapshot_filter>>>;
-  or?: InputMaybe<Array<InputMaybe<ethereumPrimaryMarketDailySnapshot_filter>>>;
+  _change_block?: InputMaybe<gnosisPrimaryBlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<gnosisPrimaryMarketDailySnapshot_filter>>>;
+  or?: InputMaybe<Array<InputMaybe<gnosisPrimaryMarketDailySnapshot_filter>>>;
 };
 
-export type ethereumPrimaryMarketDailySnapshot_orderBy =
+export type gnosisPrimaryMarketDailySnapshot_orderBy =
   | 'id'
   | 'days'
   | 'protocol'
@@ -4652,116 +4652,116 @@ export type ethereumPrimaryMarketDailySnapshot_orderBy =
   | 'borrowingPositionCount'
   | 'dailyActiveBorrowingPositionCount';
 
-export type ethereumPrimaryMarketHourlySnapshot = {
+export type gnosisPrimaryMarketHourlySnapshot = {
   /**  { Smart contract address of the market }{ # of hours since Unix epoch time }  */
-  id: Scalars['ethereumPrimaryBytes'];
+  id: Scalars['gnosisPrimaryBytes'];
   /**  Number of hours since Unix epoch time  */
   hours: Scalars['Int'];
   /**  The protocol this snapshot belongs to  */
-  protocol: ethereumPrimaryLendingProtocol;
+  protocol: gnosisPrimaryLendingProtocol;
   /**  The pool this snapshot belongs to  */
-  market: ethereumPrimaryMarket;
+  market: gnosisPrimaryMarket;
   /**  Block number of this snapshot  */
   blockNumber: Scalars['BigInt'];
   /**  Timestamp of this snapshot  */
   timestamp: Scalars['BigInt'];
   /**  A unique identifier that can relate multiple markets together. e.g. a common address that they all share. This is useful for markets with multiple input tokens  */
-  relation?: Maybe<Scalars['ethereumPrimaryBytes']>;
+  relation?: Maybe<Scalars['gnosisPrimaryBytes']>;
   /**  Additional tokens that are given as reward for position in a protocol, usually in liquidity mining programs. e.g. SUSHI in the Onsen program, MATIC for Aave Polygon  */
-  rewardTokens?: Maybe<Array<ethereumPrimaryRewardToken>>;
+  rewardTokens?: Maybe<Array<gnosisPrimaryRewardToken>>;
   /**  Per-block reward token emission as of the current block normalized to a day, in token's native amount. This should be ideally calculated as the theoretical rate instead of the realized amount.  */
   rewardTokenEmissionsAmount?: Maybe<Array<Scalars['BigInt']>>;
   /**  Per-block reward token emission as of the current block normalized to a day, in USD value. This should be ideally calculated as the theoretical rate instead of the realized amount.  */
-  rewardTokenEmissionsUSD?: Maybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  rewardTokenEmissionsUSD?: Maybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   /**  Total supply of output tokens that are staked. Used to calculate reward APY.  */
   stakedOutputTokenAmount?: Maybe<Scalars['BigInt']>;
   /**  Amount of input token in the market (same order as inputTokens)  */
   inputTokenBalance: Scalars['BigInt'];
   /**  Prices in USD of the input token (same order as inputTokens)  */
-  inputTokenPriceUSD: Scalars['ethereumPrimaryBigDecimal'];
+  inputTokenPriceUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Total supply of output token (same order as outputTokens)  */
   outputTokenSupply?: Maybe<Scalars['BigInt']>;
   /**  Prices in USD of the output token (same order as outputTokens)  */
-  outputTokenPriceUSD?: Maybe<Scalars['ethereumPrimaryBigDecimal']>;
+  outputTokenPriceUSD?: Maybe<Scalars['gnosisPrimaryBigDecimal']>;
   /**  Amount of input token per full share of output token. Only applies when the output token exists (note this is a ratio and not a percentage value, i.e. 1.05 instead of 105%)  */
-  exchangeRate?: Maybe<Scalars['ethereumPrimaryBigDecimal']>;
+  exchangeRate?: Maybe<Scalars['gnosisPrimaryBigDecimal']>;
   /**  All interest rates for this input token. Should be in APR format  */
-  rates?: Maybe<Array<ethereumPrimaryInterestRate>>;
+  rates?: Maybe<Array<gnosisPrimaryInterestRate>>;
   /**  Total amount of reserves (in USD)  */
-  reserves?: Maybe<Scalars['ethereumPrimaryBigDecimal']>;
+  reserves?: Maybe<Scalars['gnosisPrimaryBigDecimal']>;
   /**  Amount of input tokens borrowed in this market using variable interest rates (in native terms)  */
   variableBorrowedTokenBalance?: Maybe<Scalars['BigInt']>;
   /**  Amount of input tokens borrowed in this market using stable interest rates (in native terms)  */
   stableBorrowedTokenBalance?: Maybe<Scalars['BigInt']>;
   /**  Current TVL (Total Value Locked) of this market  */
-  totalValueLockedUSD: Scalars['ethereumPrimaryBigDecimal'];
+  totalValueLockedUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  All revenue generated by the market, accrued to the supply side.  */
-  cumulativeSupplySideRevenueUSD: Scalars['ethereumPrimaryBigDecimal'];
+  cumulativeSupplySideRevenueUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Hourly revenue generated by the market, accrued to the supply side.  */
-  hourlySupplySideRevenueUSD: Scalars['ethereumPrimaryBigDecimal'];
+  hourlySupplySideRevenueUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  All revenue generated by the market, accrued to the protocol.  */
-  cumulativeProtocolSideRevenueUSD: Scalars['ethereumPrimaryBigDecimal'];
+  cumulativeProtocolSideRevenueUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Hourly revenue generated by the market, accrued to the protocol.  */
-  hourlyProtocolSideRevenueUSD: Scalars['ethereumPrimaryBigDecimal'];
+  hourlyProtocolSideRevenueUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  All revenue generated by the market.  */
-  cumulativeTotalRevenueUSD: Scalars['ethereumPrimaryBigDecimal'];
+  cumulativeTotalRevenueUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Hourly revenue generated by the market.  */
-  hourlyTotalRevenueUSD: Scalars['ethereumPrimaryBigDecimal'];
+  hourlyTotalRevenueUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Current balance of all deposited assets (not historical cumulative), in USD. Same as pool TVL.  */
-  totalDepositBalanceUSD: Scalars['ethereumPrimaryBigDecimal'];
+  totalDepositBalanceUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Sum of all deposits made in a given hour, in USD  */
-  hourlyDepositUSD: Scalars['ethereumPrimaryBigDecimal'];
+  hourlyDepositUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Sum of all historical deposits in USD (only considers deposits and not withdrawals)  */
-  cumulativeDepositUSD: Scalars['ethereumPrimaryBigDecimal'];
+  cumulativeDepositUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Current balance of all borrowed/minted assets (not historical cumulative), in USD.  */
-  totalBorrowBalanceUSD: Scalars['ethereumPrimaryBigDecimal'];
+  totalBorrowBalanceUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Sum of all borrows/mints made in a given hour, in USD  */
-  hourlyBorrowUSD: Scalars['ethereumPrimaryBigDecimal'];
+  hourlyBorrowUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Sum of all historical borrows/mints in USD (i.e. total loan origination)  */
-  cumulativeBorrowUSD: Scalars['ethereumPrimaryBigDecimal'];
+  cumulativeBorrowUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Total assets liquidated in a given hour, in USD.  */
-  hourlyLiquidateUSD: Scalars['ethereumPrimaryBigDecimal'];
+  hourlyLiquidateUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Sum of all historical liquidations in USD  */
-  cumulativeLiquidateUSD: Scalars['ethereumPrimaryBigDecimal'];
+  cumulativeLiquidateUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Total assets withdrawn on a given hour, in USD.  */
-  hourlyWithdrawUSD: Scalars['ethereumPrimaryBigDecimal'];
+  hourlyWithdrawUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Total assets repaid on a given hour, in USD.  */
-  hourlyRepayUSD: Scalars['ethereumPrimaryBigDecimal'];
+  hourlyRepayUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Total assets transferred on a given hour, in USD.  */
-  hourlyTransferUSD: Scalars['ethereumPrimaryBigDecimal'];
+  hourlyTransferUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Total assets flashloaned on a given hour, in USD.  */
-  hourlyFlashloanUSD: Scalars['ethereumPrimaryBigDecimal'];
+  hourlyFlashloanUSD: Scalars['gnosisPrimaryBigDecimal'];
 };
 
 
-export type ethereumPrimaryMarketHourlySnapshotrewardTokensArgs = {
+export type gnosisPrimaryMarketHourlySnapshotrewardTokensArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryRewardToken_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryRewardToken_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryRewardToken_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryRewardToken_filter>;
 };
 
 
-export type ethereumPrimaryMarketHourlySnapshotratesArgs = {
+export type gnosisPrimaryMarketHourlySnapshotratesArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryInterestRate_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryInterestRate_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryInterestRate_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryInterestRate_filter>;
 };
 
-export type ethereumPrimaryMarketHourlySnapshot_filter = {
-  id?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
+export type gnosisPrimaryMarketHourlySnapshot_filter = {
+  id?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
   hours?: InputMaybe<Scalars['Int']>;
   hours_not?: InputMaybe<Scalars['Int']>;
   hours_gt?: InputMaybe<Scalars['Int']>;
@@ -4790,7 +4790,7 @@ export type ethereumPrimaryMarketHourlySnapshot_filter = {
   protocol_ends_with_nocase?: InputMaybe<Scalars['String']>;
   protocol_not_ends_with?: InputMaybe<Scalars['String']>;
   protocol_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  protocol_?: InputMaybe<ethereumPrimaryLendingProtocol_filter>;
+  protocol_?: InputMaybe<gnosisPrimaryLendingProtocol_filter>;
   market?: InputMaybe<Scalars['String']>;
   market_not?: InputMaybe<Scalars['String']>;
   market_gt?: InputMaybe<Scalars['String']>;
@@ -4811,7 +4811,7 @@ export type ethereumPrimaryMarketHourlySnapshot_filter = {
   market_ends_with_nocase?: InputMaybe<Scalars['String']>;
   market_not_ends_with?: InputMaybe<Scalars['String']>;
   market_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  market_?: InputMaybe<ethereumPrimaryMarket_filter>;
+  market_?: InputMaybe<gnosisPrimaryMarket_filter>;
   blockNumber?: InputMaybe<Scalars['BigInt']>;
   blockNumber_not?: InputMaybe<Scalars['BigInt']>;
   blockNumber_gt?: InputMaybe<Scalars['BigInt']>;
@@ -4828,35 +4828,35 @@ export type ethereumPrimaryMarketHourlySnapshot_filter = {
   timestamp_lte?: InputMaybe<Scalars['BigInt']>;
   timestamp_in?: InputMaybe<Array<Scalars['BigInt']>>;
   timestamp_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  relation?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  relation_not?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  relation_gt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  relation_lt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  relation_gte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  relation_lte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  relation_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  relation_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  relation_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  relation_not_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
+  relation?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  relation_not?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  relation_gt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  relation_lt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  relation_gte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  relation_lte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  relation_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  relation_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  relation_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  relation_not_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
   rewardTokens?: InputMaybe<Array<Scalars['String']>>;
   rewardTokens_not?: InputMaybe<Array<Scalars['String']>>;
   rewardTokens_contains?: InputMaybe<Array<Scalars['String']>>;
   rewardTokens_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
   rewardTokens_not_contains?: InputMaybe<Array<Scalars['String']>>;
   rewardTokens_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  rewardTokens_?: InputMaybe<ethereumPrimaryRewardToken_filter>;
+  rewardTokens_?: InputMaybe<gnosisPrimaryRewardToken_filter>;
   rewardTokenEmissionsAmount?: InputMaybe<Array<Scalars['BigInt']>>;
   rewardTokenEmissionsAmount_not?: InputMaybe<Array<Scalars['BigInt']>>;
   rewardTokenEmissionsAmount_contains?: InputMaybe<Array<Scalars['BigInt']>>;
   rewardTokenEmissionsAmount_contains_nocase?: InputMaybe<Array<Scalars['BigInt']>>;
   rewardTokenEmissionsAmount_not_contains?: InputMaybe<Array<Scalars['BigInt']>>;
   rewardTokenEmissionsAmount_not_contains_nocase?: InputMaybe<Array<Scalars['BigInt']>>;
-  rewardTokenEmissionsUSD?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  rewardTokenEmissionsUSD_not?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  rewardTokenEmissionsUSD_contains?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  rewardTokenEmissionsUSD_contains_nocase?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  rewardTokenEmissionsUSD_not_contains?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  rewardTokenEmissionsUSD_not_contains_nocase?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  rewardTokenEmissionsUSD?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  rewardTokenEmissionsUSD_not?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  rewardTokenEmissionsUSD_contains?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  rewardTokenEmissionsUSD_contains_nocase?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  rewardTokenEmissionsUSD_not_contains?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  rewardTokenEmissionsUSD_not_contains_nocase?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   stakedOutputTokenAmount?: InputMaybe<Scalars['BigInt']>;
   stakedOutputTokenAmount_not?: InputMaybe<Scalars['BigInt']>;
   stakedOutputTokenAmount_gt?: InputMaybe<Scalars['BigInt']>;
@@ -4873,14 +4873,14 @@ export type ethereumPrimaryMarketHourlySnapshot_filter = {
   inputTokenBalance_lte?: InputMaybe<Scalars['BigInt']>;
   inputTokenBalance_in?: InputMaybe<Array<Scalars['BigInt']>>;
   inputTokenBalance_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  inputTokenPriceUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  inputTokenPriceUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  inputTokenPriceUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  inputTokenPriceUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  inputTokenPriceUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  inputTokenPriceUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  inputTokenPriceUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  inputTokenPriceUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  inputTokenPriceUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  inputTokenPriceUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  inputTokenPriceUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  inputTokenPriceUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  inputTokenPriceUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  inputTokenPriceUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  inputTokenPriceUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  inputTokenPriceUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   outputTokenSupply?: InputMaybe<Scalars['BigInt']>;
   outputTokenSupply_not?: InputMaybe<Scalars['BigInt']>;
   outputTokenSupply_gt?: InputMaybe<Scalars['BigInt']>;
@@ -4889,37 +4889,37 @@ export type ethereumPrimaryMarketHourlySnapshot_filter = {
   outputTokenSupply_lte?: InputMaybe<Scalars['BigInt']>;
   outputTokenSupply_in?: InputMaybe<Array<Scalars['BigInt']>>;
   outputTokenSupply_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  outputTokenPriceUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  outputTokenPriceUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  outputTokenPriceUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  outputTokenPriceUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  outputTokenPriceUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  outputTokenPriceUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  outputTokenPriceUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  outputTokenPriceUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  exchangeRate?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  exchangeRate_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  exchangeRate_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  exchangeRate_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  exchangeRate_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  exchangeRate_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  exchangeRate_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  exchangeRate_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  outputTokenPriceUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  outputTokenPriceUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  outputTokenPriceUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  outputTokenPriceUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  outputTokenPriceUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  outputTokenPriceUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  outputTokenPriceUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  outputTokenPriceUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  exchangeRate?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  exchangeRate_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  exchangeRate_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  exchangeRate_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  exchangeRate_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  exchangeRate_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  exchangeRate_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  exchangeRate_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   rates?: InputMaybe<Array<Scalars['String']>>;
   rates_not?: InputMaybe<Array<Scalars['String']>>;
   rates_contains?: InputMaybe<Array<Scalars['String']>>;
   rates_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
   rates_not_contains?: InputMaybe<Array<Scalars['String']>>;
   rates_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  rates_?: InputMaybe<ethereumPrimaryInterestRate_filter>;
-  reserves?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  reserves_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  reserves_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  reserves_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  reserves_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  reserves_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  reserves_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  reserves_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  rates_?: InputMaybe<gnosisPrimaryInterestRate_filter>;
+  reserves?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  reserves_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  reserves_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  reserves_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  reserves_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  reserves_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  reserves_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  reserves_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   variableBorrowedTokenBalance?: InputMaybe<Scalars['BigInt']>;
   variableBorrowedTokenBalance_not?: InputMaybe<Scalars['BigInt']>;
   variableBorrowedTokenBalance_gt?: InputMaybe<Scalars['BigInt']>;
@@ -4936,165 +4936,165 @@ export type ethereumPrimaryMarketHourlySnapshot_filter = {
   stableBorrowedTokenBalance_lte?: InputMaybe<Scalars['BigInt']>;
   stableBorrowedTokenBalance_in?: InputMaybe<Array<Scalars['BigInt']>>;
   stableBorrowedTokenBalance_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  totalValueLockedUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalValueLockedUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalValueLockedUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalValueLockedUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalValueLockedUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalValueLockedUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalValueLockedUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  totalValueLockedUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeSupplySideRevenueUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeSupplySideRevenueUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeSupplySideRevenueUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeSupplySideRevenueUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeSupplySideRevenueUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeSupplySideRevenueUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeSupplySideRevenueUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeSupplySideRevenueUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  hourlySupplySideRevenueUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlySupplySideRevenueUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlySupplySideRevenueUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlySupplySideRevenueUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlySupplySideRevenueUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlySupplySideRevenueUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlySupplySideRevenueUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  hourlySupplySideRevenueUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeProtocolSideRevenueUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeProtocolSideRevenueUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeProtocolSideRevenueUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeProtocolSideRevenueUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeProtocolSideRevenueUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeProtocolSideRevenueUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeProtocolSideRevenueUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeProtocolSideRevenueUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  hourlyProtocolSideRevenueUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyProtocolSideRevenueUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyProtocolSideRevenueUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyProtocolSideRevenueUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyProtocolSideRevenueUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyProtocolSideRevenueUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyProtocolSideRevenueUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  hourlyProtocolSideRevenueUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeTotalRevenueUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTotalRevenueUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTotalRevenueUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTotalRevenueUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTotalRevenueUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTotalRevenueUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTotalRevenueUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeTotalRevenueUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  hourlyTotalRevenueUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyTotalRevenueUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyTotalRevenueUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyTotalRevenueUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyTotalRevenueUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyTotalRevenueUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyTotalRevenueUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  hourlyTotalRevenueUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  totalDepositBalanceUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalDepositBalanceUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalDepositBalanceUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalDepositBalanceUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalDepositBalanceUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalDepositBalanceUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalDepositBalanceUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  totalDepositBalanceUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  hourlyDepositUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyDepositUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyDepositUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyDepositUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyDepositUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyDepositUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyDepositUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  hourlyDepositUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeDepositUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeDepositUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeDepositUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeDepositUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeDepositUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeDepositUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeDepositUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeDepositUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  totalBorrowBalanceUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalBorrowBalanceUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalBorrowBalanceUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalBorrowBalanceUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalBorrowBalanceUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalBorrowBalanceUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalBorrowBalanceUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  totalBorrowBalanceUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  hourlyBorrowUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyBorrowUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyBorrowUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyBorrowUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyBorrowUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyBorrowUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyBorrowUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  hourlyBorrowUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeBorrowUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeBorrowUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeBorrowUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeBorrowUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeBorrowUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeBorrowUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeBorrowUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeBorrowUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  hourlyLiquidateUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyLiquidateUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyLiquidateUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyLiquidateUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyLiquidateUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyLiquidateUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyLiquidateUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  hourlyLiquidateUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeLiquidateUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeLiquidateUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeLiquidateUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeLiquidateUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeLiquidateUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeLiquidateUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeLiquidateUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeLiquidateUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  hourlyWithdrawUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyWithdrawUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyWithdrawUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyWithdrawUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyWithdrawUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyWithdrawUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyWithdrawUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  hourlyWithdrawUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  hourlyRepayUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyRepayUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyRepayUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyRepayUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyRepayUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyRepayUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyRepayUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  hourlyRepayUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  hourlyTransferUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyTransferUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyTransferUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyTransferUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyTransferUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyTransferUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyTransferUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  hourlyTransferUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  hourlyFlashloanUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyFlashloanUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyFlashloanUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyFlashloanUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyFlashloanUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyFlashloanUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  hourlyFlashloanUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  hourlyFlashloanUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  totalValueLockedUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalValueLockedUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalValueLockedUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalValueLockedUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalValueLockedUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalValueLockedUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalValueLockedUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  totalValueLockedUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeSupplySideRevenueUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeSupplySideRevenueUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeSupplySideRevenueUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeSupplySideRevenueUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeSupplySideRevenueUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeSupplySideRevenueUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeSupplySideRevenueUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeSupplySideRevenueUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  hourlySupplySideRevenueUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlySupplySideRevenueUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlySupplySideRevenueUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlySupplySideRevenueUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlySupplySideRevenueUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlySupplySideRevenueUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlySupplySideRevenueUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  hourlySupplySideRevenueUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeProtocolSideRevenueUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeProtocolSideRevenueUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeProtocolSideRevenueUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeProtocolSideRevenueUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeProtocolSideRevenueUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeProtocolSideRevenueUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeProtocolSideRevenueUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeProtocolSideRevenueUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  hourlyProtocolSideRevenueUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyProtocolSideRevenueUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyProtocolSideRevenueUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyProtocolSideRevenueUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyProtocolSideRevenueUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyProtocolSideRevenueUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyProtocolSideRevenueUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  hourlyProtocolSideRevenueUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeTotalRevenueUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTotalRevenueUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTotalRevenueUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTotalRevenueUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTotalRevenueUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTotalRevenueUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTotalRevenueUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeTotalRevenueUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  hourlyTotalRevenueUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyTotalRevenueUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyTotalRevenueUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyTotalRevenueUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyTotalRevenueUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyTotalRevenueUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyTotalRevenueUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  hourlyTotalRevenueUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  totalDepositBalanceUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalDepositBalanceUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalDepositBalanceUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalDepositBalanceUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalDepositBalanceUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalDepositBalanceUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalDepositBalanceUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  totalDepositBalanceUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  hourlyDepositUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyDepositUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyDepositUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyDepositUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyDepositUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyDepositUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyDepositUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  hourlyDepositUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeDepositUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeDepositUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeDepositUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeDepositUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeDepositUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeDepositUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeDepositUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeDepositUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  totalBorrowBalanceUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalBorrowBalanceUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalBorrowBalanceUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalBorrowBalanceUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalBorrowBalanceUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalBorrowBalanceUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalBorrowBalanceUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  totalBorrowBalanceUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  hourlyBorrowUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyBorrowUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyBorrowUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyBorrowUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyBorrowUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyBorrowUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyBorrowUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  hourlyBorrowUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeBorrowUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeBorrowUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeBorrowUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeBorrowUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeBorrowUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeBorrowUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeBorrowUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeBorrowUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  hourlyLiquidateUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyLiquidateUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyLiquidateUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyLiquidateUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyLiquidateUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyLiquidateUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyLiquidateUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  hourlyLiquidateUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeLiquidateUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeLiquidateUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeLiquidateUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeLiquidateUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeLiquidateUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeLiquidateUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeLiquidateUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeLiquidateUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  hourlyWithdrawUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyWithdrawUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyWithdrawUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyWithdrawUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyWithdrawUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyWithdrawUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyWithdrawUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  hourlyWithdrawUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  hourlyRepayUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyRepayUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyRepayUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyRepayUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyRepayUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyRepayUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyRepayUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  hourlyRepayUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  hourlyTransferUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyTransferUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyTransferUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyTransferUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyTransferUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyTransferUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyTransferUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  hourlyTransferUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  hourlyFlashloanUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyFlashloanUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyFlashloanUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyFlashloanUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyFlashloanUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyFlashloanUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  hourlyFlashloanUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  hourlyFlashloanUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   /** Filter for the block changed event. */
-  _change_block?: InputMaybe<ethereumPrimaryBlockChangedFilter>;
-  and?: InputMaybe<Array<InputMaybe<ethereumPrimaryMarketHourlySnapshot_filter>>>;
-  or?: InputMaybe<Array<InputMaybe<ethereumPrimaryMarketHourlySnapshot_filter>>>;
+  _change_block?: InputMaybe<gnosisPrimaryBlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<gnosisPrimaryMarketHourlySnapshot_filter>>>;
+  or?: InputMaybe<Array<InputMaybe<gnosisPrimaryMarketHourlySnapshot_filter>>>;
 };
 
-export type ethereumPrimaryMarketHourlySnapshot_orderBy =
+export type gnosisPrimaryMarketHourlySnapshot_orderBy =
   | 'id'
   | 'hours'
   | 'protocol'
@@ -5239,17 +5239,17 @@ export type ethereumPrimaryMarketHourlySnapshot_orderBy =
   | 'hourlyTransferUSD'
   | 'hourlyFlashloanUSD';
 
-export type ethereumPrimaryMarket_filter = {
-  id?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
+export type gnosisPrimaryMarket_filter = {
+  id?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
   protocol?: InputMaybe<Scalars['String']>;
   protocol_not?: InputMaybe<Scalars['String']>;
   protocol_gt?: InputMaybe<Scalars['String']>;
@@ -5270,7 +5270,7 @@ export type ethereumPrimaryMarket_filter = {
   protocol_ends_with_nocase?: InputMaybe<Scalars['String']>;
   protocol_not_ends_with?: InputMaybe<Scalars['String']>;
   protocol_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  protocol_?: InputMaybe<ethereumPrimaryLendingProtocol_filter>;
+  protocol_?: InputMaybe<gnosisPrimaryLendingProtocol_filter>;
   name?: InputMaybe<Scalars['String']>;
   name_not?: InputMaybe<Scalars['String']>;
   name_gt?: InputMaybe<Scalars['String']>;
@@ -5303,30 +5303,30 @@ export type ethereumPrimaryMarket_filter = {
   canUseAsCollateral_not?: InputMaybe<Scalars['Boolean']>;
   canUseAsCollateral_in?: InputMaybe<Array<Scalars['Boolean']>>;
   canUseAsCollateral_not_in?: InputMaybe<Array<Scalars['Boolean']>>;
-  maximumLTV?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  maximumLTV_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  maximumLTV_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  maximumLTV_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  maximumLTV_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  maximumLTV_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  maximumLTV_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  maximumLTV_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  liquidationThreshold?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  liquidationThreshold_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  liquidationThreshold_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  liquidationThreshold_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  liquidationThreshold_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  liquidationThreshold_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  liquidationThreshold_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  liquidationThreshold_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  liquidationPenalty?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  liquidationPenalty_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  liquidationPenalty_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  liquidationPenalty_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  liquidationPenalty_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  liquidationPenalty_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  liquidationPenalty_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  liquidationPenalty_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  maximumLTV?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  maximumLTV_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  maximumLTV_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  maximumLTV_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  maximumLTV_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  maximumLTV_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  maximumLTV_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  maximumLTV_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  liquidationThreshold?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  liquidationThreshold_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  liquidationThreshold_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  liquidationThreshold_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  liquidationThreshold_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  liquidationThreshold_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  liquidationThreshold_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  liquidationThreshold_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  liquidationPenalty?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  liquidationPenalty_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  liquidationPenalty_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  liquidationPenalty_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  liquidationPenalty_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  liquidationPenalty_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  liquidationPenalty_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  liquidationPenalty_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   canIsolate?: InputMaybe<Scalars['Boolean']>;
   canIsolate_not?: InputMaybe<Scalars['Boolean']>;
   canIsolate_in?: InputMaybe<Array<Scalars['Boolean']>>;
@@ -5367,36 +5367,36 @@ export type ethereumPrimaryMarket_filter = {
   oracle_ends_with_nocase?: InputMaybe<Scalars['String']>;
   oracle_not_ends_with?: InputMaybe<Scalars['String']>;
   oracle_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  oracle_?: InputMaybe<ethereumPrimaryOracle_filter>;
-  relation?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  relation_not?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  relation_gt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  relation_lt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  relation_gte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  relation_lte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  relation_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  relation_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  relation_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  relation_not_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
+  oracle_?: InputMaybe<gnosisPrimaryOracle_filter>;
+  relation?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  relation_not?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  relation_gt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  relation_lt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  relation_gte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  relation_lte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  relation_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  relation_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  relation_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  relation_not_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
   rewardTokens?: InputMaybe<Array<Scalars['String']>>;
   rewardTokens_not?: InputMaybe<Array<Scalars['String']>>;
   rewardTokens_contains?: InputMaybe<Array<Scalars['String']>>;
   rewardTokens_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
   rewardTokens_not_contains?: InputMaybe<Array<Scalars['String']>>;
   rewardTokens_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  rewardTokens_?: InputMaybe<ethereumPrimaryRewardToken_filter>;
+  rewardTokens_?: InputMaybe<gnosisPrimaryRewardToken_filter>;
   rewardTokenEmissionsAmount?: InputMaybe<Array<Scalars['BigInt']>>;
   rewardTokenEmissionsAmount_not?: InputMaybe<Array<Scalars['BigInt']>>;
   rewardTokenEmissionsAmount_contains?: InputMaybe<Array<Scalars['BigInt']>>;
   rewardTokenEmissionsAmount_contains_nocase?: InputMaybe<Array<Scalars['BigInt']>>;
   rewardTokenEmissionsAmount_not_contains?: InputMaybe<Array<Scalars['BigInt']>>;
   rewardTokenEmissionsAmount_not_contains_nocase?: InputMaybe<Array<Scalars['BigInt']>>;
-  rewardTokenEmissionsUSD?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  rewardTokenEmissionsUSD_not?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  rewardTokenEmissionsUSD_contains?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  rewardTokenEmissionsUSD_contains_nocase?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  rewardTokenEmissionsUSD_not_contains?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  rewardTokenEmissionsUSD_not_contains_nocase?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  rewardTokenEmissionsUSD?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  rewardTokenEmissionsUSD_not?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  rewardTokenEmissionsUSD_contains?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  rewardTokenEmissionsUSD_contains_nocase?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  rewardTokenEmissionsUSD_not_contains?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  rewardTokenEmissionsUSD_not_contains_nocase?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   stakedOutputTokenAmount?: InputMaybe<Scalars['BigInt']>;
   stakedOutputTokenAmount_not?: InputMaybe<Scalars['BigInt']>;
   stakedOutputTokenAmount_gt?: InputMaybe<Scalars['BigInt']>;
@@ -5425,7 +5425,7 @@ export type ethereumPrimaryMarket_filter = {
   inputToken_ends_with_nocase?: InputMaybe<Scalars['String']>;
   inputToken_not_ends_with?: InputMaybe<Scalars['String']>;
   inputToken_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  inputToken_?: InputMaybe<ethereumPrimaryToken_filter>;
+  inputToken_?: InputMaybe<gnosisPrimaryToken_filter>;
   inputTokenBalance?: InputMaybe<Scalars['BigInt']>;
   inputTokenBalance_not?: InputMaybe<Scalars['BigInt']>;
   inputTokenBalance_gt?: InputMaybe<Scalars['BigInt']>;
@@ -5434,14 +5434,14 @@ export type ethereumPrimaryMarket_filter = {
   inputTokenBalance_lte?: InputMaybe<Scalars['BigInt']>;
   inputTokenBalance_in?: InputMaybe<Array<Scalars['BigInt']>>;
   inputTokenBalance_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  inputTokenPriceUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  inputTokenPriceUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  inputTokenPriceUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  inputTokenPriceUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  inputTokenPriceUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  inputTokenPriceUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  inputTokenPriceUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  inputTokenPriceUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  inputTokenPriceUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  inputTokenPriceUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  inputTokenPriceUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  inputTokenPriceUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  inputTokenPriceUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  inputTokenPriceUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  inputTokenPriceUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  inputTokenPriceUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   outputToken?: InputMaybe<Scalars['String']>;
   outputToken_not?: InputMaybe<Scalars['String']>;
   outputToken_gt?: InputMaybe<Scalars['String']>;
@@ -5462,7 +5462,7 @@ export type ethereumPrimaryMarket_filter = {
   outputToken_ends_with_nocase?: InputMaybe<Scalars['String']>;
   outputToken_not_ends_with?: InputMaybe<Scalars['String']>;
   outputToken_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  outputToken_?: InputMaybe<ethereumPrimaryToken_filter>;
+  outputToken_?: InputMaybe<gnosisPrimaryToken_filter>;
   outputTokenSupply?: InputMaybe<Scalars['BigInt']>;
   outputTokenSupply_not?: InputMaybe<Scalars['BigInt']>;
   outputTokenSupply_gt?: InputMaybe<Scalars['BigInt']>;
@@ -5471,45 +5471,45 @@ export type ethereumPrimaryMarket_filter = {
   outputTokenSupply_lte?: InputMaybe<Scalars['BigInt']>;
   outputTokenSupply_in?: InputMaybe<Array<Scalars['BigInt']>>;
   outputTokenSupply_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  outputTokenPriceUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  outputTokenPriceUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  outputTokenPriceUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  outputTokenPriceUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  outputTokenPriceUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  outputTokenPriceUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  outputTokenPriceUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  outputTokenPriceUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  exchangeRate?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  exchangeRate_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  exchangeRate_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  exchangeRate_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  exchangeRate_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  exchangeRate_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  exchangeRate_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  exchangeRate_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  outputTokenPriceUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  outputTokenPriceUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  outputTokenPriceUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  outputTokenPriceUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  outputTokenPriceUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  outputTokenPriceUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  outputTokenPriceUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  outputTokenPriceUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  exchangeRate?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  exchangeRate_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  exchangeRate_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  exchangeRate_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  exchangeRate_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  exchangeRate_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  exchangeRate_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  exchangeRate_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   rates?: InputMaybe<Array<Scalars['String']>>;
   rates_not?: InputMaybe<Array<Scalars['String']>>;
   rates_contains?: InputMaybe<Array<Scalars['String']>>;
   rates_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
   rates_not_contains?: InputMaybe<Array<Scalars['String']>>;
   rates_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  rates_?: InputMaybe<ethereumPrimaryInterestRate_filter>;
-  reserves?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  reserves_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  reserves_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  reserves_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  reserves_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  reserves_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  reserves_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  reserves_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  reserveFactor?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  reserveFactor_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  reserveFactor_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  reserveFactor_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  reserveFactor_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  reserveFactor_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  reserveFactor_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  reserveFactor_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  rates_?: InputMaybe<gnosisPrimaryInterestRate_filter>;
+  reserves?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  reserves_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  reserves_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  reserves_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  reserves_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  reserves_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  reserves_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  reserves_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  reserveFactor?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  reserveFactor_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  reserveFactor_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  reserveFactor_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  reserveFactor_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  reserveFactor_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  reserveFactor_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  reserveFactor_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   borrowedToken?: InputMaybe<Scalars['String']>;
   borrowedToken_not?: InputMaybe<Scalars['String']>;
   borrowedToken_gt?: InputMaybe<Scalars['String']>;
@@ -5530,7 +5530,7 @@ export type ethereumPrimaryMarket_filter = {
   borrowedToken_ends_with_nocase?: InputMaybe<Scalars['String']>;
   borrowedToken_not_ends_with?: InputMaybe<Scalars['String']>;
   borrowedToken_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  borrowedToken_?: InputMaybe<ethereumPrimaryToken_filter>;
+  borrowedToken_?: InputMaybe<gnosisPrimaryToken_filter>;
   variableBorrowedTokenBalance?: InputMaybe<Scalars['BigInt']>;
   variableBorrowedTokenBalance_not?: InputMaybe<Scalars['BigInt']>;
   variableBorrowedTokenBalance_gt?: InputMaybe<Scalars['BigInt']>;
@@ -5587,38 +5587,38 @@ export type ethereumPrimaryMarket_filter = {
   borrowCap_lte?: InputMaybe<Scalars['BigInt']>;
   borrowCap_in?: InputMaybe<Array<Scalars['BigInt']>>;
   borrowCap_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  totalValueLockedUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalValueLockedUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalValueLockedUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalValueLockedUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalValueLockedUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalValueLockedUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalValueLockedUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  totalValueLockedUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeSupplySideRevenueUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeSupplySideRevenueUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeSupplySideRevenueUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeSupplySideRevenueUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeSupplySideRevenueUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeSupplySideRevenueUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeSupplySideRevenueUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeSupplySideRevenueUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeProtocolSideRevenueUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeProtocolSideRevenueUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeProtocolSideRevenueUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeProtocolSideRevenueUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeProtocolSideRevenueUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeProtocolSideRevenueUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeProtocolSideRevenueUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeProtocolSideRevenueUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeTotalRevenueUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTotalRevenueUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTotalRevenueUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTotalRevenueUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTotalRevenueUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTotalRevenueUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTotalRevenueUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeTotalRevenueUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  totalValueLockedUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalValueLockedUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalValueLockedUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalValueLockedUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalValueLockedUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalValueLockedUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalValueLockedUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  totalValueLockedUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeSupplySideRevenueUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeSupplySideRevenueUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeSupplySideRevenueUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeSupplySideRevenueUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeSupplySideRevenueUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeSupplySideRevenueUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeSupplySideRevenueUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeSupplySideRevenueUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeProtocolSideRevenueUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeProtocolSideRevenueUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeProtocolSideRevenueUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeProtocolSideRevenueUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeProtocolSideRevenueUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeProtocolSideRevenueUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeProtocolSideRevenueUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeProtocolSideRevenueUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeTotalRevenueUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTotalRevenueUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTotalRevenueUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTotalRevenueUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTotalRevenueUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTotalRevenueUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTotalRevenueUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeTotalRevenueUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   revenueDetail?: InputMaybe<Scalars['String']>;
   revenueDetail_not?: InputMaybe<Scalars['String']>;
   revenueDetail_gt?: InputMaybe<Scalars['String']>;
@@ -5639,63 +5639,63 @@ export type ethereumPrimaryMarket_filter = {
   revenueDetail_ends_with_nocase?: InputMaybe<Scalars['String']>;
   revenueDetail_not_ends_with?: InputMaybe<Scalars['String']>;
   revenueDetail_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  revenueDetail_?: InputMaybe<ethereumPrimaryRevenueDetail_filter>;
-  totalDepositBalanceUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalDepositBalanceUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalDepositBalanceUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalDepositBalanceUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalDepositBalanceUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalDepositBalanceUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalDepositBalanceUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  totalDepositBalanceUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeDepositUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeDepositUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeDepositUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeDepositUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeDepositUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeDepositUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeDepositUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeDepositUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  totalBorrowBalanceUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalBorrowBalanceUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalBorrowBalanceUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalBorrowBalanceUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalBorrowBalanceUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalBorrowBalanceUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalBorrowBalanceUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  totalBorrowBalanceUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeBorrowUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeBorrowUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeBorrowUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeBorrowUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeBorrowUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeBorrowUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeBorrowUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeBorrowUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeLiquidateUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeLiquidateUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeLiquidateUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeLiquidateUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeLiquidateUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeLiquidateUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeLiquidateUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeLiquidateUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeTransferUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTransferUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTransferUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTransferUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTransferUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTransferUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTransferUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeTransferUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeFlashloanUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeFlashloanUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeFlashloanUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeFlashloanUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeFlashloanUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeFlashloanUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeFlashloanUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeFlashloanUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  revenueDetail_?: InputMaybe<gnosisPrimaryRevenueDetail_filter>;
+  totalDepositBalanceUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalDepositBalanceUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalDepositBalanceUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalDepositBalanceUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalDepositBalanceUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalDepositBalanceUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalDepositBalanceUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  totalDepositBalanceUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeDepositUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeDepositUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeDepositUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeDepositUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeDepositUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeDepositUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeDepositUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeDepositUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  totalBorrowBalanceUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalBorrowBalanceUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalBorrowBalanceUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalBorrowBalanceUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalBorrowBalanceUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalBorrowBalanceUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalBorrowBalanceUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  totalBorrowBalanceUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeBorrowUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeBorrowUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeBorrowUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeBorrowUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeBorrowUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeBorrowUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeBorrowUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeBorrowUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeLiquidateUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeLiquidateUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeLiquidateUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeLiquidateUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeLiquidateUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeLiquidateUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeLiquidateUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeLiquidateUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeTransferUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTransferUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTransferUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTransferUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTransferUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTransferUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTransferUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeTransferUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeFlashloanUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeFlashloanUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeFlashloanUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeFlashloanUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeFlashloanUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeFlashloanUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeFlashloanUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeFlashloanUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   transactionCount?: InputMaybe<Scalars['Int']>;
   transactionCount_not?: InputMaybe<Scalars['Int']>;
   transactionCount_gt?: InputMaybe<Scalars['Int']>;
@@ -5816,7 +5816,7 @@ export type ethereumPrimaryMarket_filter = {
   cumulativeUniqueFlashloaners_lte?: InputMaybe<Scalars['Int']>;
   cumulativeUniqueFlashloaners_in?: InputMaybe<Array<Scalars['Int']>>;
   cumulativeUniqueFlashloaners_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  positions_?: InputMaybe<ethereumPrimaryPosition_filter>;
+  positions_?: InputMaybe<gnosisPrimaryPosition_filter>;
   positionCount?: InputMaybe<Scalars['Int']>;
   positionCount_not?: InputMaybe<Scalars['Int']>;
   positionCount_gt?: InputMaybe<Scalars['Int']>;
@@ -5857,15 +5857,15 @@ export type ethereumPrimaryMarket_filter = {
   borrowingPositionCount_lte?: InputMaybe<Scalars['Int']>;
   borrowingPositionCount_in?: InputMaybe<Array<Scalars['Int']>>;
   borrowingPositionCount_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  dailySnapshots_?: InputMaybe<ethereumPrimaryMarketDailySnapshot_filter>;
-  hourlySnapshots_?: InputMaybe<ethereumPrimaryMarketHourlySnapshot_filter>;
-  deposits_?: InputMaybe<ethereumPrimaryDeposit_filter>;
-  withdraws_?: InputMaybe<ethereumPrimaryWithdraw_filter>;
-  borrows_?: InputMaybe<ethereumPrimaryBorrow_filter>;
-  repays_?: InputMaybe<ethereumPrimaryRepay_filter>;
-  liquidates_?: InputMaybe<ethereumPrimaryLiquidate_filter>;
-  transfers_?: InputMaybe<ethereumPrimaryTransfer_filter>;
-  flashloans_?: InputMaybe<ethereumPrimaryFlashloan_filter>;
+  dailySnapshots_?: InputMaybe<gnosisPrimaryMarketDailySnapshot_filter>;
+  hourlySnapshots_?: InputMaybe<gnosisPrimaryMarketHourlySnapshot_filter>;
+  deposits_?: InputMaybe<gnosisPrimaryDeposit_filter>;
+  withdraws_?: InputMaybe<gnosisPrimaryWithdraw_filter>;
+  borrows_?: InputMaybe<gnosisPrimaryBorrow_filter>;
+  repays_?: InputMaybe<gnosisPrimaryRepay_filter>;
+  liquidates_?: InputMaybe<gnosisPrimaryLiquidate_filter>;
+  transfers_?: InputMaybe<gnosisPrimaryTransfer_filter>;
+  flashloans_?: InputMaybe<gnosisPrimaryFlashloan_filter>;
   _baseTrackingBorrowSpeed?: InputMaybe<Scalars['BigInt']>;
   _baseTrackingBorrowSpeed_not?: InputMaybe<Scalars['BigInt']>;
   _baseTrackingBorrowSpeed_gt?: InputMaybe<Scalars['BigInt']>;
@@ -5902,7 +5902,7 @@ export type ethereumPrimaryMarket_filter = {
   _vToken_ends_with_nocase?: InputMaybe<Scalars['String']>;
   _vToken_not_ends_with?: InputMaybe<Scalars['String']>;
   _vToken_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  _vToken_?: InputMaybe<ethereumPrimaryToken_filter>;
+  _vToken_?: InputMaybe<gnosisPrimaryToken_filter>;
   _sToken?: InputMaybe<Scalars['String']>;
   _sToken_not?: InputMaybe<Scalars['String']>;
   _sToken_gt?: InputMaybe<Scalars['String']>;
@@ -5923,7 +5923,7 @@ export type ethereumPrimaryMarket_filter = {
   _sToken_ends_with_nocase?: InputMaybe<Scalars['String']>;
   _sToken_not_ends_with?: InputMaybe<Scalars['String']>;
   _sToken_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  _sToken_?: InputMaybe<ethereumPrimaryToken_filter>;
+  _sToken_?: InputMaybe<gnosisPrimaryToken_filter>;
   _prePauseState?: InputMaybe<Array<Scalars['Boolean']>>;
   _prePauseState_not?: InputMaybe<Array<Scalars['Boolean']>>;
   _prePauseState_contains?: InputMaybe<Array<Scalars['Boolean']>>;
@@ -5938,25 +5938,25 @@ export type ethereumPrimaryMarket_filter = {
   _lastRewardsUpdated_lte?: InputMaybe<Scalars['BigInt']>;
   _lastRewardsUpdated_in?: InputMaybe<Array<Scalars['BigInt']>>;
   _lastRewardsUpdated_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  _liquidationProtocolFee?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  _liquidationProtocolFee_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  _liquidationProtocolFee_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  _liquidationProtocolFee_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  _liquidationProtocolFee_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  _liquidationProtocolFee_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  _liquidationProtocolFee_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  _liquidationProtocolFee_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  _liquidationProtocolFee?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  _liquidationProtocolFee_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  _liquidationProtocolFee_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  _liquidationProtocolFee_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  _liquidationProtocolFee_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  _liquidationProtocolFee_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  _liquidationProtocolFee_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  _liquidationProtocolFee_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   _siloedBorrowing?: InputMaybe<Scalars['Boolean']>;
   _siloedBorrowing_not?: InputMaybe<Scalars['Boolean']>;
   _siloedBorrowing_in?: InputMaybe<Array<Scalars['Boolean']>>;
   _siloedBorrowing_not_in?: InputMaybe<Array<Scalars['Boolean']>>;
   /** Filter for the block changed event. */
-  _change_block?: InputMaybe<ethereumPrimaryBlockChangedFilter>;
-  and?: InputMaybe<Array<InputMaybe<ethereumPrimaryMarket_filter>>>;
-  or?: InputMaybe<Array<InputMaybe<ethereumPrimaryMarket_filter>>>;
+  _change_block?: InputMaybe<gnosisPrimaryBlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<gnosisPrimaryMarket_filter>>>;
+  or?: InputMaybe<Array<InputMaybe<gnosisPrimaryMarket_filter>>>;
 };
 
-export type ethereumPrimaryMarket_orderBy =
+export type gnosisPrimaryMarket_orderBy =
   | 'id'
   | 'protocol'
   | 'protocol__id'
@@ -6134,7 +6134,7 @@ export type ethereumPrimaryMarket_orderBy =
   | '_liquidationProtocolFee'
   | '_siloedBorrowing';
 
-export type ethereumPrimaryNetwork =
+export type gnosisPrimaryNetwork =
   | 'ARBITRUM_ONE'
   | 'ARWEAVE_MAINNET'
   | 'AURORA'
@@ -6159,12 +6159,12 @@ export type ethereumPrimaryNetwork =
   | 'ANDROMEDA'
   | 'BASE';
 
-export type ethereumPrimaryOracle = {
+export type gnosisPrimaryOracle = {
   /**  { Market Address }{ Token Address }  */
-  id: Scalars['ethereumPrimaryBytes'];
-  oracleAddress: Scalars['ethereumPrimaryBytes'];
+  id: Scalars['gnosisPrimaryBytes'];
+  oracleAddress: Scalars['gnosisPrimaryBytes'];
   /**  The market that this oracle is used for pricing  */
-  market: ethereumPrimaryMarket;
+  market: gnosisPrimaryMarket;
   /**  The block this oracle was adopted for a market  */
   blockCreated: Scalars['BigInt'];
   /**  The timestamp this oracle was adopted for a market  */
@@ -6174,12 +6174,12 @@ export type ethereumPrimaryOracle = {
   /**  True if the oracle returns prices in USD (e.g. generally the other case is the network's native token)  */
   isUSD: Scalars['Boolean'];
   /**  The hash where the oracle was no longer used  */
-  hashEnded?: Maybe<Scalars['ethereumPrimaryBytes']>;
+  hashEnded?: Maybe<Scalars['gnosisPrimaryBytes']>;
   /**  The Protocol that is providing the oracle (nullable if non-standard source) */
-  oracleSource?: Maybe<ethereumPrimaryOracleSource>;
+  oracleSource?: Maybe<gnosisPrimaryOracleSource>;
 };
 
-export type ethereumPrimaryOracleSource =
+export type gnosisPrimaryOracleSource =
   | 'UNISWAP'
   | 'BALANCER'
   | 'CHAINLINK'
@@ -6187,27 +6187,27 @@ export type ethereumPrimaryOracleSource =
   | 'SUSHISWAP'
   | 'CURVE';
 
-export type ethereumPrimaryOracle_filter = {
-  id?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  oracleAddress?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  oracleAddress_not?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  oracleAddress_gt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  oracleAddress_lt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  oracleAddress_gte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  oracleAddress_lte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  oracleAddress_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  oracleAddress_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  oracleAddress_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  oracleAddress_not_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
+export type gnosisPrimaryOracle_filter = {
+  id?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  oracleAddress?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  oracleAddress_not?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  oracleAddress_gt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  oracleAddress_lt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  oracleAddress_gte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  oracleAddress_lte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  oracleAddress_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  oracleAddress_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  oracleAddress_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  oracleAddress_not_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
   market?: InputMaybe<Scalars['String']>;
   market_not?: InputMaybe<Scalars['String']>;
   market_gt?: InputMaybe<Scalars['String']>;
@@ -6228,7 +6228,7 @@ export type ethereumPrimaryOracle_filter = {
   market_ends_with_nocase?: InputMaybe<Scalars['String']>;
   market_not_ends_with?: InputMaybe<Scalars['String']>;
   market_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  market_?: InputMaybe<ethereumPrimaryMarket_filter>;
+  market_?: InputMaybe<gnosisPrimaryMarket_filter>;
   blockCreated?: InputMaybe<Scalars['BigInt']>;
   blockCreated_not?: InputMaybe<Scalars['BigInt']>;
   blockCreated_gt?: InputMaybe<Scalars['BigInt']>;
@@ -6253,27 +6253,27 @@ export type ethereumPrimaryOracle_filter = {
   isUSD_not?: InputMaybe<Scalars['Boolean']>;
   isUSD_in?: InputMaybe<Array<Scalars['Boolean']>>;
   isUSD_not_in?: InputMaybe<Array<Scalars['Boolean']>>;
-  hashEnded?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hashEnded_not?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hashEnded_gt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hashEnded_lt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hashEnded_gte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hashEnded_lte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hashEnded_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  hashEnded_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  hashEnded_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hashEnded_not_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  oracleSource?: InputMaybe<ethereumPrimaryOracleSource>;
-  oracleSource_not?: InputMaybe<ethereumPrimaryOracleSource>;
-  oracleSource_in?: InputMaybe<Array<ethereumPrimaryOracleSource>>;
-  oracleSource_not_in?: InputMaybe<Array<ethereumPrimaryOracleSource>>;
+  hashEnded?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hashEnded_not?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hashEnded_gt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hashEnded_lt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hashEnded_gte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hashEnded_lte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hashEnded_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  hashEnded_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  hashEnded_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hashEnded_not_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  oracleSource?: InputMaybe<gnosisPrimaryOracleSource>;
+  oracleSource_not?: InputMaybe<gnosisPrimaryOracleSource>;
+  oracleSource_in?: InputMaybe<Array<gnosisPrimaryOracleSource>>;
+  oracleSource_not_in?: InputMaybe<Array<gnosisPrimaryOracleSource>>;
   /** Filter for the block changed event. */
-  _change_block?: InputMaybe<ethereumPrimaryBlockChangedFilter>;
-  and?: InputMaybe<Array<InputMaybe<ethereumPrimaryOracle_filter>>>;
-  or?: InputMaybe<Array<InputMaybe<ethereumPrimaryOracle_filter>>>;
+  _change_block?: InputMaybe<gnosisPrimaryBlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<gnosisPrimaryOracle_filter>>>;
+  or?: InputMaybe<Array<InputMaybe<gnosisPrimaryOracle_filter>>>;
 };
 
-export type ethereumPrimaryOracle_orderBy =
+export type gnosisPrimaryOracle_orderBy =
   | 'id'
   | 'oracleAddress'
   | 'market'
@@ -6348,11 +6348,11 @@ export type ethereumPrimaryOracle_orderBy =
   | 'oracleSource';
 
 /** Defines the order direction, either ascending or descending */
-export type ethereumPrimaryOrderDirection =
+export type gnosisPrimaryOrderDirection =
   | 'asc'
   | 'desc';
 
-export type ethereumPrimaryPermissionType =
+export type gnosisPrimaryPermissionType =
   /**  Only users that have been whitelisted can interact. e.g. Only approved institutions can borrow  */
   | 'WHITELIST_ONLY'
   /**  To interact a user must be KYC'd  */
@@ -6362,19 +6362,19 @@ export type ethereumPrimaryPermissionType =
   /**  Only the protocol admin address can make do the defined actions  */
   | 'ADMIN';
 
-export type ethereumPrimaryPosition = {
+export type gnosisPrimaryPosition = {
   /**  { Account address }-{ Market address }-{ Position Side }-{ Optional: Interest Rate Type}-{ Counter }  */
   id: Scalars['ID'];
   /**  Account that owns this position  */
-  account: ethereumPrimaryAccount;
+  account: gnosisPrimaryAccount;
   /**  The market in which this position was opened  */
-  market: ethereumPrimaryMarket;
+  market: gnosisPrimaryMarket;
   /**  The asset in which this position was opened with  */
-  asset: ethereumPrimaryToken;
+  asset: gnosisPrimaryToken;
   /**  The hash of the transaction that opened this position  */
-  hashOpened: Scalars['ethereumPrimaryBytes'];
+  hashOpened: Scalars['gnosisPrimaryBytes'];
   /**  The hash of the transaction that closed this position  */
-  hashClosed?: Maybe<Scalars['ethereumPrimaryBytes']>;
+  hashClosed?: Maybe<Scalars['gnosisPrimaryBytes']>;
   /**  Block number of when the position was opened  */
   blockNumberOpened: Scalars['BigInt'];
   /**  Timestamp when the position was opened  */
@@ -6384,9 +6384,9 @@ export type ethereumPrimaryPosition = {
   /**  Timestamp when the position was closed (0 if still open)  */
   timestampClosed?: Maybe<Scalars['BigInt']>;
   /**  Side of the position (either lender or borrower)  */
-  side: ethereumPrimaryPositionSide;
+  side: gnosisPrimaryPositionSide;
   /**  Type of interest rate used for this position (stable or variable). Generally for borrow side positions. */
-  type?: Maybe<ethereumPrimaryInterestRateType>;
+  type?: Maybe<gnosisPrimaryInterestRateType>;
   /**  Whether this position has been enabled as a collateral (only applies to LENDER positions). For protocols (e.g. MakerDAO) that doesn't require enabling explicitly, this will always be true.  */
   isCollateral?: Maybe<Scalars['Boolean']>;
   /**  Whether this position is being isolated from risk from other positions (only applies to LENDER positions). For protocols (e.g. Aave V3) this reduces risk exposure from other user positions.  */
@@ -6398,121 +6398,121 @@ export type ethereumPrimaryPosition = {
   /**  Number of deposits related to this position  */
   depositCount: Scalars['Int'];
   /**  All deposit events of this position  */
-  deposits: Array<ethereumPrimaryDeposit>;
+  deposits: Array<gnosisPrimaryDeposit>;
   /**  Number of withdrawals related to this position  */
   withdrawCount: Scalars['Int'];
   /**  All withdraw events of this position  */
-  withdraws: Array<ethereumPrimaryWithdraw>;
+  withdraws: Array<gnosisPrimaryWithdraw>;
   /**  Number of borrows related to this position  */
   borrowCount: Scalars['Int'];
   /**  All borrow events of this position  */
-  borrows: Array<ethereumPrimaryBorrow>;
+  borrows: Array<gnosisPrimaryBorrow>;
   /**  Number of repays related to this position  */
   repayCount: Scalars['Int'];
   /**  All repay events of this position  */
-  repays: Array<ethereumPrimaryRepay>;
+  repays: Array<gnosisPrimaryRepay>;
   /**  Number of liquidations related to this position (incremented when this position is liquidated)  */
   liquidationCount: Scalars['Int'];
   /**  Liquidation event related to this position (if exists)  */
-  liquidations: Array<ethereumPrimaryLiquidate>;
+  liquidations: Array<gnosisPrimaryLiquidate>;
   /**  Number of times this position has transferred  */
   transferredCount: Scalars['Int'];
   /**  Number of times this position has received a transfer  */
   receivedCount: Scalars['Int'];
   /**  All transfer events related to this position  */
-  transfers: Array<ethereumPrimaryTransfer>;
+  transfers: Array<gnosisPrimaryTransfer>;
   /**  Position daily snapshots for open positions  */
-  snapshots: Array<ethereumPrimaryPositionSnapshot>;
+  snapshots: Array<gnosisPrimaryPositionSnapshot>;
   /**  efficient mode flag  */
   _eMode?: Maybe<Scalars['Boolean']>;
 };
 
 
-export type ethereumPrimaryPositiondepositsArgs = {
+export type gnosisPrimaryPositiondepositsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryDeposit_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryDeposit_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryDeposit_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryDeposit_filter>;
 };
 
 
-export type ethereumPrimaryPositionwithdrawsArgs = {
+export type gnosisPrimaryPositionwithdrawsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryWithdraw_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryWithdraw_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryWithdraw_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryWithdraw_filter>;
 };
 
 
-export type ethereumPrimaryPositionborrowsArgs = {
+export type gnosisPrimaryPositionborrowsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryBorrow_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryBorrow_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryBorrow_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryBorrow_filter>;
 };
 
 
-export type ethereumPrimaryPositionrepaysArgs = {
+export type gnosisPrimaryPositionrepaysArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryRepay_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryRepay_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryRepay_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryRepay_filter>;
 };
 
 
-export type ethereumPrimaryPositionliquidationsArgs = {
+export type gnosisPrimaryPositionliquidationsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryLiquidate_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryLiquidate_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryLiquidate_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryLiquidate_filter>;
 };
 
 
-export type ethereumPrimaryPositiontransfersArgs = {
+export type gnosisPrimaryPositiontransfersArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryTransfer_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryTransfer_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryTransfer_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryTransfer_filter>;
 };
 
 
-export type ethereumPrimaryPositionsnapshotsArgs = {
+export type gnosisPrimaryPositionsnapshotsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryPositionSnapshot_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryPositionSnapshot_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryPositionSnapshot_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryPositionSnapshot_filter>;
 };
 
-export type ethereumPrimaryPositionSide =
+export type gnosisPrimaryPositionSide =
   /**  Position opened as a lender (used as collateral)  */
   | 'COLLATERAL'
   /**  Position opened as a borrower  */
   | 'BORROWER';
 
-export type ethereumPrimaryPositionSnapshot = {
+export type gnosisPrimaryPositionSnapshot = {
   /**  { Position ID }-{ Transaction hash }-{ Log index }  */
   id: Scalars['ID'];
   /**  Transaction hash of the transaction that triggered this snapshot  */
-  hash: Scalars['ethereumPrimaryBytes'];
+  hash: Scalars['gnosisPrimaryBytes'];
   /**  Event log index. For transactions that don't emit event, create arbitrary index starting from 0  */
   logIndex: Scalars['Int'];
   /**  Nonce of the transaction that triggered this snapshot  */
   nonce: Scalars['BigInt'];
   /**  Account that owns this position  */
-  account: ethereumPrimaryAccount;
+  account: gnosisPrimaryAccount;
   /**  Position of this snapshot  */
-  position: ethereumPrimaryPosition;
+  position: gnosisPrimaryPosition;
   /**  Token balance in this position, in native amounts  */
   balance: Scalars['BigInt'];
   /**  Token balance in this position, in USD  */
-  balanceUSD: Scalars['ethereumPrimaryBigDecimal'];
+  balanceUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Block number of this snapshot  */
   blockNumber: Scalars['BigInt'];
   /**  Timestamp of this snapshot  */
@@ -6523,7 +6523,7 @@ export type ethereumPrimaryPositionSnapshot = {
   index?: Maybe<Scalars['BigInt']>;
 };
 
-export type ethereumPrimaryPositionSnapshot_filter = {
+export type gnosisPrimaryPositionSnapshot_filter = {
   id?: InputMaybe<Scalars['ID']>;
   id_not?: InputMaybe<Scalars['ID']>;
   id_gt?: InputMaybe<Scalars['ID']>;
@@ -6532,16 +6532,16 @@ export type ethereumPrimaryPositionSnapshot_filter = {
   id_lte?: InputMaybe<Scalars['ID']>;
   id_in?: InputMaybe<Array<Scalars['ID']>>;
   id_not_in?: InputMaybe<Array<Scalars['ID']>>;
-  hash?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_not?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_gt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_lt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_gte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_lte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  hash_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  hash_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_not_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
+  hash?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_not?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_gt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_lt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_gte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_lte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  hash_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  hash_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_not_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
   logIndex?: InputMaybe<Scalars['Int']>;
   logIndex_not?: InputMaybe<Scalars['Int']>;
   logIndex_gt?: InputMaybe<Scalars['Int']>;
@@ -6578,7 +6578,7 @@ export type ethereumPrimaryPositionSnapshot_filter = {
   account_ends_with_nocase?: InputMaybe<Scalars['String']>;
   account_not_ends_with?: InputMaybe<Scalars['String']>;
   account_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  account_?: InputMaybe<ethereumPrimaryAccount_filter>;
+  account_?: InputMaybe<gnosisPrimaryAccount_filter>;
   position?: InputMaybe<Scalars['String']>;
   position_not?: InputMaybe<Scalars['String']>;
   position_gt?: InputMaybe<Scalars['String']>;
@@ -6599,7 +6599,7 @@ export type ethereumPrimaryPositionSnapshot_filter = {
   position_ends_with_nocase?: InputMaybe<Scalars['String']>;
   position_not_ends_with?: InputMaybe<Scalars['String']>;
   position_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  position_?: InputMaybe<ethereumPrimaryPosition_filter>;
+  position_?: InputMaybe<gnosisPrimaryPosition_filter>;
   balance?: InputMaybe<Scalars['BigInt']>;
   balance_not?: InputMaybe<Scalars['BigInt']>;
   balance_gt?: InputMaybe<Scalars['BigInt']>;
@@ -6608,14 +6608,14 @@ export type ethereumPrimaryPositionSnapshot_filter = {
   balance_lte?: InputMaybe<Scalars['BigInt']>;
   balance_in?: InputMaybe<Array<Scalars['BigInt']>>;
   balance_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  balanceUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  balanceUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  balanceUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  balanceUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  balanceUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  balanceUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  balanceUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  balanceUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  balanceUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  balanceUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  balanceUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  balanceUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  balanceUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  balanceUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  balanceUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  balanceUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   blockNumber?: InputMaybe<Scalars['BigInt']>;
   blockNumber_not?: InputMaybe<Scalars['BigInt']>;
   blockNumber_gt?: InputMaybe<Scalars['BigInt']>;
@@ -6649,12 +6649,12 @@ export type ethereumPrimaryPositionSnapshot_filter = {
   index_in?: InputMaybe<Array<Scalars['BigInt']>>;
   index_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
   /** Filter for the block changed event. */
-  _change_block?: InputMaybe<ethereumPrimaryBlockChangedFilter>;
-  and?: InputMaybe<Array<InputMaybe<ethereumPrimaryPositionSnapshot_filter>>>;
-  or?: InputMaybe<Array<InputMaybe<ethereumPrimaryPositionSnapshot_filter>>>;
+  _change_block?: InputMaybe<gnosisPrimaryBlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<gnosisPrimaryPositionSnapshot_filter>>>;
+  or?: InputMaybe<Array<InputMaybe<gnosisPrimaryPositionSnapshot_filter>>>;
 };
 
-export type ethereumPrimaryPositionSnapshot_orderBy =
+export type gnosisPrimaryPositionSnapshot_orderBy =
   | 'id'
   | 'hash'
   | 'logIndex'
@@ -6704,7 +6704,7 @@ export type ethereumPrimaryPositionSnapshot_orderBy =
   | 'principal'
   | 'index';
 
-export type ethereumPrimaryPosition_filter = {
+export type gnosisPrimaryPosition_filter = {
   id?: InputMaybe<Scalars['ID']>;
   id_not?: InputMaybe<Scalars['ID']>;
   id_gt?: InputMaybe<Scalars['ID']>;
@@ -6733,7 +6733,7 @@ export type ethereumPrimaryPosition_filter = {
   account_ends_with_nocase?: InputMaybe<Scalars['String']>;
   account_not_ends_with?: InputMaybe<Scalars['String']>;
   account_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  account_?: InputMaybe<ethereumPrimaryAccount_filter>;
+  account_?: InputMaybe<gnosisPrimaryAccount_filter>;
   market?: InputMaybe<Scalars['String']>;
   market_not?: InputMaybe<Scalars['String']>;
   market_gt?: InputMaybe<Scalars['String']>;
@@ -6754,7 +6754,7 @@ export type ethereumPrimaryPosition_filter = {
   market_ends_with_nocase?: InputMaybe<Scalars['String']>;
   market_not_ends_with?: InputMaybe<Scalars['String']>;
   market_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  market_?: InputMaybe<ethereumPrimaryMarket_filter>;
+  market_?: InputMaybe<gnosisPrimaryMarket_filter>;
   asset?: InputMaybe<Scalars['String']>;
   asset_not?: InputMaybe<Scalars['String']>;
   asset_gt?: InputMaybe<Scalars['String']>;
@@ -6775,27 +6775,27 @@ export type ethereumPrimaryPosition_filter = {
   asset_ends_with_nocase?: InputMaybe<Scalars['String']>;
   asset_not_ends_with?: InputMaybe<Scalars['String']>;
   asset_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  asset_?: InputMaybe<ethereumPrimaryToken_filter>;
-  hashOpened?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hashOpened_not?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hashOpened_gt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hashOpened_lt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hashOpened_gte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hashOpened_lte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hashOpened_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  hashOpened_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  hashOpened_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hashOpened_not_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hashClosed?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hashClosed_not?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hashClosed_gt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hashClosed_lt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hashClosed_gte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hashClosed_lte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hashClosed_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  hashClosed_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  hashClosed_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hashClosed_not_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
+  asset_?: InputMaybe<gnosisPrimaryToken_filter>;
+  hashOpened?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hashOpened_not?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hashOpened_gt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hashOpened_lt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hashOpened_gte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hashOpened_lte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hashOpened_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  hashOpened_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  hashOpened_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hashOpened_not_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hashClosed?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hashClosed_not?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hashClosed_gt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hashClosed_lt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hashClosed_gte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hashClosed_lte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hashClosed_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  hashClosed_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  hashClosed_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hashClosed_not_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
   blockNumberOpened?: InputMaybe<Scalars['BigInt']>;
   blockNumberOpened_not?: InputMaybe<Scalars['BigInt']>;
   blockNumberOpened_gt?: InputMaybe<Scalars['BigInt']>;
@@ -6828,14 +6828,14 @@ export type ethereumPrimaryPosition_filter = {
   timestampClosed_lte?: InputMaybe<Scalars['BigInt']>;
   timestampClosed_in?: InputMaybe<Array<Scalars['BigInt']>>;
   timestampClosed_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  side?: InputMaybe<ethereumPrimaryPositionSide>;
-  side_not?: InputMaybe<ethereumPrimaryPositionSide>;
-  side_in?: InputMaybe<Array<ethereumPrimaryPositionSide>>;
-  side_not_in?: InputMaybe<Array<ethereumPrimaryPositionSide>>;
-  type?: InputMaybe<ethereumPrimaryInterestRateType>;
-  type_not?: InputMaybe<ethereumPrimaryInterestRateType>;
-  type_in?: InputMaybe<Array<ethereumPrimaryInterestRateType>>;
-  type_not_in?: InputMaybe<Array<ethereumPrimaryInterestRateType>>;
+  side?: InputMaybe<gnosisPrimaryPositionSide>;
+  side_not?: InputMaybe<gnosisPrimaryPositionSide>;
+  side_in?: InputMaybe<Array<gnosisPrimaryPositionSide>>;
+  side_not_in?: InputMaybe<Array<gnosisPrimaryPositionSide>>;
+  type?: InputMaybe<gnosisPrimaryInterestRateType>;
+  type_not?: InputMaybe<gnosisPrimaryInterestRateType>;
+  type_in?: InputMaybe<Array<gnosisPrimaryInterestRateType>>;
+  type_not_in?: InputMaybe<Array<gnosisPrimaryInterestRateType>>;
   isCollateral?: InputMaybe<Scalars['Boolean']>;
   isCollateral_not?: InputMaybe<Scalars['Boolean']>;
   isCollateral_in?: InputMaybe<Array<Scalars['Boolean']>>;
@@ -6868,7 +6868,7 @@ export type ethereumPrimaryPosition_filter = {
   depositCount_lte?: InputMaybe<Scalars['Int']>;
   depositCount_in?: InputMaybe<Array<Scalars['Int']>>;
   depositCount_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  deposits_?: InputMaybe<ethereumPrimaryDeposit_filter>;
+  deposits_?: InputMaybe<gnosisPrimaryDeposit_filter>;
   withdrawCount?: InputMaybe<Scalars['Int']>;
   withdrawCount_not?: InputMaybe<Scalars['Int']>;
   withdrawCount_gt?: InputMaybe<Scalars['Int']>;
@@ -6877,7 +6877,7 @@ export type ethereumPrimaryPosition_filter = {
   withdrawCount_lte?: InputMaybe<Scalars['Int']>;
   withdrawCount_in?: InputMaybe<Array<Scalars['Int']>>;
   withdrawCount_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  withdraws_?: InputMaybe<ethereumPrimaryWithdraw_filter>;
+  withdraws_?: InputMaybe<gnosisPrimaryWithdraw_filter>;
   borrowCount?: InputMaybe<Scalars['Int']>;
   borrowCount_not?: InputMaybe<Scalars['Int']>;
   borrowCount_gt?: InputMaybe<Scalars['Int']>;
@@ -6886,7 +6886,7 @@ export type ethereumPrimaryPosition_filter = {
   borrowCount_lte?: InputMaybe<Scalars['Int']>;
   borrowCount_in?: InputMaybe<Array<Scalars['Int']>>;
   borrowCount_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  borrows_?: InputMaybe<ethereumPrimaryBorrow_filter>;
+  borrows_?: InputMaybe<gnosisPrimaryBorrow_filter>;
   repayCount?: InputMaybe<Scalars['Int']>;
   repayCount_not?: InputMaybe<Scalars['Int']>;
   repayCount_gt?: InputMaybe<Scalars['Int']>;
@@ -6895,7 +6895,7 @@ export type ethereumPrimaryPosition_filter = {
   repayCount_lte?: InputMaybe<Scalars['Int']>;
   repayCount_in?: InputMaybe<Array<Scalars['Int']>>;
   repayCount_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  repays_?: InputMaybe<ethereumPrimaryRepay_filter>;
+  repays_?: InputMaybe<gnosisPrimaryRepay_filter>;
   liquidationCount?: InputMaybe<Scalars['Int']>;
   liquidationCount_not?: InputMaybe<Scalars['Int']>;
   liquidationCount_gt?: InputMaybe<Scalars['Int']>;
@@ -6904,7 +6904,7 @@ export type ethereumPrimaryPosition_filter = {
   liquidationCount_lte?: InputMaybe<Scalars['Int']>;
   liquidationCount_in?: InputMaybe<Array<Scalars['Int']>>;
   liquidationCount_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  liquidations_?: InputMaybe<ethereumPrimaryLiquidate_filter>;
+  liquidations_?: InputMaybe<gnosisPrimaryLiquidate_filter>;
   transferredCount?: InputMaybe<Scalars['Int']>;
   transferredCount_not?: InputMaybe<Scalars['Int']>;
   transferredCount_gt?: InputMaybe<Scalars['Int']>;
@@ -6921,19 +6921,19 @@ export type ethereumPrimaryPosition_filter = {
   receivedCount_lte?: InputMaybe<Scalars['Int']>;
   receivedCount_in?: InputMaybe<Array<Scalars['Int']>>;
   receivedCount_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  transfers_?: InputMaybe<ethereumPrimaryTransfer_filter>;
-  snapshots_?: InputMaybe<ethereumPrimaryPositionSnapshot_filter>;
+  transfers_?: InputMaybe<gnosisPrimaryTransfer_filter>;
+  snapshots_?: InputMaybe<gnosisPrimaryPositionSnapshot_filter>;
   _eMode?: InputMaybe<Scalars['Boolean']>;
   _eMode_not?: InputMaybe<Scalars['Boolean']>;
   _eMode_in?: InputMaybe<Array<Scalars['Boolean']>>;
   _eMode_not_in?: InputMaybe<Array<Scalars['Boolean']>>;
   /** Filter for the block changed event. */
-  _change_block?: InputMaybe<ethereumPrimaryBlockChangedFilter>;
-  and?: InputMaybe<Array<InputMaybe<ethereumPrimaryPosition_filter>>>;
-  or?: InputMaybe<Array<InputMaybe<ethereumPrimaryPosition_filter>>>;
+  _change_block?: InputMaybe<gnosisPrimaryBlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<gnosisPrimaryPosition_filter>>>;
+  or?: InputMaybe<Array<InputMaybe<gnosisPrimaryPosition_filter>>>;
 };
 
-export type ethereumPrimaryPosition_orderBy =
+export type gnosisPrimaryPosition_orderBy =
   | 'id'
   | 'account'
   | 'account__id'
@@ -7052,9 +7052,9 @@ export type ethereumPrimaryPosition_orderBy =
   | 'snapshots'
   | '_eMode';
 
-export type ethereumPrimaryProtocol = {
+export type gnosisPrimaryProtocol = {
   /**  Smart contract address of the protocol's main contract (Factory, Registry, etc)  */
-  id: Scalars['ethereumPrimaryBytes'];
+  id: Scalars['gnosisPrimaryBytes'];
   /**  Base name of the protocol, excluding transformations. e.g. Aave  */
   protocol: Scalars['String'];
   /**  Name of the protocol, including version. e.g. Aave v2  */
@@ -7068,88 +7068,88 @@ export type ethereumPrimaryProtocol = {
   /**  Version of the methodology used to compute metrics, loosely based on SemVer format (e.g. 1.0.0)  */
   methodologyVersion: Scalars['String'];
   /**  The blockchain network this subgraph is indexing on  */
-  network: ethereumPrimaryNetwork;
+  network: gnosisPrimaryNetwork;
   /**  The type of protocol (e.g. DEX, Lending, Yield, etc)  */
-  type: ethereumPrimaryProtocolType;
+  type: gnosisPrimaryProtocolType;
   /**  The specific lending protocol type  */
-  lendingType?: Maybe<ethereumPrimaryLendingType>;
+  lendingType?: Maybe<gnosisPrimaryLendingType>;
   /**  The specific permissions required to lend in this protocol  */
-  lenderPermissionType?: Maybe<ethereumPrimaryPermissionType>;
+  lenderPermissionType?: Maybe<gnosisPrimaryPermissionType>;
   /**  The specific permissions required to borrow from this protocol  */
-  borrowerPermissionType?: Maybe<ethereumPrimaryPermissionType>;
+  borrowerPermissionType?: Maybe<gnosisPrimaryPermissionType>;
   /**  The specific permissions required to create a pool (market) in this protocol  */
-  poolCreatorPermissionType?: Maybe<ethereumPrimaryPermissionType>;
+  poolCreatorPermissionType?: Maybe<gnosisPrimaryPermissionType>;
   /**  Risk type of the lending protocol  */
-  riskType?: Maybe<ethereumPrimaryRiskType>;
+  riskType?: Maybe<gnosisPrimaryRiskType>;
   /**  The way a positions can be collateralized  */
-  collateralizationType?: Maybe<ethereumPrimaryCollateralizationType>;
+  collateralizationType?: Maybe<gnosisPrimaryCollateralizationType>;
   /**  Current TVL (Total Value Locked) of the entire protocol  */
-  totalValueLockedUSD: Scalars['ethereumPrimaryBigDecimal'];
+  totalValueLockedUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Current PCV (Protocol Controlled Value). Only relevant for protocols with PCV.  */
-  protocolControlledValueUSD?: Maybe<Scalars['ethereumPrimaryBigDecimal']>;
+  protocolControlledValueUSD?: Maybe<Scalars['gnosisPrimaryBigDecimal']>;
   /**  Number of cumulative unique users. e.g. accounts that spent gas to interact with this protocol  */
   cumulativeUniqueUsers: Scalars['Int'];
   /**  Revenue claimed by suppliers to the protocol. LPs on DEXs (e.g. 0.25% of the swap fee in Sushiswap). Depositors on Lending Protocols. NFT sellers on OpenSea.  */
-  cumulativeSupplySideRevenueUSD: Scalars['ethereumPrimaryBigDecimal'];
+  cumulativeSupplySideRevenueUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Gross revenue for the protocol (revenue claimed by protocol). Examples: AMM protocol fee (Sushi’s 0.05%). OpenSea 10% sell fee.  */
-  cumulativeProtocolSideRevenueUSD: Scalars['ethereumPrimaryBigDecimal'];
+  cumulativeProtocolSideRevenueUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  All revenue generated by the protocol. e.g. 0.30% of swap fee in Sushiswap, all yield generated by Yearn.  */
-  cumulativeTotalRevenueUSD: Scalars['ethereumPrimaryBigDecimal'];
+  cumulativeTotalRevenueUSD: Scalars['gnosisPrimaryBigDecimal'];
   /**  Total number of pools  */
   totalPoolCount: Scalars['Int'];
   /**  Daily usage metrics for this protocol  */
-  dailyUsageMetrics: Array<ethereumPrimaryUsageMetricsDailySnapshot>;
+  dailyUsageMetrics: Array<gnosisPrimaryUsageMetricsDailySnapshot>;
   /**  Hourly usage metrics for this protocol  */
-  hourlyUsageMetrics: Array<ethereumPrimaryUsageMetricsHourlySnapshot>;
+  hourlyUsageMetrics: Array<gnosisPrimaryUsageMetricsHourlySnapshot>;
   /**  Daily financial metrics for this protocol  */
-  financialMetrics: Array<ethereumPrimaryFinancialsDailySnapshot>;
+  financialMetrics: Array<gnosisPrimaryFinancialsDailySnapshot>;
 };
 
 
-export type ethereumPrimaryProtocoldailyUsageMetricsArgs = {
+export type gnosisPrimaryProtocoldailyUsageMetricsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryUsageMetricsDailySnapshot_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryUsageMetricsDailySnapshot_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryUsageMetricsDailySnapshot_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryUsageMetricsDailySnapshot_filter>;
 };
 
 
-export type ethereumPrimaryProtocolhourlyUsageMetricsArgs = {
+export type gnosisPrimaryProtocolhourlyUsageMetricsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryUsageMetricsHourlySnapshot_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryUsageMetricsHourlySnapshot_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryUsageMetricsHourlySnapshot_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryUsageMetricsHourlySnapshot_filter>;
 };
 
 
-export type ethereumPrimaryProtocolfinancialMetricsArgs = {
+export type gnosisPrimaryProtocolfinancialMetricsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryFinancialsDailySnapshot_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryFinancialsDailySnapshot_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryFinancialsDailySnapshot_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryFinancialsDailySnapshot_filter>;
 };
 
-export type ethereumPrimaryProtocolType =
+export type gnosisPrimaryProtocolType =
   | 'EXCHANGE'
   | 'LENDING'
   | 'YIELD'
   | 'BRIDGE'
   | 'GENERIC';
 
-export type ethereumPrimaryProtocol_filter = {
-  id?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
+export type gnosisPrimaryProtocol_filter = {
+  id?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
   protocol?: InputMaybe<Scalars['String']>;
   protocol_not?: InputMaybe<Scalars['String']>;
   protocol_gt?: InputMaybe<Scalars['String']>;
@@ -7270,54 +7270,54 @@ export type ethereumPrimaryProtocol_filter = {
   methodologyVersion_ends_with_nocase?: InputMaybe<Scalars['String']>;
   methodologyVersion_not_ends_with?: InputMaybe<Scalars['String']>;
   methodologyVersion_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  network?: InputMaybe<ethereumPrimaryNetwork>;
-  network_not?: InputMaybe<ethereumPrimaryNetwork>;
-  network_in?: InputMaybe<Array<ethereumPrimaryNetwork>>;
-  network_not_in?: InputMaybe<Array<ethereumPrimaryNetwork>>;
-  type?: InputMaybe<ethereumPrimaryProtocolType>;
-  type_not?: InputMaybe<ethereumPrimaryProtocolType>;
-  type_in?: InputMaybe<Array<ethereumPrimaryProtocolType>>;
-  type_not_in?: InputMaybe<Array<ethereumPrimaryProtocolType>>;
-  lendingType?: InputMaybe<ethereumPrimaryLendingType>;
-  lendingType_not?: InputMaybe<ethereumPrimaryLendingType>;
-  lendingType_in?: InputMaybe<Array<ethereumPrimaryLendingType>>;
-  lendingType_not_in?: InputMaybe<Array<ethereumPrimaryLendingType>>;
-  lenderPermissionType?: InputMaybe<ethereumPrimaryPermissionType>;
-  lenderPermissionType_not?: InputMaybe<ethereumPrimaryPermissionType>;
-  lenderPermissionType_in?: InputMaybe<Array<ethereumPrimaryPermissionType>>;
-  lenderPermissionType_not_in?: InputMaybe<Array<ethereumPrimaryPermissionType>>;
-  borrowerPermissionType?: InputMaybe<ethereumPrimaryPermissionType>;
-  borrowerPermissionType_not?: InputMaybe<ethereumPrimaryPermissionType>;
-  borrowerPermissionType_in?: InputMaybe<Array<ethereumPrimaryPermissionType>>;
-  borrowerPermissionType_not_in?: InputMaybe<Array<ethereumPrimaryPermissionType>>;
-  poolCreatorPermissionType?: InputMaybe<ethereumPrimaryPermissionType>;
-  poolCreatorPermissionType_not?: InputMaybe<ethereumPrimaryPermissionType>;
-  poolCreatorPermissionType_in?: InputMaybe<Array<ethereumPrimaryPermissionType>>;
-  poolCreatorPermissionType_not_in?: InputMaybe<Array<ethereumPrimaryPermissionType>>;
-  riskType?: InputMaybe<ethereumPrimaryRiskType>;
-  riskType_not?: InputMaybe<ethereumPrimaryRiskType>;
-  riskType_in?: InputMaybe<Array<ethereumPrimaryRiskType>>;
-  riskType_not_in?: InputMaybe<Array<ethereumPrimaryRiskType>>;
-  collateralizationType?: InputMaybe<ethereumPrimaryCollateralizationType>;
-  collateralizationType_not?: InputMaybe<ethereumPrimaryCollateralizationType>;
-  collateralizationType_in?: InputMaybe<Array<ethereumPrimaryCollateralizationType>>;
-  collateralizationType_not_in?: InputMaybe<Array<ethereumPrimaryCollateralizationType>>;
-  totalValueLockedUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalValueLockedUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalValueLockedUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalValueLockedUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalValueLockedUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalValueLockedUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  totalValueLockedUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  totalValueLockedUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  protocolControlledValueUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  protocolControlledValueUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  protocolControlledValueUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  protocolControlledValueUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  protocolControlledValueUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  protocolControlledValueUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  protocolControlledValueUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  protocolControlledValueUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  network?: InputMaybe<gnosisPrimaryNetwork>;
+  network_not?: InputMaybe<gnosisPrimaryNetwork>;
+  network_in?: InputMaybe<Array<gnosisPrimaryNetwork>>;
+  network_not_in?: InputMaybe<Array<gnosisPrimaryNetwork>>;
+  type?: InputMaybe<gnosisPrimaryProtocolType>;
+  type_not?: InputMaybe<gnosisPrimaryProtocolType>;
+  type_in?: InputMaybe<Array<gnosisPrimaryProtocolType>>;
+  type_not_in?: InputMaybe<Array<gnosisPrimaryProtocolType>>;
+  lendingType?: InputMaybe<gnosisPrimaryLendingType>;
+  lendingType_not?: InputMaybe<gnosisPrimaryLendingType>;
+  lendingType_in?: InputMaybe<Array<gnosisPrimaryLendingType>>;
+  lendingType_not_in?: InputMaybe<Array<gnosisPrimaryLendingType>>;
+  lenderPermissionType?: InputMaybe<gnosisPrimaryPermissionType>;
+  lenderPermissionType_not?: InputMaybe<gnosisPrimaryPermissionType>;
+  lenderPermissionType_in?: InputMaybe<Array<gnosisPrimaryPermissionType>>;
+  lenderPermissionType_not_in?: InputMaybe<Array<gnosisPrimaryPermissionType>>;
+  borrowerPermissionType?: InputMaybe<gnosisPrimaryPermissionType>;
+  borrowerPermissionType_not?: InputMaybe<gnosisPrimaryPermissionType>;
+  borrowerPermissionType_in?: InputMaybe<Array<gnosisPrimaryPermissionType>>;
+  borrowerPermissionType_not_in?: InputMaybe<Array<gnosisPrimaryPermissionType>>;
+  poolCreatorPermissionType?: InputMaybe<gnosisPrimaryPermissionType>;
+  poolCreatorPermissionType_not?: InputMaybe<gnosisPrimaryPermissionType>;
+  poolCreatorPermissionType_in?: InputMaybe<Array<gnosisPrimaryPermissionType>>;
+  poolCreatorPermissionType_not_in?: InputMaybe<Array<gnosisPrimaryPermissionType>>;
+  riskType?: InputMaybe<gnosisPrimaryRiskType>;
+  riskType_not?: InputMaybe<gnosisPrimaryRiskType>;
+  riskType_in?: InputMaybe<Array<gnosisPrimaryRiskType>>;
+  riskType_not_in?: InputMaybe<Array<gnosisPrimaryRiskType>>;
+  collateralizationType?: InputMaybe<gnosisPrimaryCollateralizationType>;
+  collateralizationType_not?: InputMaybe<gnosisPrimaryCollateralizationType>;
+  collateralizationType_in?: InputMaybe<Array<gnosisPrimaryCollateralizationType>>;
+  collateralizationType_not_in?: InputMaybe<Array<gnosisPrimaryCollateralizationType>>;
+  totalValueLockedUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalValueLockedUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalValueLockedUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalValueLockedUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalValueLockedUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalValueLockedUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  totalValueLockedUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  totalValueLockedUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  protocolControlledValueUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  protocolControlledValueUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  protocolControlledValueUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  protocolControlledValueUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  protocolControlledValueUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  protocolControlledValueUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  protocolControlledValueUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  protocolControlledValueUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   cumulativeUniqueUsers?: InputMaybe<Scalars['Int']>;
   cumulativeUniqueUsers_not?: InputMaybe<Scalars['Int']>;
   cumulativeUniqueUsers_gt?: InputMaybe<Scalars['Int']>;
@@ -7326,30 +7326,30 @@ export type ethereumPrimaryProtocol_filter = {
   cumulativeUniqueUsers_lte?: InputMaybe<Scalars['Int']>;
   cumulativeUniqueUsers_in?: InputMaybe<Array<Scalars['Int']>>;
   cumulativeUniqueUsers_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  cumulativeSupplySideRevenueUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeSupplySideRevenueUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeSupplySideRevenueUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeSupplySideRevenueUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeSupplySideRevenueUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeSupplySideRevenueUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeSupplySideRevenueUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeSupplySideRevenueUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeProtocolSideRevenueUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeProtocolSideRevenueUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeProtocolSideRevenueUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeProtocolSideRevenueUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeProtocolSideRevenueUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeProtocolSideRevenueUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeProtocolSideRevenueUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeProtocolSideRevenueUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeTotalRevenueUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTotalRevenueUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTotalRevenueUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTotalRevenueUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTotalRevenueUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTotalRevenueUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  cumulativeTotalRevenueUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  cumulativeTotalRevenueUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  cumulativeSupplySideRevenueUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeSupplySideRevenueUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeSupplySideRevenueUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeSupplySideRevenueUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeSupplySideRevenueUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeSupplySideRevenueUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeSupplySideRevenueUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeSupplySideRevenueUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeProtocolSideRevenueUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeProtocolSideRevenueUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeProtocolSideRevenueUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeProtocolSideRevenueUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeProtocolSideRevenueUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeProtocolSideRevenueUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeProtocolSideRevenueUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeProtocolSideRevenueUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeTotalRevenueUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTotalRevenueUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTotalRevenueUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTotalRevenueUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTotalRevenueUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTotalRevenueUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  cumulativeTotalRevenueUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  cumulativeTotalRevenueUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   totalPoolCount?: InputMaybe<Scalars['Int']>;
   totalPoolCount_not?: InputMaybe<Scalars['Int']>;
   totalPoolCount_gt?: InputMaybe<Scalars['Int']>;
@@ -7358,16 +7358,16 @@ export type ethereumPrimaryProtocol_filter = {
   totalPoolCount_lte?: InputMaybe<Scalars['Int']>;
   totalPoolCount_in?: InputMaybe<Array<Scalars['Int']>>;
   totalPoolCount_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  dailyUsageMetrics_?: InputMaybe<ethereumPrimaryUsageMetricsDailySnapshot_filter>;
-  hourlyUsageMetrics_?: InputMaybe<ethereumPrimaryUsageMetricsHourlySnapshot_filter>;
-  financialMetrics_?: InputMaybe<ethereumPrimaryFinancialsDailySnapshot_filter>;
+  dailyUsageMetrics_?: InputMaybe<gnosisPrimaryUsageMetricsDailySnapshot_filter>;
+  hourlyUsageMetrics_?: InputMaybe<gnosisPrimaryUsageMetricsHourlySnapshot_filter>;
+  financialMetrics_?: InputMaybe<gnosisPrimaryFinancialsDailySnapshot_filter>;
   /** Filter for the block changed event. */
-  _change_block?: InputMaybe<ethereumPrimaryBlockChangedFilter>;
-  and?: InputMaybe<Array<InputMaybe<ethereumPrimaryProtocol_filter>>>;
-  or?: InputMaybe<Array<InputMaybe<ethereumPrimaryProtocol_filter>>>;
+  _change_block?: InputMaybe<gnosisPrimaryBlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<gnosisPrimaryProtocol_filter>>>;
+  or?: InputMaybe<Array<InputMaybe<gnosisPrimaryProtocol_filter>>>;
 };
 
-export type ethereumPrimaryProtocol_orderBy =
+export type gnosisPrimaryProtocol_orderBy =
   | 'id'
   | 'protocol'
   | 'name'
@@ -7395,620 +7395,620 @@ export type ethereumPrimaryProtocol_orderBy =
   | 'financialMetrics';
 
 export type Query = {
-  ethereumPrimarytoken?: Maybe<ethereumPrimaryToken>;
-  ethereumPrimarytokens: Array<ethereumPrimaryToken>;
-  ethereumPrimaryrewardToken?: Maybe<ethereumPrimaryRewardToken>;
-  ethereumPrimaryrewardTokens: Array<ethereumPrimaryRewardToken>;
-  ethereumPrimaryinterestRate?: Maybe<ethereumPrimaryInterestRate>;
-  ethereumPrimaryinterestRates: Array<ethereumPrimaryInterestRate>;
-  ethereumPrimaryfee?: Maybe<ethereumPrimaryFee>;
-  ethereumPrimaryfees: Array<ethereumPrimaryFee>;
-  ethereumPrimaryrevenueDetail?: Maybe<ethereumPrimaryRevenueDetail>;
-  ethereumPrimaryrevenueDetails: Array<ethereumPrimaryRevenueDetail>;
-  ethereumPrimaryoracle?: Maybe<ethereumPrimaryOracle>;
-  ethereumPrimaryoracles: Array<ethereumPrimaryOracle>;
-  ethereumPrimarylendingProtocol?: Maybe<ethereumPrimaryLendingProtocol>;
-  ethereumPrimarylendingProtocols: Array<ethereumPrimaryLendingProtocol>;
-  ethereumPrimarymarketList?: Maybe<ethereumPrimary_MarketList>;
-  ethereumPrimarymarketLists: Array<ethereumPrimary_MarketList>;
-  ethereumPrimaryusageMetricsDailySnapshot?: Maybe<ethereumPrimaryUsageMetricsDailySnapshot>;
-  ethereumPrimaryusageMetricsDailySnapshots: Array<ethereumPrimaryUsageMetricsDailySnapshot>;
-  ethereumPrimaryusageMetricsHourlySnapshot?: Maybe<ethereumPrimaryUsageMetricsHourlySnapshot>;
-  ethereumPrimaryusageMetricsHourlySnapshots: Array<ethereumPrimaryUsageMetricsHourlySnapshot>;
-  ethereumPrimaryfinancialsDailySnapshot?: Maybe<ethereumPrimaryFinancialsDailySnapshot>;
-  ethereumPrimaryfinancialsDailySnapshots: Array<ethereumPrimaryFinancialsDailySnapshot>;
-  ethereumPrimarymarket?: Maybe<ethereumPrimaryMarket>;
-  ethereumPrimarymarkets: Array<ethereumPrimaryMarket>;
-  ethereumPrimarymarketDailySnapshot?: Maybe<ethereumPrimaryMarketDailySnapshot>;
-  ethereumPrimarymarketDailySnapshots: Array<ethereumPrimaryMarketDailySnapshot>;
-  ethereumPrimarymarketHourlySnapshot?: Maybe<ethereumPrimaryMarketHourlySnapshot>;
-  ethereumPrimarymarketHourlySnapshots: Array<ethereumPrimaryMarketHourlySnapshot>;
-  ethereumPrimaryaccount?: Maybe<ethereumPrimaryAccount>;
-  ethereumPrimaryaccounts: Array<ethereumPrimaryAccount>;
-  ethereumPrimaryposition?: Maybe<ethereumPrimaryPosition>;
-  ethereumPrimarypositions: Array<ethereumPrimaryPosition>;
-  ethereumPrimarypositionSnapshot?: Maybe<ethereumPrimaryPositionSnapshot>;
-  ethereumPrimarypositionSnapshots: Array<ethereumPrimaryPositionSnapshot>;
-  ethereumPrimaryactiveAccount?: Maybe<ethereumPrimary_ActiveAccount>;
-  ethereumPrimaryactiveAccounts: Array<ethereumPrimary_ActiveAccount>;
-  ethereumPrimarypositionCounter?: Maybe<ethereumPrimary_PositionCounter>;
-  ethereumPrimarypositionCounters: Array<ethereumPrimary_PositionCounter>;
-  ethereumPrimarydeposit?: Maybe<ethereumPrimaryDeposit>;
-  ethereumPrimarydeposits: Array<ethereumPrimaryDeposit>;
-  ethereumPrimarywithdraw?: Maybe<ethereumPrimaryWithdraw>;
-  ethereumPrimarywithdraws: Array<ethereumPrimaryWithdraw>;
-  ethereumPrimaryborrow?: Maybe<ethereumPrimaryBorrow>;
-  ethereumPrimaryborrows: Array<ethereumPrimaryBorrow>;
-  ethereumPrimaryrepay?: Maybe<ethereumPrimaryRepay>;
-  ethereumPrimaryrepays: Array<ethereumPrimaryRepay>;
-  ethereumPrimaryliquidate?: Maybe<ethereumPrimaryLiquidate>;
-  ethereumPrimaryliquidates: Array<ethereumPrimaryLiquidate>;
-  ethereumPrimarytransfer?: Maybe<ethereumPrimaryTransfer>;
-  ethereumPrimarytransfers: Array<ethereumPrimaryTransfer>;
-  ethereumPrimaryflashloan?: Maybe<ethereumPrimaryFlashloan>;
-  ethereumPrimaryflashloans: Array<ethereumPrimaryFlashloan>;
-  ethereumPrimarydefaultOracle?: Maybe<ethereumPrimary_DefaultOracle>;
-  ethereumPrimarydefaultOracles: Array<ethereumPrimary_DefaultOracle>;
-  ethereumPrimaryflashLoanPremium?: Maybe<ethereumPrimary_FlashLoanPremium>;
-  ethereumPrimaryflashLoanPremiums: Array<ethereumPrimary_FlashLoanPremium>;
-  ethereumPrimaryprotocol?: Maybe<ethereumPrimaryProtocol>;
-  ethereumPrimaryprotocols: Array<ethereumPrimaryProtocol>;
-  ethereumPrimaryevent?: Maybe<ethereumPrimaryEvent>;
-  ethereumPrimaryevents: Array<ethereumPrimaryEvent>;
+  gnosisPrimarytoken?: Maybe<gnosisPrimaryToken>;
+  gnosisPrimarytokens: Array<gnosisPrimaryToken>;
+  gnosisPrimaryrewardToken?: Maybe<gnosisPrimaryRewardToken>;
+  gnosisPrimaryrewardTokens: Array<gnosisPrimaryRewardToken>;
+  gnosisPrimaryinterestRate?: Maybe<gnosisPrimaryInterestRate>;
+  gnosisPrimaryinterestRates: Array<gnosisPrimaryInterestRate>;
+  gnosisPrimaryfee?: Maybe<gnosisPrimaryFee>;
+  gnosisPrimaryfees: Array<gnosisPrimaryFee>;
+  gnosisPrimaryrevenueDetail?: Maybe<gnosisPrimaryRevenueDetail>;
+  gnosisPrimaryrevenueDetails: Array<gnosisPrimaryRevenueDetail>;
+  gnosisPrimaryoracle?: Maybe<gnosisPrimaryOracle>;
+  gnosisPrimaryoracles: Array<gnosisPrimaryOracle>;
+  gnosisPrimarylendingProtocol?: Maybe<gnosisPrimaryLendingProtocol>;
+  gnosisPrimarylendingProtocols: Array<gnosisPrimaryLendingProtocol>;
+  gnosisPrimarymarketList?: Maybe<gnosisPrimary_MarketList>;
+  gnosisPrimarymarketLists: Array<gnosisPrimary_MarketList>;
+  gnosisPrimaryusageMetricsDailySnapshot?: Maybe<gnosisPrimaryUsageMetricsDailySnapshot>;
+  gnosisPrimaryusageMetricsDailySnapshots: Array<gnosisPrimaryUsageMetricsDailySnapshot>;
+  gnosisPrimaryusageMetricsHourlySnapshot?: Maybe<gnosisPrimaryUsageMetricsHourlySnapshot>;
+  gnosisPrimaryusageMetricsHourlySnapshots: Array<gnosisPrimaryUsageMetricsHourlySnapshot>;
+  gnosisPrimaryfinancialsDailySnapshot?: Maybe<gnosisPrimaryFinancialsDailySnapshot>;
+  gnosisPrimaryfinancialsDailySnapshots: Array<gnosisPrimaryFinancialsDailySnapshot>;
+  gnosisPrimarymarket?: Maybe<gnosisPrimaryMarket>;
+  gnosisPrimarymarkets: Array<gnosisPrimaryMarket>;
+  gnosisPrimarymarketDailySnapshot?: Maybe<gnosisPrimaryMarketDailySnapshot>;
+  gnosisPrimarymarketDailySnapshots: Array<gnosisPrimaryMarketDailySnapshot>;
+  gnosisPrimarymarketHourlySnapshot?: Maybe<gnosisPrimaryMarketHourlySnapshot>;
+  gnosisPrimarymarketHourlySnapshots: Array<gnosisPrimaryMarketHourlySnapshot>;
+  gnosisPrimaryaccount?: Maybe<gnosisPrimaryAccount>;
+  gnosisPrimaryaccounts: Array<gnosisPrimaryAccount>;
+  gnosisPrimaryposition?: Maybe<gnosisPrimaryPosition>;
+  gnosisPrimarypositions: Array<gnosisPrimaryPosition>;
+  gnosisPrimarypositionSnapshot?: Maybe<gnosisPrimaryPositionSnapshot>;
+  gnosisPrimarypositionSnapshots: Array<gnosisPrimaryPositionSnapshot>;
+  gnosisPrimaryactiveAccount?: Maybe<gnosisPrimary_ActiveAccount>;
+  gnosisPrimaryactiveAccounts: Array<gnosisPrimary_ActiveAccount>;
+  gnosisPrimarypositionCounter?: Maybe<gnosisPrimary_PositionCounter>;
+  gnosisPrimarypositionCounters: Array<gnosisPrimary_PositionCounter>;
+  gnosisPrimarydeposit?: Maybe<gnosisPrimaryDeposit>;
+  gnosisPrimarydeposits: Array<gnosisPrimaryDeposit>;
+  gnosisPrimarywithdraw?: Maybe<gnosisPrimaryWithdraw>;
+  gnosisPrimarywithdraws: Array<gnosisPrimaryWithdraw>;
+  gnosisPrimaryborrow?: Maybe<gnosisPrimaryBorrow>;
+  gnosisPrimaryborrows: Array<gnosisPrimaryBorrow>;
+  gnosisPrimaryrepay?: Maybe<gnosisPrimaryRepay>;
+  gnosisPrimaryrepays: Array<gnosisPrimaryRepay>;
+  gnosisPrimaryliquidate?: Maybe<gnosisPrimaryLiquidate>;
+  gnosisPrimaryliquidates: Array<gnosisPrimaryLiquidate>;
+  gnosisPrimarytransfer?: Maybe<gnosisPrimaryTransfer>;
+  gnosisPrimarytransfers: Array<gnosisPrimaryTransfer>;
+  gnosisPrimaryflashloan?: Maybe<gnosisPrimaryFlashloan>;
+  gnosisPrimaryflashloans: Array<gnosisPrimaryFlashloan>;
+  gnosisPrimarydefaultOracle?: Maybe<gnosisPrimary_DefaultOracle>;
+  gnosisPrimarydefaultOracles: Array<gnosisPrimary_DefaultOracle>;
+  gnosisPrimaryflashLoanPremium?: Maybe<gnosisPrimary_FlashLoanPremium>;
+  gnosisPrimaryflashLoanPremiums: Array<gnosisPrimary_FlashLoanPremium>;
+  gnosisPrimaryprotocol?: Maybe<gnosisPrimaryProtocol>;
+  gnosisPrimaryprotocols: Array<gnosisPrimaryProtocol>;
+  gnosisPrimaryevent?: Maybe<gnosisPrimaryEvent>;
+  gnosisPrimaryevents: Array<gnosisPrimaryEvent>;
   /** Access to subgraph metadata */
-  ethereumPrimary_meta?: Maybe<ethereumPrimary_Meta_>;
+  gnosisPrimary_meta?: Maybe<gnosisPrimary_Meta_>;
 };
 
 
-export type QueryethereumPrimarytokenArgs = {
+export type QuerygnosisPrimarytokenArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimarytokensArgs = {
+export type QuerygnosisPrimarytokensArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryToken_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryToken_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryToken_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryToken_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimaryrewardTokenArgs = {
+export type QuerygnosisPrimaryrewardTokenArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimaryrewardTokensArgs = {
+export type QuerygnosisPrimaryrewardTokensArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryRewardToken_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryRewardToken_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryRewardToken_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryRewardToken_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimaryinterestRateArgs = {
+export type QuerygnosisPrimaryinterestRateArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimaryinterestRatesArgs = {
+export type QuerygnosisPrimaryinterestRatesArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryInterestRate_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryInterestRate_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryInterestRate_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryInterestRate_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimaryfeeArgs = {
+export type QuerygnosisPrimaryfeeArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimaryfeesArgs = {
+export type QuerygnosisPrimaryfeesArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryFee_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryFee_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryFee_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryFee_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimaryrevenueDetailArgs = {
+export type QuerygnosisPrimaryrevenueDetailArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimaryrevenueDetailsArgs = {
+export type QuerygnosisPrimaryrevenueDetailsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryRevenueDetail_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryRevenueDetail_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryRevenueDetail_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryRevenueDetail_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimaryoracleArgs = {
+export type QuerygnosisPrimaryoracleArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimaryoraclesArgs = {
+export type QuerygnosisPrimaryoraclesArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryOracle_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryOracle_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryOracle_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryOracle_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimarylendingProtocolArgs = {
+export type QuerygnosisPrimarylendingProtocolArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimarylendingProtocolsArgs = {
+export type QuerygnosisPrimarylendingProtocolsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryLendingProtocol_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryLendingProtocol_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryLendingProtocol_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryLendingProtocol_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimarymarketListArgs = {
+export type QuerygnosisPrimarymarketListArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimarymarketListsArgs = {
+export type QuerygnosisPrimarymarketListsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimary_MarketList_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimary_MarketList_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimary_MarketList_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimary_MarketList_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimaryusageMetricsDailySnapshotArgs = {
+export type QuerygnosisPrimaryusageMetricsDailySnapshotArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimaryusageMetricsDailySnapshotsArgs = {
+export type QuerygnosisPrimaryusageMetricsDailySnapshotsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryUsageMetricsDailySnapshot_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryUsageMetricsDailySnapshot_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryUsageMetricsDailySnapshot_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryUsageMetricsDailySnapshot_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimaryusageMetricsHourlySnapshotArgs = {
+export type QuerygnosisPrimaryusageMetricsHourlySnapshotArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimaryusageMetricsHourlySnapshotsArgs = {
+export type QuerygnosisPrimaryusageMetricsHourlySnapshotsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryUsageMetricsHourlySnapshot_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryUsageMetricsHourlySnapshot_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryUsageMetricsHourlySnapshot_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryUsageMetricsHourlySnapshot_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimaryfinancialsDailySnapshotArgs = {
+export type QuerygnosisPrimaryfinancialsDailySnapshotArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimaryfinancialsDailySnapshotsArgs = {
+export type QuerygnosisPrimaryfinancialsDailySnapshotsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryFinancialsDailySnapshot_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryFinancialsDailySnapshot_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryFinancialsDailySnapshot_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryFinancialsDailySnapshot_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimarymarketArgs = {
+export type QuerygnosisPrimarymarketArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimarymarketsArgs = {
+export type QuerygnosisPrimarymarketsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryMarket_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryMarket_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryMarket_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryMarket_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimarymarketDailySnapshotArgs = {
+export type QuerygnosisPrimarymarketDailySnapshotArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimarymarketDailySnapshotsArgs = {
+export type QuerygnosisPrimarymarketDailySnapshotsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryMarketDailySnapshot_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryMarketDailySnapshot_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryMarketDailySnapshot_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryMarketDailySnapshot_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimarymarketHourlySnapshotArgs = {
+export type QuerygnosisPrimarymarketHourlySnapshotArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimarymarketHourlySnapshotsArgs = {
+export type QuerygnosisPrimarymarketHourlySnapshotsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryMarketHourlySnapshot_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryMarketHourlySnapshot_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryMarketHourlySnapshot_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryMarketHourlySnapshot_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimaryaccountArgs = {
+export type QuerygnosisPrimaryaccountArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimaryaccountsArgs = {
+export type QuerygnosisPrimaryaccountsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryAccount_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryAccount_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryAccount_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryAccount_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimarypositionArgs = {
+export type QuerygnosisPrimarypositionArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimarypositionsArgs = {
+export type QuerygnosisPrimarypositionsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryPosition_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryPosition_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryPosition_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryPosition_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimarypositionSnapshotArgs = {
+export type QuerygnosisPrimarypositionSnapshotArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimarypositionSnapshotsArgs = {
+export type QuerygnosisPrimarypositionSnapshotsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryPositionSnapshot_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryPositionSnapshot_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryPositionSnapshot_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryPositionSnapshot_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimaryactiveAccountArgs = {
+export type QuerygnosisPrimaryactiveAccountArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimaryactiveAccountsArgs = {
+export type QuerygnosisPrimaryactiveAccountsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimary_ActiveAccount_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimary_ActiveAccount_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimary_ActiveAccount_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimary_ActiveAccount_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimarypositionCounterArgs = {
+export type QuerygnosisPrimarypositionCounterArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimarypositionCountersArgs = {
+export type QuerygnosisPrimarypositionCountersArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimary_PositionCounter_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimary_PositionCounter_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimary_PositionCounter_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimary_PositionCounter_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimarydepositArgs = {
+export type QuerygnosisPrimarydepositArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimarydepositsArgs = {
+export type QuerygnosisPrimarydepositsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryDeposit_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryDeposit_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryDeposit_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryDeposit_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimarywithdrawArgs = {
+export type QuerygnosisPrimarywithdrawArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimarywithdrawsArgs = {
+export type QuerygnosisPrimarywithdrawsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryWithdraw_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryWithdraw_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryWithdraw_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryWithdraw_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimaryborrowArgs = {
+export type QuerygnosisPrimaryborrowArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimaryborrowsArgs = {
+export type QuerygnosisPrimaryborrowsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryBorrow_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryBorrow_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryBorrow_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryBorrow_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimaryrepayArgs = {
+export type QuerygnosisPrimaryrepayArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimaryrepaysArgs = {
+export type QuerygnosisPrimaryrepaysArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryRepay_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryRepay_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryRepay_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryRepay_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimaryliquidateArgs = {
+export type QuerygnosisPrimaryliquidateArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimaryliquidatesArgs = {
+export type QuerygnosisPrimaryliquidatesArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryLiquidate_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryLiquidate_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryLiquidate_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryLiquidate_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimarytransferArgs = {
+export type QuerygnosisPrimarytransferArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimarytransfersArgs = {
+export type QuerygnosisPrimarytransfersArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryTransfer_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryTransfer_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryTransfer_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryTransfer_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimaryflashloanArgs = {
+export type QuerygnosisPrimaryflashloanArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimaryflashloansArgs = {
+export type QuerygnosisPrimaryflashloansArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryFlashloan_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryFlashloan_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryFlashloan_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryFlashloan_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimarydefaultOracleArgs = {
+export type QuerygnosisPrimarydefaultOracleArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimarydefaultOraclesArgs = {
+export type QuerygnosisPrimarydefaultOraclesArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimary_DefaultOracle_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimary_DefaultOracle_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimary_DefaultOracle_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimary_DefaultOracle_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimaryflashLoanPremiumArgs = {
+export type QuerygnosisPrimaryflashLoanPremiumArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimaryflashLoanPremiumsArgs = {
+export type QuerygnosisPrimaryflashLoanPremiumsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimary_FlashLoanPremium_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimary_FlashLoanPremium_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimary_FlashLoanPremium_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimary_FlashLoanPremium_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimaryprotocolArgs = {
+export type QuerygnosisPrimaryprotocolArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimaryprotocolsArgs = {
+export type QuerygnosisPrimaryprotocolsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryProtocol_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryProtocol_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryProtocol_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryProtocol_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimaryeventArgs = {
+export type QuerygnosisPrimaryeventArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimaryeventsArgs = {
+export type QuerygnosisPrimaryeventsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryEvent_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryEvent_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryEvent_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryEvent_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type QueryethereumPrimary_metaArgs = {
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
+export type QuerygnosisPrimary_metaArgs = {
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
 };
 
-export type ethereumPrimaryRepay = ethereumPrimaryEvent & {
+export type gnosisPrimaryRepay = gnosisPrimaryEvent & {
   /**  { Transaction hash }{ Log index }  */
-  id: Scalars['ethereumPrimaryBytes'];
+  id: Scalars['gnosisPrimaryBytes'];
   /**  Transaction hash of the transaction that emitted this event  */
-  hash: Scalars['ethereumPrimaryBytes'];
+  hash: Scalars['gnosisPrimaryBytes'];
   /**  Nonce of the transaction that emitted this event  */
   nonce: Scalars['BigInt'];
   /**  Event log index. For transactions that don't emit event, create arbitrary index starting from 0  */
@@ -8024,42 +8024,42 @@ export type ethereumPrimaryRepay = ethereumPrimaryEvent & {
   /**  Timestamp of this event  */
   timestamp: Scalars['BigInt'];
   /**  Account that reduces their debt on this transaction  */
-  account: ethereumPrimaryAccount;
+  account: gnosisPrimaryAccount;
   /**  Account that is providing the funds to repay the debt  */
-  accountActor?: Maybe<ethereumPrimaryAccount>;
+  accountActor?: Maybe<gnosisPrimaryAccount>;
   /**  The market tokens are repaid/burned to  */
-  market: ethereumPrimaryMarket;
+  market: gnosisPrimaryMarket;
   /**  The user position changed by this event  */
-  position: ethereumPrimaryPosition;
+  position: gnosisPrimaryPosition;
   /**  Token repaid/burned  */
-  asset: ethereumPrimaryToken;
+  asset: gnosisPrimaryToken;
   /**  Amount of token repaid/burned in native units  */
   amount: Scalars['BigInt'];
   /**  Amount of token repaid/burned in USD  */
-  amountUSD: Scalars['ethereumPrimaryBigDecimal'];
+  amountUSD: Scalars['gnosisPrimaryBigDecimal'];
 };
 
-export type ethereumPrimaryRepay_filter = {
-  id?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_not?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_gt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_lt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_gte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_lte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  hash_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  hash_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_not_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
+export type gnosisPrimaryRepay_filter = {
+  id?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_not?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_gt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_lt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_gte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_lte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  hash_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  hash_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_not_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
   nonce?: InputMaybe<Scalars['BigInt']>;
   nonce_not?: InputMaybe<Scalars['BigInt']>;
   nonce_gt?: InputMaybe<Scalars['BigInt']>;
@@ -8136,7 +8136,7 @@ export type ethereumPrimaryRepay_filter = {
   account_ends_with_nocase?: InputMaybe<Scalars['String']>;
   account_not_ends_with?: InputMaybe<Scalars['String']>;
   account_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  account_?: InputMaybe<ethereumPrimaryAccount_filter>;
+  account_?: InputMaybe<gnosisPrimaryAccount_filter>;
   accountActor?: InputMaybe<Scalars['String']>;
   accountActor_not?: InputMaybe<Scalars['String']>;
   accountActor_gt?: InputMaybe<Scalars['String']>;
@@ -8157,7 +8157,7 @@ export type ethereumPrimaryRepay_filter = {
   accountActor_ends_with_nocase?: InputMaybe<Scalars['String']>;
   accountActor_not_ends_with?: InputMaybe<Scalars['String']>;
   accountActor_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  accountActor_?: InputMaybe<ethereumPrimaryAccount_filter>;
+  accountActor_?: InputMaybe<gnosisPrimaryAccount_filter>;
   market?: InputMaybe<Scalars['String']>;
   market_not?: InputMaybe<Scalars['String']>;
   market_gt?: InputMaybe<Scalars['String']>;
@@ -8178,7 +8178,7 @@ export type ethereumPrimaryRepay_filter = {
   market_ends_with_nocase?: InputMaybe<Scalars['String']>;
   market_not_ends_with?: InputMaybe<Scalars['String']>;
   market_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  market_?: InputMaybe<ethereumPrimaryMarket_filter>;
+  market_?: InputMaybe<gnosisPrimaryMarket_filter>;
   position?: InputMaybe<Scalars['String']>;
   position_not?: InputMaybe<Scalars['String']>;
   position_gt?: InputMaybe<Scalars['String']>;
@@ -8199,7 +8199,7 @@ export type ethereumPrimaryRepay_filter = {
   position_ends_with_nocase?: InputMaybe<Scalars['String']>;
   position_not_ends_with?: InputMaybe<Scalars['String']>;
   position_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  position_?: InputMaybe<ethereumPrimaryPosition_filter>;
+  position_?: InputMaybe<gnosisPrimaryPosition_filter>;
   asset?: InputMaybe<Scalars['String']>;
   asset_not?: InputMaybe<Scalars['String']>;
   asset_gt?: InputMaybe<Scalars['String']>;
@@ -8220,7 +8220,7 @@ export type ethereumPrimaryRepay_filter = {
   asset_ends_with_nocase?: InputMaybe<Scalars['String']>;
   asset_not_ends_with?: InputMaybe<Scalars['String']>;
   asset_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  asset_?: InputMaybe<ethereumPrimaryToken_filter>;
+  asset_?: InputMaybe<gnosisPrimaryToken_filter>;
   amount?: InputMaybe<Scalars['BigInt']>;
   amount_not?: InputMaybe<Scalars['BigInt']>;
   amount_gt?: InputMaybe<Scalars['BigInt']>;
@@ -8229,21 +8229,21 @@ export type ethereumPrimaryRepay_filter = {
   amount_lte?: InputMaybe<Scalars['BigInt']>;
   amount_in?: InputMaybe<Array<Scalars['BigInt']>>;
   amount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  amountUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  amountUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  amountUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  amountUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   /** Filter for the block changed event. */
-  _change_block?: InputMaybe<ethereumPrimaryBlockChangedFilter>;
-  and?: InputMaybe<Array<InputMaybe<ethereumPrimaryRepay_filter>>>;
-  or?: InputMaybe<Array<InputMaybe<ethereumPrimaryRepay_filter>>>;
+  _change_block?: InputMaybe<gnosisPrimaryBlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<gnosisPrimaryRepay_filter>>>;
+  or?: InputMaybe<Array<InputMaybe<gnosisPrimaryRepay_filter>>>;
 };
 
-export type ethereumPrimaryRepay_orderBy =
+export type gnosisPrimaryRepay_orderBy =
   | 'id'
   | 'hash'
   | 'nonce'
@@ -8383,70 +8383,70 @@ export type ethereumPrimaryRepay_orderBy =
   | 'amount'
   | 'amountUSD';
 
-export type ethereumPrimaryRevenueDetail = {
+export type gnosisPrimaryRevenueDetail = {
   /**  { Market/Protocol ID }{ Optional: Snapshot ID }  */
-  id: Scalars['ethereumPrimaryBytes'];
+  id: Scalars['gnosisPrimaryBytes'];
   /**  The source of revenue (in alphabetical order)  */
-  sources: Array<ethereumPrimaryFee>;
+  sources: Array<gnosisPrimaryFee>;
   /**  The amount of revenue in USD (same order as sources)  */
-  amountsUSD: Array<Scalars['ethereumPrimaryBigDecimal']>;
+  amountsUSD: Array<Scalars['gnosisPrimaryBigDecimal']>;
 };
 
 
-export type ethereumPrimaryRevenueDetailsourcesArgs = {
+export type gnosisPrimaryRevenueDetailsourcesArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryFee_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryFee_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryFee_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryFee_filter>;
 };
 
-export type ethereumPrimaryRevenueDetail_filter = {
-  id?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
+export type gnosisPrimaryRevenueDetail_filter = {
+  id?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
   sources?: InputMaybe<Array<Scalars['String']>>;
   sources_not?: InputMaybe<Array<Scalars['String']>>;
   sources_contains?: InputMaybe<Array<Scalars['String']>>;
   sources_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
   sources_not_contains?: InputMaybe<Array<Scalars['String']>>;
   sources_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  sources_?: InputMaybe<ethereumPrimaryFee_filter>;
-  amountsUSD?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  amountsUSD_not?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  amountsUSD_contains?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  amountsUSD_contains_nocase?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  amountsUSD_not_contains?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  amountsUSD_not_contains_nocase?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  sources_?: InputMaybe<gnosisPrimaryFee_filter>;
+  amountsUSD?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  amountsUSD_not?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  amountsUSD_contains?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  amountsUSD_contains_nocase?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  amountsUSD_not_contains?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  amountsUSD_not_contains_nocase?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   /** Filter for the block changed event. */
-  _change_block?: InputMaybe<ethereumPrimaryBlockChangedFilter>;
-  and?: InputMaybe<Array<InputMaybe<ethereumPrimaryRevenueDetail_filter>>>;
-  or?: InputMaybe<Array<InputMaybe<ethereumPrimaryRevenueDetail_filter>>>;
+  _change_block?: InputMaybe<gnosisPrimaryBlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<gnosisPrimaryRevenueDetail_filter>>>;
+  or?: InputMaybe<Array<InputMaybe<gnosisPrimaryRevenueDetail_filter>>>;
 };
 
-export type ethereumPrimaryRevenueDetail_orderBy =
+export type gnosisPrimaryRevenueDetail_orderBy =
   | 'id'
   | 'sources'
   | 'amountsUSD';
 
-export type ethereumPrimaryRewardToken = {
+export type gnosisPrimaryRewardToken = {
   /**  { Reward token type }-{ Smart contract address of the reward token }  */
   id: Scalars['ID'];
   /**  Reference to the actual token  */
-  token: ethereumPrimaryToken;
+  token: gnosisPrimaryToken;
   /**  The type of the reward token  */
-  type: ethereumPrimaryRewardTokenType;
+  type: gnosisPrimaryRewardTokenType;
   _distributionEnd?: Maybe<Scalars['BigInt']>;
 };
 
-export type ethereumPrimaryRewardTokenType =
+export type gnosisPrimaryRewardTokenType =
   /**  For reward tokens awarded to LPs/lenders  */
   | 'DEPOSIT'
   /**  For reward tokens awarded to borrowers of variable debt  */
@@ -8456,7 +8456,7 @@ export type ethereumPrimaryRewardTokenType =
   /**  For reward tokens awarded to stakers  */
   | 'STAKE';
 
-export type ethereumPrimaryRewardToken_filter = {
+export type gnosisPrimaryRewardToken_filter = {
   id?: InputMaybe<Scalars['ID']>;
   id_not?: InputMaybe<Scalars['ID']>;
   id_gt?: InputMaybe<Scalars['ID']>;
@@ -8485,11 +8485,11 @@ export type ethereumPrimaryRewardToken_filter = {
   token_ends_with_nocase?: InputMaybe<Scalars['String']>;
   token_not_ends_with?: InputMaybe<Scalars['String']>;
   token_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  token_?: InputMaybe<ethereumPrimaryToken_filter>;
-  type?: InputMaybe<ethereumPrimaryRewardTokenType>;
-  type_not?: InputMaybe<ethereumPrimaryRewardTokenType>;
-  type_in?: InputMaybe<Array<ethereumPrimaryRewardTokenType>>;
-  type_not_in?: InputMaybe<Array<ethereumPrimaryRewardTokenType>>;
+  token_?: InputMaybe<gnosisPrimaryToken_filter>;
+  type?: InputMaybe<gnosisPrimaryRewardTokenType>;
+  type_not?: InputMaybe<gnosisPrimaryRewardTokenType>;
+  type_in?: InputMaybe<Array<gnosisPrimaryRewardTokenType>>;
+  type_not_in?: InputMaybe<Array<gnosisPrimaryRewardTokenType>>;
   _distributionEnd?: InputMaybe<Scalars['BigInt']>;
   _distributionEnd_not?: InputMaybe<Scalars['BigInt']>;
   _distributionEnd_gt?: InputMaybe<Scalars['BigInt']>;
@@ -8499,12 +8499,12 @@ export type ethereumPrimaryRewardToken_filter = {
   _distributionEnd_in?: InputMaybe<Array<Scalars['BigInt']>>;
   _distributionEnd_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
   /** Filter for the block changed event. */
-  _change_block?: InputMaybe<ethereumPrimaryBlockChangedFilter>;
-  and?: InputMaybe<Array<InputMaybe<ethereumPrimaryRewardToken_filter>>>;
-  or?: InputMaybe<Array<InputMaybe<ethereumPrimaryRewardToken_filter>>>;
+  _change_block?: InputMaybe<gnosisPrimaryBlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<gnosisPrimaryRewardToken_filter>>>;
+  or?: InputMaybe<Array<InputMaybe<gnosisPrimaryRewardToken_filter>>>;
 };
 
-export type ethereumPrimaryRewardToken_orderBy =
+export type gnosisPrimaryRewardToken_orderBy =
   | 'id'
   | 'token'
   | 'token__id'
@@ -8518,625 +8518,625 @@ export type ethereumPrimaryRewardToken_orderBy =
   | 'type'
   | '_distributionEnd';
 
-export type ethereumPrimaryRiskType =
+export type gnosisPrimaryRiskType =
   /**  Global risk means each users position in a market is combined for one score to determine if they can be liquidated  */
   | 'GLOBAL'
   /**  Isolated risk means each users position in a market or CDP is isolated for risk of liquidation  */
   | 'ISOLATED';
 
 export type Subscription = {
-  ethereumPrimarytoken?: Maybe<ethereumPrimaryToken>;
-  ethereumPrimarytokens: Array<ethereumPrimaryToken>;
-  ethereumPrimaryrewardToken?: Maybe<ethereumPrimaryRewardToken>;
-  ethereumPrimaryrewardTokens: Array<ethereumPrimaryRewardToken>;
-  ethereumPrimaryinterestRate?: Maybe<ethereumPrimaryInterestRate>;
-  ethereumPrimaryinterestRates: Array<ethereumPrimaryInterestRate>;
-  ethereumPrimaryfee?: Maybe<ethereumPrimaryFee>;
-  ethereumPrimaryfees: Array<ethereumPrimaryFee>;
-  ethereumPrimaryrevenueDetail?: Maybe<ethereumPrimaryRevenueDetail>;
-  ethereumPrimaryrevenueDetails: Array<ethereumPrimaryRevenueDetail>;
-  ethereumPrimaryoracle?: Maybe<ethereumPrimaryOracle>;
-  ethereumPrimaryoracles: Array<ethereumPrimaryOracle>;
-  ethereumPrimarylendingProtocol?: Maybe<ethereumPrimaryLendingProtocol>;
-  ethereumPrimarylendingProtocols: Array<ethereumPrimaryLendingProtocol>;
-  ethereumPrimarymarketList?: Maybe<ethereumPrimary_MarketList>;
-  ethereumPrimarymarketLists: Array<ethereumPrimary_MarketList>;
-  ethereumPrimaryusageMetricsDailySnapshot?: Maybe<ethereumPrimaryUsageMetricsDailySnapshot>;
-  ethereumPrimaryusageMetricsDailySnapshots: Array<ethereumPrimaryUsageMetricsDailySnapshot>;
-  ethereumPrimaryusageMetricsHourlySnapshot?: Maybe<ethereumPrimaryUsageMetricsHourlySnapshot>;
-  ethereumPrimaryusageMetricsHourlySnapshots: Array<ethereumPrimaryUsageMetricsHourlySnapshot>;
-  ethereumPrimaryfinancialsDailySnapshot?: Maybe<ethereumPrimaryFinancialsDailySnapshot>;
-  ethereumPrimaryfinancialsDailySnapshots: Array<ethereumPrimaryFinancialsDailySnapshot>;
-  ethereumPrimarymarket?: Maybe<ethereumPrimaryMarket>;
-  ethereumPrimarymarkets: Array<ethereumPrimaryMarket>;
-  ethereumPrimarymarketDailySnapshot?: Maybe<ethereumPrimaryMarketDailySnapshot>;
-  ethereumPrimarymarketDailySnapshots: Array<ethereumPrimaryMarketDailySnapshot>;
-  ethereumPrimarymarketHourlySnapshot?: Maybe<ethereumPrimaryMarketHourlySnapshot>;
-  ethereumPrimarymarketHourlySnapshots: Array<ethereumPrimaryMarketHourlySnapshot>;
-  ethereumPrimaryaccount?: Maybe<ethereumPrimaryAccount>;
-  ethereumPrimaryaccounts: Array<ethereumPrimaryAccount>;
-  ethereumPrimaryposition?: Maybe<ethereumPrimaryPosition>;
-  ethereumPrimarypositions: Array<ethereumPrimaryPosition>;
-  ethereumPrimarypositionSnapshot?: Maybe<ethereumPrimaryPositionSnapshot>;
-  ethereumPrimarypositionSnapshots: Array<ethereumPrimaryPositionSnapshot>;
-  ethereumPrimaryactiveAccount?: Maybe<ethereumPrimary_ActiveAccount>;
-  ethereumPrimaryactiveAccounts: Array<ethereumPrimary_ActiveAccount>;
-  ethereumPrimarypositionCounter?: Maybe<ethereumPrimary_PositionCounter>;
-  ethereumPrimarypositionCounters: Array<ethereumPrimary_PositionCounter>;
-  ethereumPrimarydeposit?: Maybe<ethereumPrimaryDeposit>;
-  ethereumPrimarydeposits: Array<ethereumPrimaryDeposit>;
-  ethereumPrimarywithdraw?: Maybe<ethereumPrimaryWithdraw>;
-  ethereumPrimarywithdraws: Array<ethereumPrimaryWithdraw>;
-  ethereumPrimaryborrow?: Maybe<ethereumPrimaryBorrow>;
-  ethereumPrimaryborrows: Array<ethereumPrimaryBorrow>;
-  ethereumPrimaryrepay?: Maybe<ethereumPrimaryRepay>;
-  ethereumPrimaryrepays: Array<ethereumPrimaryRepay>;
-  ethereumPrimaryliquidate?: Maybe<ethereumPrimaryLiquidate>;
-  ethereumPrimaryliquidates: Array<ethereumPrimaryLiquidate>;
-  ethereumPrimarytransfer?: Maybe<ethereumPrimaryTransfer>;
-  ethereumPrimarytransfers: Array<ethereumPrimaryTransfer>;
-  ethereumPrimaryflashloan?: Maybe<ethereumPrimaryFlashloan>;
-  ethereumPrimaryflashloans: Array<ethereumPrimaryFlashloan>;
-  ethereumPrimarydefaultOracle?: Maybe<ethereumPrimary_DefaultOracle>;
-  ethereumPrimarydefaultOracles: Array<ethereumPrimary_DefaultOracle>;
-  ethereumPrimaryflashLoanPremium?: Maybe<ethereumPrimary_FlashLoanPremium>;
-  ethereumPrimaryflashLoanPremiums: Array<ethereumPrimary_FlashLoanPremium>;
-  ethereumPrimaryprotocol?: Maybe<ethereumPrimaryProtocol>;
-  ethereumPrimaryprotocols: Array<ethereumPrimaryProtocol>;
-  ethereumPrimaryevent?: Maybe<ethereumPrimaryEvent>;
-  ethereumPrimaryevents: Array<ethereumPrimaryEvent>;
+  gnosisPrimarytoken?: Maybe<gnosisPrimaryToken>;
+  gnosisPrimarytokens: Array<gnosisPrimaryToken>;
+  gnosisPrimaryrewardToken?: Maybe<gnosisPrimaryRewardToken>;
+  gnosisPrimaryrewardTokens: Array<gnosisPrimaryRewardToken>;
+  gnosisPrimaryinterestRate?: Maybe<gnosisPrimaryInterestRate>;
+  gnosisPrimaryinterestRates: Array<gnosisPrimaryInterestRate>;
+  gnosisPrimaryfee?: Maybe<gnosisPrimaryFee>;
+  gnosisPrimaryfees: Array<gnosisPrimaryFee>;
+  gnosisPrimaryrevenueDetail?: Maybe<gnosisPrimaryRevenueDetail>;
+  gnosisPrimaryrevenueDetails: Array<gnosisPrimaryRevenueDetail>;
+  gnosisPrimaryoracle?: Maybe<gnosisPrimaryOracle>;
+  gnosisPrimaryoracles: Array<gnosisPrimaryOracle>;
+  gnosisPrimarylendingProtocol?: Maybe<gnosisPrimaryLendingProtocol>;
+  gnosisPrimarylendingProtocols: Array<gnosisPrimaryLendingProtocol>;
+  gnosisPrimarymarketList?: Maybe<gnosisPrimary_MarketList>;
+  gnosisPrimarymarketLists: Array<gnosisPrimary_MarketList>;
+  gnosisPrimaryusageMetricsDailySnapshot?: Maybe<gnosisPrimaryUsageMetricsDailySnapshot>;
+  gnosisPrimaryusageMetricsDailySnapshots: Array<gnosisPrimaryUsageMetricsDailySnapshot>;
+  gnosisPrimaryusageMetricsHourlySnapshot?: Maybe<gnosisPrimaryUsageMetricsHourlySnapshot>;
+  gnosisPrimaryusageMetricsHourlySnapshots: Array<gnosisPrimaryUsageMetricsHourlySnapshot>;
+  gnosisPrimaryfinancialsDailySnapshot?: Maybe<gnosisPrimaryFinancialsDailySnapshot>;
+  gnosisPrimaryfinancialsDailySnapshots: Array<gnosisPrimaryFinancialsDailySnapshot>;
+  gnosisPrimarymarket?: Maybe<gnosisPrimaryMarket>;
+  gnosisPrimarymarkets: Array<gnosisPrimaryMarket>;
+  gnosisPrimarymarketDailySnapshot?: Maybe<gnosisPrimaryMarketDailySnapshot>;
+  gnosisPrimarymarketDailySnapshots: Array<gnosisPrimaryMarketDailySnapshot>;
+  gnosisPrimarymarketHourlySnapshot?: Maybe<gnosisPrimaryMarketHourlySnapshot>;
+  gnosisPrimarymarketHourlySnapshots: Array<gnosisPrimaryMarketHourlySnapshot>;
+  gnosisPrimaryaccount?: Maybe<gnosisPrimaryAccount>;
+  gnosisPrimaryaccounts: Array<gnosisPrimaryAccount>;
+  gnosisPrimaryposition?: Maybe<gnosisPrimaryPosition>;
+  gnosisPrimarypositions: Array<gnosisPrimaryPosition>;
+  gnosisPrimarypositionSnapshot?: Maybe<gnosisPrimaryPositionSnapshot>;
+  gnosisPrimarypositionSnapshots: Array<gnosisPrimaryPositionSnapshot>;
+  gnosisPrimaryactiveAccount?: Maybe<gnosisPrimary_ActiveAccount>;
+  gnosisPrimaryactiveAccounts: Array<gnosisPrimary_ActiveAccount>;
+  gnosisPrimarypositionCounter?: Maybe<gnosisPrimary_PositionCounter>;
+  gnosisPrimarypositionCounters: Array<gnosisPrimary_PositionCounter>;
+  gnosisPrimarydeposit?: Maybe<gnosisPrimaryDeposit>;
+  gnosisPrimarydeposits: Array<gnosisPrimaryDeposit>;
+  gnosisPrimarywithdraw?: Maybe<gnosisPrimaryWithdraw>;
+  gnosisPrimarywithdraws: Array<gnosisPrimaryWithdraw>;
+  gnosisPrimaryborrow?: Maybe<gnosisPrimaryBorrow>;
+  gnosisPrimaryborrows: Array<gnosisPrimaryBorrow>;
+  gnosisPrimaryrepay?: Maybe<gnosisPrimaryRepay>;
+  gnosisPrimaryrepays: Array<gnosisPrimaryRepay>;
+  gnosisPrimaryliquidate?: Maybe<gnosisPrimaryLiquidate>;
+  gnosisPrimaryliquidates: Array<gnosisPrimaryLiquidate>;
+  gnosisPrimarytransfer?: Maybe<gnosisPrimaryTransfer>;
+  gnosisPrimarytransfers: Array<gnosisPrimaryTransfer>;
+  gnosisPrimaryflashloan?: Maybe<gnosisPrimaryFlashloan>;
+  gnosisPrimaryflashloans: Array<gnosisPrimaryFlashloan>;
+  gnosisPrimarydefaultOracle?: Maybe<gnosisPrimary_DefaultOracle>;
+  gnosisPrimarydefaultOracles: Array<gnosisPrimary_DefaultOracle>;
+  gnosisPrimaryflashLoanPremium?: Maybe<gnosisPrimary_FlashLoanPremium>;
+  gnosisPrimaryflashLoanPremiums: Array<gnosisPrimary_FlashLoanPremium>;
+  gnosisPrimaryprotocol?: Maybe<gnosisPrimaryProtocol>;
+  gnosisPrimaryprotocols: Array<gnosisPrimaryProtocol>;
+  gnosisPrimaryevent?: Maybe<gnosisPrimaryEvent>;
+  gnosisPrimaryevents: Array<gnosisPrimaryEvent>;
   /** Access to subgraph metadata */
-  ethereumPrimary_meta?: Maybe<ethereumPrimary_Meta_>;
+  gnosisPrimary_meta?: Maybe<gnosisPrimary_Meta_>;
 };
 
 
-export type SubscriptionethereumPrimarytokenArgs = {
+export type SubscriptiongnosisPrimarytokenArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimarytokensArgs = {
+export type SubscriptiongnosisPrimarytokensArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryToken_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryToken_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryToken_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryToken_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimaryrewardTokenArgs = {
+export type SubscriptiongnosisPrimaryrewardTokenArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimaryrewardTokensArgs = {
+export type SubscriptiongnosisPrimaryrewardTokensArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryRewardToken_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryRewardToken_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryRewardToken_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryRewardToken_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimaryinterestRateArgs = {
+export type SubscriptiongnosisPrimaryinterestRateArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimaryinterestRatesArgs = {
+export type SubscriptiongnosisPrimaryinterestRatesArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryInterestRate_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryInterestRate_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryInterestRate_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryInterestRate_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimaryfeeArgs = {
+export type SubscriptiongnosisPrimaryfeeArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimaryfeesArgs = {
+export type SubscriptiongnosisPrimaryfeesArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryFee_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryFee_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryFee_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryFee_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimaryrevenueDetailArgs = {
+export type SubscriptiongnosisPrimaryrevenueDetailArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimaryrevenueDetailsArgs = {
+export type SubscriptiongnosisPrimaryrevenueDetailsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryRevenueDetail_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryRevenueDetail_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryRevenueDetail_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryRevenueDetail_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimaryoracleArgs = {
+export type SubscriptiongnosisPrimaryoracleArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimaryoraclesArgs = {
+export type SubscriptiongnosisPrimaryoraclesArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryOracle_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryOracle_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryOracle_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryOracle_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimarylendingProtocolArgs = {
+export type SubscriptiongnosisPrimarylendingProtocolArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimarylendingProtocolsArgs = {
+export type SubscriptiongnosisPrimarylendingProtocolsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryLendingProtocol_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryLendingProtocol_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryLendingProtocol_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryLendingProtocol_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimarymarketListArgs = {
+export type SubscriptiongnosisPrimarymarketListArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimarymarketListsArgs = {
+export type SubscriptiongnosisPrimarymarketListsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimary_MarketList_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimary_MarketList_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimary_MarketList_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimary_MarketList_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimaryusageMetricsDailySnapshotArgs = {
+export type SubscriptiongnosisPrimaryusageMetricsDailySnapshotArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimaryusageMetricsDailySnapshotsArgs = {
+export type SubscriptiongnosisPrimaryusageMetricsDailySnapshotsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryUsageMetricsDailySnapshot_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryUsageMetricsDailySnapshot_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryUsageMetricsDailySnapshot_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryUsageMetricsDailySnapshot_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimaryusageMetricsHourlySnapshotArgs = {
+export type SubscriptiongnosisPrimaryusageMetricsHourlySnapshotArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimaryusageMetricsHourlySnapshotsArgs = {
+export type SubscriptiongnosisPrimaryusageMetricsHourlySnapshotsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryUsageMetricsHourlySnapshot_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryUsageMetricsHourlySnapshot_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryUsageMetricsHourlySnapshot_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryUsageMetricsHourlySnapshot_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimaryfinancialsDailySnapshotArgs = {
+export type SubscriptiongnosisPrimaryfinancialsDailySnapshotArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimaryfinancialsDailySnapshotsArgs = {
+export type SubscriptiongnosisPrimaryfinancialsDailySnapshotsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryFinancialsDailySnapshot_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryFinancialsDailySnapshot_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryFinancialsDailySnapshot_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryFinancialsDailySnapshot_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimarymarketArgs = {
+export type SubscriptiongnosisPrimarymarketArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimarymarketsArgs = {
+export type SubscriptiongnosisPrimarymarketsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryMarket_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryMarket_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryMarket_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryMarket_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimarymarketDailySnapshotArgs = {
+export type SubscriptiongnosisPrimarymarketDailySnapshotArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimarymarketDailySnapshotsArgs = {
+export type SubscriptiongnosisPrimarymarketDailySnapshotsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryMarketDailySnapshot_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryMarketDailySnapshot_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryMarketDailySnapshot_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryMarketDailySnapshot_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimarymarketHourlySnapshotArgs = {
+export type SubscriptiongnosisPrimarymarketHourlySnapshotArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimarymarketHourlySnapshotsArgs = {
+export type SubscriptiongnosisPrimarymarketHourlySnapshotsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryMarketHourlySnapshot_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryMarketHourlySnapshot_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryMarketHourlySnapshot_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryMarketHourlySnapshot_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimaryaccountArgs = {
+export type SubscriptiongnosisPrimaryaccountArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimaryaccountsArgs = {
+export type SubscriptiongnosisPrimaryaccountsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryAccount_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryAccount_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryAccount_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryAccount_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimarypositionArgs = {
+export type SubscriptiongnosisPrimarypositionArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimarypositionsArgs = {
+export type SubscriptiongnosisPrimarypositionsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryPosition_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryPosition_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryPosition_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryPosition_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimarypositionSnapshotArgs = {
+export type SubscriptiongnosisPrimarypositionSnapshotArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimarypositionSnapshotsArgs = {
+export type SubscriptiongnosisPrimarypositionSnapshotsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryPositionSnapshot_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryPositionSnapshot_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryPositionSnapshot_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryPositionSnapshot_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimaryactiveAccountArgs = {
+export type SubscriptiongnosisPrimaryactiveAccountArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimaryactiveAccountsArgs = {
+export type SubscriptiongnosisPrimaryactiveAccountsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimary_ActiveAccount_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimary_ActiveAccount_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimary_ActiveAccount_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimary_ActiveAccount_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimarypositionCounterArgs = {
+export type SubscriptiongnosisPrimarypositionCounterArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimarypositionCountersArgs = {
+export type SubscriptiongnosisPrimarypositionCountersArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimary_PositionCounter_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimary_PositionCounter_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimary_PositionCounter_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimary_PositionCounter_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimarydepositArgs = {
+export type SubscriptiongnosisPrimarydepositArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimarydepositsArgs = {
+export type SubscriptiongnosisPrimarydepositsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryDeposit_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryDeposit_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryDeposit_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryDeposit_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimarywithdrawArgs = {
+export type SubscriptiongnosisPrimarywithdrawArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimarywithdrawsArgs = {
+export type SubscriptiongnosisPrimarywithdrawsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryWithdraw_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryWithdraw_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryWithdraw_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryWithdraw_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimaryborrowArgs = {
+export type SubscriptiongnosisPrimaryborrowArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimaryborrowsArgs = {
+export type SubscriptiongnosisPrimaryborrowsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryBorrow_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryBorrow_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryBorrow_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryBorrow_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimaryrepayArgs = {
+export type SubscriptiongnosisPrimaryrepayArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimaryrepaysArgs = {
+export type SubscriptiongnosisPrimaryrepaysArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryRepay_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryRepay_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryRepay_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryRepay_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimaryliquidateArgs = {
+export type SubscriptiongnosisPrimaryliquidateArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimaryliquidatesArgs = {
+export type SubscriptiongnosisPrimaryliquidatesArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryLiquidate_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryLiquidate_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryLiquidate_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryLiquidate_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimarytransferArgs = {
+export type SubscriptiongnosisPrimarytransferArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimarytransfersArgs = {
+export type SubscriptiongnosisPrimarytransfersArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryTransfer_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryTransfer_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryTransfer_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryTransfer_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimaryflashloanArgs = {
+export type SubscriptiongnosisPrimaryflashloanArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimaryflashloansArgs = {
+export type SubscriptiongnosisPrimaryflashloansArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryFlashloan_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryFlashloan_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryFlashloan_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryFlashloan_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimarydefaultOracleArgs = {
+export type SubscriptiongnosisPrimarydefaultOracleArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimarydefaultOraclesArgs = {
+export type SubscriptiongnosisPrimarydefaultOraclesArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimary_DefaultOracle_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimary_DefaultOracle_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimary_DefaultOracle_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimary_DefaultOracle_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimaryflashLoanPremiumArgs = {
+export type SubscriptiongnosisPrimaryflashLoanPremiumArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimaryflashLoanPremiumsArgs = {
+export type SubscriptiongnosisPrimaryflashLoanPremiumsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimary_FlashLoanPremium_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimary_FlashLoanPremium_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimary_FlashLoanPremium_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimary_FlashLoanPremium_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimaryprotocolArgs = {
+export type SubscriptiongnosisPrimaryprotocolArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimaryprotocolsArgs = {
+export type SubscriptiongnosisPrimaryprotocolsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryProtocol_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryProtocol_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryProtocol_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryProtocol_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimaryeventArgs = {
+export type SubscriptiongnosisPrimaryeventArgs = {
   id: Scalars['ID'];
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimaryeventsArgs = {
+export type SubscriptiongnosisPrimaryeventsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryEvent_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryEvent_filter>;
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
-  subgraphError?: ethereumPrimary_SubgraphErrorPolicy_;
+  orderBy?: InputMaybe<gnosisPrimaryEvent_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryEvent_filter>;
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
+  subgraphError?: gnosisPrimary_SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionethereumPrimary_metaArgs = {
-  block?: InputMaybe<ethereumPrimaryBlock_height>;
+export type SubscriptiongnosisPrimary_metaArgs = {
+  block?: InputMaybe<gnosisPrimaryBlock_height>;
 };
 
-export type ethereumPrimaryToken = {
+export type gnosisPrimaryToken = {
   /**  Smart contract address of the token  */
-  id: Scalars['ethereumPrimaryBytes'];
+  id: Scalars['gnosisPrimaryBytes'];
   /**  Name of the token, mirrored from the smart contract  */
   name: Scalars['String'];
   /**  Symbol of the token, mirrored from the smart contract  */
@@ -9144,34 +9144,34 @@ export type ethereumPrimaryToken = {
   /**  The number of decimal places this token uses, default to 18  */
   decimals: Scalars['Int'];
   /**  Optional field to track the price of a token, mostly for caching purposes  */
-  lastPriceUSD?: Maybe<Scalars['ethereumPrimaryBigDecimal']>;
+  lastPriceUSD?: Maybe<Scalars['gnosisPrimaryBigDecimal']>;
   /**  Optional field to track the block number of the last token price  */
   lastPriceBlockNumber?: Maybe<Scalars['BigInt']>;
   /**  The type of token the protocol creates for positions  */
-  type?: Maybe<ethereumPrimaryTokenType>;
+  type?: Maybe<gnosisPrimaryTokenType>;
   /**  the market ID for underlying/asset token, aToken, vToken and sToken */
-  _market?: Maybe<ethereumPrimaryMarket>;
+  _market?: Maybe<gnosisPrimaryMarket>;
   /**  type of token: inputToken, aToken, vToken, or sToken  */
   _iavsTokenType?: Maybe<Scalars['String']>;
 };
 
-export type ethereumPrimaryTokenType =
+export type gnosisPrimaryTokenType =
   /**  Rebasing tokens continuously adjust balances / supply as interest is accrued (e.g. Aave debt balances adjust at each block with interest)  */
   | 'REBASING'
   /**  Non-rebasing token balances / supply do not change as interest is accrued (e.g. Compound's cToken's do not adjust balance, the exchange rate changes with interest)  */
   | 'NON_REBASING';
 
-export type ethereumPrimaryToken_filter = {
-  id?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
+export type gnosisPrimaryToken_filter = {
+  id?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
   name?: InputMaybe<Scalars['String']>;
   name_not?: InputMaybe<Scalars['String']>;
   name_gt?: InputMaybe<Scalars['String']>;
@@ -9220,14 +9220,14 @@ export type ethereumPrimaryToken_filter = {
   decimals_lte?: InputMaybe<Scalars['Int']>;
   decimals_in?: InputMaybe<Array<Scalars['Int']>>;
   decimals_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  lastPriceUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  lastPriceUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  lastPriceUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  lastPriceUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  lastPriceUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  lastPriceUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  lastPriceUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  lastPriceUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  lastPriceUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  lastPriceUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  lastPriceUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  lastPriceUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  lastPriceUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  lastPriceUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  lastPriceUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  lastPriceUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   lastPriceBlockNumber?: InputMaybe<Scalars['BigInt']>;
   lastPriceBlockNumber_not?: InputMaybe<Scalars['BigInt']>;
   lastPriceBlockNumber_gt?: InputMaybe<Scalars['BigInt']>;
@@ -9236,10 +9236,10 @@ export type ethereumPrimaryToken_filter = {
   lastPriceBlockNumber_lte?: InputMaybe<Scalars['BigInt']>;
   lastPriceBlockNumber_in?: InputMaybe<Array<Scalars['BigInt']>>;
   lastPriceBlockNumber_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  type?: InputMaybe<ethereumPrimaryTokenType>;
-  type_not?: InputMaybe<ethereumPrimaryTokenType>;
-  type_in?: InputMaybe<Array<ethereumPrimaryTokenType>>;
-  type_not_in?: InputMaybe<Array<ethereumPrimaryTokenType>>;
+  type?: InputMaybe<gnosisPrimaryTokenType>;
+  type_not?: InputMaybe<gnosisPrimaryTokenType>;
+  type_in?: InputMaybe<Array<gnosisPrimaryTokenType>>;
+  type_not_in?: InputMaybe<Array<gnosisPrimaryTokenType>>;
   _market?: InputMaybe<Scalars['String']>;
   _market_not?: InputMaybe<Scalars['String']>;
   _market_gt?: InputMaybe<Scalars['String']>;
@@ -9260,7 +9260,7 @@ export type ethereumPrimaryToken_filter = {
   _market_ends_with_nocase?: InputMaybe<Scalars['String']>;
   _market_not_ends_with?: InputMaybe<Scalars['String']>;
   _market_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  _market_?: InputMaybe<ethereumPrimaryMarket_filter>;
+  _market_?: InputMaybe<gnosisPrimaryMarket_filter>;
   _iavsTokenType?: InputMaybe<Scalars['String']>;
   _iavsTokenType_not?: InputMaybe<Scalars['String']>;
   _iavsTokenType_gt?: InputMaybe<Scalars['String']>;
@@ -9282,12 +9282,12 @@ export type ethereumPrimaryToken_filter = {
   _iavsTokenType_not_ends_with?: InputMaybe<Scalars['String']>;
   _iavsTokenType_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
   /** Filter for the block changed event. */
-  _change_block?: InputMaybe<ethereumPrimaryBlockChangedFilter>;
-  and?: InputMaybe<Array<InputMaybe<ethereumPrimaryToken_filter>>>;
-  or?: InputMaybe<Array<InputMaybe<ethereumPrimaryToken_filter>>>;
+  _change_block?: InputMaybe<gnosisPrimaryBlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<gnosisPrimaryToken_filter>>>;
+  or?: InputMaybe<Array<InputMaybe<gnosisPrimaryToken_filter>>>;
 };
 
-export type ethereumPrimaryToken_orderBy =
+export type gnosisPrimaryToken_orderBy =
   | 'id'
   | 'name'
   | 'symbol'
@@ -9361,17 +9361,17 @@ export type ethereumPrimaryToken_orderBy =
   | '_market___siloedBorrowing'
   | '_iavsTokenType';
 
-export type ethereumPrimaryTranche =
+export type gnosisPrimaryTranche =
   /**  Senior denotes debt with a higher priority. The first debt to be paid back to lenders.  */
   | 'SENIOR'
   /**  Junior tranche denotes lower priority debt. This is secondary priority to be paid back to lenders.  */
   | 'JUNIOR';
 
-export type ethereumPrimaryTransfer = ethereumPrimaryEvent & {
+export type gnosisPrimaryTransfer = gnosisPrimaryEvent & {
   /**  { Transaction hash }{ Log index }  */
-  id: Scalars['ethereumPrimaryBytes'];
+  id: Scalars['gnosisPrimaryBytes'];
   /**  Transaction hash of the transaction that emitted this event  */
-  hash: Scalars['ethereumPrimaryBytes'];
+  hash: Scalars['gnosisPrimaryBytes'];
   /**  Nonce of the transaction that emitted this event  */
   nonce: Scalars['BigInt'];
   /**  Event log index. For transactions that don't emit event, create arbitrary index starting from 0  */
@@ -9387,51 +9387,51 @@ export type ethereumPrimaryTransfer = ethereumPrimaryEvent & {
   /**  Timestamp of this event  */
   timestamp: Scalars['BigInt'];
   /**  The account that sent the tokens  */
-  sender: ethereumPrimaryAccount;
+  sender: gnosisPrimaryAccount;
   /**  The Account that received the tokens  */
-  receiver: ethereumPrimaryAccount;
+  receiver: gnosisPrimaryAccount;
   /**  The user positions changed by this event  */
-  positions: Array<ethereumPrimaryPosition>;
+  positions: Array<gnosisPrimaryPosition>;
   /**  The market associated with the token transfer  */
-  market: ethereumPrimaryMarket;
+  market: gnosisPrimaryMarket;
   /**  The asset that was actually transferred. This could also include a debt token.  */
-  asset: ethereumPrimaryToken;
+  asset: gnosisPrimaryToken;
   /**  Amount of token transferred in native units  */
   amount: Scalars['BigInt'];
   /**  Amount of token transferred in USD  */
-  amountUSD: Scalars['ethereumPrimaryBigDecimal'];
+  amountUSD: Scalars['gnosisPrimaryBigDecimal'];
 };
 
 
-export type ethereumPrimaryTransferpositionsArgs = {
+export type gnosisPrimaryTransferpositionsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ethereumPrimaryPosition_orderBy>;
-  orderDirection?: InputMaybe<ethereumPrimaryOrderDirection>;
-  where?: InputMaybe<ethereumPrimaryPosition_filter>;
+  orderBy?: InputMaybe<gnosisPrimaryPosition_orderBy>;
+  orderDirection?: InputMaybe<gnosisPrimaryOrderDirection>;
+  where?: InputMaybe<gnosisPrimaryPosition_filter>;
 };
 
-export type ethereumPrimaryTransfer_filter = {
-  id?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_not?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_gt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_lt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_gte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_lte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  hash_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  hash_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_not_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
+export type gnosisPrimaryTransfer_filter = {
+  id?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_not?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_gt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_lt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_gte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_lte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  hash_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  hash_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_not_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
   nonce?: InputMaybe<Scalars['BigInt']>;
   nonce_not?: InputMaybe<Scalars['BigInt']>;
   nonce_gt?: InputMaybe<Scalars['BigInt']>;
@@ -9508,7 +9508,7 @@ export type ethereumPrimaryTransfer_filter = {
   sender_ends_with_nocase?: InputMaybe<Scalars['String']>;
   sender_not_ends_with?: InputMaybe<Scalars['String']>;
   sender_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  sender_?: InputMaybe<ethereumPrimaryAccount_filter>;
+  sender_?: InputMaybe<gnosisPrimaryAccount_filter>;
   receiver?: InputMaybe<Scalars['String']>;
   receiver_not?: InputMaybe<Scalars['String']>;
   receiver_gt?: InputMaybe<Scalars['String']>;
@@ -9529,14 +9529,14 @@ export type ethereumPrimaryTransfer_filter = {
   receiver_ends_with_nocase?: InputMaybe<Scalars['String']>;
   receiver_not_ends_with?: InputMaybe<Scalars['String']>;
   receiver_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  receiver_?: InputMaybe<ethereumPrimaryAccount_filter>;
+  receiver_?: InputMaybe<gnosisPrimaryAccount_filter>;
   positions?: InputMaybe<Array<Scalars['String']>>;
   positions_not?: InputMaybe<Array<Scalars['String']>>;
   positions_contains?: InputMaybe<Array<Scalars['String']>>;
   positions_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
   positions_not_contains?: InputMaybe<Array<Scalars['String']>>;
   positions_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  positions_?: InputMaybe<ethereumPrimaryPosition_filter>;
+  positions_?: InputMaybe<gnosisPrimaryPosition_filter>;
   market?: InputMaybe<Scalars['String']>;
   market_not?: InputMaybe<Scalars['String']>;
   market_gt?: InputMaybe<Scalars['String']>;
@@ -9557,7 +9557,7 @@ export type ethereumPrimaryTransfer_filter = {
   market_ends_with_nocase?: InputMaybe<Scalars['String']>;
   market_not_ends_with?: InputMaybe<Scalars['String']>;
   market_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  market_?: InputMaybe<ethereumPrimaryMarket_filter>;
+  market_?: InputMaybe<gnosisPrimaryMarket_filter>;
   asset?: InputMaybe<Scalars['String']>;
   asset_not?: InputMaybe<Scalars['String']>;
   asset_gt?: InputMaybe<Scalars['String']>;
@@ -9578,7 +9578,7 @@ export type ethereumPrimaryTransfer_filter = {
   asset_ends_with_nocase?: InputMaybe<Scalars['String']>;
   asset_not_ends_with?: InputMaybe<Scalars['String']>;
   asset_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  asset_?: InputMaybe<ethereumPrimaryToken_filter>;
+  asset_?: InputMaybe<gnosisPrimaryToken_filter>;
   amount?: InputMaybe<Scalars['BigInt']>;
   amount_not?: InputMaybe<Scalars['BigInt']>;
   amount_gt?: InputMaybe<Scalars['BigInt']>;
@@ -9587,21 +9587,21 @@ export type ethereumPrimaryTransfer_filter = {
   amount_lte?: InputMaybe<Scalars['BigInt']>;
   amount_in?: InputMaybe<Array<Scalars['BigInt']>>;
   amount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  amountUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  amountUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  amountUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  amountUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   /** Filter for the block changed event. */
-  _change_block?: InputMaybe<ethereumPrimaryBlockChangedFilter>;
-  and?: InputMaybe<Array<InputMaybe<ethereumPrimaryTransfer_filter>>>;
-  or?: InputMaybe<Array<InputMaybe<ethereumPrimaryTransfer_filter>>>;
+  _change_block?: InputMaybe<gnosisPrimaryBlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<gnosisPrimaryTransfer_filter>>>;
+  or?: InputMaybe<Array<InputMaybe<gnosisPrimaryTransfer_filter>>>;
 };
 
-export type ethereumPrimaryTransfer_orderBy =
+export type gnosisPrimaryTransfer_orderBy =
   | 'id'
   | 'hash'
   | 'nonce'
@@ -9720,13 +9720,13 @@ export type ethereumPrimaryTransfer_orderBy =
   | 'amount'
   | 'amountUSD';
 
-export type ethereumPrimaryUsageMetricsDailySnapshot = {
+export type gnosisPrimaryUsageMetricsDailySnapshot = {
   /**  ID is # of days since Unix epoch time  */
-  id: Scalars['ethereumPrimaryBytes'];
+  id: Scalars['gnosisPrimaryBytes'];
   /**  Number of days since Unix epoch time  */
   days: Scalars['Int'];
   /**  Protocol this snapshot is associated with  */
-  protocol: ethereumPrimaryLendingProtocol;
+  protocol: gnosisPrimaryLendingProtocol;
   /**  Number of unique daily active users. e.g. accounts that spent gas to interact with this protocol  */
   dailyActiveUsers: Scalars['Int'];
   /**  Number of cumulative unique users. e.g. accounts that spent gas to interact with this protocol  */
@@ -9777,17 +9777,17 @@ export type ethereumPrimaryUsageMetricsDailySnapshot = {
   timestamp: Scalars['BigInt'];
 };
 
-export type ethereumPrimaryUsageMetricsDailySnapshot_filter = {
-  id?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
+export type gnosisPrimaryUsageMetricsDailySnapshot_filter = {
+  id?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
   days?: InputMaybe<Scalars['Int']>;
   days_not?: InputMaybe<Scalars['Int']>;
   days_gt?: InputMaybe<Scalars['Int']>;
@@ -9816,7 +9816,7 @@ export type ethereumPrimaryUsageMetricsDailySnapshot_filter = {
   protocol_ends_with_nocase?: InputMaybe<Scalars['String']>;
   protocol_not_ends_with?: InputMaybe<Scalars['String']>;
   protocol_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  protocol_?: InputMaybe<ethereumPrimaryLendingProtocol_filter>;
+  protocol_?: InputMaybe<gnosisPrimaryLendingProtocol_filter>;
   dailyActiveUsers?: InputMaybe<Scalars['Int']>;
   dailyActiveUsers_not?: InputMaybe<Scalars['Int']>;
   dailyActiveUsers_gt?: InputMaybe<Scalars['Int']>;
@@ -10010,12 +10010,12 @@ export type ethereumPrimaryUsageMetricsDailySnapshot_filter = {
   timestamp_in?: InputMaybe<Array<Scalars['BigInt']>>;
   timestamp_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
   /** Filter for the block changed event. */
-  _change_block?: InputMaybe<ethereumPrimaryBlockChangedFilter>;
-  and?: InputMaybe<Array<InputMaybe<ethereumPrimaryUsageMetricsDailySnapshot_filter>>>;
-  or?: InputMaybe<Array<InputMaybe<ethereumPrimaryUsageMetricsDailySnapshot_filter>>>;
+  _change_block?: InputMaybe<gnosisPrimaryBlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<gnosisPrimaryUsageMetricsDailySnapshot_filter>>>;
+  or?: InputMaybe<Array<InputMaybe<gnosisPrimaryUsageMetricsDailySnapshot_filter>>>;
 };
 
-export type ethereumPrimaryUsageMetricsDailySnapshot_orderBy =
+export type gnosisPrimaryUsageMetricsDailySnapshot_orderBy =
   | 'id'
   | 'days'
   | 'protocol'
@@ -10085,13 +10085,13 @@ export type ethereumPrimaryUsageMetricsDailySnapshot_orderBy =
   | 'blockNumber'
   | 'timestamp';
 
-export type ethereumPrimaryUsageMetricsHourlySnapshot = {
+export type gnosisPrimaryUsageMetricsHourlySnapshot = {
   /**  { # of hours since Unix epoch time }  */
-  id: Scalars['ethereumPrimaryBytes'];
+  id: Scalars['gnosisPrimaryBytes'];
   /**  Number of hours since Unix epoch time  */
   hours: Scalars['Int'];
   /**  Protocol this snapshot is associated with  */
-  protocol: ethereumPrimaryLendingProtocol;
+  protocol: gnosisPrimaryLendingProtocol;
   /**  Number of unique hourly active users  */
   hourlyActiveUsers: Scalars['Int'];
   /**  Number of cumulative unique users. e.g. accounts that spent gas to interact with this protocol  */
@@ -10114,17 +10114,17 @@ export type ethereumPrimaryUsageMetricsHourlySnapshot = {
   timestamp: Scalars['BigInt'];
 };
 
-export type ethereumPrimaryUsageMetricsHourlySnapshot_filter = {
-  id?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
+export type gnosisPrimaryUsageMetricsHourlySnapshot_filter = {
+  id?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
   hours?: InputMaybe<Scalars['Int']>;
   hours_not?: InputMaybe<Scalars['Int']>;
   hours_gt?: InputMaybe<Scalars['Int']>;
@@ -10153,7 +10153,7 @@ export type ethereumPrimaryUsageMetricsHourlySnapshot_filter = {
   protocol_ends_with_nocase?: InputMaybe<Scalars['String']>;
   protocol_not_ends_with?: InputMaybe<Scalars['String']>;
   protocol_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  protocol_?: InputMaybe<ethereumPrimaryLendingProtocol_filter>;
+  protocol_?: InputMaybe<gnosisPrimaryLendingProtocol_filter>;
   hourlyActiveUsers?: InputMaybe<Scalars['Int']>;
   hourlyActiveUsers_not?: InputMaybe<Scalars['Int']>;
   hourlyActiveUsers_gt?: InputMaybe<Scalars['Int']>;
@@ -10235,12 +10235,12 @@ export type ethereumPrimaryUsageMetricsHourlySnapshot_filter = {
   timestamp_in?: InputMaybe<Array<Scalars['BigInt']>>;
   timestamp_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
   /** Filter for the block changed event. */
-  _change_block?: InputMaybe<ethereumPrimaryBlockChangedFilter>;
-  and?: InputMaybe<Array<InputMaybe<ethereumPrimaryUsageMetricsHourlySnapshot_filter>>>;
-  or?: InputMaybe<Array<InputMaybe<ethereumPrimaryUsageMetricsHourlySnapshot_filter>>>;
+  _change_block?: InputMaybe<gnosisPrimaryBlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<gnosisPrimaryUsageMetricsHourlySnapshot_filter>>>;
+  or?: InputMaybe<Array<InputMaybe<gnosisPrimaryUsageMetricsHourlySnapshot_filter>>>;
 };
 
-export type ethereumPrimaryUsageMetricsHourlySnapshot_orderBy =
+export type gnosisPrimaryUsageMetricsHourlySnapshot_orderBy =
   | 'id'
   | 'hours'
   | 'protocol'
@@ -10296,11 +10296,11 @@ export type ethereumPrimaryUsageMetricsHourlySnapshot_orderBy =
   | 'blockNumber'
   | 'timestamp';
 
-export type ethereumPrimaryWithdraw = ethereumPrimaryEvent & {
+export type gnosisPrimaryWithdraw = gnosisPrimaryEvent & {
   /**  { Transaction hash }{ Log index }  */
-  id: Scalars['ethereumPrimaryBytes'];
+  id: Scalars['gnosisPrimaryBytes'];
   /**  Transaction hash of the transaction that emitted this event  */
-  hash: Scalars['ethereumPrimaryBytes'];
+  hash: Scalars['gnosisPrimaryBytes'];
   /**  Nonce of the transaction that emitted this event  */
   nonce: Scalars['BigInt'];
   /**  Event log index. For transactions that don't emit event, create arbitrary index starting from 0  */
@@ -10316,42 +10316,42 @@ export type ethereumPrimaryWithdraw = ethereumPrimaryEvent & {
   /**  Timestamp of this event  */
   timestamp: Scalars['BigInt'];
   /**  Account that controls the position (e.g. the aToken owner initiating the withdraw in Aave)  */
-  account: ethereumPrimaryAccount;
+  account: gnosisPrimaryAccount;
   /**  Account that receives the underlying withdrawn amount  */
-  accountActor?: Maybe<ethereumPrimaryAccount>;
+  accountActor?: Maybe<gnosisPrimaryAccount>;
   /**  The market tokens are withdrew from  */
-  market: ethereumPrimaryMarket;
+  market: gnosisPrimaryMarket;
   /**  The user position changed by this event  */
-  position: ethereumPrimaryPosition;
+  position: gnosisPrimaryPosition;
   /**  Token withdrawn  */
-  asset: ethereumPrimaryToken;
+  asset: gnosisPrimaryToken;
   /**  Amount of token withdrawn in native units  */
   amount: Scalars['BigInt'];
   /**  Amount of token withdrawn in USD  */
-  amountUSD: Scalars['ethereumPrimaryBigDecimal'];
+  amountUSD: Scalars['gnosisPrimaryBigDecimal'];
 };
 
-export type ethereumPrimaryWithdraw_filter = {
-  id?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_not?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_gt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_lt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_gte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_lte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  hash_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  hash_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  hash_not_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
+export type gnosisPrimaryWithdraw_filter = {
+  id?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_not?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_gt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_lt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_gte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_lte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  hash_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  hash_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  hash_not_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
   nonce?: InputMaybe<Scalars['BigInt']>;
   nonce_not?: InputMaybe<Scalars['BigInt']>;
   nonce_gt?: InputMaybe<Scalars['BigInt']>;
@@ -10428,7 +10428,7 @@ export type ethereumPrimaryWithdraw_filter = {
   account_ends_with_nocase?: InputMaybe<Scalars['String']>;
   account_not_ends_with?: InputMaybe<Scalars['String']>;
   account_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  account_?: InputMaybe<ethereumPrimaryAccount_filter>;
+  account_?: InputMaybe<gnosisPrimaryAccount_filter>;
   accountActor?: InputMaybe<Scalars['String']>;
   accountActor_not?: InputMaybe<Scalars['String']>;
   accountActor_gt?: InputMaybe<Scalars['String']>;
@@ -10449,7 +10449,7 @@ export type ethereumPrimaryWithdraw_filter = {
   accountActor_ends_with_nocase?: InputMaybe<Scalars['String']>;
   accountActor_not_ends_with?: InputMaybe<Scalars['String']>;
   accountActor_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  accountActor_?: InputMaybe<ethereumPrimaryAccount_filter>;
+  accountActor_?: InputMaybe<gnosisPrimaryAccount_filter>;
   market?: InputMaybe<Scalars['String']>;
   market_not?: InputMaybe<Scalars['String']>;
   market_gt?: InputMaybe<Scalars['String']>;
@@ -10470,7 +10470,7 @@ export type ethereumPrimaryWithdraw_filter = {
   market_ends_with_nocase?: InputMaybe<Scalars['String']>;
   market_not_ends_with?: InputMaybe<Scalars['String']>;
   market_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  market_?: InputMaybe<ethereumPrimaryMarket_filter>;
+  market_?: InputMaybe<gnosisPrimaryMarket_filter>;
   position?: InputMaybe<Scalars['String']>;
   position_not?: InputMaybe<Scalars['String']>;
   position_gt?: InputMaybe<Scalars['String']>;
@@ -10491,7 +10491,7 @@ export type ethereumPrimaryWithdraw_filter = {
   position_ends_with_nocase?: InputMaybe<Scalars['String']>;
   position_not_ends_with?: InputMaybe<Scalars['String']>;
   position_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  position_?: InputMaybe<ethereumPrimaryPosition_filter>;
+  position_?: InputMaybe<gnosisPrimaryPosition_filter>;
   asset?: InputMaybe<Scalars['String']>;
   asset_not?: InputMaybe<Scalars['String']>;
   asset_gt?: InputMaybe<Scalars['String']>;
@@ -10512,7 +10512,7 @@ export type ethereumPrimaryWithdraw_filter = {
   asset_ends_with_nocase?: InputMaybe<Scalars['String']>;
   asset_not_ends_with?: InputMaybe<Scalars['String']>;
   asset_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  asset_?: InputMaybe<ethereumPrimaryToken_filter>;
+  asset_?: InputMaybe<gnosisPrimaryToken_filter>;
   amount?: InputMaybe<Scalars['BigInt']>;
   amount_not?: InputMaybe<Scalars['BigInt']>;
   amount_gt?: InputMaybe<Scalars['BigInt']>;
@@ -10521,21 +10521,21 @@ export type ethereumPrimaryWithdraw_filter = {
   amount_lte?: InputMaybe<Scalars['BigInt']>;
   amount_in?: InputMaybe<Array<Scalars['BigInt']>>;
   amount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  amountUSD?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  amountUSD_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  amountUSD_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+  amountUSD?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  amountUSD_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  amountUSD_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   /** Filter for the block changed event. */
-  _change_block?: InputMaybe<ethereumPrimaryBlockChangedFilter>;
-  and?: InputMaybe<Array<InputMaybe<ethereumPrimaryWithdraw_filter>>>;
-  or?: InputMaybe<Array<InputMaybe<ethereumPrimaryWithdraw_filter>>>;
+  _change_block?: InputMaybe<gnosisPrimaryBlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<gnosisPrimaryWithdraw_filter>>>;
+  or?: InputMaybe<Array<InputMaybe<gnosisPrimaryWithdraw_filter>>>;
 };
 
-export type ethereumPrimaryWithdraw_orderBy =
+export type gnosisPrimaryWithdraw_orderBy =
   | 'id'
   | 'hash'
   | 'nonce'
@@ -10675,12 +10675,12 @@ export type ethereumPrimaryWithdraw_orderBy =
   | 'amount'
   | 'amountUSD';
 
-export type ethereumPrimary_ActiveAccount = {
+export type gnosisPrimary_ActiveAccount = {
   /**  { daily/hourly }-{ Address of the account }-{ Optional: Transaction Type }-{ Optional: Market Address }-{ Optional: Days/hours since Unix epoch }  */
   id: Scalars['ID'];
 };
 
-export type ethereumPrimary_ActiveAccount_filter = {
+export type gnosisPrimary_ActiveAccount_filter = {
   id?: InputMaybe<Scalars['ID']>;
   id_not?: InputMaybe<Scalars['ID']>;
   id_gt?: InputMaybe<Scalars['ID']>;
@@ -10690,144 +10690,144 @@ export type ethereumPrimary_ActiveAccount_filter = {
   id_in?: InputMaybe<Array<Scalars['ID']>>;
   id_not_in?: InputMaybe<Array<Scalars['ID']>>;
   /** Filter for the block changed event. */
-  _change_block?: InputMaybe<ethereumPrimaryBlockChangedFilter>;
-  and?: InputMaybe<Array<InputMaybe<ethereumPrimary_ActiveAccount_filter>>>;
-  or?: InputMaybe<Array<InputMaybe<ethereumPrimary_ActiveAccount_filter>>>;
+  _change_block?: InputMaybe<gnosisPrimaryBlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<gnosisPrimary_ActiveAccount_filter>>>;
+  or?: InputMaybe<Array<InputMaybe<gnosisPrimary_ActiveAccount_filter>>>;
 };
 
-export type ethereumPrimary_ActiveAccount_orderBy =
+export type gnosisPrimary_ActiveAccount_orderBy =
   | 'id';
 
-export type ethereumPrimary_Block_ = {
+export type gnosisPrimary_Block_ = {
   /** The hash of the block */
-  hash?: Maybe<Scalars['ethereumPrimaryBytes']>;
+  hash?: Maybe<Scalars['gnosisPrimaryBytes']>;
   /** The block number */
   number: Scalars['Int'];
   /** Integer representation of the timestamp stored in blocks for the chain */
   timestamp?: Maybe<Scalars['Int']>;
 };
 
-export type ethereumPrimary_DefaultOracle = {
+export type gnosisPrimary_DefaultOracle = {
   /**  protocol id  */
-  id: Scalars['ethereumPrimaryBytes'];
+  id: Scalars['gnosisPrimaryBytes'];
   /**  address of default oracle  */
-  oracle: Scalars['ethereumPrimaryBytes'];
+  oracle: Scalars['gnosisPrimaryBytes'];
 };
 
-export type ethereumPrimary_DefaultOracle_filter = {
-  id?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  oracle?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  oracle_not?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  oracle_gt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  oracle_lt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  oracle_gte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  oracle_lte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  oracle_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  oracle_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  oracle_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  oracle_not_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
+export type gnosisPrimary_DefaultOracle_filter = {
+  id?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  oracle?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  oracle_not?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  oracle_gt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  oracle_lt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  oracle_gte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  oracle_lte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  oracle_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  oracle_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  oracle_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  oracle_not_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
   /** Filter for the block changed event. */
-  _change_block?: InputMaybe<ethereumPrimaryBlockChangedFilter>;
-  and?: InputMaybe<Array<InputMaybe<ethereumPrimary_DefaultOracle_filter>>>;
-  or?: InputMaybe<Array<InputMaybe<ethereumPrimary_DefaultOracle_filter>>>;
+  _change_block?: InputMaybe<gnosisPrimaryBlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<gnosisPrimary_DefaultOracle_filter>>>;
+  or?: InputMaybe<Array<InputMaybe<gnosisPrimary_DefaultOracle_filter>>>;
 };
 
-export type ethereumPrimary_DefaultOracle_orderBy =
+export type gnosisPrimary_DefaultOracle_orderBy =
   | 'id'
   | 'oracle';
 
-export type ethereumPrimary_FlashLoanPremium = {
+export type gnosisPrimary_FlashLoanPremium = {
   /**  protocol id  */
-  id: Scalars['ethereumPrimaryBytes'];
+  id: Scalars['gnosisPrimaryBytes'];
   /**  total premium rate  */
-  premiumRateTotal: Scalars['ethereumPrimaryBigDecimal'];
+  premiumRateTotal: Scalars['gnosisPrimaryBigDecimal'];
   /**  premium rate to protocol  */
-  premiumRateToProtocol: Scalars['ethereumPrimaryBigDecimal'];
+  premiumRateToProtocol: Scalars['gnosisPrimaryBigDecimal'];
 };
 
-export type ethereumPrimary_FlashLoanPremium_filter = {
-  id?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  premiumRateTotal?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  premiumRateTotal_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  premiumRateTotal_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  premiumRateTotal_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  premiumRateTotal_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  premiumRateTotal_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  premiumRateTotal_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  premiumRateTotal_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  premiumRateToProtocol?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  premiumRateToProtocol_not?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  premiumRateToProtocol_gt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  premiumRateToProtocol_lt?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  premiumRateToProtocol_gte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  premiumRateToProtocol_lte?: InputMaybe<Scalars['ethereumPrimaryBigDecimal']>;
-  premiumRateToProtocol_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
-  premiumRateToProtocol_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBigDecimal']>>;
+export type gnosisPrimary_FlashLoanPremium_filter = {
+  id?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  premiumRateTotal?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  premiumRateTotal_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  premiumRateTotal_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  premiumRateTotal_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  premiumRateTotal_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  premiumRateTotal_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  premiumRateTotal_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  premiumRateTotal_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  premiumRateToProtocol?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  premiumRateToProtocol_not?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  premiumRateToProtocol_gt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  premiumRateToProtocol_lt?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  premiumRateToProtocol_gte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  premiumRateToProtocol_lte?: InputMaybe<Scalars['gnosisPrimaryBigDecimal']>;
+  premiumRateToProtocol_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
+  premiumRateToProtocol_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBigDecimal']>>;
   /** Filter for the block changed event. */
-  _change_block?: InputMaybe<ethereumPrimaryBlockChangedFilter>;
-  and?: InputMaybe<Array<InputMaybe<ethereumPrimary_FlashLoanPremium_filter>>>;
-  or?: InputMaybe<Array<InputMaybe<ethereumPrimary_FlashLoanPremium_filter>>>;
+  _change_block?: InputMaybe<gnosisPrimaryBlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<gnosisPrimary_FlashLoanPremium_filter>>>;
+  or?: InputMaybe<Array<InputMaybe<gnosisPrimary_FlashLoanPremium_filter>>>;
 };
 
-export type ethereumPrimary_FlashLoanPremium_orderBy =
+export type gnosisPrimary_FlashLoanPremium_orderBy =
   | 'id'
   | 'premiumRateTotal'
   | 'premiumRateToProtocol';
 
-export type ethereumPrimary_MarketList = {
+export type gnosisPrimary_MarketList = {
   /**  Same ID as LendingProtocol  */
-  id: Scalars['ethereumPrimaryBytes'];
+  id: Scalars['gnosisPrimaryBytes'];
   /**  IDs of all markets in the LendingProtocol  */
-  markets: Array<Scalars['ethereumPrimaryBytes']>;
+  markets: Array<Scalars['gnosisPrimaryBytes']>;
 };
 
-export type ethereumPrimary_MarketList_filter = {
-  id?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lt?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_gte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_lte?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_not_in?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  id_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  id_not_contains?: InputMaybe<Scalars['ethereumPrimaryBytes']>;
-  markets?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  markets_not?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  markets_contains?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  markets_contains_nocase?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  markets_not_contains?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
-  markets_not_contains_nocase?: InputMaybe<Array<Scalars['ethereumPrimaryBytes']>>;
+export type gnosisPrimary_MarketList_filter = {
+  id?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lt?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_gte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_lte?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_not_in?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  id_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  id_not_contains?: InputMaybe<Scalars['gnosisPrimaryBytes']>;
+  markets?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  markets_not?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  markets_contains?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  markets_contains_nocase?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  markets_not_contains?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
+  markets_not_contains_nocase?: InputMaybe<Array<Scalars['gnosisPrimaryBytes']>>;
   /** Filter for the block changed event. */
-  _change_block?: InputMaybe<ethereumPrimaryBlockChangedFilter>;
-  and?: InputMaybe<Array<InputMaybe<ethereumPrimary_MarketList_filter>>>;
-  or?: InputMaybe<Array<InputMaybe<ethereumPrimary_MarketList_filter>>>;
+  _change_block?: InputMaybe<gnosisPrimaryBlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<gnosisPrimary_MarketList_filter>>>;
+  or?: InputMaybe<Array<InputMaybe<gnosisPrimary_MarketList_filter>>>;
 };
 
-export type ethereumPrimary_MarketList_orderBy =
+export type gnosisPrimary_MarketList_orderBy =
   | 'id'
   | 'markets';
 
 /** The type for the top-level _meta field */
-export type ethereumPrimary_Meta_ = {
+export type gnosisPrimary_Meta_ = {
   /**
    * Information about a specific subgraph block. The hash of the block
    * will be null if the _meta field has a block constraint that asks for
@@ -10835,14 +10835,14 @@ export type ethereumPrimary_Meta_ = {
    * and therefore asks for the latest  block
    *
    */
-  block: ethereumPrimary_Block_;
+  block: gnosisPrimary_Block_;
   /** The deployment ID */
   deployment: Scalars['String'];
   /** If `true`, the subgraph encountered indexing errors at some past block */
   hasIndexingErrors: Scalars['Boolean'];
 };
 
-export type ethereumPrimary_PositionCounter = {
+export type gnosisPrimary_PositionCounter = {
   /**  { Account address }-{ Market address }-{ Position Side }  */
   id: Scalars['ID'];
   /**  Next count  */
@@ -10851,7 +10851,7 @@ export type ethereumPrimary_PositionCounter = {
   lastTimestamp: Scalars['BigInt'];
 };
 
-export type ethereumPrimary_PositionCounter_filter = {
+export type gnosisPrimary_PositionCounter_filter = {
   id?: InputMaybe<Scalars['ID']>;
   id_not?: InputMaybe<Scalars['ID']>;
   id_gt?: InputMaybe<Scalars['ID']>;
@@ -10877,17 +10877,17 @@ export type ethereumPrimary_PositionCounter_filter = {
   lastTimestamp_in?: InputMaybe<Array<Scalars['BigInt']>>;
   lastTimestamp_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
   /** Filter for the block changed event. */
-  _change_block?: InputMaybe<ethereumPrimaryBlockChangedFilter>;
-  and?: InputMaybe<Array<InputMaybe<ethereumPrimary_PositionCounter_filter>>>;
-  or?: InputMaybe<Array<InputMaybe<ethereumPrimary_PositionCounter_filter>>>;
+  _change_block?: InputMaybe<gnosisPrimaryBlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<gnosisPrimary_PositionCounter_filter>>>;
+  or?: InputMaybe<Array<InputMaybe<gnosisPrimary_PositionCounter_filter>>>;
 };
 
-export type ethereumPrimary_PositionCounter_orderBy =
+export type gnosisPrimary_PositionCounter_orderBy =
   | 'id'
   | 'nextCount'
   | 'lastTimestamp';
 
-export type ethereumPrimary_SubgraphErrorPolicy_ =
+export type gnosisPrimary_SubgraphErrorPolicy_ =
   /** Data will be returned even if the subgraph has indexing errors */
   | 'allow'
   /** If the subgraph has indexing errors, data will be omitted. The default. */
@@ -10895,127 +10895,127 @@ export type ethereumPrimary_SubgraphErrorPolicy_ =
 
   export type QuerySdk = {
       /** null **/
-  ethereumPrimarytoken: InContextSdkMethod<Query['ethereumPrimarytoken'], QueryethereumPrimarytokenArgs, MeshContext>,
+  gnosisPrimarytoken: InContextSdkMethod<Query['gnosisPrimarytoken'], QuerygnosisPrimarytokenArgs, MeshContext>,
   /** null **/
-  ethereumPrimarytokens: InContextSdkMethod<Query['ethereumPrimarytokens'], QueryethereumPrimarytokensArgs, MeshContext>,
+  gnosisPrimarytokens: InContextSdkMethod<Query['gnosisPrimarytokens'], QuerygnosisPrimarytokensArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryrewardToken: InContextSdkMethod<Query['ethereumPrimaryrewardToken'], QueryethereumPrimaryrewardTokenArgs, MeshContext>,
+  gnosisPrimaryrewardToken: InContextSdkMethod<Query['gnosisPrimaryrewardToken'], QuerygnosisPrimaryrewardTokenArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryrewardTokens: InContextSdkMethod<Query['ethereumPrimaryrewardTokens'], QueryethereumPrimaryrewardTokensArgs, MeshContext>,
+  gnosisPrimaryrewardTokens: InContextSdkMethod<Query['gnosisPrimaryrewardTokens'], QuerygnosisPrimaryrewardTokensArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryinterestRate: InContextSdkMethod<Query['ethereumPrimaryinterestRate'], QueryethereumPrimaryinterestRateArgs, MeshContext>,
+  gnosisPrimaryinterestRate: InContextSdkMethod<Query['gnosisPrimaryinterestRate'], QuerygnosisPrimaryinterestRateArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryinterestRates: InContextSdkMethod<Query['ethereumPrimaryinterestRates'], QueryethereumPrimaryinterestRatesArgs, MeshContext>,
+  gnosisPrimaryinterestRates: InContextSdkMethod<Query['gnosisPrimaryinterestRates'], QuerygnosisPrimaryinterestRatesArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryfee: InContextSdkMethod<Query['ethereumPrimaryfee'], QueryethereumPrimaryfeeArgs, MeshContext>,
+  gnosisPrimaryfee: InContextSdkMethod<Query['gnosisPrimaryfee'], QuerygnosisPrimaryfeeArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryfees: InContextSdkMethod<Query['ethereumPrimaryfees'], QueryethereumPrimaryfeesArgs, MeshContext>,
+  gnosisPrimaryfees: InContextSdkMethod<Query['gnosisPrimaryfees'], QuerygnosisPrimaryfeesArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryrevenueDetail: InContextSdkMethod<Query['ethereumPrimaryrevenueDetail'], QueryethereumPrimaryrevenueDetailArgs, MeshContext>,
+  gnosisPrimaryrevenueDetail: InContextSdkMethod<Query['gnosisPrimaryrevenueDetail'], QuerygnosisPrimaryrevenueDetailArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryrevenueDetails: InContextSdkMethod<Query['ethereumPrimaryrevenueDetails'], QueryethereumPrimaryrevenueDetailsArgs, MeshContext>,
+  gnosisPrimaryrevenueDetails: InContextSdkMethod<Query['gnosisPrimaryrevenueDetails'], QuerygnosisPrimaryrevenueDetailsArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryoracle: InContextSdkMethod<Query['ethereumPrimaryoracle'], QueryethereumPrimaryoracleArgs, MeshContext>,
+  gnosisPrimaryoracle: InContextSdkMethod<Query['gnosisPrimaryoracle'], QuerygnosisPrimaryoracleArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryoracles: InContextSdkMethod<Query['ethereumPrimaryoracles'], QueryethereumPrimaryoraclesArgs, MeshContext>,
+  gnosisPrimaryoracles: InContextSdkMethod<Query['gnosisPrimaryoracles'], QuerygnosisPrimaryoraclesArgs, MeshContext>,
   /** null **/
-  ethereumPrimarylendingProtocol: InContextSdkMethod<Query['ethereumPrimarylendingProtocol'], QueryethereumPrimarylendingProtocolArgs, MeshContext>,
+  gnosisPrimarylendingProtocol: InContextSdkMethod<Query['gnosisPrimarylendingProtocol'], QuerygnosisPrimarylendingProtocolArgs, MeshContext>,
   /** null **/
-  ethereumPrimarylendingProtocols: InContextSdkMethod<Query['ethereumPrimarylendingProtocols'], QueryethereumPrimarylendingProtocolsArgs, MeshContext>,
+  gnosisPrimarylendingProtocols: InContextSdkMethod<Query['gnosisPrimarylendingProtocols'], QuerygnosisPrimarylendingProtocolsArgs, MeshContext>,
   /** null **/
-  ethereumPrimarymarketList: InContextSdkMethod<Query['ethereumPrimarymarketList'], QueryethereumPrimarymarketListArgs, MeshContext>,
+  gnosisPrimarymarketList: InContextSdkMethod<Query['gnosisPrimarymarketList'], QuerygnosisPrimarymarketListArgs, MeshContext>,
   /** null **/
-  ethereumPrimarymarketLists: InContextSdkMethod<Query['ethereumPrimarymarketLists'], QueryethereumPrimarymarketListsArgs, MeshContext>,
+  gnosisPrimarymarketLists: InContextSdkMethod<Query['gnosisPrimarymarketLists'], QuerygnosisPrimarymarketListsArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryusageMetricsDailySnapshot: InContextSdkMethod<Query['ethereumPrimaryusageMetricsDailySnapshot'], QueryethereumPrimaryusageMetricsDailySnapshotArgs, MeshContext>,
+  gnosisPrimaryusageMetricsDailySnapshot: InContextSdkMethod<Query['gnosisPrimaryusageMetricsDailySnapshot'], QuerygnosisPrimaryusageMetricsDailySnapshotArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryusageMetricsDailySnapshots: InContextSdkMethod<Query['ethereumPrimaryusageMetricsDailySnapshots'], QueryethereumPrimaryusageMetricsDailySnapshotsArgs, MeshContext>,
+  gnosisPrimaryusageMetricsDailySnapshots: InContextSdkMethod<Query['gnosisPrimaryusageMetricsDailySnapshots'], QuerygnosisPrimaryusageMetricsDailySnapshotsArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryusageMetricsHourlySnapshot: InContextSdkMethod<Query['ethereumPrimaryusageMetricsHourlySnapshot'], QueryethereumPrimaryusageMetricsHourlySnapshotArgs, MeshContext>,
+  gnosisPrimaryusageMetricsHourlySnapshot: InContextSdkMethod<Query['gnosisPrimaryusageMetricsHourlySnapshot'], QuerygnosisPrimaryusageMetricsHourlySnapshotArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryusageMetricsHourlySnapshots: InContextSdkMethod<Query['ethereumPrimaryusageMetricsHourlySnapshots'], QueryethereumPrimaryusageMetricsHourlySnapshotsArgs, MeshContext>,
+  gnosisPrimaryusageMetricsHourlySnapshots: InContextSdkMethod<Query['gnosisPrimaryusageMetricsHourlySnapshots'], QuerygnosisPrimaryusageMetricsHourlySnapshotsArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryfinancialsDailySnapshot: InContextSdkMethod<Query['ethereumPrimaryfinancialsDailySnapshot'], QueryethereumPrimaryfinancialsDailySnapshotArgs, MeshContext>,
+  gnosisPrimaryfinancialsDailySnapshot: InContextSdkMethod<Query['gnosisPrimaryfinancialsDailySnapshot'], QuerygnosisPrimaryfinancialsDailySnapshotArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryfinancialsDailySnapshots: InContextSdkMethod<Query['ethereumPrimaryfinancialsDailySnapshots'], QueryethereumPrimaryfinancialsDailySnapshotsArgs, MeshContext>,
+  gnosisPrimaryfinancialsDailySnapshots: InContextSdkMethod<Query['gnosisPrimaryfinancialsDailySnapshots'], QuerygnosisPrimaryfinancialsDailySnapshotsArgs, MeshContext>,
   /** null **/
-  ethereumPrimarymarket: InContextSdkMethod<Query['ethereumPrimarymarket'], QueryethereumPrimarymarketArgs, MeshContext>,
+  gnosisPrimarymarket: InContextSdkMethod<Query['gnosisPrimarymarket'], QuerygnosisPrimarymarketArgs, MeshContext>,
   /** null **/
-  ethereumPrimarymarkets: InContextSdkMethod<Query['ethereumPrimarymarkets'], QueryethereumPrimarymarketsArgs, MeshContext>,
+  gnosisPrimarymarkets: InContextSdkMethod<Query['gnosisPrimarymarkets'], QuerygnosisPrimarymarketsArgs, MeshContext>,
   /** null **/
-  ethereumPrimarymarketDailySnapshot: InContextSdkMethod<Query['ethereumPrimarymarketDailySnapshot'], QueryethereumPrimarymarketDailySnapshotArgs, MeshContext>,
+  gnosisPrimarymarketDailySnapshot: InContextSdkMethod<Query['gnosisPrimarymarketDailySnapshot'], QuerygnosisPrimarymarketDailySnapshotArgs, MeshContext>,
   /** null **/
-  ethereumPrimarymarketDailySnapshots: InContextSdkMethod<Query['ethereumPrimarymarketDailySnapshots'], QueryethereumPrimarymarketDailySnapshotsArgs, MeshContext>,
+  gnosisPrimarymarketDailySnapshots: InContextSdkMethod<Query['gnosisPrimarymarketDailySnapshots'], QuerygnosisPrimarymarketDailySnapshotsArgs, MeshContext>,
   /** null **/
-  ethereumPrimarymarketHourlySnapshot: InContextSdkMethod<Query['ethereumPrimarymarketHourlySnapshot'], QueryethereumPrimarymarketHourlySnapshotArgs, MeshContext>,
+  gnosisPrimarymarketHourlySnapshot: InContextSdkMethod<Query['gnosisPrimarymarketHourlySnapshot'], QuerygnosisPrimarymarketHourlySnapshotArgs, MeshContext>,
   /** null **/
-  ethereumPrimarymarketHourlySnapshots: InContextSdkMethod<Query['ethereumPrimarymarketHourlySnapshots'], QueryethereumPrimarymarketHourlySnapshotsArgs, MeshContext>,
+  gnosisPrimarymarketHourlySnapshots: InContextSdkMethod<Query['gnosisPrimarymarketHourlySnapshots'], QuerygnosisPrimarymarketHourlySnapshotsArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryaccount: InContextSdkMethod<Query['ethereumPrimaryaccount'], QueryethereumPrimaryaccountArgs, MeshContext>,
+  gnosisPrimaryaccount: InContextSdkMethod<Query['gnosisPrimaryaccount'], QuerygnosisPrimaryaccountArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryaccounts: InContextSdkMethod<Query['ethereumPrimaryaccounts'], QueryethereumPrimaryaccountsArgs, MeshContext>,
+  gnosisPrimaryaccounts: InContextSdkMethod<Query['gnosisPrimaryaccounts'], QuerygnosisPrimaryaccountsArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryposition: InContextSdkMethod<Query['ethereumPrimaryposition'], QueryethereumPrimarypositionArgs, MeshContext>,
+  gnosisPrimaryposition: InContextSdkMethod<Query['gnosisPrimaryposition'], QuerygnosisPrimarypositionArgs, MeshContext>,
   /** null **/
-  ethereumPrimarypositions: InContextSdkMethod<Query['ethereumPrimarypositions'], QueryethereumPrimarypositionsArgs, MeshContext>,
+  gnosisPrimarypositions: InContextSdkMethod<Query['gnosisPrimarypositions'], QuerygnosisPrimarypositionsArgs, MeshContext>,
   /** null **/
-  ethereumPrimarypositionSnapshot: InContextSdkMethod<Query['ethereumPrimarypositionSnapshot'], QueryethereumPrimarypositionSnapshotArgs, MeshContext>,
+  gnosisPrimarypositionSnapshot: InContextSdkMethod<Query['gnosisPrimarypositionSnapshot'], QuerygnosisPrimarypositionSnapshotArgs, MeshContext>,
   /** null **/
-  ethereumPrimarypositionSnapshots: InContextSdkMethod<Query['ethereumPrimarypositionSnapshots'], QueryethereumPrimarypositionSnapshotsArgs, MeshContext>,
+  gnosisPrimarypositionSnapshots: InContextSdkMethod<Query['gnosisPrimarypositionSnapshots'], QuerygnosisPrimarypositionSnapshotsArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryactiveAccount: InContextSdkMethod<Query['ethereumPrimaryactiveAccount'], QueryethereumPrimaryactiveAccountArgs, MeshContext>,
+  gnosisPrimaryactiveAccount: InContextSdkMethod<Query['gnosisPrimaryactiveAccount'], QuerygnosisPrimaryactiveAccountArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryactiveAccounts: InContextSdkMethod<Query['ethereumPrimaryactiveAccounts'], QueryethereumPrimaryactiveAccountsArgs, MeshContext>,
+  gnosisPrimaryactiveAccounts: InContextSdkMethod<Query['gnosisPrimaryactiveAccounts'], QuerygnosisPrimaryactiveAccountsArgs, MeshContext>,
   /** null **/
-  ethereumPrimarypositionCounter: InContextSdkMethod<Query['ethereumPrimarypositionCounter'], QueryethereumPrimarypositionCounterArgs, MeshContext>,
+  gnosisPrimarypositionCounter: InContextSdkMethod<Query['gnosisPrimarypositionCounter'], QuerygnosisPrimarypositionCounterArgs, MeshContext>,
   /** null **/
-  ethereumPrimarypositionCounters: InContextSdkMethod<Query['ethereumPrimarypositionCounters'], QueryethereumPrimarypositionCountersArgs, MeshContext>,
+  gnosisPrimarypositionCounters: InContextSdkMethod<Query['gnosisPrimarypositionCounters'], QuerygnosisPrimarypositionCountersArgs, MeshContext>,
   /** null **/
-  ethereumPrimarydeposit: InContextSdkMethod<Query['ethereumPrimarydeposit'], QueryethereumPrimarydepositArgs, MeshContext>,
+  gnosisPrimarydeposit: InContextSdkMethod<Query['gnosisPrimarydeposit'], QuerygnosisPrimarydepositArgs, MeshContext>,
   /** null **/
-  ethereumPrimarydeposits: InContextSdkMethod<Query['ethereumPrimarydeposits'], QueryethereumPrimarydepositsArgs, MeshContext>,
+  gnosisPrimarydeposits: InContextSdkMethod<Query['gnosisPrimarydeposits'], QuerygnosisPrimarydepositsArgs, MeshContext>,
   /** null **/
-  ethereumPrimarywithdraw: InContextSdkMethod<Query['ethereumPrimarywithdraw'], QueryethereumPrimarywithdrawArgs, MeshContext>,
+  gnosisPrimarywithdraw: InContextSdkMethod<Query['gnosisPrimarywithdraw'], QuerygnosisPrimarywithdrawArgs, MeshContext>,
   /** null **/
-  ethereumPrimarywithdraws: InContextSdkMethod<Query['ethereumPrimarywithdraws'], QueryethereumPrimarywithdrawsArgs, MeshContext>,
+  gnosisPrimarywithdraws: InContextSdkMethod<Query['gnosisPrimarywithdraws'], QuerygnosisPrimarywithdrawsArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryborrow: InContextSdkMethod<Query['ethereumPrimaryborrow'], QueryethereumPrimaryborrowArgs, MeshContext>,
+  gnosisPrimaryborrow: InContextSdkMethod<Query['gnosisPrimaryborrow'], QuerygnosisPrimaryborrowArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryborrows: InContextSdkMethod<Query['ethereumPrimaryborrows'], QueryethereumPrimaryborrowsArgs, MeshContext>,
+  gnosisPrimaryborrows: InContextSdkMethod<Query['gnosisPrimaryborrows'], QuerygnosisPrimaryborrowsArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryrepay: InContextSdkMethod<Query['ethereumPrimaryrepay'], QueryethereumPrimaryrepayArgs, MeshContext>,
+  gnosisPrimaryrepay: InContextSdkMethod<Query['gnosisPrimaryrepay'], QuerygnosisPrimaryrepayArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryrepays: InContextSdkMethod<Query['ethereumPrimaryrepays'], QueryethereumPrimaryrepaysArgs, MeshContext>,
+  gnosisPrimaryrepays: InContextSdkMethod<Query['gnosisPrimaryrepays'], QuerygnosisPrimaryrepaysArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryliquidate: InContextSdkMethod<Query['ethereumPrimaryliquidate'], QueryethereumPrimaryliquidateArgs, MeshContext>,
+  gnosisPrimaryliquidate: InContextSdkMethod<Query['gnosisPrimaryliquidate'], QuerygnosisPrimaryliquidateArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryliquidates: InContextSdkMethod<Query['ethereumPrimaryliquidates'], QueryethereumPrimaryliquidatesArgs, MeshContext>,
+  gnosisPrimaryliquidates: InContextSdkMethod<Query['gnosisPrimaryliquidates'], QuerygnosisPrimaryliquidatesArgs, MeshContext>,
   /** null **/
-  ethereumPrimarytransfer: InContextSdkMethod<Query['ethereumPrimarytransfer'], QueryethereumPrimarytransferArgs, MeshContext>,
+  gnosisPrimarytransfer: InContextSdkMethod<Query['gnosisPrimarytransfer'], QuerygnosisPrimarytransferArgs, MeshContext>,
   /** null **/
-  ethereumPrimarytransfers: InContextSdkMethod<Query['ethereumPrimarytransfers'], QueryethereumPrimarytransfersArgs, MeshContext>,
+  gnosisPrimarytransfers: InContextSdkMethod<Query['gnosisPrimarytransfers'], QuerygnosisPrimarytransfersArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryflashloan: InContextSdkMethod<Query['ethereumPrimaryflashloan'], QueryethereumPrimaryflashloanArgs, MeshContext>,
+  gnosisPrimaryflashloan: InContextSdkMethod<Query['gnosisPrimaryflashloan'], QuerygnosisPrimaryflashloanArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryflashloans: InContextSdkMethod<Query['ethereumPrimaryflashloans'], QueryethereumPrimaryflashloansArgs, MeshContext>,
+  gnosisPrimaryflashloans: InContextSdkMethod<Query['gnosisPrimaryflashloans'], QuerygnosisPrimaryflashloansArgs, MeshContext>,
   /** null **/
-  ethereumPrimarydefaultOracle: InContextSdkMethod<Query['ethereumPrimarydefaultOracle'], QueryethereumPrimarydefaultOracleArgs, MeshContext>,
+  gnosisPrimarydefaultOracle: InContextSdkMethod<Query['gnosisPrimarydefaultOracle'], QuerygnosisPrimarydefaultOracleArgs, MeshContext>,
   /** null **/
-  ethereumPrimarydefaultOracles: InContextSdkMethod<Query['ethereumPrimarydefaultOracles'], QueryethereumPrimarydefaultOraclesArgs, MeshContext>,
+  gnosisPrimarydefaultOracles: InContextSdkMethod<Query['gnosisPrimarydefaultOracles'], QuerygnosisPrimarydefaultOraclesArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryflashLoanPremium: InContextSdkMethod<Query['ethereumPrimaryflashLoanPremium'], QueryethereumPrimaryflashLoanPremiumArgs, MeshContext>,
+  gnosisPrimaryflashLoanPremium: InContextSdkMethod<Query['gnosisPrimaryflashLoanPremium'], QuerygnosisPrimaryflashLoanPremiumArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryflashLoanPremiums: InContextSdkMethod<Query['ethereumPrimaryflashLoanPremiums'], QueryethereumPrimaryflashLoanPremiumsArgs, MeshContext>,
+  gnosisPrimaryflashLoanPremiums: InContextSdkMethod<Query['gnosisPrimaryflashLoanPremiums'], QuerygnosisPrimaryflashLoanPremiumsArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryprotocol: InContextSdkMethod<Query['ethereumPrimaryprotocol'], QueryethereumPrimaryprotocolArgs, MeshContext>,
+  gnosisPrimaryprotocol: InContextSdkMethod<Query['gnosisPrimaryprotocol'], QuerygnosisPrimaryprotocolArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryprotocols: InContextSdkMethod<Query['ethereumPrimaryprotocols'], QueryethereumPrimaryprotocolsArgs, MeshContext>,
+  gnosisPrimaryprotocols: InContextSdkMethod<Query['gnosisPrimaryprotocols'], QuerygnosisPrimaryprotocolsArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryevent: InContextSdkMethod<Query['ethereumPrimaryevent'], QueryethereumPrimaryeventArgs, MeshContext>,
+  gnosisPrimaryevent: InContextSdkMethod<Query['gnosisPrimaryevent'], QuerygnosisPrimaryeventArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryevents: InContextSdkMethod<Query['ethereumPrimaryevents'], QueryethereumPrimaryeventsArgs, MeshContext>,
+  gnosisPrimaryevents: InContextSdkMethod<Query['gnosisPrimaryevents'], QuerygnosisPrimaryeventsArgs, MeshContext>,
   /** Access to subgraph metadata **/
-  ethereumPrimary_meta: InContextSdkMethod<Query['ethereumPrimary_meta'], QueryethereumPrimary_metaArgs, MeshContext>
+  gnosisPrimary_meta: InContextSdkMethod<Query['gnosisPrimary_meta'], QuerygnosisPrimary_metaArgs, MeshContext>
   };
 
   export type MutationSdk = {
@@ -11024,131 +11024,131 @@ export type ethereumPrimary_SubgraphErrorPolicy_ =
 
   export type SubscriptionSdk = {
       /** null **/
-  ethereumPrimarytoken: InContextSdkMethod<Subscription['ethereumPrimarytoken'], SubscriptionethereumPrimarytokenArgs, MeshContext>,
+  gnosisPrimarytoken: InContextSdkMethod<Subscription['gnosisPrimarytoken'], SubscriptiongnosisPrimarytokenArgs, MeshContext>,
   /** null **/
-  ethereumPrimarytokens: InContextSdkMethod<Subscription['ethereumPrimarytokens'], SubscriptionethereumPrimarytokensArgs, MeshContext>,
+  gnosisPrimarytokens: InContextSdkMethod<Subscription['gnosisPrimarytokens'], SubscriptiongnosisPrimarytokensArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryrewardToken: InContextSdkMethod<Subscription['ethereumPrimaryrewardToken'], SubscriptionethereumPrimaryrewardTokenArgs, MeshContext>,
+  gnosisPrimaryrewardToken: InContextSdkMethod<Subscription['gnosisPrimaryrewardToken'], SubscriptiongnosisPrimaryrewardTokenArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryrewardTokens: InContextSdkMethod<Subscription['ethereumPrimaryrewardTokens'], SubscriptionethereumPrimaryrewardTokensArgs, MeshContext>,
+  gnosisPrimaryrewardTokens: InContextSdkMethod<Subscription['gnosisPrimaryrewardTokens'], SubscriptiongnosisPrimaryrewardTokensArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryinterestRate: InContextSdkMethod<Subscription['ethereumPrimaryinterestRate'], SubscriptionethereumPrimaryinterestRateArgs, MeshContext>,
+  gnosisPrimaryinterestRate: InContextSdkMethod<Subscription['gnosisPrimaryinterestRate'], SubscriptiongnosisPrimaryinterestRateArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryinterestRates: InContextSdkMethod<Subscription['ethereumPrimaryinterestRates'], SubscriptionethereumPrimaryinterestRatesArgs, MeshContext>,
+  gnosisPrimaryinterestRates: InContextSdkMethod<Subscription['gnosisPrimaryinterestRates'], SubscriptiongnosisPrimaryinterestRatesArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryfee: InContextSdkMethod<Subscription['ethereumPrimaryfee'], SubscriptionethereumPrimaryfeeArgs, MeshContext>,
+  gnosisPrimaryfee: InContextSdkMethod<Subscription['gnosisPrimaryfee'], SubscriptiongnosisPrimaryfeeArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryfees: InContextSdkMethod<Subscription['ethereumPrimaryfees'], SubscriptionethereumPrimaryfeesArgs, MeshContext>,
+  gnosisPrimaryfees: InContextSdkMethod<Subscription['gnosisPrimaryfees'], SubscriptiongnosisPrimaryfeesArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryrevenueDetail: InContextSdkMethod<Subscription['ethereumPrimaryrevenueDetail'], SubscriptionethereumPrimaryrevenueDetailArgs, MeshContext>,
+  gnosisPrimaryrevenueDetail: InContextSdkMethod<Subscription['gnosisPrimaryrevenueDetail'], SubscriptiongnosisPrimaryrevenueDetailArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryrevenueDetails: InContextSdkMethod<Subscription['ethereumPrimaryrevenueDetails'], SubscriptionethereumPrimaryrevenueDetailsArgs, MeshContext>,
+  gnosisPrimaryrevenueDetails: InContextSdkMethod<Subscription['gnosisPrimaryrevenueDetails'], SubscriptiongnosisPrimaryrevenueDetailsArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryoracle: InContextSdkMethod<Subscription['ethereumPrimaryoracle'], SubscriptionethereumPrimaryoracleArgs, MeshContext>,
+  gnosisPrimaryoracle: InContextSdkMethod<Subscription['gnosisPrimaryoracle'], SubscriptiongnosisPrimaryoracleArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryoracles: InContextSdkMethod<Subscription['ethereumPrimaryoracles'], SubscriptionethereumPrimaryoraclesArgs, MeshContext>,
+  gnosisPrimaryoracles: InContextSdkMethod<Subscription['gnosisPrimaryoracles'], SubscriptiongnosisPrimaryoraclesArgs, MeshContext>,
   /** null **/
-  ethereumPrimarylendingProtocol: InContextSdkMethod<Subscription['ethereumPrimarylendingProtocol'], SubscriptionethereumPrimarylendingProtocolArgs, MeshContext>,
+  gnosisPrimarylendingProtocol: InContextSdkMethod<Subscription['gnosisPrimarylendingProtocol'], SubscriptiongnosisPrimarylendingProtocolArgs, MeshContext>,
   /** null **/
-  ethereumPrimarylendingProtocols: InContextSdkMethod<Subscription['ethereumPrimarylendingProtocols'], SubscriptionethereumPrimarylendingProtocolsArgs, MeshContext>,
+  gnosisPrimarylendingProtocols: InContextSdkMethod<Subscription['gnosisPrimarylendingProtocols'], SubscriptiongnosisPrimarylendingProtocolsArgs, MeshContext>,
   /** null **/
-  ethereumPrimarymarketList: InContextSdkMethod<Subscription['ethereumPrimarymarketList'], SubscriptionethereumPrimarymarketListArgs, MeshContext>,
+  gnosisPrimarymarketList: InContextSdkMethod<Subscription['gnosisPrimarymarketList'], SubscriptiongnosisPrimarymarketListArgs, MeshContext>,
   /** null **/
-  ethereumPrimarymarketLists: InContextSdkMethod<Subscription['ethereumPrimarymarketLists'], SubscriptionethereumPrimarymarketListsArgs, MeshContext>,
+  gnosisPrimarymarketLists: InContextSdkMethod<Subscription['gnosisPrimarymarketLists'], SubscriptiongnosisPrimarymarketListsArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryusageMetricsDailySnapshot: InContextSdkMethod<Subscription['ethereumPrimaryusageMetricsDailySnapshot'], SubscriptionethereumPrimaryusageMetricsDailySnapshotArgs, MeshContext>,
+  gnosisPrimaryusageMetricsDailySnapshot: InContextSdkMethod<Subscription['gnosisPrimaryusageMetricsDailySnapshot'], SubscriptiongnosisPrimaryusageMetricsDailySnapshotArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryusageMetricsDailySnapshots: InContextSdkMethod<Subscription['ethereumPrimaryusageMetricsDailySnapshots'], SubscriptionethereumPrimaryusageMetricsDailySnapshotsArgs, MeshContext>,
+  gnosisPrimaryusageMetricsDailySnapshots: InContextSdkMethod<Subscription['gnosisPrimaryusageMetricsDailySnapshots'], SubscriptiongnosisPrimaryusageMetricsDailySnapshotsArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryusageMetricsHourlySnapshot: InContextSdkMethod<Subscription['ethereumPrimaryusageMetricsHourlySnapshot'], SubscriptionethereumPrimaryusageMetricsHourlySnapshotArgs, MeshContext>,
+  gnosisPrimaryusageMetricsHourlySnapshot: InContextSdkMethod<Subscription['gnosisPrimaryusageMetricsHourlySnapshot'], SubscriptiongnosisPrimaryusageMetricsHourlySnapshotArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryusageMetricsHourlySnapshots: InContextSdkMethod<Subscription['ethereumPrimaryusageMetricsHourlySnapshots'], SubscriptionethereumPrimaryusageMetricsHourlySnapshotsArgs, MeshContext>,
+  gnosisPrimaryusageMetricsHourlySnapshots: InContextSdkMethod<Subscription['gnosisPrimaryusageMetricsHourlySnapshots'], SubscriptiongnosisPrimaryusageMetricsHourlySnapshotsArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryfinancialsDailySnapshot: InContextSdkMethod<Subscription['ethereumPrimaryfinancialsDailySnapshot'], SubscriptionethereumPrimaryfinancialsDailySnapshotArgs, MeshContext>,
+  gnosisPrimaryfinancialsDailySnapshot: InContextSdkMethod<Subscription['gnosisPrimaryfinancialsDailySnapshot'], SubscriptiongnosisPrimaryfinancialsDailySnapshotArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryfinancialsDailySnapshots: InContextSdkMethod<Subscription['ethereumPrimaryfinancialsDailySnapshots'], SubscriptionethereumPrimaryfinancialsDailySnapshotsArgs, MeshContext>,
+  gnosisPrimaryfinancialsDailySnapshots: InContextSdkMethod<Subscription['gnosisPrimaryfinancialsDailySnapshots'], SubscriptiongnosisPrimaryfinancialsDailySnapshotsArgs, MeshContext>,
   /** null **/
-  ethereumPrimarymarket: InContextSdkMethod<Subscription['ethereumPrimarymarket'], SubscriptionethereumPrimarymarketArgs, MeshContext>,
+  gnosisPrimarymarket: InContextSdkMethod<Subscription['gnosisPrimarymarket'], SubscriptiongnosisPrimarymarketArgs, MeshContext>,
   /** null **/
-  ethereumPrimarymarkets: InContextSdkMethod<Subscription['ethereumPrimarymarkets'], SubscriptionethereumPrimarymarketsArgs, MeshContext>,
+  gnosisPrimarymarkets: InContextSdkMethod<Subscription['gnosisPrimarymarkets'], SubscriptiongnosisPrimarymarketsArgs, MeshContext>,
   /** null **/
-  ethereumPrimarymarketDailySnapshot: InContextSdkMethod<Subscription['ethereumPrimarymarketDailySnapshot'], SubscriptionethereumPrimarymarketDailySnapshotArgs, MeshContext>,
+  gnosisPrimarymarketDailySnapshot: InContextSdkMethod<Subscription['gnosisPrimarymarketDailySnapshot'], SubscriptiongnosisPrimarymarketDailySnapshotArgs, MeshContext>,
   /** null **/
-  ethereumPrimarymarketDailySnapshots: InContextSdkMethod<Subscription['ethereumPrimarymarketDailySnapshots'], SubscriptionethereumPrimarymarketDailySnapshotsArgs, MeshContext>,
+  gnosisPrimarymarketDailySnapshots: InContextSdkMethod<Subscription['gnosisPrimarymarketDailySnapshots'], SubscriptiongnosisPrimarymarketDailySnapshotsArgs, MeshContext>,
   /** null **/
-  ethereumPrimarymarketHourlySnapshot: InContextSdkMethod<Subscription['ethereumPrimarymarketHourlySnapshot'], SubscriptionethereumPrimarymarketHourlySnapshotArgs, MeshContext>,
+  gnosisPrimarymarketHourlySnapshot: InContextSdkMethod<Subscription['gnosisPrimarymarketHourlySnapshot'], SubscriptiongnosisPrimarymarketHourlySnapshotArgs, MeshContext>,
   /** null **/
-  ethereumPrimarymarketHourlySnapshots: InContextSdkMethod<Subscription['ethereumPrimarymarketHourlySnapshots'], SubscriptionethereumPrimarymarketHourlySnapshotsArgs, MeshContext>,
+  gnosisPrimarymarketHourlySnapshots: InContextSdkMethod<Subscription['gnosisPrimarymarketHourlySnapshots'], SubscriptiongnosisPrimarymarketHourlySnapshotsArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryaccount: InContextSdkMethod<Subscription['ethereumPrimaryaccount'], SubscriptionethereumPrimaryaccountArgs, MeshContext>,
+  gnosisPrimaryaccount: InContextSdkMethod<Subscription['gnosisPrimaryaccount'], SubscriptiongnosisPrimaryaccountArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryaccounts: InContextSdkMethod<Subscription['ethereumPrimaryaccounts'], SubscriptionethereumPrimaryaccountsArgs, MeshContext>,
+  gnosisPrimaryaccounts: InContextSdkMethod<Subscription['gnosisPrimaryaccounts'], SubscriptiongnosisPrimaryaccountsArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryposition: InContextSdkMethod<Subscription['ethereumPrimaryposition'], SubscriptionethereumPrimarypositionArgs, MeshContext>,
+  gnosisPrimaryposition: InContextSdkMethod<Subscription['gnosisPrimaryposition'], SubscriptiongnosisPrimarypositionArgs, MeshContext>,
   /** null **/
-  ethereumPrimarypositions: InContextSdkMethod<Subscription['ethereumPrimarypositions'], SubscriptionethereumPrimarypositionsArgs, MeshContext>,
+  gnosisPrimarypositions: InContextSdkMethod<Subscription['gnosisPrimarypositions'], SubscriptiongnosisPrimarypositionsArgs, MeshContext>,
   /** null **/
-  ethereumPrimarypositionSnapshot: InContextSdkMethod<Subscription['ethereumPrimarypositionSnapshot'], SubscriptionethereumPrimarypositionSnapshotArgs, MeshContext>,
+  gnosisPrimarypositionSnapshot: InContextSdkMethod<Subscription['gnosisPrimarypositionSnapshot'], SubscriptiongnosisPrimarypositionSnapshotArgs, MeshContext>,
   /** null **/
-  ethereumPrimarypositionSnapshots: InContextSdkMethod<Subscription['ethereumPrimarypositionSnapshots'], SubscriptionethereumPrimarypositionSnapshotsArgs, MeshContext>,
+  gnosisPrimarypositionSnapshots: InContextSdkMethod<Subscription['gnosisPrimarypositionSnapshots'], SubscriptiongnosisPrimarypositionSnapshotsArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryactiveAccount: InContextSdkMethod<Subscription['ethereumPrimaryactiveAccount'], SubscriptionethereumPrimaryactiveAccountArgs, MeshContext>,
+  gnosisPrimaryactiveAccount: InContextSdkMethod<Subscription['gnosisPrimaryactiveAccount'], SubscriptiongnosisPrimaryactiveAccountArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryactiveAccounts: InContextSdkMethod<Subscription['ethereumPrimaryactiveAccounts'], SubscriptionethereumPrimaryactiveAccountsArgs, MeshContext>,
+  gnosisPrimaryactiveAccounts: InContextSdkMethod<Subscription['gnosisPrimaryactiveAccounts'], SubscriptiongnosisPrimaryactiveAccountsArgs, MeshContext>,
   /** null **/
-  ethereumPrimarypositionCounter: InContextSdkMethod<Subscription['ethereumPrimarypositionCounter'], SubscriptionethereumPrimarypositionCounterArgs, MeshContext>,
+  gnosisPrimarypositionCounter: InContextSdkMethod<Subscription['gnosisPrimarypositionCounter'], SubscriptiongnosisPrimarypositionCounterArgs, MeshContext>,
   /** null **/
-  ethereumPrimarypositionCounters: InContextSdkMethod<Subscription['ethereumPrimarypositionCounters'], SubscriptionethereumPrimarypositionCountersArgs, MeshContext>,
+  gnosisPrimarypositionCounters: InContextSdkMethod<Subscription['gnosisPrimarypositionCounters'], SubscriptiongnosisPrimarypositionCountersArgs, MeshContext>,
   /** null **/
-  ethereumPrimarydeposit: InContextSdkMethod<Subscription['ethereumPrimarydeposit'], SubscriptionethereumPrimarydepositArgs, MeshContext>,
+  gnosisPrimarydeposit: InContextSdkMethod<Subscription['gnosisPrimarydeposit'], SubscriptiongnosisPrimarydepositArgs, MeshContext>,
   /** null **/
-  ethereumPrimarydeposits: InContextSdkMethod<Subscription['ethereumPrimarydeposits'], SubscriptionethereumPrimarydepositsArgs, MeshContext>,
+  gnosisPrimarydeposits: InContextSdkMethod<Subscription['gnosisPrimarydeposits'], SubscriptiongnosisPrimarydepositsArgs, MeshContext>,
   /** null **/
-  ethereumPrimarywithdraw: InContextSdkMethod<Subscription['ethereumPrimarywithdraw'], SubscriptionethereumPrimarywithdrawArgs, MeshContext>,
+  gnosisPrimarywithdraw: InContextSdkMethod<Subscription['gnosisPrimarywithdraw'], SubscriptiongnosisPrimarywithdrawArgs, MeshContext>,
   /** null **/
-  ethereumPrimarywithdraws: InContextSdkMethod<Subscription['ethereumPrimarywithdraws'], SubscriptionethereumPrimarywithdrawsArgs, MeshContext>,
+  gnosisPrimarywithdraws: InContextSdkMethod<Subscription['gnosisPrimarywithdraws'], SubscriptiongnosisPrimarywithdrawsArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryborrow: InContextSdkMethod<Subscription['ethereumPrimaryborrow'], SubscriptionethereumPrimaryborrowArgs, MeshContext>,
+  gnosisPrimaryborrow: InContextSdkMethod<Subscription['gnosisPrimaryborrow'], SubscriptiongnosisPrimaryborrowArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryborrows: InContextSdkMethod<Subscription['ethereumPrimaryborrows'], SubscriptionethereumPrimaryborrowsArgs, MeshContext>,
+  gnosisPrimaryborrows: InContextSdkMethod<Subscription['gnosisPrimaryborrows'], SubscriptiongnosisPrimaryborrowsArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryrepay: InContextSdkMethod<Subscription['ethereumPrimaryrepay'], SubscriptionethereumPrimaryrepayArgs, MeshContext>,
+  gnosisPrimaryrepay: InContextSdkMethod<Subscription['gnosisPrimaryrepay'], SubscriptiongnosisPrimaryrepayArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryrepays: InContextSdkMethod<Subscription['ethereumPrimaryrepays'], SubscriptionethereumPrimaryrepaysArgs, MeshContext>,
+  gnosisPrimaryrepays: InContextSdkMethod<Subscription['gnosisPrimaryrepays'], SubscriptiongnosisPrimaryrepaysArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryliquidate: InContextSdkMethod<Subscription['ethereumPrimaryliquidate'], SubscriptionethereumPrimaryliquidateArgs, MeshContext>,
+  gnosisPrimaryliquidate: InContextSdkMethod<Subscription['gnosisPrimaryliquidate'], SubscriptiongnosisPrimaryliquidateArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryliquidates: InContextSdkMethod<Subscription['ethereumPrimaryliquidates'], SubscriptionethereumPrimaryliquidatesArgs, MeshContext>,
+  gnosisPrimaryliquidates: InContextSdkMethod<Subscription['gnosisPrimaryliquidates'], SubscriptiongnosisPrimaryliquidatesArgs, MeshContext>,
   /** null **/
-  ethereumPrimarytransfer: InContextSdkMethod<Subscription['ethereumPrimarytransfer'], SubscriptionethereumPrimarytransferArgs, MeshContext>,
+  gnosisPrimarytransfer: InContextSdkMethod<Subscription['gnosisPrimarytransfer'], SubscriptiongnosisPrimarytransferArgs, MeshContext>,
   /** null **/
-  ethereumPrimarytransfers: InContextSdkMethod<Subscription['ethereumPrimarytransfers'], SubscriptionethereumPrimarytransfersArgs, MeshContext>,
+  gnosisPrimarytransfers: InContextSdkMethod<Subscription['gnosisPrimarytransfers'], SubscriptiongnosisPrimarytransfersArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryflashloan: InContextSdkMethod<Subscription['ethereumPrimaryflashloan'], SubscriptionethereumPrimaryflashloanArgs, MeshContext>,
+  gnosisPrimaryflashloan: InContextSdkMethod<Subscription['gnosisPrimaryflashloan'], SubscriptiongnosisPrimaryflashloanArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryflashloans: InContextSdkMethod<Subscription['ethereumPrimaryflashloans'], SubscriptionethereumPrimaryflashloansArgs, MeshContext>,
+  gnosisPrimaryflashloans: InContextSdkMethod<Subscription['gnosisPrimaryflashloans'], SubscriptiongnosisPrimaryflashloansArgs, MeshContext>,
   /** null **/
-  ethereumPrimarydefaultOracle: InContextSdkMethod<Subscription['ethereumPrimarydefaultOracle'], SubscriptionethereumPrimarydefaultOracleArgs, MeshContext>,
+  gnosisPrimarydefaultOracle: InContextSdkMethod<Subscription['gnosisPrimarydefaultOracle'], SubscriptiongnosisPrimarydefaultOracleArgs, MeshContext>,
   /** null **/
-  ethereumPrimarydefaultOracles: InContextSdkMethod<Subscription['ethereumPrimarydefaultOracles'], SubscriptionethereumPrimarydefaultOraclesArgs, MeshContext>,
+  gnosisPrimarydefaultOracles: InContextSdkMethod<Subscription['gnosisPrimarydefaultOracles'], SubscriptiongnosisPrimarydefaultOraclesArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryflashLoanPremium: InContextSdkMethod<Subscription['ethereumPrimaryflashLoanPremium'], SubscriptionethereumPrimaryflashLoanPremiumArgs, MeshContext>,
+  gnosisPrimaryflashLoanPremium: InContextSdkMethod<Subscription['gnosisPrimaryflashLoanPremium'], SubscriptiongnosisPrimaryflashLoanPremiumArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryflashLoanPremiums: InContextSdkMethod<Subscription['ethereumPrimaryflashLoanPremiums'], SubscriptionethereumPrimaryflashLoanPremiumsArgs, MeshContext>,
+  gnosisPrimaryflashLoanPremiums: InContextSdkMethod<Subscription['gnosisPrimaryflashLoanPremiums'], SubscriptiongnosisPrimaryflashLoanPremiumsArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryprotocol: InContextSdkMethod<Subscription['ethereumPrimaryprotocol'], SubscriptionethereumPrimaryprotocolArgs, MeshContext>,
+  gnosisPrimaryprotocol: InContextSdkMethod<Subscription['gnosisPrimaryprotocol'], SubscriptiongnosisPrimaryprotocolArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryprotocols: InContextSdkMethod<Subscription['ethereumPrimaryprotocols'], SubscriptionethereumPrimaryprotocolsArgs, MeshContext>,
+  gnosisPrimaryprotocols: InContextSdkMethod<Subscription['gnosisPrimaryprotocols'], SubscriptiongnosisPrimaryprotocolsArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryevent: InContextSdkMethod<Subscription['ethereumPrimaryevent'], SubscriptionethereumPrimaryeventArgs, MeshContext>,
+  gnosisPrimaryevent: InContextSdkMethod<Subscription['gnosisPrimaryevent'], SubscriptiongnosisPrimaryeventArgs, MeshContext>,
   /** null **/
-  ethereumPrimaryevents: InContextSdkMethod<Subscription['ethereumPrimaryevents'], SubscriptionethereumPrimaryeventsArgs, MeshContext>,
+  gnosisPrimaryevents: InContextSdkMethod<Subscription['gnosisPrimaryevents'], SubscriptiongnosisPrimaryeventsArgs, MeshContext>,
   /** Access to subgraph metadata **/
-  ethereumPrimary_meta: InContextSdkMethod<Subscription['ethereumPrimary_meta'], SubscriptionethereumPrimary_metaArgs, MeshContext>
+  gnosisPrimary_meta: InContextSdkMethod<Subscription['gnosisPrimary_meta'], SubscriptiongnosisPrimary_metaArgs, MeshContext>
   };
 
   export type Context = {
-      ["ethereumPrimary"]: { Query: QuerySdk, Mutation: MutationSdk, Subscription: SubscriptionSdk },
+      ["gnosisPrimary"]: { Query: QuerySdk, Mutation: MutationSdk, Subscription: SubscriptionSdk },
       
     };
 }

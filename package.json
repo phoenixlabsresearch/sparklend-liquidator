@@ -35,6 +35,7 @@
   "dependencies": {
     "@aave/contract-helpers": "^1.11.2",
     "@aave/math-utils": "^1.11.2",
+    "@graphql-mesh/transform-prefix": "^0.95.9",
     "@graphql-mesh/transform-rename": "^0.95.9",
     "bignumber.js": "^9.1.1",
     "dotenv": "^16.0.3",

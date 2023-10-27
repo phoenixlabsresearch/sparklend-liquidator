@@ -4,3 +4,19 @@ sources:
     handler:
       graphql:
         endpoint: https://api.thegraph.com/subgraphs/name/messari/spark-lend-ethereum
+    transforms:
+      - prefix:
+          value: ethereumPrimary
+          includeRootOperations: true
+      - blockTracking:
+          validateSchema: true
+  - name: gnosisPrimary
+    handler:
+      graphql:
+        endpoint: https://api.thegraph.com/subgraphs/name/messari/spark-lend-gnosis
+    transforms:
+      - prefix:
+          value: gnosisPrimary
+          includeRootOperations: true
+      - blockTracking:
+          validateSchema: true
