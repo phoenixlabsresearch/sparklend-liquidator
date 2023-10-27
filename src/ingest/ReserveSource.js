@@ -1,4 +1,5 @@
 const Reserve = require("../model/Reserve");
+const EModeCategory = require("../model/EModeCategory");
 const BigNumber = require("bignumber.js");
 const { valueToBigNumber } = require("../utils");
 
@@ -15,9 +16,14 @@ class ReserveSource {
         return reserveDataArray.map(r => {
             return new Reserve({
                 symbol: r.symbol,
-                underlying: r.underlyingAsset.toLowerCase(),
+                asset: r.underlyingAsset.toLowerCase(),
                 units: new BigNumber(10).pow(valueToBigNumber(r.decimals)),
-                price: valueToBigNumber(r.priceInMarketReferenceCurrency).div(valueToBigNumber(currencyInfo.marketReferenceCurrencyUnit))
+                price: valueToBigNumber(r.priceInMarketReferenceCurrency).div(valueToBigNumber(currencyInfo.marketReferenceCurrencyUnit)),
+                emode: r.eModeCategoryId !== 0 ? new EModeCategory({
+                    id: r.eModeCategoryId,
+                    label: r.eModeLabel,
+                    liquidationThreshold: valueToBigNumber(r.eModeLiquidationThreshold).div(10000)
+                }) : null
             });
         });
     }

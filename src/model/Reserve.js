@@ -2,13 +2,14 @@ class Reserve {
 
     constructor(v) {
         this.symbol = v.symbol;
-        this.underlying = v.underlying;
+        this.asset = v.asset;
         this.units = v.units;
         this.price = v.price;
+        this.emode = v.emode;
     }
 
     toString() {
-        return `${this.symbol} (${this.underlying}, Price: ${this.price.toFixed(2)})`;
+        return `${this.symbol} (${this.asset}, Price: ${this.price.toFixed(2)})`;
     }
 
 }

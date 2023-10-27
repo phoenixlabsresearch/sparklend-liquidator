@@ -3,7 +3,6 @@ import type { GetMeshOptions } from '@graphql-mesh/runtime';
 import type { YamlConfig } from '@graphql-mesh/types';
 import { MeshHTTPHandler } from '@graphql-mesh/http';
 import { ExecuteMeshFn, SubscribeMeshFn, MeshContext as BaseMeshContext, MeshInstance } from '@graphql-mesh/runtime';
-import type { GnosisPrimaryTypes } from './sources/gnosisPrimary/types';
 import type { EthereumPrimaryTypes } from './sources/ethereumPrimary/types';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -32,980 +31,6 @@ export type Scalars = {
     BigInt: any;
     Bytes: any;
     Int8: any;
-};
-export type Query = {
-    token?: Maybe<Token>;
-    tokens: Array<Token>;
-    rewardToken?: Maybe<RewardToken>;
-    rewardTokens: Array<RewardToken>;
-    interestRate?: Maybe<InterestRate>;
-    interestRates: Array<InterestRate>;
-    fee?: Maybe<Fee>;
-    fees: Array<Fee>;
-    revenueDetail?: Maybe<RevenueDetail>;
-    revenueDetails: Array<RevenueDetail>;
-    oracle?: Maybe<Oracle>;
-    oracles: Array<Oracle>;
-    lendingProtocol?: Maybe<LendingProtocol>;
-    lendingProtocols: Array<LendingProtocol>;
-    marketList?: Maybe<_MarketList>;
-    marketLists: Array<_MarketList>;
-    usageMetricsDailySnapshot?: Maybe<UsageMetricsDailySnapshot>;
-    usageMetricsDailySnapshots: Array<UsageMetricsDailySnapshot>;
-    usageMetricsHourlySnapshot?: Maybe<UsageMetricsHourlySnapshot>;
-    usageMetricsHourlySnapshots: Array<UsageMetricsHourlySnapshot>;
-    financialsDailySnapshot?: Maybe<FinancialsDailySnapshot>;
-    financialsDailySnapshots: Array<FinancialsDailySnapshot>;
-    market?: Maybe<Market>;
-    markets: Array<Market>;
-    marketDailySnapshot?: Maybe<MarketDailySnapshot>;
-    marketDailySnapshots: Array<MarketDailySnapshot>;
-    marketHourlySnapshot?: Maybe<MarketHourlySnapshot>;
-    marketHourlySnapshots: Array<MarketHourlySnapshot>;
-    account?: Maybe<Account>;
-    accounts: Array<Account>;
-    position?: Maybe<Position>;
-    positions: Array<Position>;
-    positionSnapshot?: Maybe<PositionSnapshot>;
-    positionSnapshots: Array<PositionSnapshot>;
-    activeAccount?: Maybe<_ActiveAccount>;
-    activeAccounts: Array<_ActiveAccount>;
-    positionCounter?: Maybe<_PositionCounter>;
-    positionCounters: Array<_PositionCounter>;
-    deposit?: Maybe<Deposit>;
-    deposits: Array<Deposit>;
-    withdraw?: Maybe<Withdraw>;
-    withdraws: Array<Withdraw>;
-    borrow?: Maybe<Borrow>;
-    borrows: Array<Borrow>;
-    repay?: Maybe<Repay>;
-    repays: Array<Repay>;
-    liquidate?: Maybe<Liquidate>;
-    liquidates: Array<Liquidate>;
-    transfer?: Maybe<Transfer>;
-    transfers: Array<Transfer>;
-    flashloan?: Maybe<Flashloan>;
-    flashloans: Array<Flashloan>;
-    defaultOracle?: Maybe<_DefaultOracle>;
-    defaultOracles: Array<_DefaultOracle>;
-    flashLoanPremium?: Maybe<_FlashLoanPremium>;
-    flashLoanPremiums: Array<_FlashLoanPremium>;
-    protocol?: Maybe<Protocol>;
-    protocols: Array<Protocol>;
-    event?: Maybe<Event>;
-    events: Array<Event>;
-    /** Access to subgraph metadata */
-    _meta?: Maybe<_Meta_>;
-};
-export type QuerytokenArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QuerytokensArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<Token_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<Token_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QueryrewardTokenArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QueryrewardTokensArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<RewardToken_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<RewardToken_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QueryinterestRateArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QueryinterestRatesArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<InterestRate_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<InterestRate_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QueryfeeArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QueryfeesArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<Fee_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<Fee_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QueryrevenueDetailArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QueryrevenueDetailsArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<RevenueDetail_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<RevenueDetail_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QueryoracleArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QueryoraclesArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<Oracle_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<Oracle_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QuerylendingProtocolArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QuerylendingProtocolsArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<LendingProtocol_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<LendingProtocol_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QuerymarketListArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QuerymarketListsArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<_MarketList_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<_MarketList_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QueryusageMetricsDailySnapshotArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QueryusageMetricsDailySnapshotsArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<UsageMetricsDailySnapshot_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<UsageMetricsDailySnapshot_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QueryusageMetricsHourlySnapshotArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QueryusageMetricsHourlySnapshotsArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<UsageMetricsHourlySnapshot_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<UsageMetricsHourlySnapshot_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QueryfinancialsDailySnapshotArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QueryfinancialsDailySnapshotsArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<FinancialsDailySnapshot_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<FinancialsDailySnapshot_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QuerymarketArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QuerymarketsArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<Market_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<Market_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QuerymarketDailySnapshotArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QuerymarketDailySnapshotsArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<MarketDailySnapshot_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<MarketDailySnapshot_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QuerymarketHourlySnapshotArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QuerymarketHourlySnapshotsArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<MarketHourlySnapshot_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<MarketHourlySnapshot_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QueryaccountArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QueryaccountsArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<Account_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<Account_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QuerypositionArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QuerypositionsArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<Position_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<Position_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QuerypositionSnapshotArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QuerypositionSnapshotsArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<PositionSnapshot_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<PositionSnapshot_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QueryactiveAccountArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QueryactiveAccountsArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<_ActiveAccount_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<_ActiveAccount_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QuerypositionCounterArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QuerypositionCountersArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<_PositionCounter_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<_PositionCounter_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QuerydepositArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QuerydepositsArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<Deposit_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<Deposit_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QuerywithdrawArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QuerywithdrawsArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<Withdraw_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<Withdraw_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QueryborrowArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QueryborrowsArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<Borrow_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<Borrow_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QueryrepayArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QueryrepaysArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<Repay_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<Repay_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QueryliquidateArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QueryliquidatesArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<Liquidate_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<Liquidate_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QuerytransferArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QuerytransfersArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<Transfer_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<Transfer_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QueryflashloanArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QueryflashloansArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<Flashloan_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<Flashloan_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QuerydefaultOracleArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QuerydefaultOraclesArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<_DefaultOracle_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<_DefaultOracle_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QueryflashLoanPremiumArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QueryflashLoanPremiumsArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<_FlashLoanPremium_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<_FlashLoanPremium_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QueryprotocolArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QueryprotocolsArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<Protocol_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<Protocol_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QueryeventArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type QueryeventsArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<Event_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<Event_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type Query_metaArgs = {
-    block?: InputMaybe<Block_height>;
-};
-export type Subscription = {
-    token?: Maybe<Token>;
-    tokens: Array<Token>;
-    rewardToken?: Maybe<RewardToken>;
-    rewardTokens: Array<RewardToken>;
-    interestRate?: Maybe<InterestRate>;
-    interestRates: Array<InterestRate>;
-    fee?: Maybe<Fee>;
-    fees: Array<Fee>;
-    revenueDetail?: Maybe<RevenueDetail>;
-    revenueDetails: Array<RevenueDetail>;
-    oracle?: Maybe<Oracle>;
-    oracles: Array<Oracle>;
-    lendingProtocol?: Maybe<LendingProtocol>;
-    lendingProtocols: Array<LendingProtocol>;
-    marketList?: Maybe<_MarketList>;
-    marketLists: Array<_MarketList>;
-    usageMetricsDailySnapshot?: Maybe<UsageMetricsDailySnapshot>;
-    usageMetricsDailySnapshots: Array<UsageMetricsDailySnapshot>;
-    usageMetricsHourlySnapshot?: Maybe<UsageMetricsHourlySnapshot>;
-    usageMetricsHourlySnapshots: Array<UsageMetricsHourlySnapshot>;
-    financialsDailySnapshot?: Maybe<FinancialsDailySnapshot>;
-    financialsDailySnapshots: Array<FinancialsDailySnapshot>;
-    market?: Maybe<Market>;
-    markets: Array<Market>;
-    marketDailySnapshot?: Maybe<MarketDailySnapshot>;
-    marketDailySnapshots: Array<MarketDailySnapshot>;
-    marketHourlySnapshot?: Maybe<MarketHourlySnapshot>;
-    marketHourlySnapshots: Array<MarketHourlySnapshot>;
-    account?: Maybe<Account>;
-    accounts: Array<Account>;
-    position?: Maybe<Position>;
-    positions: Array<Position>;
-    positionSnapshot?: Maybe<PositionSnapshot>;
-    positionSnapshots: Array<PositionSnapshot>;
-    activeAccount?: Maybe<_ActiveAccount>;
-    activeAccounts: Array<_ActiveAccount>;
-    positionCounter?: Maybe<_PositionCounter>;
-    positionCounters: Array<_PositionCounter>;
-    deposit?: Maybe<Deposit>;
-    deposits: Array<Deposit>;
-    withdraw?: Maybe<Withdraw>;
-    withdraws: Array<Withdraw>;
-    borrow?: Maybe<Borrow>;
-    borrows: Array<Borrow>;
-    repay?: Maybe<Repay>;
-    repays: Array<Repay>;
-    liquidate?: Maybe<Liquidate>;
-    liquidates: Array<Liquidate>;
-    transfer?: Maybe<Transfer>;
-    transfers: Array<Transfer>;
-    flashloan?: Maybe<Flashloan>;
-    flashloans: Array<Flashloan>;
-    defaultOracle?: Maybe<_DefaultOracle>;
-    defaultOracles: Array<_DefaultOracle>;
-    flashLoanPremium?: Maybe<_FlashLoanPremium>;
-    flashLoanPremiums: Array<_FlashLoanPremium>;
-    protocol?: Maybe<Protocol>;
-    protocols: Array<Protocol>;
-    event?: Maybe<Event>;
-    events: Array<Event>;
-    /** Access to subgraph metadata */
-    _meta?: Maybe<_Meta_>;
-};
-export type SubscriptiontokenArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptiontokensArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<Token_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<Token_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionrewardTokenArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionrewardTokensArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<RewardToken_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<RewardToken_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptioninterestRateArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptioninterestRatesArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<InterestRate_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<InterestRate_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionfeeArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionfeesArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<Fee_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<Fee_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionrevenueDetailArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionrevenueDetailsArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<RevenueDetail_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<RevenueDetail_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionoracleArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionoraclesArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<Oracle_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<Oracle_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionlendingProtocolArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionlendingProtocolsArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<LendingProtocol_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<LendingProtocol_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionmarketListArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionmarketListsArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<_MarketList_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<_MarketList_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionusageMetricsDailySnapshotArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionusageMetricsDailySnapshotsArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<UsageMetricsDailySnapshot_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<UsageMetricsDailySnapshot_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionusageMetricsHourlySnapshotArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionusageMetricsHourlySnapshotsArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<UsageMetricsHourlySnapshot_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<UsageMetricsHourlySnapshot_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionfinancialsDailySnapshotArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionfinancialsDailySnapshotsArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<FinancialsDailySnapshot_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<FinancialsDailySnapshot_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionmarketArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionmarketsArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<Market_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<Market_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionmarketDailySnapshotArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionmarketDailySnapshotsArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<MarketDailySnapshot_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<MarketDailySnapshot_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionmarketHourlySnapshotArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionmarketHourlySnapshotsArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<MarketHourlySnapshot_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<MarketHourlySnapshot_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionaccountArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionaccountsArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<Account_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<Account_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionpositionArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionpositionsArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<Position_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<Position_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionpositionSnapshotArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionpositionSnapshotsArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<PositionSnapshot_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<PositionSnapshot_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionactiveAccountArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionactiveAccountsArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<_ActiveAccount_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<_ActiveAccount_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionpositionCounterArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionpositionCountersArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<_PositionCounter_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<_PositionCounter_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptiondepositArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptiondepositsArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<Deposit_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<Deposit_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionwithdrawArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionwithdrawsArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<Withdraw_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<Withdraw_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionborrowArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionborrowsArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<Borrow_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<Borrow_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionrepayArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionrepaysArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<Repay_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<Repay_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionliquidateArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionliquidatesArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<Liquidate_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<Liquidate_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptiontransferArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptiontransfersArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<Transfer_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<Transfer_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionflashloanArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionflashloansArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<Flashloan_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<Flashloan_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptiondefaultOracleArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptiondefaultOraclesArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<_DefaultOracle_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<_DefaultOracle_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionflashLoanPremiumArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionflashLoanPremiumsArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<_FlashLoanPremium_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<_FlashLoanPremium_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionprotocolArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptionprotocolsArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<Protocol_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<Protocol_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptioneventArgs = {
-    id: Scalars['ID'];
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type SubscriptioneventsArgs = {
-    skip?: InputMaybe<Scalars['Int']>;
-    first?: InputMaybe<Scalars['Int']>;
-    orderBy?: InputMaybe<Event_orderBy>;
-    orderDirection?: InputMaybe<OrderDirection>;
-    where?: InputMaybe<Event_filter>;
-    block?: InputMaybe<Block_height>;
-    subgraphError?: _SubgraphErrorPolicy_;
-};
-export type Subscription_metaArgs = {
-    block?: InputMaybe<Block_height>;
 };
 export type Account = {
     /**  { Account address }  */
@@ -6675,6 +5700,493 @@ export type Protocol_filter = {
     or?: InputMaybe<Array<InputMaybe<Protocol_filter>>>;
 };
 export type Protocol_orderBy = 'id' | 'protocol' | 'name' | 'slug' | 'schemaVersion' | 'subgraphVersion' | 'methodologyVersion' | 'network' | 'type' | 'lendingType' | 'lenderPermissionType' | 'borrowerPermissionType' | 'poolCreatorPermissionType' | 'riskType' | 'collateralizationType' | 'totalValueLockedUSD' | 'protocolControlledValueUSD' | 'cumulativeUniqueUsers' | 'cumulativeSupplySideRevenueUSD' | 'cumulativeProtocolSideRevenueUSD' | 'cumulativeTotalRevenueUSD' | 'totalPoolCount' | 'dailyUsageMetrics' | 'hourlyUsageMetrics' | 'financialMetrics';
+export type Query = {
+    token?: Maybe<Token>;
+    tokens: Array<Token>;
+    rewardToken?: Maybe<RewardToken>;
+    rewardTokens: Array<RewardToken>;
+    interestRate?: Maybe<InterestRate>;
+    interestRates: Array<InterestRate>;
+    fee?: Maybe<Fee>;
+    fees: Array<Fee>;
+    revenueDetail?: Maybe<RevenueDetail>;
+    revenueDetails: Array<RevenueDetail>;
+    oracle?: Maybe<Oracle>;
+    oracles: Array<Oracle>;
+    lendingProtocol?: Maybe<LendingProtocol>;
+    lendingProtocols: Array<LendingProtocol>;
+    marketList?: Maybe<_MarketList>;
+    marketLists: Array<_MarketList>;
+    usageMetricsDailySnapshot?: Maybe<UsageMetricsDailySnapshot>;
+    usageMetricsDailySnapshots: Array<UsageMetricsDailySnapshot>;
+    usageMetricsHourlySnapshot?: Maybe<UsageMetricsHourlySnapshot>;
+    usageMetricsHourlySnapshots: Array<UsageMetricsHourlySnapshot>;
+    financialsDailySnapshot?: Maybe<FinancialsDailySnapshot>;
+    financialsDailySnapshots: Array<FinancialsDailySnapshot>;
+    market?: Maybe<Market>;
+    markets: Array<Market>;
+    marketDailySnapshot?: Maybe<MarketDailySnapshot>;
+    marketDailySnapshots: Array<MarketDailySnapshot>;
+    marketHourlySnapshot?: Maybe<MarketHourlySnapshot>;
+    marketHourlySnapshots: Array<MarketHourlySnapshot>;
+    account?: Maybe<Account>;
+    accounts: Array<Account>;
+    position?: Maybe<Position>;
+    positions: Array<Position>;
+    positionSnapshot?: Maybe<PositionSnapshot>;
+    positionSnapshots: Array<PositionSnapshot>;
+    activeAccount?: Maybe<_ActiveAccount>;
+    activeAccounts: Array<_ActiveAccount>;
+    positionCounter?: Maybe<_PositionCounter>;
+    positionCounters: Array<_PositionCounter>;
+    deposit?: Maybe<Deposit>;
+    deposits: Array<Deposit>;
+    withdraw?: Maybe<Withdraw>;
+    withdraws: Array<Withdraw>;
+    borrow?: Maybe<Borrow>;
+    borrows: Array<Borrow>;
+    repay?: Maybe<Repay>;
+    repays: Array<Repay>;
+    liquidate?: Maybe<Liquidate>;
+    liquidates: Array<Liquidate>;
+    transfer?: Maybe<Transfer>;
+    transfers: Array<Transfer>;
+    flashloan?: Maybe<Flashloan>;
+    flashloans: Array<Flashloan>;
+    defaultOracle?: Maybe<_DefaultOracle>;
+    defaultOracles: Array<_DefaultOracle>;
+    flashLoanPremium?: Maybe<_FlashLoanPremium>;
+    flashLoanPremiums: Array<_FlashLoanPremium>;
+    protocol?: Maybe<Protocol>;
+    protocols: Array<Protocol>;
+    event?: Maybe<Event>;
+    events: Array<Event>;
+    /** Access to subgraph metadata */
+    _meta?: Maybe<_Meta_>;
+};
+export type QuerytokenArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QuerytokensArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<Token_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<Token_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QueryrewardTokenArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QueryrewardTokensArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<RewardToken_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<RewardToken_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QueryinterestRateArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QueryinterestRatesArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<InterestRate_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<InterestRate_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QueryfeeArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QueryfeesArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<Fee_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<Fee_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QueryrevenueDetailArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QueryrevenueDetailsArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<RevenueDetail_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<RevenueDetail_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QueryoracleArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QueryoraclesArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<Oracle_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<Oracle_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QuerylendingProtocolArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QuerylendingProtocolsArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<LendingProtocol_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<LendingProtocol_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QuerymarketListArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QuerymarketListsArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<_MarketList_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<_MarketList_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QueryusageMetricsDailySnapshotArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QueryusageMetricsDailySnapshotsArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<UsageMetricsDailySnapshot_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<UsageMetricsDailySnapshot_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QueryusageMetricsHourlySnapshotArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QueryusageMetricsHourlySnapshotsArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<UsageMetricsHourlySnapshot_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<UsageMetricsHourlySnapshot_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QueryfinancialsDailySnapshotArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QueryfinancialsDailySnapshotsArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<FinancialsDailySnapshot_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<FinancialsDailySnapshot_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QuerymarketArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QuerymarketsArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<Market_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<Market_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QuerymarketDailySnapshotArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QuerymarketDailySnapshotsArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<MarketDailySnapshot_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<MarketDailySnapshot_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QuerymarketHourlySnapshotArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QuerymarketHourlySnapshotsArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<MarketHourlySnapshot_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<MarketHourlySnapshot_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QueryaccountArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QueryaccountsArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<Account_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<Account_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QuerypositionArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QuerypositionsArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<Position_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<Position_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QuerypositionSnapshotArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QuerypositionSnapshotsArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<PositionSnapshot_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<PositionSnapshot_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QueryactiveAccountArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QueryactiveAccountsArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<_ActiveAccount_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<_ActiveAccount_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QuerypositionCounterArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QuerypositionCountersArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<_PositionCounter_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<_PositionCounter_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QuerydepositArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QuerydepositsArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<Deposit_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<Deposit_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QuerywithdrawArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QuerywithdrawsArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<Withdraw_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<Withdraw_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QueryborrowArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QueryborrowsArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<Borrow_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<Borrow_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QueryrepayArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QueryrepaysArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<Repay_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<Repay_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QueryliquidateArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QueryliquidatesArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<Liquidate_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<Liquidate_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QuerytransferArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QuerytransfersArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<Transfer_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<Transfer_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QueryflashloanArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QueryflashloansArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<Flashloan_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<Flashloan_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QuerydefaultOracleArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QuerydefaultOraclesArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<_DefaultOracle_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<_DefaultOracle_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QueryflashLoanPremiumArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QueryflashLoanPremiumsArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<_FlashLoanPremium_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<_FlashLoanPremium_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QueryprotocolArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QueryprotocolsArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<Protocol_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<Protocol_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QueryeventArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type QueryeventsArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<Event_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<Event_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type Query_metaArgs = {
+    block?: InputMaybe<Block_height>;
+};
 export type Repay = Event & {
     /**  { Transaction hash }{ Log index }  */
     id: Scalars['Bytes'];
@@ -7029,6 +6541,493 @@ export type RiskType =
 'GLOBAL'
 /**  Isolated risk means each users position in a market or CDP is isolated for risk of liquidation  */
  | 'ISOLATED';
+export type Subscription = {
+    token?: Maybe<Token>;
+    tokens: Array<Token>;
+    rewardToken?: Maybe<RewardToken>;
+    rewardTokens: Array<RewardToken>;
+    interestRate?: Maybe<InterestRate>;
+    interestRates: Array<InterestRate>;
+    fee?: Maybe<Fee>;
+    fees: Array<Fee>;
+    revenueDetail?: Maybe<RevenueDetail>;
+    revenueDetails: Array<RevenueDetail>;
+    oracle?: Maybe<Oracle>;
+    oracles: Array<Oracle>;
+    lendingProtocol?: Maybe<LendingProtocol>;
+    lendingProtocols: Array<LendingProtocol>;
+    marketList?: Maybe<_MarketList>;
+    marketLists: Array<_MarketList>;
+    usageMetricsDailySnapshot?: Maybe<UsageMetricsDailySnapshot>;
+    usageMetricsDailySnapshots: Array<UsageMetricsDailySnapshot>;
+    usageMetricsHourlySnapshot?: Maybe<UsageMetricsHourlySnapshot>;
+    usageMetricsHourlySnapshots: Array<UsageMetricsHourlySnapshot>;
+    financialsDailySnapshot?: Maybe<FinancialsDailySnapshot>;
+    financialsDailySnapshots: Array<FinancialsDailySnapshot>;
+    market?: Maybe<Market>;
+    markets: Array<Market>;
+    marketDailySnapshot?: Maybe<MarketDailySnapshot>;
+    marketDailySnapshots: Array<MarketDailySnapshot>;
+    marketHourlySnapshot?: Maybe<MarketHourlySnapshot>;
+    marketHourlySnapshots: Array<MarketHourlySnapshot>;
+    account?: Maybe<Account>;
+    accounts: Array<Account>;
+    position?: Maybe<Position>;
+    positions: Array<Position>;
+    positionSnapshot?: Maybe<PositionSnapshot>;
+    positionSnapshots: Array<PositionSnapshot>;
+    activeAccount?: Maybe<_ActiveAccount>;
+    activeAccounts: Array<_ActiveAccount>;
+    positionCounter?: Maybe<_PositionCounter>;
+    positionCounters: Array<_PositionCounter>;
+    deposit?: Maybe<Deposit>;
+    deposits: Array<Deposit>;
+    withdraw?: Maybe<Withdraw>;
+    withdraws: Array<Withdraw>;
+    borrow?: Maybe<Borrow>;
+    borrows: Array<Borrow>;
+    repay?: Maybe<Repay>;
+    repays: Array<Repay>;
+    liquidate?: Maybe<Liquidate>;
+    liquidates: Array<Liquidate>;
+    transfer?: Maybe<Transfer>;
+    transfers: Array<Transfer>;
+    flashloan?: Maybe<Flashloan>;
+    flashloans: Array<Flashloan>;
+    defaultOracle?: Maybe<_DefaultOracle>;
+    defaultOracles: Array<_DefaultOracle>;
+    flashLoanPremium?: Maybe<_FlashLoanPremium>;
+    flashLoanPremiums: Array<_FlashLoanPremium>;
+    protocol?: Maybe<Protocol>;
+    protocols: Array<Protocol>;
+    event?: Maybe<Event>;
+    events: Array<Event>;
+    /** Access to subgraph metadata */
+    _meta?: Maybe<_Meta_>;
+};
+export type SubscriptiontokenArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptiontokensArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<Token_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<Token_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionrewardTokenArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionrewardTokensArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<RewardToken_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<RewardToken_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptioninterestRateArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptioninterestRatesArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<InterestRate_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<InterestRate_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionfeeArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionfeesArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<Fee_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<Fee_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionrevenueDetailArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionrevenueDetailsArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<RevenueDetail_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<RevenueDetail_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionoracleArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionoraclesArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<Oracle_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<Oracle_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionlendingProtocolArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionlendingProtocolsArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<LendingProtocol_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<LendingProtocol_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionmarketListArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionmarketListsArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<_MarketList_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<_MarketList_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionusageMetricsDailySnapshotArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionusageMetricsDailySnapshotsArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<UsageMetricsDailySnapshot_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<UsageMetricsDailySnapshot_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionusageMetricsHourlySnapshotArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionusageMetricsHourlySnapshotsArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<UsageMetricsHourlySnapshot_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<UsageMetricsHourlySnapshot_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionfinancialsDailySnapshotArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionfinancialsDailySnapshotsArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<FinancialsDailySnapshot_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<FinancialsDailySnapshot_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionmarketArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionmarketsArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<Market_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<Market_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionmarketDailySnapshotArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionmarketDailySnapshotsArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<MarketDailySnapshot_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<MarketDailySnapshot_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionmarketHourlySnapshotArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionmarketHourlySnapshotsArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<MarketHourlySnapshot_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<MarketHourlySnapshot_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionaccountArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionaccountsArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<Account_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<Account_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionpositionArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionpositionsArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<Position_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<Position_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionpositionSnapshotArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionpositionSnapshotsArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<PositionSnapshot_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<PositionSnapshot_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionactiveAccountArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionactiveAccountsArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<_ActiveAccount_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<_ActiveAccount_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionpositionCounterArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionpositionCountersArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<_PositionCounter_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<_PositionCounter_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptiondepositArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptiondepositsArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<Deposit_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<Deposit_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionwithdrawArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionwithdrawsArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<Withdraw_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<Withdraw_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionborrowArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionborrowsArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<Borrow_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<Borrow_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionrepayArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionrepaysArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<Repay_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<Repay_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionliquidateArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionliquidatesArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<Liquidate_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<Liquidate_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptiontransferArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptiontransfersArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<Transfer_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<Transfer_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionflashloanArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionflashloansArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<Flashloan_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<Flashloan_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptiondefaultOracleArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptiondefaultOraclesArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<_DefaultOracle_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<_DefaultOracle_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionflashLoanPremiumArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionflashLoanPremiumsArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<_FlashLoanPremium_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<_FlashLoanPremium_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionprotocolArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptionprotocolsArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<Protocol_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<Protocol_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptioneventArgs = {
+    id: Scalars['ID'];
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type SubscriptioneventsArgs = {
+    skip?: InputMaybe<Scalars['Int']>;
+    first?: InputMaybe<Scalars['Int']>;
+    orderBy?: InputMaybe<Event_orderBy>;
+    orderDirection?: InputMaybe<OrderDirection>;
+    where?: InputMaybe<Event_filter>;
+    block?: InputMaybe<Block_height>;
+    subgraphError?: _SubgraphErrorPolicy_;
+};
+export type Subscription_metaArgs = {
+    block?: InputMaybe<Block_height>;
+};
 export type Token = {
     /**  Smart contract address of the token  */
     id: Scalars['Bytes'];
@@ -8330,8 +8329,6 @@ export type NextResolverFn<T> = () => Promise<T>;
 export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs = {}> = (next: NextResolverFn<TResult>, parent: TParent, args: TArgs, context: TContext, info: GraphQLResolveInfo) => TResult | Promise<TResult>;
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = ResolversObject<{
-    Query: ResolverTypeWrapper<{}>;
-    Subscription: ResolverTypeWrapper<{}>;
     Account: ResolverTypeWrapper<Account>;
     Account_filter: Account_filter;
     Account_orderBy: Account_orderBy;
@@ -8404,6 +8401,7 @@ export type ResolversTypes = ResolversObject<{
     ProtocolType: ProtocolType;
     Protocol_filter: Protocol_filter;
     Protocol_orderBy: Protocol_orderBy;
+    Query: ResolverTypeWrapper<{}>;
     Repay: ResolverTypeWrapper<Repay>;
     Repay_filter: Repay_filter;
     Repay_orderBy: Repay_orderBy;
@@ -8416,6 +8414,7 @@ export type ResolversTypes = ResolversObject<{
     RewardToken_orderBy: RewardToken_orderBy;
     RiskType: RiskType;
     String: ResolverTypeWrapper<Scalars['String']>;
+    Subscription: ResolverTypeWrapper<{}>;
     Token: ResolverTypeWrapper<Token>;
     TokenType: TokenType;
     Token_filter: Token_filter;
@@ -8454,8 +8453,6 @@ export type ResolversTypes = ResolversObject<{
 }>;
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = ResolversObject<{
-    Query: {};
-    Subscription: {};
     Account: Account;
     Account_filter: Account_filter;
     BigDecimal: Scalars['BigDecimal'];
@@ -8500,6 +8497,7 @@ export type ResolversParentTypes = ResolversObject<{
     Position_filter: Position_filter;
     Protocol: ResolversParentTypes['LendingProtocol'];
     Protocol_filter: Protocol_filter;
+    Query: {};
     Repay: Repay;
     Repay_filter: Repay_filter;
     RevenueDetail: RevenueDetail;
@@ -8507,6 +8505,7 @@ export type ResolversParentTypes = ResolversObject<{
     RewardToken: RewardToken;
     RewardToken_filter: RewardToken_filter;
     String: Scalars['String'];
+    Subscription: {};
     Token: Token;
     Token_filter: Token_filter;
     Transfer: Transfer;
@@ -8540,132 +8539,6 @@ export type derivedFromDirectiveArgs = {
     field: Scalars['String'];
 };
 export type derivedFromDirectiveResolver<Result, Parent, ContextType = MeshContext, Args = derivedFromDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
-export type QueryResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
-    token?: Resolver<Maybe<ResolversTypes['Token']>, ParentType, ContextType, RequireFields<QuerytokenArgs, 'id' | 'subgraphError'>>;
-    tokens?: Resolver<Array<ResolversTypes['Token']>, ParentType, ContextType, RequireFields<QuerytokensArgs, 'skip' | 'first' | 'subgraphError'>>;
-    rewardToken?: Resolver<Maybe<ResolversTypes['RewardToken']>, ParentType, ContextType, RequireFields<QueryrewardTokenArgs, 'id' | 'subgraphError'>>;
-    rewardTokens?: Resolver<Array<ResolversTypes['RewardToken']>, ParentType, ContextType, RequireFields<QueryrewardTokensArgs, 'skip' | 'first' | 'subgraphError'>>;
-    interestRate?: Resolver<Maybe<ResolversTypes['InterestRate']>, ParentType, ContextType, RequireFields<QueryinterestRateArgs, 'id' | 'subgraphError'>>;
-    interestRates?: Resolver<Array<ResolversTypes['InterestRate']>, ParentType, ContextType, RequireFields<QueryinterestRatesArgs, 'skip' | 'first' | 'subgraphError'>>;
-    fee?: Resolver<Maybe<ResolversTypes['Fee']>, ParentType, ContextType, RequireFields<QueryfeeArgs, 'id' | 'subgraphError'>>;
-    fees?: Resolver<Array<ResolversTypes['Fee']>, ParentType, ContextType, RequireFields<QueryfeesArgs, 'skip' | 'first' | 'subgraphError'>>;
-    revenueDetail?: Resolver<Maybe<ResolversTypes['RevenueDetail']>, ParentType, ContextType, RequireFields<QueryrevenueDetailArgs, 'id' | 'subgraphError'>>;
-    revenueDetails?: Resolver<Array<ResolversTypes['RevenueDetail']>, ParentType, ContextType, RequireFields<QueryrevenueDetailsArgs, 'skip' | 'first' | 'subgraphError'>>;
-    oracle?: Resolver<Maybe<ResolversTypes['Oracle']>, ParentType, ContextType, RequireFields<QueryoracleArgs, 'id' | 'subgraphError'>>;
-    oracles?: Resolver<Array<ResolversTypes['Oracle']>, ParentType, ContextType, RequireFields<QueryoraclesArgs, 'skip' | 'first' | 'subgraphError'>>;
-    lendingProtocol?: Resolver<Maybe<ResolversTypes['LendingProtocol']>, ParentType, ContextType, RequireFields<QuerylendingProtocolArgs, 'id' | 'subgraphError'>>;
-    lendingProtocols?: Resolver<Array<ResolversTypes['LendingProtocol']>, ParentType, ContextType, RequireFields<QuerylendingProtocolsArgs, 'skip' | 'first' | 'subgraphError'>>;
-    marketList?: Resolver<Maybe<ResolversTypes['_MarketList']>, ParentType, ContextType, RequireFields<QuerymarketListArgs, 'id' | 'subgraphError'>>;
-    marketLists?: Resolver<Array<ResolversTypes['_MarketList']>, ParentType, ContextType, RequireFields<QuerymarketListsArgs, 'skip' | 'first' | 'subgraphError'>>;
-    usageMetricsDailySnapshot?: Resolver<Maybe<ResolversTypes['UsageMetricsDailySnapshot']>, ParentType, ContextType, RequireFields<QueryusageMetricsDailySnapshotArgs, 'id' | 'subgraphError'>>;
-    usageMetricsDailySnapshots?: Resolver<Array<ResolversTypes['UsageMetricsDailySnapshot']>, ParentType, ContextType, RequireFields<QueryusageMetricsDailySnapshotsArgs, 'skip' | 'first' | 'subgraphError'>>;
-    usageMetricsHourlySnapshot?: Resolver<Maybe<ResolversTypes['UsageMetricsHourlySnapshot']>, ParentType, ContextType, RequireFields<QueryusageMetricsHourlySnapshotArgs, 'id' | 'subgraphError'>>;
-    usageMetricsHourlySnapshots?: Resolver<Array<ResolversTypes['UsageMetricsHourlySnapshot']>, ParentType, ContextType, RequireFields<QueryusageMetricsHourlySnapshotsArgs, 'skip' | 'first' | 'subgraphError'>>;
-    financialsDailySnapshot?: Resolver<Maybe<ResolversTypes['FinancialsDailySnapshot']>, ParentType, ContextType, RequireFields<QueryfinancialsDailySnapshotArgs, 'id' | 'subgraphError'>>;
-    financialsDailySnapshots?: Resolver<Array<ResolversTypes['FinancialsDailySnapshot']>, ParentType, ContextType, RequireFields<QueryfinancialsDailySnapshotsArgs, 'skip' | 'first' | 'subgraphError'>>;
-    market?: Resolver<Maybe<ResolversTypes['Market']>, ParentType, ContextType, RequireFields<QuerymarketArgs, 'id' | 'subgraphError'>>;
-    markets?: Resolver<Array<ResolversTypes['Market']>, ParentType, ContextType, RequireFields<QuerymarketsArgs, 'skip' | 'first' | 'subgraphError'>>;
-    marketDailySnapshot?: Resolver<Maybe<ResolversTypes['MarketDailySnapshot']>, ParentType, ContextType, RequireFields<QuerymarketDailySnapshotArgs, 'id' | 'subgraphError'>>;
-    marketDailySnapshots?: Resolver<Array<ResolversTypes['MarketDailySnapshot']>, ParentType, ContextType, RequireFields<QuerymarketDailySnapshotsArgs, 'skip' | 'first' | 'subgraphError'>>;
-    marketHourlySnapshot?: Resolver<Maybe<ResolversTypes['MarketHourlySnapshot']>, ParentType, ContextType, RequireFields<QuerymarketHourlySnapshotArgs, 'id' | 'subgraphError'>>;
-    marketHourlySnapshots?: Resolver<Array<ResolversTypes['MarketHourlySnapshot']>, ParentType, ContextType, RequireFields<QuerymarketHourlySnapshotsArgs, 'skip' | 'first' | 'subgraphError'>>;
-    account?: Resolver<Maybe<ResolversTypes['Account']>, ParentType, ContextType, RequireFields<QueryaccountArgs, 'id' | 'subgraphError'>>;
-    accounts?: Resolver<Array<ResolversTypes['Account']>, ParentType, ContextType, RequireFields<QueryaccountsArgs, 'skip' | 'first' | 'subgraphError'>>;
-    position?: Resolver<Maybe<ResolversTypes['Position']>, ParentType, ContextType, RequireFields<QuerypositionArgs, 'id' | 'subgraphError'>>;
-    positions?: Resolver<Array<ResolversTypes['Position']>, ParentType, ContextType, RequireFields<QuerypositionsArgs, 'skip' | 'first' | 'subgraphError'>>;
-    positionSnapshot?: Resolver<Maybe<ResolversTypes['PositionSnapshot']>, ParentType, ContextType, RequireFields<QuerypositionSnapshotArgs, 'id' | 'subgraphError'>>;
-    positionSnapshots?: Resolver<Array<ResolversTypes['PositionSnapshot']>, ParentType, ContextType, RequireFields<QuerypositionSnapshotsArgs, 'skip' | 'first' | 'subgraphError'>>;
-    activeAccount?: Resolver<Maybe<ResolversTypes['_ActiveAccount']>, ParentType, ContextType, RequireFields<QueryactiveAccountArgs, 'id' | 'subgraphError'>>;
-    activeAccounts?: Resolver<Array<ResolversTypes['_ActiveAccount']>, ParentType, ContextType, RequireFields<QueryactiveAccountsArgs, 'skip' | 'first' | 'subgraphError'>>;
-    positionCounter?: Resolver<Maybe<ResolversTypes['_PositionCounter']>, ParentType, ContextType, RequireFields<QuerypositionCounterArgs, 'id' | 'subgraphError'>>;
-    positionCounters?: Resolver<Array<ResolversTypes['_PositionCounter']>, ParentType, ContextType, RequireFields<QuerypositionCountersArgs, 'skip' | 'first' | 'subgraphError'>>;
-    deposit?: Resolver<Maybe<ResolversTypes['Deposit']>, ParentType, ContextType, RequireFields<QuerydepositArgs, 'id' | 'subgraphError'>>;
-    deposits?: Resolver<Array<ResolversTypes['Deposit']>, ParentType, ContextType, RequireFields<QuerydepositsArgs, 'skip' | 'first' | 'subgraphError'>>;
-    withdraw?: Resolver<Maybe<ResolversTypes['Withdraw']>, ParentType, ContextType, RequireFields<QuerywithdrawArgs, 'id' | 'subgraphError'>>;
-    withdraws?: Resolver<Array<ResolversTypes['Withdraw']>, ParentType, ContextType, RequireFields<QuerywithdrawsArgs, 'skip' | 'first' | 'subgraphError'>>;
-    borrow?: Resolver<Maybe<ResolversTypes['Borrow']>, ParentType, ContextType, RequireFields<QueryborrowArgs, 'id' | 'subgraphError'>>;
-    borrows?: Resolver<Array<ResolversTypes['Borrow']>, ParentType, ContextType, RequireFields<QueryborrowsArgs, 'skip' | 'first' | 'subgraphError'>>;
-    repay?: Resolver<Maybe<ResolversTypes['Repay']>, ParentType, ContextType, RequireFields<QueryrepayArgs, 'id' | 'subgraphError'>>;
-    repays?: Resolver<Array<ResolversTypes['Repay']>, ParentType, ContextType, RequireFields<QueryrepaysArgs, 'skip' | 'first' | 'subgraphError'>>;
-    liquidate?: Resolver<Maybe<ResolversTypes['Liquidate']>, ParentType, ContextType, RequireFields<QueryliquidateArgs, 'id' | 'subgraphError'>>;
-    liquidates?: Resolver<Array<ResolversTypes['Liquidate']>, ParentType, ContextType, RequireFields<QueryliquidatesArgs, 'skip' | 'first' | 'subgraphError'>>;
-    transfer?: Resolver<Maybe<ResolversTypes['Transfer']>, ParentType, ContextType, RequireFields<QuerytransferArgs, 'id' | 'subgraphError'>>;
-    transfers?: Resolver<Array<ResolversTypes['Transfer']>, ParentType, ContextType, RequireFields<QuerytransfersArgs, 'skip' | 'first' | 'subgraphError'>>;
-    flashloan?: Resolver<Maybe<ResolversTypes['Flashloan']>, ParentType, ContextType, RequireFields<QueryflashloanArgs, 'id' | 'subgraphError'>>;
-    flashloans?: Resolver<Array<ResolversTypes['Flashloan']>, ParentType, ContextType, RequireFields<QueryflashloansArgs, 'skip' | 'first' | 'subgraphError'>>;
-    defaultOracle?: Resolver<Maybe<ResolversTypes['_DefaultOracle']>, ParentType, ContextType, RequireFields<QuerydefaultOracleArgs, 'id' | 'subgraphError'>>;
-    defaultOracles?: Resolver<Array<ResolversTypes['_DefaultOracle']>, ParentType, ContextType, RequireFields<QuerydefaultOraclesArgs, 'skip' | 'first' | 'subgraphError'>>;
-    flashLoanPremium?: Resolver<Maybe<ResolversTypes['_FlashLoanPremium']>, ParentType, ContextType, RequireFields<QueryflashLoanPremiumArgs, 'id' | 'subgraphError'>>;
-    flashLoanPremiums?: Resolver<Array<ResolversTypes['_FlashLoanPremium']>, ParentType, ContextType, RequireFields<QueryflashLoanPremiumsArgs, 'skip' | 'first' | 'subgraphError'>>;
-    protocol?: Resolver<Maybe<ResolversTypes['Protocol']>, ParentType, ContextType, RequireFields<QueryprotocolArgs, 'id' | 'subgraphError'>>;
-    protocols?: Resolver<Array<ResolversTypes['Protocol']>, ParentType, ContextType, RequireFields<QueryprotocolsArgs, 'skip' | 'first' | 'subgraphError'>>;
-    event?: Resolver<Maybe<ResolversTypes['Event']>, ParentType, ContextType, RequireFields<QueryeventArgs, 'id' | 'subgraphError'>>;
-    events?: Resolver<Array<ResolversTypes['Event']>, ParentType, ContextType, RequireFields<QueryeventsArgs, 'skip' | 'first' | 'subgraphError'>>;
-    _meta?: Resolver<Maybe<ResolversTypes['_Meta_']>, ParentType, ContextType, Partial<Query_metaArgs>>;
-}>;
-export type SubscriptionResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['Subscription'] = ResolversParentTypes['Subscription']> = ResolversObject<{
-    token?: SubscriptionResolver<Maybe<ResolversTypes['Token']>, "token", ParentType, ContextType, RequireFields<SubscriptiontokenArgs, 'id' | 'subgraphError'>>;
-    tokens?: SubscriptionResolver<Array<ResolversTypes['Token']>, "tokens", ParentType, ContextType, RequireFields<SubscriptiontokensArgs, 'skip' | 'first' | 'subgraphError'>>;
-    rewardToken?: SubscriptionResolver<Maybe<ResolversTypes['RewardToken']>, "rewardToken", ParentType, ContextType, RequireFields<SubscriptionrewardTokenArgs, 'id' | 'subgraphError'>>;
-    rewardTokens?: SubscriptionResolver<Array<ResolversTypes['RewardToken']>, "rewardTokens", ParentType, ContextType, RequireFields<SubscriptionrewardTokensArgs, 'skip' | 'first' | 'subgraphError'>>;
-    interestRate?: SubscriptionResolver<Maybe<ResolversTypes['InterestRate']>, "interestRate", ParentType, ContextType, RequireFields<SubscriptioninterestRateArgs, 'id' | 'subgraphError'>>;
-    interestRates?: SubscriptionResolver<Array<ResolversTypes['InterestRate']>, "interestRates", ParentType, ContextType, RequireFields<SubscriptioninterestRatesArgs, 'skip' | 'first' | 'subgraphError'>>;
-    fee?: SubscriptionResolver<Maybe<ResolversTypes['Fee']>, "fee", ParentType, ContextType, RequireFields<SubscriptionfeeArgs, 'id' | 'subgraphError'>>;
-    fees?: SubscriptionResolver<Array<ResolversTypes['Fee']>, "fees", ParentType, ContextType, RequireFields<SubscriptionfeesArgs, 'skip' | 'first' | 'subgraphError'>>;
-    revenueDetail?: SubscriptionResolver<Maybe<ResolversTypes['RevenueDetail']>, "revenueDetail", ParentType, ContextType, RequireFields<SubscriptionrevenueDetailArgs, 'id' | 'subgraphError'>>;
-    revenueDetails?: SubscriptionResolver<Array<ResolversTypes['RevenueDetail']>, "revenueDetails", ParentType, ContextType, RequireFields<SubscriptionrevenueDetailsArgs, 'skip' | 'first' | 'subgraphError'>>;
-    oracle?: SubscriptionResolver<Maybe<ResolversTypes['Oracle']>, "oracle", ParentType, ContextType, RequireFields<SubscriptionoracleArgs, 'id' | 'subgraphError'>>;
-    oracles?: SubscriptionResolver<Array<ResolversTypes['Oracle']>, "oracles", ParentType, ContextType, RequireFields<SubscriptionoraclesArgs, 'skip' | 'first' | 'subgraphError'>>;
-    lendingProtocol?: SubscriptionResolver<Maybe<ResolversTypes['LendingProtocol']>, "lendingProtocol", ParentType, ContextType, RequireFields<SubscriptionlendingProtocolArgs, 'id' | 'subgraphError'>>;
-    lendingProtocols?: SubscriptionResolver<Array<ResolversTypes['LendingProtocol']>, "lendingProtocols", ParentType, ContextType, RequireFields<SubscriptionlendingProtocolsArgs, 'skip' | 'first' | 'subgraphError'>>;
-    marketList?: SubscriptionResolver<Maybe<ResolversTypes['_MarketList']>, "marketList", ParentType, ContextType, RequireFields<SubscriptionmarketListArgs, 'id' | 'subgraphError'>>;
-    marketLists?: SubscriptionResolver<Array<ResolversTypes['_MarketList']>, "marketLists", ParentType, ContextType, RequireFields<SubscriptionmarketListsArgs, 'skip' | 'first' | 'subgraphError'>>;
-    usageMetricsDailySnapshot?: SubscriptionResolver<Maybe<ResolversTypes['UsageMetricsDailySnapshot']>, "usageMetricsDailySnapshot", ParentType, ContextType, RequireFields<SubscriptionusageMetricsDailySnapshotArgs, 'id' | 'subgraphError'>>;
-    usageMetricsDailySnapshots?: SubscriptionResolver<Array<ResolversTypes['UsageMetricsDailySnapshot']>, "usageMetricsDailySnapshots", ParentType, ContextType, RequireFields<SubscriptionusageMetricsDailySnapshotsArgs, 'skip' | 'first' | 'subgraphError'>>;
-    usageMetricsHourlySnapshot?: SubscriptionResolver<Maybe<ResolversTypes['UsageMetricsHourlySnapshot']>, "usageMetricsHourlySnapshot", ParentType, ContextType, RequireFields<SubscriptionusageMetricsHourlySnapshotArgs, 'id' | 'subgraphError'>>;
-    usageMetricsHourlySnapshots?: SubscriptionResolver<Array<ResolversTypes['UsageMetricsHourlySnapshot']>, "usageMetricsHourlySnapshots", ParentType, ContextType, RequireFields<SubscriptionusageMetricsHourlySnapshotsArgs, 'skip' | 'first' | 'subgraphError'>>;
-    financialsDailySnapshot?: SubscriptionResolver<Maybe<ResolversTypes['FinancialsDailySnapshot']>, "financialsDailySnapshot", ParentType, ContextType, RequireFields<SubscriptionfinancialsDailySnapshotArgs, 'id' | 'subgraphError'>>;
-    financialsDailySnapshots?: SubscriptionResolver<Array<ResolversTypes['FinancialsDailySnapshot']>, "financialsDailySnapshots", ParentType, ContextType, RequireFields<SubscriptionfinancialsDailySnapshotsArgs, 'skip' | 'first' | 'subgraphError'>>;
-    market?: SubscriptionResolver<Maybe<ResolversTypes['Market']>, "market", ParentType, ContextType, RequireFields<SubscriptionmarketArgs, 'id' | 'subgraphError'>>;
-    markets?: SubscriptionResolver<Array<ResolversTypes['Market']>, "markets", ParentType, ContextType, RequireFields<SubscriptionmarketsArgs, 'skip' | 'first' | 'subgraphError'>>;
-    marketDailySnapshot?: SubscriptionResolver<Maybe<ResolversTypes['MarketDailySnapshot']>, "marketDailySnapshot", ParentType, ContextType, RequireFields<SubscriptionmarketDailySnapshotArgs, 'id' | 'subgraphError'>>;
-    marketDailySnapshots?: SubscriptionResolver<Array<ResolversTypes['MarketDailySnapshot']>, "marketDailySnapshots", ParentType, ContextType, RequireFields<SubscriptionmarketDailySnapshotsArgs, 'skip' | 'first' | 'subgraphError'>>;
-    marketHourlySnapshot?: SubscriptionResolver<Maybe<ResolversTypes['MarketHourlySnapshot']>, "marketHourlySnapshot", ParentType, ContextType, RequireFields<SubscriptionmarketHourlySnapshotArgs, 'id' | 'subgraphError'>>;
-    marketHourlySnapshots?: SubscriptionResolver<Array<ResolversTypes['MarketHourlySnapshot']>, "marketHourlySnapshots", ParentType, ContextType, RequireFields<SubscriptionmarketHourlySnapshotsArgs, 'skip' | 'first' | 'subgraphError'>>;
-    account?: SubscriptionResolver<Maybe<ResolversTypes['Account']>, "account", ParentType, ContextType, RequireFields<SubscriptionaccountArgs, 'id' | 'subgraphError'>>;
-    accounts?: SubscriptionResolver<Array<ResolversTypes['Account']>, "accounts", ParentType, ContextType, RequireFields<SubscriptionaccountsArgs, 'skip' | 'first' | 'subgraphError'>>;
-    position?: SubscriptionResolver<Maybe<ResolversTypes['Position']>, "position", ParentType, ContextType, RequireFields<SubscriptionpositionArgs, 'id' | 'subgraphError'>>;
-    positions?: SubscriptionResolver<Array<ResolversTypes['Position']>, "positions", ParentType, ContextType, RequireFields<SubscriptionpositionsArgs, 'skip' | 'first' | 'subgraphError'>>;
-    positionSnapshot?: SubscriptionResolver<Maybe<ResolversTypes['PositionSnapshot']>, "positionSnapshot", ParentType, ContextType, RequireFields<SubscriptionpositionSnapshotArgs, 'id' | 'subgraphError'>>;
-    positionSnapshots?: SubscriptionResolver<Array<ResolversTypes['PositionSnapshot']>, "positionSnapshots", ParentType, ContextType, RequireFields<SubscriptionpositionSnapshotsArgs, 'skip' | 'first' | 'subgraphError'>>;
-    activeAccount?: SubscriptionResolver<Maybe<ResolversTypes['_ActiveAccount']>, "activeAccount", ParentType, ContextType, RequireFields<SubscriptionactiveAccountArgs, 'id' | 'subgraphError'>>;
-    activeAccounts?: SubscriptionResolver<Array<ResolversTypes['_ActiveAccount']>, "activeAccounts", ParentType, ContextType, RequireFields<SubscriptionactiveAccountsArgs, 'skip' | 'first' | 'subgraphError'>>;
-    positionCounter?: SubscriptionResolver<Maybe<ResolversTypes['_PositionCounter']>, "positionCounter", ParentType, ContextType, RequireFields<SubscriptionpositionCounterArgs, 'id' | 'subgraphError'>>;
-    positionCounters?: SubscriptionResolver<Array<ResolversTypes['_PositionCounter']>, "positionCounters", ParentType, ContextType, RequireFields<SubscriptionpositionCountersArgs, 'skip' | 'first' | 'subgraphError'>>;
-    deposit?: SubscriptionResolver<Maybe<ResolversTypes['Deposit']>, "deposit", ParentType, ContextType, RequireFields<SubscriptiondepositArgs, 'id' | 'subgraphError'>>;
-    deposits?: SubscriptionResolver<Array<ResolversTypes['Deposit']>, "deposits", ParentType, ContextType, RequireFields<SubscriptiondepositsArgs, 'skip' | 'first' | 'subgraphError'>>;
-    withdraw?: SubscriptionResolver<Maybe<ResolversTypes['Withdraw']>, "withdraw", ParentType, ContextType, RequireFields<SubscriptionwithdrawArgs, 'id' | 'subgraphError'>>;
-    withdraws?: SubscriptionResolver<Array<ResolversTypes['Withdraw']>, "withdraws", ParentType, ContextType, RequireFields<SubscriptionwithdrawsArgs, 'skip' | 'first' | 'subgraphError'>>;
-    borrow?: SubscriptionResolver<Maybe<ResolversTypes['Borrow']>, "borrow", ParentType, ContextType, RequireFields<SubscriptionborrowArgs, 'id' | 'subgraphError'>>;
-    borrows?: SubscriptionResolver<Array<ResolversTypes['Borrow']>, "borrows", ParentType, ContextType, RequireFields<SubscriptionborrowsArgs, 'skip' | 'first' | 'subgraphError'>>;
-    repay?: SubscriptionResolver<Maybe<ResolversTypes['Repay']>, "repay", ParentType, ContextType, RequireFields<SubscriptionrepayArgs, 'id' | 'subgraphError'>>;
-    repays?: SubscriptionResolver<Array<ResolversTypes['Repay']>, "repays", ParentType, ContextType, RequireFields<SubscriptionrepaysArgs, 'skip' | 'first' | 'subgraphError'>>;
-    liquidate?: SubscriptionResolver<Maybe<ResolversTypes['Liquidate']>, "liquidate", ParentType, ContextType, RequireFields<SubscriptionliquidateArgs, 'id' | 'subgraphError'>>;
-    liquidates?: SubscriptionResolver<Array<ResolversTypes['Liquidate']>, "liquidates", ParentType, ContextType, RequireFields<SubscriptionliquidatesArgs, 'skip' | 'first' | 'subgraphError'>>;
-    transfer?: SubscriptionResolver<Maybe<ResolversTypes['Transfer']>, "transfer", ParentType, ContextType, RequireFields<SubscriptiontransferArgs, 'id' | 'subgraphError'>>;
-    transfers?: SubscriptionResolver<Array<ResolversTypes['Transfer']>, "transfers", ParentType, ContextType, RequireFields<SubscriptiontransfersArgs, 'skip' | 'first' | 'subgraphError'>>;
-    flashloan?: SubscriptionResolver<Maybe<ResolversTypes['Flashloan']>, "flashloan", ParentType, ContextType, RequireFields<SubscriptionflashloanArgs, 'id' | 'subgraphError'>>;
-    flashloans?: SubscriptionResolver<Array<ResolversTypes['Flashloan']>, "flashloans", ParentType, ContextType, RequireFields<SubscriptionflashloansArgs, 'skip' | 'first' | 'subgraphError'>>;
-    defaultOracle?: SubscriptionResolver<Maybe<ResolversTypes['_DefaultOracle']>, "defaultOracle", ParentType, ContextType, RequireFields<SubscriptiondefaultOracleArgs, 'id' | 'subgraphError'>>;
-    defaultOracles?: SubscriptionResolver<Array<ResolversTypes['_DefaultOracle']>, "defaultOracles", ParentType, ContextType, RequireFields<SubscriptiondefaultOraclesArgs, 'skip' | 'first' | 'subgraphError'>>;
-    flashLoanPremium?: SubscriptionResolver<Maybe<ResolversTypes['_FlashLoanPremium']>, "flashLoanPremium", ParentType, ContextType, RequireFields<SubscriptionflashLoanPremiumArgs, 'id' | 'subgraphError'>>;
-    flashLoanPremiums?: SubscriptionResolver<Array<ResolversTypes['_FlashLoanPremium']>, "flashLoanPremiums", ParentType, ContextType, RequireFields<SubscriptionflashLoanPremiumsArgs, 'skip' | 'first' | 'subgraphError'>>;
-    protocol?: SubscriptionResolver<Maybe<ResolversTypes['Protocol']>, "protocol", ParentType, ContextType, RequireFields<SubscriptionprotocolArgs, 'id' | 'subgraphError'>>;
-    protocols?: SubscriptionResolver<Array<ResolversTypes['Protocol']>, "protocols", ParentType, ContextType, RequireFields<SubscriptionprotocolsArgs, 'skip' | 'first' | 'subgraphError'>>;
-    event?: SubscriptionResolver<Maybe<ResolversTypes['Event']>, "event", ParentType, ContextType, RequireFields<SubscriptioneventArgs, 'id' | 'subgraphError'>>;
-    events?: SubscriptionResolver<Array<ResolversTypes['Event']>, "events", ParentType, ContextType, RequireFields<SubscriptioneventsArgs, 'skip' | 'first' | 'subgraphError'>>;
-    _meta?: SubscriptionResolver<Maybe<ResolversTypes['_Meta_']>, "_meta", ParentType, ContextType, Partial<Subscription_metaArgs>>;
-}>;
 export type AccountResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['Account'] = ResolversParentTypes['Account']> = ResolversObject<{
     id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
     positionCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
@@ -9199,6 +9072,69 @@ export type ProtocolResolvers<ContextType = MeshContext, ParentType extends Reso
     hourlyUsageMetrics?: Resolver<Array<ResolversTypes['UsageMetricsHourlySnapshot']>, ParentType, ContextType, RequireFields<ProtocolhourlyUsageMetricsArgs, 'skip' | 'first'>>;
     financialMetrics?: Resolver<Array<ResolversTypes['FinancialsDailySnapshot']>, ParentType, ContextType, RequireFields<ProtocolfinancialMetricsArgs, 'skip' | 'first'>>;
 }>;
+export type QueryResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
+    token?: Resolver<Maybe<ResolversTypes['Token']>, ParentType, ContextType, RequireFields<QuerytokenArgs, 'id' | 'subgraphError'>>;
+    tokens?: Resolver<Array<ResolversTypes['Token']>, ParentType, ContextType, RequireFields<QuerytokensArgs, 'skip' | 'first' | 'subgraphError'>>;
+    rewardToken?: Resolver<Maybe<ResolversTypes['RewardToken']>, ParentType, ContextType, RequireFields<QueryrewardTokenArgs, 'id' | 'subgraphError'>>;
+    rewardTokens?: Resolver<Array<ResolversTypes['RewardToken']>, ParentType, ContextType, RequireFields<QueryrewardTokensArgs, 'skip' | 'first' | 'subgraphError'>>;
+    interestRate?: Resolver<Maybe<ResolversTypes['InterestRate']>, ParentType, ContextType, RequireFields<QueryinterestRateArgs, 'id' | 'subgraphError'>>;
+    interestRates?: Resolver<Array<ResolversTypes['InterestRate']>, ParentType, ContextType, RequireFields<QueryinterestRatesArgs, 'skip' | 'first' | 'subgraphError'>>;
+    fee?: Resolver<Maybe<ResolversTypes['Fee']>, ParentType, ContextType, RequireFields<QueryfeeArgs, 'id' | 'subgraphError'>>;
+    fees?: Resolver<Array<ResolversTypes['Fee']>, ParentType, ContextType, RequireFields<QueryfeesArgs, 'skip' | 'first' | 'subgraphError'>>;
+    revenueDetail?: Resolver<Maybe<ResolversTypes['RevenueDetail']>, ParentType, ContextType, RequireFields<QueryrevenueDetailArgs, 'id' | 'subgraphError'>>;
+    revenueDetails?: Resolver<Array<ResolversTypes['RevenueDetail']>, ParentType, ContextType, RequireFields<QueryrevenueDetailsArgs, 'skip' | 'first' | 'subgraphError'>>;
+    oracle?: Resolver<Maybe<ResolversTypes['Oracle']>, ParentType, ContextType, RequireFields<QueryoracleArgs, 'id' | 'subgraphError'>>;
+    oracles?: Resolver<Array<ResolversTypes['Oracle']>, ParentType, ContextType, RequireFields<QueryoraclesArgs, 'skip' | 'first' | 'subgraphError'>>;
+    lendingProtocol?: Resolver<Maybe<ResolversTypes['LendingProtocol']>, ParentType, ContextType, RequireFields<QuerylendingProtocolArgs, 'id' | 'subgraphError'>>;
+    lendingProtocols?: Resolver<Array<ResolversTypes['LendingProtocol']>, ParentType, ContextType, RequireFields<QuerylendingProtocolsArgs, 'skip' | 'first' | 'subgraphError'>>;
+    marketList?: Resolver<Maybe<ResolversTypes['_MarketList']>, ParentType, ContextType, RequireFields<QuerymarketListArgs, 'id' | 'subgraphError'>>;
+    marketLists?: Resolver<Array<ResolversTypes['_MarketList']>, ParentType, ContextType, RequireFields<QuerymarketListsArgs, 'skip' | 'first' | 'subgraphError'>>;
+    usageMetricsDailySnapshot?: Resolver<Maybe<ResolversTypes['UsageMetricsDailySnapshot']>, ParentType, ContextType, RequireFields<QueryusageMetricsDailySnapshotArgs, 'id' | 'subgraphError'>>;
+    usageMetricsDailySnapshots?: Resolver<Array<ResolversTypes['UsageMetricsDailySnapshot']>, ParentType, ContextType, RequireFields<QueryusageMetricsDailySnapshotsArgs, 'skip' | 'first' | 'subgraphError'>>;
+    usageMetricsHourlySnapshot?: Resolver<Maybe<ResolversTypes['UsageMetricsHourlySnapshot']>, ParentType, ContextType, RequireFields<QueryusageMetricsHourlySnapshotArgs, 'id' | 'subgraphError'>>;
+    usageMetricsHourlySnapshots?: Resolver<Array<ResolversTypes['UsageMetricsHourlySnapshot']>, ParentType, ContextType, RequireFields<QueryusageMetricsHourlySnapshotsArgs, 'skip' | 'first' | 'subgraphError'>>;
+    financialsDailySnapshot?: Resolver<Maybe<ResolversTypes['FinancialsDailySnapshot']>, ParentType, ContextType, RequireFields<QueryfinancialsDailySnapshotArgs, 'id' | 'subgraphError'>>;
+    financialsDailySnapshots?: Resolver<Array<ResolversTypes['FinancialsDailySnapshot']>, ParentType, ContextType, RequireFields<QueryfinancialsDailySnapshotsArgs, 'skip' | 'first' | 'subgraphError'>>;
+    market?: Resolver<Maybe<ResolversTypes['Market']>, ParentType, ContextType, RequireFields<QuerymarketArgs, 'id' | 'subgraphError'>>;
+    markets?: Resolver<Array<ResolversTypes['Market']>, ParentType, ContextType, RequireFields<QuerymarketsArgs, 'skip' | 'first' | 'subgraphError'>>;
+    marketDailySnapshot?: Resolver<Maybe<ResolversTypes['MarketDailySnapshot']>, ParentType, ContextType, RequireFields<QuerymarketDailySnapshotArgs, 'id' | 'subgraphError'>>;
+    marketDailySnapshots?: Resolver<Array<ResolversTypes['MarketDailySnapshot']>, ParentType, ContextType, RequireFields<QuerymarketDailySnapshotsArgs, 'skip' | 'first' | 'subgraphError'>>;
+    marketHourlySnapshot?: Resolver<Maybe<ResolversTypes['MarketHourlySnapshot']>, ParentType, ContextType, RequireFields<QuerymarketHourlySnapshotArgs, 'id' | 'subgraphError'>>;
+    marketHourlySnapshots?: Resolver<Array<ResolversTypes['MarketHourlySnapshot']>, ParentType, ContextType, RequireFields<QuerymarketHourlySnapshotsArgs, 'skip' | 'first' | 'subgraphError'>>;
+    account?: Resolver<Maybe<ResolversTypes['Account']>, ParentType, ContextType, RequireFields<QueryaccountArgs, 'id' | 'subgraphError'>>;
+    accounts?: Resolver<Array<ResolversTypes['Account']>, ParentType, ContextType, RequireFields<QueryaccountsArgs, 'skip' | 'first' | 'subgraphError'>>;
+    position?: Resolver<Maybe<ResolversTypes['Position']>, ParentType, ContextType, RequireFields<QuerypositionArgs, 'id' | 'subgraphError'>>;
+    positions?: Resolver<Array<ResolversTypes['Position']>, ParentType, ContextType, RequireFields<QuerypositionsArgs, 'skip' | 'first' | 'subgraphError'>>;
+    positionSnapshot?: Resolver<Maybe<ResolversTypes['PositionSnapshot']>, ParentType, ContextType, RequireFields<QuerypositionSnapshotArgs, 'id' | 'subgraphError'>>;
+    positionSnapshots?: Resolver<Array<ResolversTypes['PositionSnapshot']>, ParentType, ContextType, RequireFields<QuerypositionSnapshotsArgs, 'skip' | 'first' | 'subgraphError'>>;
+    activeAccount?: Resolver<Maybe<ResolversTypes['_ActiveAccount']>, ParentType, ContextType, RequireFields<QueryactiveAccountArgs, 'id' | 'subgraphError'>>;
+    activeAccounts?: Resolver<Array<ResolversTypes['_ActiveAccount']>, ParentType, ContextType, RequireFields<QueryactiveAccountsArgs, 'skip' | 'first' | 'subgraphError'>>;
+    positionCounter?: Resolver<Maybe<ResolversTypes['_PositionCounter']>, ParentType, ContextType, RequireFields<QuerypositionCounterArgs, 'id' | 'subgraphError'>>;
+    positionCounters?: Resolver<Array<ResolversTypes['_PositionCounter']>, ParentType, ContextType, RequireFields<QuerypositionCountersArgs, 'skip' | 'first' | 'subgraphError'>>;
+    deposit?: Resolver<Maybe<ResolversTypes['Deposit']>, ParentType, ContextType, RequireFields<QuerydepositArgs, 'id' | 'subgraphError'>>;
+    deposits?: Resolver<Array<ResolversTypes['Deposit']>, ParentType, ContextType, RequireFields<QuerydepositsArgs, 'skip' | 'first' | 'subgraphError'>>;
+    withdraw?: Resolver<Maybe<ResolversTypes['Withdraw']>, ParentType, ContextType, RequireFields<QuerywithdrawArgs, 'id' | 'subgraphError'>>;
+    withdraws?: Resolver<Array<ResolversTypes['Withdraw']>, ParentType, ContextType, RequireFields<QuerywithdrawsArgs, 'skip' | 'first' | 'subgraphError'>>;
+    borrow?: Resolver<Maybe<ResolversTypes['Borrow']>, ParentType, ContextType, RequireFields<QueryborrowArgs, 'id' | 'subgraphError'>>;
+    borrows?: Resolver<Array<ResolversTypes['Borrow']>, ParentType, ContextType, RequireFields<QueryborrowsArgs, 'skip' | 'first' | 'subgraphError'>>;
+    repay?: Resolver<Maybe<ResolversTypes['Repay']>, ParentType, ContextType, RequireFields<QueryrepayArgs, 'id' | 'subgraphError'>>;
+    repays?: Resolver<Array<ResolversTypes['Repay']>, ParentType, ContextType, RequireFields<QueryrepaysArgs, 'skip' | 'first' | 'subgraphError'>>;
+    liquidate?: Resolver<Maybe<ResolversTypes['Liquidate']>, ParentType, ContextType, RequireFields<QueryliquidateArgs, 'id' | 'subgraphError'>>;
+    liquidates?: Resolver<Array<ResolversTypes['Liquidate']>, ParentType, ContextType, RequireFields<QueryliquidatesArgs, 'skip' | 'first' | 'subgraphError'>>;
+    transfer?: Resolver<Maybe<ResolversTypes['Transfer']>, ParentType, ContextType, RequireFields<QuerytransferArgs, 'id' | 'subgraphError'>>;
+    transfers?: Resolver<Array<ResolversTypes['Transfer']>, ParentType, ContextType, RequireFields<QuerytransfersArgs, 'skip' | 'first' | 'subgraphError'>>;
+    flashloan?: Resolver<Maybe<ResolversTypes['Flashloan']>, ParentType, ContextType, RequireFields<QueryflashloanArgs, 'id' | 'subgraphError'>>;
+    flashloans?: Resolver<Array<ResolversTypes['Flashloan']>, ParentType, ContextType, RequireFields<QueryflashloansArgs, 'skip' | 'first' | 'subgraphError'>>;
+    defaultOracle?: Resolver<Maybe<ResolversTypes['_DefaultOracle']>, ParentType, ContextType, RequireFields<QuerydefaultOracleArgs, 'id' | 'subgraphError'>>;
+    defaultOracles?: Resolver<Array<ResolversTypes['_DefaultOracle']>, ParentType, ContextType, RequireFields<QuerydefaultOraclesArgs, 'skip' | 'first' | 'subgraphError'>>;
+    flashLoanPremium?: Resolver<Maybe<ResolversTypes['_FlashLoanPremium']>, ParentType, ContextType, RequireFields<QueryflashLoanPremiumArgs, 'id' | 'subgraphError'>>;
+    flashLoanPremiums?: Resolver<Array<ResolversTypes['_FlashLoanPremium']>, ParentType, ContextType, RequireFields<QueryflashLoanPremiumsArgs, 'skip' | 'first' | 'subgraphError'>>;
+    protocol?: Resolver<Maybe<ResolversTypes['Protocol']>, ParentType, ContextType, RequireFields<QueryprotocolArgs, 'id' | 'subgraphError'>>;
+    protocols?: Resolver<Array<ResolversTypes['Protocol']>, ParentType, ContextType, RequireFields<QueryprotocolsArgs, 'skip' | 'first' | 'subgraphError'>>;
+    event?: Resolver<Maybe<ResolversTypes['Event']>, ParentType, ContextType, RequireFields<QueryeventArgs, 'id' | 'subgraphError'>>;
+    events?: Resolver<Array<ResolversTypes['Event']>, ParentType, ContextType, RequireFields<QueryeventsArgs, 'skip' | 'first' | 'subgraphError'>>;
+    _meta?: Resolver<Maybe<ResolversTypes['_Meta_']>, ParentType, ContextType, Partial<Query_metaArgs>>;
+}>;
 export type RepayResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['Repay'] = ResolversParentTypes['Repay']> = ResolversObject<{
     id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
     hash?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
@@ -9230,6 +9166,69 @@ export type RewardTokenResolvers<ContextType = MeshContext, ParentType extends R
     type?: Resolver<ResolversTypes['RewardTokenType'], ParentType, ContextType>;
     _distributionEnd?: Resolver<Maybe<ResolversTypes['BigInt']>, ParentType, ContextType>;
     __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+export type SubscriptionResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['Subscription'] = ResolversParentTypes['Subscription']> = ResolversObject<{
+    token?: SubscriptionResolver<Maybe<ResolversTypes['Token']>, "token", ParentType, ContextType, RequireFields<SubscriptiontokenArgs, 'id' | 'subgraphError'>>;
+    tokens?: SubscriptionResolver<Array<ResolversTypes['Token']>, "tokens", ParentType, ContextType, RequireFields<SubscriptiontokensArgs, 'skip' | 'first' | 'subgraphError'>>;
+    rewardToken?: SubscriptionResolver<Maybe<ResolversTypes['RewardToken']>, "rewardToken", ParentType, ContextType, RequireFields<SubscriptionrewardTokenArgs, 'id' | 'subgraphError'>>;
+    rewardTokens?: SubscriptionResolver<Array<ResolversTypes['RewardToken']>, "rewardTokens", ParentType, ContextType, RequireFields<SubscriptionrewardTokensArgs, 'skip' | 'first' | 'subgraphError'>>;
+    interestRate?: SubscriptionResolver<Maybe<ResolversTypes['InterestRate']>, "interestRate", ParentType, ContextType, RequireFields<SubscriptioninterestRateArgs, 'id' | 'subgraphError'>>;
+    interestRates?: SubscriptionResolver<Array<ResolversTypes['InterestRate']>, "interestRates", ParentType, ContextType, RequireFields<SubscriptioninterestRatesArgs, 'skip' | 'first' | 'subgraphError'>>;
+    fee?: SubscriptionResolver<Maybe<ResolversTypes['Fee']>, "fee", ParentType, ContextType, RequireFields<SubscriptionfeeArgs, 'id' | 'subgraphError'>>;
+    fees?: SubscriptionResolver<Array<ResolversTypes['Fee']>, "fees", ParentType, ContextType, RequireFields<SubscriptionfeesArgs, 'skip' | 'first' | 'subgraphError'>>;
+    revenueDetail?: SubscriptionResolver<Maybe<ResolversTypes['RevenueDetail']>, "revenueDetail", ParentType, ContextType, RequireFields<SubscriptionrevenueDetailArgs, 'id' | 'subgraphError'>>;
+    revenueDetails?: SubscriptionResolver<Array<ResolversTypes['RevenueDetail']>, "revenueDetails", ParentType, ContextType, RequireFields<SubscriptionrevenueDetailsArgs, 'skip' | 'first' | 'subgraphError'>>;
+    oracle?: SubscriptionResolver<Maybe<ResolversTypes['Oracle']>, "oracle", ParentType, ContextType, RequireFields<SubscriptionoracleArgs, 'id' | 'subgraphError'>>;
+    oracles?: SubscriptionResolver<Array<ResolversTypes['Oracle']>, "oracles", ParentType, ContextType, RequireFields<SubscriptionoraclesArgs, 'skip' | 'first' | 'subgraphError'>>;
+    lendingProtocol?: SubscriptionResolver<Maybe<ResolversTypes['LendingProtocol']>, "lendingProtocol", ParentType, ContextType, RequireFields<SubscriptionlendingProtocolArgs, 'id' | 'subgraphError'>>;
+    lendingProtocols?: SubscriptionResolver<Array<ResolversTypes['LendingProtocol']>, "lendingProtocols", ParentType, ContextType, RequireFields<SubscriptionlendingProtocolsArgs, 'skip' | 'first' | 'subgraphError'>>;
+    marketList?: SubscriptionResolver<Maybe<ResolversTypes['_MarketList']>, "marketList", ParentType, ContextType, RequireFields<SubscriptionmarketListArgs, 'id' | 'subgraphError'>>;
+    marketLists?: SubscriptionResolver<Array<ResolversTypes['_MarketList']>, "marketLists", ParentType, ContextType, RequireFields<SubscriptionmarketListsArgs, 'skip' | 'first' | 'subgraphError'>>;
+    usageMetricsDailySnapshot?: SubscriptionResolver<Maybe<ResolversTypes['UsageMetricsDailySnapshot']>, "usageMetricsDailySnapshot", ParentType, ContextType, RequireFields<SubscriptionusageMetricsDailySnapshotArgs, 'id' | 'subgraphError'>>;
+    usageMetricsDailySnapshots?: SubscriptionResolver<Array<ResolversTypes['UsageMetricsDailySnapshot']>, "usageMetricsDailySnapshots", ParentType, ContextType, RequireFields<SubscriptionusageMetricsDailySnapshotsArgs, 'skip' | 'first' | 'subgraphError'>>;
+    usageMetricsHourlySnapshot?: SubscriptionResolver<Maybe<ResolversTypes['UsageMetricsHourlySnapshot']>, "usageMetricsHourlySnapshot", ParentType, ContextType, RequireFields<SubscriptionusageMetricsHourlySnapshotArgs, 'id' | 'subgraphError'>>;
+    usageMetricsHourlySnapshots?: SubscriptionResolver<Array<ResolversTypes['UsageMetricsHourlySnapshot']>, "usageMetricsHourlySnapshots", ParentType, ContextType, RequireFields<SubscriptionusageMetricsHourlySnapshotsArgs, 'skip' | 'first' | 'subgraphError'>>;
+    financialsDailySnapshot?: SubscriptionResolver<Maybe<ResolversTypes['FinancialsDailySnapshot']>, "financialsDailySnapshot", ParentType, ContextType, RequireFields<SubscriptionfinancialsDailySnapshotArgs, 'id' | 'subgraphError'>>;
+    financialsDailySnapshots?: SubscriptionResolver<Array<ResolversTypes['FinancialsDailySnapshot']>, "financialsDailySnapshots", ParentType, ContextType, RequireFields<SubscriptionfinancialsDailySnapshotsArgs, 'skip' | 'first' | 'subgraphError'>>;
+    market?: SubscriptionResolver<Maybe<ResolversTypes['Market']>, "market", ParentType, ContextType, RequireFields<SubscriptionmarketArgs, 'id' | 'subgraphError'>>;
+    markets?: SubscriptionResolver<Array<ResolversTypes['Market']>, "markets", ParentType, ContextType, RequireFields<SubscriptionmarketsArgs, 'skip' | 'first' | 'subgraphError'>>;
+    marketDailySnapshot?: SubscriptionResolver<Maybe<ResolversTypes['MarketDailySnapshot']>, "marketDailySnapshot", ParentType, ContextType, RequireFields<SubscriptionmarketDailySnapshotArgs, 'id' | 'subgraphError'>>;
+    marketDailySnapshots?: SubscriptionResolver<Array<ResolversTypes['MarketDailySnapshot']>, "marketDailySnapshots", ParentType, ContextType, RequireFields<SubscriptionmarketDailySnapshotsArgs, 'skip' | 'first' | 'subgraphError'>>;
+    marketHourlySnapshot?: SubscriptionResolver<Maybe<ResolversTypes['MarketHourlySnapshot']>, "marketHourlySnapshot", ParentType, ContextType, RequireFields<SubscriptionmarketHourlySnapshotArgs, 'id' | 'subgraphError'>>;
+    marketHourlySnapshots?: SubscriptionResolver<Array<ResolversTypes['MarketHourlySnapshot']>, "marketHourlySnapshots", ParentType, ContextType, RequireFields<SubscriptionmarketHourlySnapshotsArgs, 'skip' | 'first' | 'subgraphError'>>;
+    account?: SubscriptionResolver<Maybe<ResolversTypes['Account']>, "account", ParentType, ContextType, RequireFields<SubscriptionaccountArgs, 'id' | 'subgraphError'>>;
+    accounts?: SubscriptionResolver<Array<ResolversTypes['Account']>, "accounts", ParentType, ContextType, RequireFields<SubscriptionaccountsArgs, 'skip' | 'first' | 'subgraphError'>>;
+    position?: SubscriptionResolver<Maybe<ResolversTypes['Position']>, "position", ParentType, ContextType, RequireFields<SubscriptionpositionArgs, 'id' | 'subgraphError'>>;
+    positions?: SubscriptionResolver<Array<ResolversTypes['Position']>, "positions", ParentType, ContextType, RequireFields<SubscriptionpositionsArgs, 'skip' | 'first' | 'subgraphError'>>;
+    positionSnapshot?: SubscriptionResolver<Maybe<ResolversTypes['PositionSnapshot']>, "positionSnapshot", ParentType, ContextType, RequireFields<SubscriptionpositionSnapshotArgs, 'id' | 'subgraphError'>>;
+    positionSnapshots?: SubscriptionResolver<Array<ResolversTypes['PositionSnapshot']>, "positionSnapshots", ParentType, ContextType, RequireFields<SubscriptionpositionSnapshotsArgs, 'skip' | 'first' | 'subgraphError'>>;
+    activeAccount?: SubscriptionResolver<Maybe<ResolversTypes['_ActiveAccount']>, "activeAccount", ParentType, ContextType, RequireFields<SubscriptionactiveAccountArgs, 'id' | 'subgraphError'>>;
+    activeAccounts?: SubscriptionResolver<Array<ResolversTypes['_ActiveAccount']>, "activeAccounts", ParentType, ContextType, RequireFields<SubscriptionactiveAccountsArgs, 'skip' | 'first' | 'subgraphError'>>;
+    positionCounter?: SubscriptionResolver<Maybe<ResolversTypes['_PositionCounter']>, "positionCounter", ParentType, ContextType, RequireFields<SubscriptionpositionCounterArgs, 'id' | 'subgraphError'>>;
+    positionCounters?: SubscriptionResolver<Array<ResolversTypes['_PositionCounter']>, "positionCounters", ParentType, ContextType, RequireFields<SubscriptionpositionCountersArgs, 'skip' | 'first' | 'subgraphError'>>;
+    deposit?: SubscriptionResolver<Maybe<ResolversTypes['Deposit']>, "deposit", ParentType, ContextType, RequireFields<SubscriptiondepositArgs, 'id' | 'subgraphError'>>;
+    deposits?: SubscriptionResolver<Array<ResolversTypes['Deposit']>, "deposits", ParentType, ContextType, RequireFields<SubscriptiondepositsArgs, 'skip' | 'first' | 'subgraphError'>>;
+    withdraw?: SubscriptionResolver<Maybe<ResolversTypes['Withdraw']>, "withdraw", ParentType, ContextType, RequireFields<SubscriptionwithdrawArgs, 'id' | 'subgraphError'>>;
+    withdraws?: SubscriptionResolver<Array<ResolversTypes['Withdraw']>, "withdraws", ParentType, ContextType, RequireFields<SubscriptionwithdrawsArgs, 'skip' | 'first' | 'subgraphError'>>;
+    borrow?: SubscriptionResolver<Maybe<ResolversTypes['Borrow']>, "borrow", ParentType, ContextType, RequireFields<SubscriptionborrowArgs, 'id' | 'subgraphError'>>;
+    borrows?: SubscriptionResolver<Array<ResolversTypes['Borrow']>, "borrows", ParentType, ContextType, RequireFields<SubscriptionborrowsArgs, 'skip' | 'first' | 'subgraphError'>>;
+    repay?: SubscriptionResolver<Maybe<ResolversTypes['Repay']>, "repay", ParentType, ContextType, RequireFields<SubscriptionrepayArgs, 'id' | 'subgraphError'>>;
+    repays?: SubscriptionResolver<Array<ResolversTypes['Repay']>, "repays", ParentType, ContextType, RequireFields<SubscriptionrepaysArgs, 'skip' | 'first' | 'subgraphError'>>;
+    liquidate?: SubscriptionResolver<Maybe<ResolversTypes['Liquidate']>, "liquidate", ParentType, ContextType, RequireFields<SubscriptionliquidateArgs, 'id' | 'subgraphError'>>;
+    liquidates?: SubscriptionResolver<Array<ResolversTypes['Liquidate']>, "liquidates", ParentType, ContextType, RequireFields<SubscriptionliquidatesArgs, 'skip' | 'first' | 'subgraphError'>>;
+    transfer?: SubscriptionResolver<Maybe<ResolversTypes['Transfer']>, "transfer", ParentType, ContextType, RequireFields<SubscriptiontransferArgs, 'id' | 'subgraphError'>>;
+    transfers?: SubscriptionResolver<Array<ResolversTypes['Transfer']>, "transfers", ParentType, ContextType, RequireFields<SubscriptiontransfersArgs, 'skip' | 'first' | 'subgraphError'>>;
+    flashloan?: SubscriptionResolver<Maybe<ResolversTypes['Flashloan']>, "flashloan", ParentType, ContextType, RequireFields<SubscriptionflashloanArgs, 'id' | 'subgraphError'>>;
+    flashloans?: SubscriptionResolver<Array<ResolversTypes['Flashloan']>, "flashloans", ParentType, ContextType, RequireFields<SubscriptionflashloansArgs, 'skip' | 'first' | 'subgraphError'>>;
+    defaultOracle?: SubscriptionResolver<Maybe<ResolversTypes['_DefaultOracle']>, "defaultOracle", ParentType, ContextType, RequireFields<SubscriptiondefaultOracleArgs, 'id' | 'subgraphError'>>;
+    defaultOracles?: SubscriptionResolver<Array<ResolversTypes['_DefaultOracle']>, "defaultOracles", ParentType, ContextType, RequireFields<SubscriptiondefaultOraclesArgs, 'skip' | 'first' | 'subgraphError'>>;
+    flashLoanPremium?: SubscriptionResolver<Maybe<ResolversTypes['_FlashLoanPremium']>, "flashLoanPremium", ParentType, ContextType, RequireFields<SubscriptionflashLoanPremiumArgs, 'id' | 'subgraphError'>>;
+    flashLoanPremiums?: SubscriptionResolver<Array<ResolversTypes['_FlashLoanPremium']>, "flashLoanPremiums", ParentType, ContextType, RequireFields<SubscriptionflashLoanPremiumsArgs, 'skip' | 'first' | 'subgraphError'>>;
+    protocol?: SubscriptionResolver<Maybe<ResolversTypes['Protocol']>, "protocol", ParentType, ContextType, RequireFields<SubscriptionprotocolArgs, 'id' | 'subgraphError'>>;
+    protocols?: SubscriptionResolver<Array<ResolversTypes['Protocol']>, "protocols", ParentType, ContextType, RequireFields<SubscriptionprotocolsArgs, 'skip' | 'first' | 'subgraphError'>>;
+    event?: SubscriptionResolver<Maybe<ResolversTypes['Event']>, "event", ParentType, ContextType, RequireFields<SubscriptioneventArgs, 'id' | 'subgraphError'>>;
+    events?: SubscriptionResolver<Array<ResolversTypes['Event']>, "events", ParentType, ContextType, RequireFields<SubscriptioneventsArgs, 'skip' | 'first' | 'subgraphError'>>;
+    _meta?: SubscriptionResolver<Maybe<ResolversTypes['_Meta_']>, "_meta", ParentType, ContextType, Partial<Subscription_metaArgs>>;
 }>;
 export type TokenResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['Token'] = ResolversParentTypes['Token']> = ResolversObject<{
     id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
@@ -9366,8 +9365,6 @@ export type _PositionCounterResolvers<ContextType = MeshContext, ParentType exte
     __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 export type Resolvers<ContextType = MeshContext> = ResolversObject<{
-    Query?: QueryResolvers<ContextType>;
-    Subscription?: SubscriptionResolvers<ContextType>;
     Account?: AccountResolvers<ContextType>;
     BigDecimal?: GraphQLScalarType;
     BigInt?: GraphQLScalarType;
@@ -9389,9 +9386,11 @@ export type Resolvers<ContextType = MeshContext> = ResolversObject<{
     Position?: PositionResolvers<ContextType>;
     PositionSnapshot?: PositionSnapshotResolvers<ContextType>;
     Protocol?: ProtocolResolvers<ContextType>;
+    Query?: QueryResolvers<ContextType>;
     Repay?: RepayResolvers<ContextType>;
     RevenueDetail?: RevenueDetailResolvers<ContextType>;
     RewardToken?: RewardTokenResolvers<ContextType>;
+    Subscription?: SubscriptionResolvers<ContextType>;
     Token?: TokenResolvers<ContextType>;
     Transfer?: TransferResolvers<ContextType>;
     UsageMetricsDailySnapshot?: UsageMetricsDailySnapshotResolvers<ContextType>;
@@ -9410,7 +9409,7 @@ export type DirectiveResolvers<ContextType = MeshContext> = ResolversObject<{
     subgraphId?: subgraphIdDirectiveResolver<any, any, ContextType>;
     derivedFrom?: derivedFromDirectiveResolver<any, any, ContextType>;
 }>;
-export type MeshContext = GnosisPrimaryTypes.Context & EthereumPrimaryTypes.Context & BaseMeshContext;
+export type MeshContext = EthereumPrimaryTypes.Context & BaseMeshContext;
 export declare const rawServeConfig: YamlConfig.Config['serve'];
 export declare function getMeshOptions(): Promise<GetMeshOptions>;
 export declare function createBuiltMeshHTTPHandler<TServerContext = {}>(): MeshHTTPHandler<TServerContext>;

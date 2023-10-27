@@ -60,26 +60,28 @@ class GraphQLSource {
     async fetchAll() {
         const { rows, blockNumber } = await this.fetchAllRows(positionQuery, r => r.accounts);
 
-        return new PositionSet(rows.map(r => {
-            return new Position(
-                this.network,
+        const positions = rows.map(r => {
+            return new Position({
+                network: this.network,
                 blockNumber,
-                r.id.toLowerCase(),
-                r.positions
+                id: r.id.toLowerCase(),
+                deposits: r.positions
+                    .filter(p => (p.side === "LENDER" || p.side === "COLLATERAL") && p.isCollateral !== false)
+                    .map(p => new Deposit({
+                        asset: p.market.inputToken.id.toLowerCase(),
+                        amount: valueToBigNumber(p.balance).div(this.network.getReserve(p.market.inputToken.id.toLowerCase()).units),
+                        liquidationThreshold: valueToBigNumber(p.market.liquidationThreshold).div(100)
+                    })),
+                borrows: r.positions
                     .filter(p => p.side === "BORROWER")
-                    .map(p => new Borrow(
-                        p.market.inputToken.id.toLowerCase(),
-                        valueToBigNumber(p.balance)
-                    )),
-                r.positions
-                    .filter(p => (p.side === "LENDER" || p.side === "COLLATERAL") && p.isCollateral)
-                    .map(p => new Deposit(
-                        p.market.inputToken.id.toLowerCase(),
-                        valueToBigNumber(p.balance),
-                        valueToBigNumber(p.market.liquidationThreshold).div(10000)
-                    ))
-            )
-        }));
+                    .map(p => new Borrow({
+                        asset: p.market.inputToken.id.toLowerCase(),
+                        amount: valueToBigNumber(p.balance).div(this.network.getReserve(p.market.inputToken.id.toLowerCase()).units)
+                    })),
+            });
+        });
+
+        return new PositionSet(positions.filter(p => p.getBorrowTotalUSDValue().isGreaterThan(0)));
     }
 
 }

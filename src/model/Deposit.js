@@ -1,9 +1,19 @@
 class Deposit {
 
-    constructor(underlying, amount, liquidationThreshold) {
-        this.underlying = underlying;
-        this.amount = amount;
-        this.liquidationThreshold = liquidationThreshold;
+    constructor(v) {
+        this.asset = v.asset;
+        this.amount = v.amount;
+        this.liquidationThreshold = v.liquidationThreshold;
+
+        this.position = null;
+    }
+
+    getUSDValue() {
+        return this.amount.multipliedBy(this.position.network.getReserve(this.asset).price);
+    }
+
+    getUSDBorrowPower() {
+        return this.getUSDValue().multipliedBy(this.liquidationThreshold);
     }
 
 }

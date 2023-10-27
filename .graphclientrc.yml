@@ -4,7 +4,3 @@ sources:
     handler:
       graphql:
         endpoint: https://api.thegraph.com/subgraphs/name/messari/spark-lend-ethereum
-  - name: gnosisPrimary
-    handler:
-      graphql:
-        endpoint: https://api.thegraph.com/subgraphs/name/messari/spark-lend-gnosis

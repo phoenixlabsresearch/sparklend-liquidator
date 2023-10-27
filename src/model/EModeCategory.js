@@ -1,9 +1,9 @@
 class EModeCategory {
 
-    constructor(id, name, liquidationThreshold) {
-        this.id = id;
-        this.name = name;
-        this.liquidationThreshold = liquidationThreshold;
+    constructor(v) {
+        this.id = v.id;
+        this.label = v.label;
+        this.liquidationThreshold = v.liquidationThreshold;
     }
 
 }

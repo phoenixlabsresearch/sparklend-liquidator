@@ -75,12 +75,6 @@ function valueToBigNumber(amount) {
     return new BigNumber(amount);
 }
 
-async function multicall (calls, decoder) {
-    const contract = await ethers.getContractAt("IMulticall", addresses.MULTICALL_ADDRESS);
-    const results = (await contract.aggregate(calls)).returnData;
-    return results.map(r => decoder(r));
-}
-
 module.exports = {
     sleep,
     retry,
@@ -89,5 +83,4 @@ module.exports = {
     timeout,
     shortNum,
     valueToBigNumber,
-    multicall,
 };

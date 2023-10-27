@@ -1,8 +1,14 @@
 class Borrow {
 
-    constructor(underlying, amount) {
-        this.underlying = underlying;
-        this.amount = amount;
+    constructor(v) {
+        this.asset = v.asset;
+        this.amount = v.amount;
+
+        this.position = null;
+    }
+
+    getUSDValue() {
+        return this.amount.multipliedBy(this.position.network.getReserve(this.asset).price);
     }
 
 }
