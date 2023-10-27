@@ -6,7 +6,7 @@ class OneInch {
         this.network = network;
     }
 
-    async getSwapData(from, to, amount) {
+    async fetchSwapData(from, to, amount) {
         const apiBaseUrl = `${process.env.ONEINCH_URL}/v5.0/${this.network.chainId}`;
         function apiRequestUrl(methodName, queryParams) {
             return apiBaseUrl + methodName + '?' + (new URLSearchParams(queryParams)).toString();

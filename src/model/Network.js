@@ -25,6 +25,10 @@ class Network {
         return await ethers.getContractAt("IUiPoolDataProviderV3", this.uiPoolDataProvider, this.getReadProvider());
     }
 
+    async getLoanLiquidator() {
+        return await ethers.getContractAt("LiquidateLoan", this.liquidateLoan, this.getWriteProvider());
+    }
+
     async init() {
         this.chainId = (await this.getReadProvider().provider.getNetwork()).chainId;
         this.reserves = await new ReserveSource(this).fetchAll();

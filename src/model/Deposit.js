@@ -16,6 +16,10 @@ class Deposit {
         return this.getUSDValue().multipliedBy(this.liquidationThreshold);
     }
 
+    getReserve() {
+        return this.position.network.getReserve(this.asset);
+    }
+
 }
 
 module.exports = Deposit;
