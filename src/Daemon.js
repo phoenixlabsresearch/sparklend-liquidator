@@ -25,13 +25,13 @@ class Daemon {
     async run() {
         this.logger("SparkLend Liquidator starting up...");
 
-        const network = new Network(config.networks[0]);
+        /*const network = new Network(config.networks[0]);
         await network.init();
         this.logger(await (new OneInch(network)).fetchSwapData(
             "0x6b175474e89094c44da98b954eedeac495271d0f",
             "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
             valueToBigNumber("100")
-        ));
+        ));*/
 
         /*await Promise.all(config.networks.map(async (d) => {
             const network = new Network(d);

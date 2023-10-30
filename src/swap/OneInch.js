@@ -7,23 +7,24 @@ class OneInch {
     }
 
     async fetchSwapData(from, to, amount) {
-        const apiBaseUrl = `${process.env.ONEINCH_URL}/v5.0/${this.network.chainId}`;
+        const apiBaseUrl = `${process.env.ONEINCH_URL}/swap/v5.2/${this.network.chainId}`;
         function apiRequestUrl(methodName, queryParams) {
             return apiBaseUrl + methodName + '?' + (new URLSearchParams(queryParams)).toString();
         }
         const maxDEXSlippage = 2;
     
         const res = await fetch(apiRequestUrl('/swap', {
-            fromTokenAddress: from,
-            toTokenAddress: to,
+            src: ethers.utils.getAddress(from),
+            dst: ethers.utils.getAddress(to),
             amount: amount.multipliedBy(this.network.getReserve(from).units).toFixed(0),
-            fromAddress: this.network.liquidateLoan,
+            from: ethers.utils.getAddress(this.network.liquidateLoan),
             slippage: maxDEXSlippage,
             allowPartialFill: false,
             disableEstimate: true,
         }), {
             headers: {
-                'Authorization': `Bearer ${process.env.ONEINCH_API_KEY}`
+                'Authorization': `Bearer ${process.env.ONEINCH_API_KEY}`,
+                'Accept': "application/json",
             }
         });
 

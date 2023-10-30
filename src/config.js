@@ -7,7 +7,7 @@ module.exports = {
             writeRpc: hre.network.config.url,
             poolAddressProvider: "0x02C3eA4e34C0cBd694D2adFa2c690EECbC1793eE",
             uiPoolDataProvider: "0xF028c2F4b19898718fD0F77b9b881CbfdAa5e8Bb",
-            liquidateLoan: "0x0"
+            liquidateLoan: "0x83D546D03Cc912E979EcD2538c3FC98f379B2a94"
         },
         {
             name: "Gnosis Chain",
@@ -16,7 +16,7 @@ module.exports = {
             writeRpc: "https://rpc.ankr.com/gnosis",
             poolAddressProvider: "0xA98DaCB3fC964A6A0d2ce3B77294241585EAbA6d",
             uiPoolDataProvider: "0xF028c2F4b19898718fD0F77b9b881CbfdAa5e8Bb",
-            liquidateLoan: "0x0"
+            liquidateLoan: "0x83D546D03Cc912E979EcD2538c3FC98f379B2a94"
         }
     ]
 };
