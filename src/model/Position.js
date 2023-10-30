@@ -102,7 +102,7 @@ class Position {
     
         return {
             collateral,
-            toLiquidate,
+            toLiquidate: debt,
             collateralToLiquidate: collateralToLiquidate.div(1.01),     // FIXME - this should not be some hard coded number to make sure collateral we get back > DEX swap amount
             debtToCover
         };

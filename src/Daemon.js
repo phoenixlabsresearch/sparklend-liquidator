@@ -28,7 +28,7 @@ class Daemon {
         const networks = await Promise.all(config.networks.map(async (d) => {
             const network = new Network(d);
             await network.init();
-            liquidators.set(network.chainId, new Liquidator(network));
+            liquidators.set(network.chainId, new Liquidator(network, this.logger));
             return network;
         }));
 
@@ -62,8 +62,10 @@ class Daemon {
 
             // Once per 10 seconds
             this.intervalIgnoreErrors(async () => {
-                
-            }, 10 * 1000)
+                await Promise.all(networks.map(async (network) => {
+                    await liquidators.get(network.chainId).liquidate();
+                }));
+            }, 3 * 1000)
         ]);
     }
 

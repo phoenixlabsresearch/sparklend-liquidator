@@ -3,8 +3,10 @@ const OneInchLiquidation = require("./OneInchLiquidation");
 
 class Liquidator {
 
-    constructor(network) {
+    constructor(network, logger) {
         this.network = network;
+        this.logger = logger;
+
         this.positions = new PositionSet([]);
     }
 
@@ -34,7 +36,13 @@ class Liquidator {
         // Attempt to liquidate all the positions
         for (const position of this.positions.positionArray) {
             const liquidaion = new OneInchLiquidation(position);
-            await liquidaion.execute();
+            try {
+                this.logger(`[${this.network}] Attempting to liquidate ${position}`);
+                await liquidaion.execute();
+                this.logger(`[${this.network}] Liquidation successful ${position}`);
+            } catch (err) {
+                this.logger(`[${this.network}] Liquidation failed ${position}\n${err.stack}`);
+            }
         }
 
         // Refresh the positions to see if they are good to remove

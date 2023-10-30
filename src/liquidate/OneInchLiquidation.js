@@ -12,13 +12,13 @@ class OneInchLiquidation {
         const swapData = await (new OneInch(this.position.network)).fetchSwapData(
             params.collateral.asset,
             params.toLiquidate.asset,
-            params.toLiquidate.collateralToLiquidate
+            params.collateralToLiquidate
         );
         const args = [
             params.toLiquidate.asset,
-            liquidationParams.debtToCover.multipliedBy(params.toLiquidate.getReserve().units).toFixed(0),
+            params.debtToCover.multipliedBy(params.toLiquidate.getReserve().units).toFixed(0),
             params.collateral.asset,
-            position.id,
+            this.position.id,
             swapData.to,
             swapData.data,
         ];
@@ -33,6 +33,7 @@ class OneInchLiquidation {
         } catch (e) {
             throw new Error(`Gas Estimate Failed. Reason = ${e.reason}`);
         }
+        return;
         return await retry(async (attempts) => {
             const feeData = await ethers.provider.getFeeData();
             const overrides = {
