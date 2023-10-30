@@ -2,8 +2,7 @@ const GraphQLSource = require("./ingest/GraphQLSource");
 const Network = require("./model/Network");
 const { interval } = require("./Utils");
 const config = require("./config");
-const { valueToBigNumber } = require("@aave/math-utils");
-const OneInch = require("./swap/OneInch");
+const Liquidator = require("./liquidate/Liquidator");
 
 class Daemon {
 
@@ -12,7 +11,7 @@ class Daemon {
     }
 
     async intervalIgnoreErrors(callback, ms) {
-        interval(async () => {
+        return interval(async () => {
             try {
                 await callback();
             } catch (err) {
@@ -25,27 +24,40 @@ class Daemon {
     async run() {
         this.logger("SparkLend Liquidator starting up...");
 
-        /*const network = new Network(config.networks[0]);
-        await network.init();
-        this.logger(await (new OneInch(network)).fetchSwapData(
-            "0x6b175474e89094c44da98b954eedeac495271d0f",
-            "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
-            valueToBigNumber("100")
-        ));*/
-
-        /*await Promise.all(config.networks.map(async (d) => {
+        const liquidators = new Map();
+        const networks = await Promise.all(config.networks.map(async (d) => {
             const network = new Network(d);
             await network.init();
-            const positions = await (new GraphQLSource(network)).fetchAll();
-            const underwaterPositions = positions.filter({ underwaterOnly:true });
-            await underwaterPositions.resolveEMode();
-            this.logger(network.name + ": " + underwaterPositions.filter({ underwaterOnly:true }));
-        }));*/
+            liquidators.set(network.chainId, new Liquidator(network));
+            return network;
+        }));
+
+        this.logger("All networks loaded.");
     
         return Promise.all([
             // Once per 1 minute
             this.intervalIgnoreErrors(async () => {
-                
+                await Promise.all(networks.map(async (network) => {
+                    // Refresh reserves
+                    await network.refreshReserves();
+                    this.logger(`[${network}] ${network.reserves.join(", ")}`);
+                    
+                    // Find all positions that need liquidation and add them to the liquidator
+                    const {
+                        positionsAdded,
+                        positionsUpdated
+                    } = liquidators.get(network.chainId).addPositionsToLiquidate(await (new GraphQLSource(network)).fetchAllUnderwater());
+                    if (positionsAdded.length > 0 || positionsUpdated.length > 0) {
+                        let str = `[${network}] Liquidation`;
+                        if (positionsAdded.length > 0) {
+                            str += ` - Added ${positionsAdded.length}: ${positionsAdded.join(", ")}`;
+                        }
+                        if (positionsUpdated.length > 0) {
+                            str += ` - Updated ${positionsUpdated.length}: ${positionsUpdated.join(", ")}`;
+                        }
+                        this.logger(str);
+                    }
+                }));
             }, 60 * 1000),
 
             // Once per 10 seconds

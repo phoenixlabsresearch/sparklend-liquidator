@@ -31,6 +31,9 @@ class Network {
 
     async init() {
         this.chainId = (await this.getReadProvider().provider.getNetwork()).chainId;
+    }
+
+    async refreshReserves() {
         this.reserves = await new ReserveSource(this).fetchAll();
     }
 
@@ -39,7 +42,7 @@ class Network {
     }
 
     toString() {
-        return this.name;
+        return `${this.name}(${this.chainId})`;
     }
 
 }

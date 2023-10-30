@@ -6,10 +6,13 @@ class Reserve {
         this.units = v.units;
         this.price = v.price;
         this.emode = v.emode;
+        this.liquidityIndex = v.liquidityIndex;
+        this.variableBorrowIndex = v.variableBorrowIndex;
+        this.liquidationThreshold = v.liquidationThreshold;
     }
 
     toString() {
-        return `${this.symbol} (${this.asset}, Price: ${this.price.toFixed(2)})`;
+        return `${this.symbol} ${this.price.toFixed(2)}`;
     }
 
 }

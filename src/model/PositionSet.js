@@ -9,17 +9,6 @@ class PositionSet {
         this.positionArray = positions;
     }
 
-    // Merge two sets and use the newer version if there are duplicates
-    merge(otherPositionSet) {
-        const newPositionSet = new PositionSet(Array.from(this.positions.values()));
-        for (const p of otherPositionSet.positions.values()) {
-            if (p.blockNumber > newPositionSet.positions.get(p.id).blockNumber) {
-                newPositionSet.positions.set(p.id, p);
-            }
-        }
-        return newPositionSet;
-    }
-
     filter(opts) {
         return new PositionSet(Array.from(this.positions.values()).filter(p => {
             let valid = true;
@@ -34,7 +23,8 @@ class PositionSet {
         }));
     }
 
-    async resolveEMode() {
+    // Fetch the latest data for all positions from a manual fetch (read rpc node)
+    async fetchLatest() {
         // First separate the positions by network
         const positionsByNetwork = new Map();
         for (const p of this.positions.values()) {
@@ -45,11 +35,11 @@ class PositionSet {
         }
 
         // Now resolve the e-mode category for each network
+        const proms = [];
         for (const [network, positions] of positionsByNetwork) {
-            (await new ManualSource(network, positions.map(p => p.id)).fetchAll()).positionArray.forEach((_p, i) => {
-                positions[i].setEModeCategoryData(_p.emodeCategoryData);
-            });
+            proms.push(new ManualSource(network, positions.map(p => p.id)).fetchAll());
         }
+        return new PositionSet((await Promise.all(proms)).flatMap(p => p.positionArray));
     }
 
     toString() {

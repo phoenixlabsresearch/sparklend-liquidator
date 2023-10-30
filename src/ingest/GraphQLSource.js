@@ -87,6 +87,12 @@ class GraphQLSource {
         return new PositionSet(positions.filter(p => p.getBorrowTotalUSDValue().isGreaterThan(0)));
     }
 
+    async fetchAllUnderwater() {
+        // Need to do two passes as the graphql does not specify emode category
+        const positions = (await this.fetchAll()).filter({ underwaterOnly: true });
+        return (await positions.fetchLatest()).filter({ underwaterOnly: true });
+    }
+
 }
 
 module.exports = GraphQLSource;

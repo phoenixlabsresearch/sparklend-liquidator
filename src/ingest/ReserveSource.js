@@ -3,6 +3,8 @@ const EModeCategory = require("../model/EModeCategory");
 const BigNumber = require("bignumber.js");
 const { valueToBigNumber } = require("../utils");
 
+const RAY = new BigNumber(10).pow(27);
+
 class ReserveSource {
 
     constructor(network) {
@@ -23,7 +25,10 @@ class ReserveSource {
                     id: r.eModeCategoryId,
                     label: r.eModeLabel,
                     liquidationThreshold: valueToBigNumber(r.eModeLiquidationThreshold).div(10000)
-                }) : null
+                }) : null,
+                liquidityIndex: valueToBigNumber(r.liquidityIndex).div(RAY),
+                variableBorrowIndex: valueToBigNumber(r.variableBorrowIndex).div(RAY),
+                liquidationThreshold: valueToBigNumber(r.reserveLiquidationThreshold).div(10000)
             });
         });
     }

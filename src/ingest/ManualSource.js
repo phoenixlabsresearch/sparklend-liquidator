@@ -5,7 +5,6 @@ const PositionSet = require("../model/PositionSet");
 const BigNumber = require("bignumber.js");
 const { valueToBigNumber } = require("../utils");
 
-const RAY = new BigNumber(10).pow(27);
 
 class ManualSource {
 
@@ -34,24 +33,22 @@ class ManualSource {
             const borrows = [];
             
             userReserveData.forEach(rd => {
-                const scaledATokenBalance = valueToBigNumber(rd.scaledATokenBalance);
-                const scaledVariableDebt = valueToBigNumber(rd.scaledVariableDebt);
-                const liquidityIndex = valueToBigNumber(rd.liquidityIndex).div(RAY);
-                const variableBorrowIndex = valueToBigNumber(rd.variableBorrowIndex).div(RAY);
                 const asset = rd.underlyingAsset.toLowerCase();
                 const reserve = this.network.getReserve(asset);
+                const scaledATokenBalance = valueToBigNumber(rd.scaledATokenBalance);
+                const scaledVariableDebt = valueToBigNumber(rd.scaledVariableDebt);
 
                 if (scaledATokenBalance.isGreaterThan(0) && rd.usageAsCollateralEnabledOnUser) {
                     deposits.push(new Deposit({
                         asset: asset,
-                        amount: scaledATokenBalance.multipliedBy(liquidityIndex).div(this.network.getReserve(asset).units),
-                        liquidationThreshold: valueToBigNumber(rd.liquidationThreshold).div(10000)
+                        amount: scaledATokenBalance.multipliedBy(reserve.liquidityIndex).div(this.network.getReserve(asset).units),
+                        liquidationThreshold: reserve.liquidationThreshold
                     }));
                 }
                 if (scaledVariableDebt.isGreaterThan(0)) {
                     borrows.push(new Borrow({
                         asset: asset,
-                        amount: scaledVariableDebt.multipliedBy(variableBorrowIndex).div(this.network.getReserve(asset).units)
+                        amount: scaledVariableDebt.multipliedBy(reserve.variableBorrowIndex).div(this.network.getReserve(asset).units)
                     }));
                 }
                 if (emodeCategory != 0 && reserve.emode?.id === emodeCategory) {
@@ -60,7 +57,7 @@ class ManualSource {
             });
 
             const position = new Position({
-                network,
+                network: this.network,
                 blockNumber,
                 id: id.toLowerCase(),
                 deposits,

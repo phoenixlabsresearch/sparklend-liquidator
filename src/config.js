@@ -9,7 +9,7 @@ module.exports = {
             uiPoolDataProvider: "0xF028c2F4b19898718fD0F77b9b881CbfdAa5e8Bb",
             liquidateLoan: "0x83D546D03Cc912E979EcD2538c3FC98f379B2a94"
         },
-        {
+        /*{
             name: "Gnosis Chain",
             theGraphPrefix: "gnosisPrimary",
             readRpc: "https://rpc.ankr.com/gnosis",
@@ -17,6 +17,6 @@ module.exports = {
             poolAddressProvider: "0xA98DaCB3fC964A6A0d2ce3B77294241585EAbA6d",
             uiPoolDataProvider: "0xF028c2F4b19898718fD0F77b9b881CbfdAa5e8Bb",
             liquidateLoan: "0x83D546D03Cc912E979EcD2538c3FC98f379B2a94"
-        }
+        }*/
     ]
 };
