@@ -12,11 +12,11 @@ module.exports = {
       accounts: ['0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80']
     },
     mainnet: {
-      url: process.env.MAINNET_RPC_URL,
+      url: process.env.MAINNET_RPC_URL || "https://mainnet.infura.io/v3/b9794ad1ddf84dfb8c34d6bb5dca2001",
       accounts: [process.env.PRIVATE_KEY]
     },
     gnosis: {
-      url: process.env.GNOSIS_CHAIN_RPC_URL,
+      url: process.env.GNOSIS_CHAIN_RPC_URL || "https://rpc.ankr.com/gnosis",
       accounts: [process.env.PRIVATE_KEY]
     }
   },
