@@ -3,18 +3,24 @@ import { DefaultLogger } from '@graphql-mesh/utils';
 import MeshCache from "@graphql-mesh/cache-localforage";
 import { fetch as fetchFn } from '@whatwg-node/fetch';
 import GraphqlHandler from "@graphql-mesh/graphql";
-import BareMerger from "@graphql-mesh/merger-bare";
+import PrefixTransform from "@graphql-mesh/transform-prefix";
+import BlockTrackingTransform from "@graphprotocol/client-block-tracking";
+import StitchingMerger from "@graphql-mesh/merger-stitching";
 import { createMeshHTTPHandler } from '@graphql-mesh/http';
 import { getMesh } from '@graphql-mesh/runtime';
 import { MeshStore, FsStoreStorageAdapter } from '@graphql-mesh/store';
 import { path as pathModule } from '@graphql-mesh/cross-helpers';
+import * as importedModule$0 from "./sources/gnosisPrimary/introspectionSchema.json";
+import * as importedModule$1 from "./sources/ethereumPrimary/introspectionSchema.json";
 import { fileURLToPath } from '@graphql-mesh/utils';
 const baseDir = pathModule.join(pathModule.dirname(fileURLToPath(import.meta.url)), '..');
 const importFn = (moduleId) => {
     const relativeModuleId = (pathModule.isAbsolute(moduleId) ? pathModule.relative(baseDir, moduleId) : moduleId).split('\\').join('/').replace(baseDir + '/', '');
     switch (relativeModuleId) {
-        case ".graphclient/sources/spark/introspectionSchema.json":
-            return import("./sources/spark/introspectionSchema.json");
+        case ".graphclient/sources/gnosisPrimary/introspectionSchema.json":
+            return Promise.resolve(importedModule$0);
+        case ".graphclient/sources/ethereumPrimary/introspectionSchema.json":
+            return Promise.resolve(importedModule$1);
         default:
             return Promise.reject(new Error(`Cannot find module '${relativeModuleId}'.`));
     }
@@ -42,29 +48,81 @@ export async function getMeshOptions() {
     const sources = [];
     const transforms = [];
     const additionalEnvelopPlugins = [];
-    const sparkTransforms = [];
+    const ethereumPrimaryTransforms = [];
+    const gnosisPrimaryTransforms = [];
     const additionalTypeDefs = [];
-    const sparkHandler = new GraphqlHandler({
-        name: "spark",
+    const ethereumPrimaryHandler = new GraphqlHandler({
+        name: "ethereumPrimary",
         config: { "endpoint": "https://api.thegraph.com/subgraphs/name/messari/spark-lend-ethereum" },
         baseDir,
         cache,
         pubsub,
-        store: sourcesStore.child("spark"),
-        logger: logger.child("spark"),
+        store: sourcesStore.child("ethereumPrimary"),
+        logger: logger.child("ethereumPrimary"),
         importFn,
     });
-    sources[0] = {
-        name: 'spark',
-        handler: sparkHandler,
-        transforms: sparkTransforms
-    };
-    const additionalResolvers = [];
-    const merger = new BareMerger({
+    const gnosisPrimaryHandler = new GraphqlHandler({
+        name: "gnosisPrimary",
+        config: { "endpoint": "https://api.thegraph.com/subgraphs/name/messari/spark-lend-gnosis" },
+        baseDir,
         cache,
         pubsub,
-        logger: logger.child('bareMerger'),
-        store: rootStore.child('bareMerger')
+        store: sourcesStore.child("gnosisPrimary"),
+        logger: logger.child("gnosisPrimary"),
+        importFn,
+    });
+    ethereumPrimaryTransforms[0] = new PrefixTransform({
+        apiName: "ethereumPrimary",
+        config: { "value": "ethereumPrimary", "includeRootOperations": true },
+        baseDir,
+        cache,
+        pubsub,
+        importFn,
+        logger,
+    });
+    gnosisPrimaryTransforms[0] = new PrefixTransform({
+        apiName: "gnosisPrimary",
+        config: { "value": "gnosisPrimary", "includeRootOperations": true },
+        baseDir,
+        cache,
+        pubsub,
+        importFn,
+        logger,
+    });
+    ethereumPrimaryTransforms[1] = new BlockTrackingTransform({
+        apiName: "ethereumPrimary",
+        config: { "validateSchema": true },
+        baseDir,
+        cache,
+        pubsub,
+        importFn,
+        logger,
+    });
+    gnosisPrimaryTransforms[1] = new BlockTrackingTransform({
+        apiName: "gnosisPrimary",
+        config: { "validateSchema": true },
+        baseDir,
+        cache,
+        pubsub,
+        importFn,
+        logger,
+    });
+    sources[0] = {
+        name: 'ethereumPrimary',
+        handler: ethereumPrimaryHandler,
+        transforms: ethereumPrimaryTransforms
+    };
+    sources[1] = {
+        name: 'gnosisPrimary',
+        handler: gnosisPrimaryHandler,
+        transforms: gnosisPrimaryTransforms
+    };
+    const additionalResolvers = [];
+    const merger = new StitchingMerger({
+        cache,
+        pubsub,
+        logger: logger.child('stitchingMerger'),
+        store: rootStore.child('stitchingMerger')
     });
     return {
         sources,

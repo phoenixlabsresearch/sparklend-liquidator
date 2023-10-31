@@ -1,7 +1,5 @@
 const BigNumber = require("bignumber.js");
-const fs = require('fs/promises');
 const { ethers } = require("hardhat");
-const { addresses } = require("./constants");
 
 async function sleep (ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -77,20 +75,6 @@ function valueToBigNumber(amount) {
     return new BigNumber(amount);
 }
 
-async function readAllFiles(dir) {
-    const files = await fs.readdir(dir);
-    return Promise.all(files
-        .filter(file => file.endsWith('.json'))
-        .map(async file => JSON.parse(await fs.readFile(`${dir}/${file}`, 'utf8')))
-    );
-}
-
-async function multicall (calls, decoder) {
-    const contract = await ethers.getContractAt("IMulticall", addresses.MULTICALL_ADDRESS);
-    const results = (await contract.aggregate(calls)).returnData;
-    return results.map(r => decoder(r));
-}
-
 module.exports = {
     sleep,
     retry,
@@ -99,6 +83,4 @@ module.exports = {
     timeout,
     shortNum,
     valueToBigNumber,
-    readAllFiles,
-    multicall,
 };

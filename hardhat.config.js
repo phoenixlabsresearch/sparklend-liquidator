@@ -13,7 +13,10 @@ module.exports = {
     },
     mainnet: {
       url: process.env.MAINNET_RPC_URL,
-      executeUrl: process.env.MAINNET_EXECUTE_RPC_URL,
+      accounts: [process.env.PRIVATE_KEY]
+    },
+    gnosis: {
+      url: process.env.GNOSIS_CHAIN_RPC_URL,
       accounts: [process.env.PRIVATE_KEY]
     }
   },

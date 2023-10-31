@@ -7,15 +7,16 @@
     "deploy": "hardhat run scripts/deploy.js",
     "deploy-local": "hardhat run --network local scripts/deploy.js",
     "deploy-mainnet": "hardhat run --network mainnet scripts/deploy.js",
-    "server": "hardhat run scripts/server.js",
-    "server-local": "hardhat run --network local scripts/server.js",
-    "server-mainnet": "hardhat run --network mainnet scripts/server.js",
-    "test": "hardhat test --network mainnet"
+    "deploy-gnosis": "hardhat run --network gnosis scripts/deploy.js",
+    "server-local": "hardhat run scripts/server.js",
+    "server": "NODE_ENV=prod hardhat run scripts/server.js",
+    "test": "hardhat test --network mainnet",
+    "build-thegraph": "graphclient build --fileType json"
   },
   "devDependencies": {
     "@ethersproject/abi": "^5.4.7",
     "@ethersproject/providers": "^5.4.7",
-    "@graphprotocol/client-cli": "^2.2.20",
+    "@graphprotocol/client-cli": "^3.0.0",
     "@nomicfoundation/hardhat-chai-matchers": "^1.0.0",
     "@nomicfoundation/hardhat-network-helpers": "^1.0.0",
     "@nomicfoundation/hardhat-toolbox": "^2.0.0",
@@ -34,6 +35,8 @@
   "dependencies": {
     "@aave/contract-helpers": "^1.11.2",
     "@aave/math-utils": "^1.11.2",
+    "@graphql-mesh/transform-prefix": "^0.95.9",
+    "@graphql-mesh/transform-rename": "^0.95.9",
     "bignumber.js": "^9.1.1",
     "dotenv": "^16.0.3",
     "graphql": "^16.6.0",
