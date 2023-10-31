@@ -7,7 +7,7 @@ Please note this bot will liquidate any position regardless of whether it's prof
 ## Getting Started
 
 1. Run `yarn` to install all dependencies.
-1. Make a copy of `src/config/config.example.js` called `src/config/config.local.js` and fill in all values.
+1. Make a copy of `src/config/config.example.js` called `src/config/config.prod.js` and fill in all values.
 1. Run:
 
 ```
