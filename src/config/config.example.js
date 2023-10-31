@@ -27,7 +27,7 @@ function getConfig() {
             }
         ],
         oneinch: {
-            url: "https://api.1inch.io",
+            url: "https://api.1inch.dev",
             apiKey: "XXX"
         },
     }
