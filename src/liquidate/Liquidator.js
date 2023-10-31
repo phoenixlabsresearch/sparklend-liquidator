@@ -1,5 +1,6 @@
 const PositionSet = require("../model/PositionSet");
 const OneInchLiquidation = require("./OneInchLiquidation");
+const { sleep } = require("../Utils");
 
 class Liquidator {
 
@@ -41,9 +42,9 @@ class Liquidator {
                 this.logger(`[${this.network}] Attempting to liquidate ${position}`);
                 await liquidaion.execute();
                 this.logger(`[${this.network}] Liquidation successful ${position}`);
+                await sleep(3000);
             } catch (err) {
                 this.logger(`[${this.network}] Liquidation failed ${position}\n${err.stack}`);
-                return;
             }
         }
 

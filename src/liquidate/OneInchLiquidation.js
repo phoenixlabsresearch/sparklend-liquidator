@@ -28,7 +28,6 @@ class OneInchLiquidation {
         const signer = this.position.network.getWriteProvider();
         const nonce = await signer.getTransactionCount();
         let gasLimitEstimate = 2000000;
-        console.log(args);
         try {
             gasLimitEstimate = await liquidator.estimateGas.executeFlashLoans(
                 ...args
@@ -36,9 +35,8 @@ class OneInchLiquidation {
         } catch (e) {
             throw new Error(`Gas Estimate Failed. Reason = ${e.reason}`);
         }
-        return;
         return await retry(async (attempts) => {
-            const feeData = await ethers.provider.getFeeData();
+            const feeData = await liquidator.provider.getFeeData();
             const overrides = {
                 gasLimit: gasLimitEstimate * 2,
                 maxFeePerGas: feeData.maxFeePerGas,

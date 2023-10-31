@@ -44,10 +44,11 @@ class Daemon {
                     this.logger(`[${network}] ${network.reserves.join(", ")}`);
                     
                     // Find all positions that need liquidation and add them to the liquidator
+                    const positionsToLiquidate = (await (new GraphQLSource(network)).fetchAllUnderwater()).filter({ minBorrowUSDValue:1000 });
                     const {
                         positionsAdded,
                         positionsUpdated
-                    } = liquidators.get(network.chainId).addPositionsToLiquidate(await (new GraphQLSource(network)).fetchAllUnderwater());
+                    } = liquidators.get(network.chainId).addPositionsToLiquidate(positionsToLiquidate);
                     if (positionsAdded.length > 0 || positionsUpdated.length > 0) {
                         let str = `[${network}] Liquidation`;
                         if (positionsAdded.length > 0) {
@@ -66,7 +67,7 @@ class Daemon {
                 await Promise.all(networks.map(async (network) => {
                     await liquidators.get(network.chainId).liquidate();
                 }));
-            }, 3 * 1000)
+            }, 10 * 1000)
         ]);
     }
 
