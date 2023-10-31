@@ -7,14 +7,6 @@ function log(str) {
 }
 
 async function main() {
-    const rpc = hre.network.config.url;
-    const executeRpc = hre.network.config.executeUrl;
-    if (executeRpc) {
-        log(`Using RPCs: ${rpc} / ${executeRpc} (Execute)`);
-    } else {
-        log(`Using RPC: ${rpc}`);
-    }
-
     await new Daemon(log).run();
 }
 

@@ -29,14 +29,7 @@ class Position {
     }
 
     getBorrowPowerTotalUSDValue() {
-        return this.deposits.reduce((sum, d) => {
-            // Use the e-mode LT if it's known, otherwise use the asset LT
-            if (this.emodeCategoryData != null) {
-                return sum.plus(d.getUSDValue().multipliedBy(this.emodeCategoryData.liquidationThreshold));
-            } else {
-                return sum.plus(d.getUSDBorrowPower());
-            }
-        }, valueToBigNumber(0));
+        return this.deposits.reduce((sum, d) =>  sum.plus(d.getUSDBorrowPower()), valueToBigNumber(0));
     }
 
     getBorrowTotalUSDValue() {
@@ -87,14 +80,13 @@ class Position {
         }
         const baseCollateral = debt.getReserve().price.multipliedBy(debtToCover)
             .div(collateral.getReserve().price);
-        // FIXME this needs to take e-mode into account
-        const maxCollateralToLiquidate = baseCollateral.multipliedBy(collateral.liquidationThreshold);
+        const maxCollateralToLiquidate = baseCollateral.multipliedBy(collateral.liquidationBonus);
     
         if (maxCollateralToLiquidate.isGreaterThan(collateral.amount)) {
-            // Amount needed > amount available
-            maxCollateralToLiquidate = collateral.amount;
+            // Amount needed > amount available, reduce the debt to cover
+            collateralToLiquidate = maxCollateralToLiquidate = collateral.amount;
             debtToCover = collateral.getReserve().price.multipliedBy(maxCollateralToLiquidate)
-                .div(debt.getReserve().price).div(collateral.reserveLiquidationBonus);
+                .div(debt.getReserve().price).div(collateral.liquidationBonus);
         } else {
             // There is enough collateral available
             collateralToLiquidate = maxCollateralToLiquidate;

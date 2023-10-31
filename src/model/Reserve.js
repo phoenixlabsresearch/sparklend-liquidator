@@ -9,6 +9,7 @@ class Reserve {
         this.liquidityIndex = v.liquidityIndex;
         this.variableBorrowIndex = v.variableBorrowIndex;
         this.liquidationThreshold = v.liquidationThreshold;
+        this.liquidationBonus = v.liquidationBonus;
     }
 
     toString() {

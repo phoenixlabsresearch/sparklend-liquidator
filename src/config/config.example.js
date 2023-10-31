@@ -11,6 +11,7 @@ function getConfig() {
                 readRpc: "https://mainnet.infura.io/v3/b9794ad1ddf84dfb8c34d6bb5dca2001",
                 writeRpc: "http://127.0.0.1:8545",
                 poolAddressProvider: "0x02C3eA4e34C0cBd694D2adFa2c690EECbC1793eE",
+                pool: "0xC13e21B648A5Ee794902342038FF3aDAB66BE987",
                 uiPoolDataProvider: "0xF028c2F4b19898718fD0F77b9b881CbfdAa5e8Bb",
                 liquidateLoan: "0x47f564abAE443de9482c20a3e1f22fA1519DfC31"
             },
@@ -20,6 +21,7 @@ function getConfig() {
                 readRpc: "https://rpc.ankr.com/gnosis",
                 writeRpc: "https://rpc.ankr.com/gnosis",
                 poolAddressProvider: "0xA98DaCB3fC964A6A0d2ce3B77294241585EAbA6d",
+                pool: "0x2Dae5307c5E3FD1CF5A72Cb6F698f915860607e0",
                 uiPoolDataProvider: "0xF028c2F4b19898718fD0F77b9b881CbfdAa5e8Bb",
                 liquidateLoan: "0xDae2E68beEb5686e48DEB03c8886417fF76d84C3"
             }

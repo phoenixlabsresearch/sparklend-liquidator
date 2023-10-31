@@ -16,7 +16,7 @@ class OneInchLiquidation {
             params.collateralToLiquidate
         );
         const args = [
-            this.position.network.liquidateLoan,
+            this.position.network.pool,
             params.toLiquidate.asset,
             params.debtToCover.multipliedBy(params.toLiquidate.getReserve().units).toFixed(0),
             params.collateral.asset,
@@ -24,10 +24,11 @@ class OneInchLiquidation {
             swapData.to,
             swapData.data,
         ];
-        const liquidator = this.position.network.getLoanLiquidator();
+        const liquidator = await this.position.network.getLoanLiquidator();
         const signer = this.position.network.getWriteProvider();
         const nonce = await signer.getTransactionCount();
         let gasLimitEstimate = 2000000;
+        console.log(args);
         try {
             gasLimitEstimate = await liquidator.estimateGas.executeFlashLoans(
                 ...args

@@ -99,7 +99,7 @@ contract LiquidateLoan is IFlashLoanReceiver {
     }
 
     function flashLoanReceived(
-        address assetToLiquidiate,
+        address assetToLiquidate,
         uint256 amount,
         uint256 fee,
         bytes calldata params
@@ -110,11 +110,11 @@ contract LiquidateLoan is IFlashLoanReceiver {
         //amountOutMin - minimum amount of asset paid when swapping collateral
         {
             //liquidate unhealthy loan
-            IERC20(assetToLiquidiate).approve(lendingPool, amount);
-            ILendingPool(lendingPool).liquidationCall(collateral, assetToLiquidiate, userToLiquidate, amount, false);
+            IERC20(assetToLiquidate).approve(lendingPool, amount);
+            ILendingPool(lendingPool).liquidationCall(collateral, assetToLiquidate, userToLiquidate, amount, false);
 
             //swap collateral from liquidate back to asset from flashloan to pay it off
-            if (collateral != assetToLiquidiate) {
+            if (collateral != assetToLiquidate) {
                 // Perform swap
                 if (swapPath.length > 0) {
                     IERC20(collateral).approve(router, IERC20(collateral).balanceOf(address(this)));
@@ -132,11 +132,11 @@ contract LiquidateLoan is IFlashLoanReceiver {
         }
 
         //Pay to owner the balance after fees
-        uint256 earnings = IERC20(assetToLiquidiate).balanceOf(address(this));
+        uint256 earnings = IERC20(assetToLiquidate).balanceOf(address(this));
         uint256 costs = amount + fee;
 
         require(earnings >= costs , "No profit");
-        IERC20(assetToLiquidiate).transfer(sender, earnings - costs);
+        IERC20(assetToLiquidate).transfer(sender, earnings - costs);
         IERC20(collateral).transfer(sender, IERC20(collateral).balanceOf(address(this)));   // May be some dust left
 
         return lendingPool;

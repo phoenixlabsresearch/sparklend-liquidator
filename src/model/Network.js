@@ -8,6 +8,7 @@ class Network {
         this.readRpc = v.readRpc;
         this.writeRpc = v.writeRpc;
         this.poolAddressProvider = v.poolAddressProvider;
+        this.pool = v.pool;
         this.uiPoolDataProvider = v.uiPoolDataProvider;
         this.liquidateLoan = v.liquidateLoan;
         this.privateKey = v.privateKey != null ? v.prviateKey : config.account.privateKey;

@@ -24,11 +24,13 @@ class ReserveSource {
                 emode: r.eModeCategoryId !== 0 ? new EModeCategory({
                     id: r.eModeCategoryId,
                     label: r.eModeLabel,
-                    liquidationThreshold: valueToBigNumber(r.eModeLiquidationThreshold).div(10000)
+                    liquidationThreshold: valueToBigNumber(r.eModeLiquidationThreshold).div(10000),
+                    liquidationBonus: valueToBigNumber(r.eModeLiquidationBonus).div(10000)
                 }) : null,
                 liquidityIndex: valueToBigNumber(r.liquidityIndex).div(RAY),
                 variableBorrowIndex: valueToBigNumber(r.variableBorrowIndex).div(RAY),
-                liquidationThreshold: valueToBigNumber(r.reserveLiquidationThreshold).div(10000)
+                liquidationThreshold: valueToBigNumber(r.reserveLiquidationThreshold).div(10000),
+                liquidationBonus: valueToBigNumber(r.reserveLiquidationBonus).div(10000)
             });
         });
     }
