@@ -4,7 +4,7 @@ const Position = require("../model/Position");
 const PositionSet = require("../model/PositionSet");
 const Deposit = require("../model/Deposit");
 const Borrow = require("../model/Borrow");
-const { valueToBigNumber } = require("../utils");
+const { valueToBigNumber } = require("../Utils");
 
 function buildQuery(prefix) {
     return gql`

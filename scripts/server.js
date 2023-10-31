@@ -1,5 +1,4 @@
 const Daemon = require("../src/Daemon");
-const hre = require("hardhat");
 const moment = require("moment");
 
 function log(str) {

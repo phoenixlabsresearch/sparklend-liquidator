@@ -1,4 +1,4 @@
-const { valueToBigNumber } = require("../utils");
+const { valueToBigNumber } = require("../Utils");
 
 class Position {
 
