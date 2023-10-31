@@ -3,18 +3,20 @@ const { retry } = require("../Utils");
 
 class OneInchLiquidation {
 
-    constructor(position) {
+    constructor(config, position) {
+        this.config = config;
         this.position = position;
     }
 
     async execute() {
         const params = this.position.getLiquidationParams();
-        const swapData = await (new OneInch(this.position.network)).fetchSwapData(
+        const swapData = await (new OneInch(this.config, this.position.network)).fetchSwapData(
             params.collateral.asset,
             params.toLiquidate.asset,
             params.collateralToLiquidate
         );
         const args = [
+            this.position.network.liquidateLoan,
             params.toLiquidate.asset,
             params.debtToCover.multipliedBy(params.toLiquidate.getReserve().units).toFixed(0),
             params.collateral.asset,

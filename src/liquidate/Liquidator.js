@@ -3,7 +3,8 @@ const OneInchLiquidation = require("./OneInchLiquidation");
 
 class Liquidator {
 
-    constructor(network, logger) {
+    constructor(config, network, logger) {
+        this.config = config;
         this.network = network;
         this.logger = logger;
 
@@ -35,13 +36,14 @@ class Liquidator {
     async liquidate() {
         // Attempt to liquidate all the positions
         for (const position of this.positions.positionArray) {
-            const liquidaion = new OneInchLiquidation(position);
+            const liquidaion = new OneInchLiquidation(this.config.oneinch, position);
             try {
                 this.logger(`[${this.network}] Attempting to liquidate ${position}`);
                 await liquidaion.execute();
                 this.logger(`[${this.network}] Liquidation successful ${position}`);
             } catch (err) {
                 this.logger(`[${this.network}] Liquidation failed ${position}\n${err.stack}`);
+                return;
             }
         }
 

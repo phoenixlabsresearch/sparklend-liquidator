@@ -11,3 +11,7 @@ data/*
 # Hardhat files
 cache
 artifacts
+
+# Config
+src/config/config.*.js
+!src/config/config.example.js

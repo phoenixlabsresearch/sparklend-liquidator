@@ -7,9 +7,9 @@
     "deploy": "hardhat run scripts/deploy.js",
     "deploy-local": "hardhat run --network local scripts/deploy.js",
     "deploy-mainnet": "hardhat run --network mainnet scripts/deploy.js",
-    "server": "hardhat run scripts/server.js",
-    "server-local": "hardhat run --network local scripts/server.js",
-    "server-mainnet": "hardhat run --network mainnet scripts/server.js",
+    "deploy-gnosis": "hardhat run --network gnosis scripts/deploy.js",
+    "server-local": "hardhat run scripts/server.js",
+    "server": "NODE_ENV=prod hardhat run scripts/server.js",
     "test": "hardhat test --network mainnet",
     "build-thegraph": "graphclient build --fileType json"
   },

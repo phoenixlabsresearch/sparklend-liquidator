@@ -73,16 +73,6 @@ interface ILendingPool {
 
 contract LiquidateLoan is IFlashLoanReceiver {
 
-    ILendingPoolAddressesProvider public immutable provider;
-    ILendingPool public immutable lendingPool;
-
-    constructor(
-        address _addressProvider
-    ) {
-        provider = ILendingPoolAddressesProvider(_addressProvider);
-        lendingPool = ILendingPool(provider.getPool());
-    }
-
     /**
         Spark Lend flash loan.
      */
@@ -97,10 +87,10 @@ contract LiquidateLoan is IFlashLoanReceiver {
         override
         returns (bool)
     {
-        flashLoanReceived(assets[0], amounts[0], premiums[0], params);
+        address lendingPool = flashLoanReceived(assets[0], amounts[0], premiums[0], params);
 
         // Approve the pool to reclaim
-        IERC20(assets[0]).approve(address(lendingPool), amounts[0] + premiums[0]);
+        IERC20(assets[0]).approve(lendingPool, amounts[0] + premiums[0]);
 
         return true;
     }
@@ -113,15 +103,15 @@ contract LiquidateLoan is IFlashLoanReceiver {
         uint256 amount,
         uint256 fee,
         bytes calldata params
-    ) internal {
-        (address sender, address collateral, address userToLiquidate, address router, bytes memory swapPath) = abi.decode(params, (address, address, address, address, bytes));
+    ) internal returns (address) {
+        (address sender, address lendingPool, address collateral, address userToLiquidate, address router, bytes memory swapPath) = abi.decode(params, (address, address, address, address, address, bytes));
         //collateral  the address of the token that we will be compensated in
         //userToLiquidate - id of the user to liquidate
         //amountOutMin - minimum amount of asset paid when swapping collateral
         {
             //liquidate unhealthy loan
-            IERC20(assetToLiquidiate).approve(address(lendingPool), amount);
-            lendingPool.liquidationCall(collateral, assetToLiquidiate, userToLiquidate, amount, false);
+            IERC20(assetToLiquidiate).approve(lendingPool, amount);
+            ILendingPool(lendingPool).liquidationCall(collateral, assetToLiquidiate, userToLiquidate, amount, false);
 
             //swap collateral from liquidate back to asset from flashloan to pay it off
             if (collateral != assetToLiquidiate) {
@@ -148,20 +138,12 @@ contract LiquidateLoan is IFlashLoanReceiver {
         require(earnings >= costs , "No profit");
         IERC20(assetToLiquidiate).transfer(sender, earnings - costs);
         IERC20(collateral).transfer(sender, IERC20(collateral).balanceOf(address(this)));   // May be some dust left
+
+        return lendingPool;
     }
 
-    /*
-    * This function is manually called to commence the flash loans sequence
-    * to make executing a liquidation  flexible calculations are done outside of the contract and sent via parameters here
-    * _assetToLiquidate - the token address of the asset that will be liquidated
-    * _flashAmt - flash loan amount (number of tokens) which is exactly the amount that will be liquidated
-    * _collateral - the token address of the collateral. This is the token that will be received after liquidating loans
-    * _userToLiquidate - user ID of the loan that will be liquidated
-    * _router - DEX aggregator router
-    * _swapPath - the path that uniswap will use to swap tokens back to original tokens
-    */
-    function executeFlashLoans(address _assetToLiquidate, uint256 _flashAmt, address _collateral, address _userToLiquidate, address _router, bytes memory _swapPath) public {
-        bytes memory params = abi.encode(msg.sender, _collateral, _userToLiquidate, _router, _swapPath);
+    function executeFlashLoans(address _lendingPool, address _assetToLiquidate, uint256 _flashAmt, address _collateral, address _userToLiquidate, address _router, bytes memory _swapPath) public {
+        bytes memory params = abi.encode(msg.sender, _lendingPool, _collateral, _userToLiquidate, _router, _swapPath);
         
         // Use Spark Lend Flash Loan
         address[] memory assets = new address[](1);
@@ -170,7 +152,7 @@ contract LiquidateLoan is IFlashLoanReceiver {
         amounts[0] = _flashAmt;
         uint256[] memory modes = new uint256[](1);
         modes[0] = 0;
-        lendingPool.flashLoan(
+        ILendingPool(_lendingPool).flashLoan(
             address(this),
             assets,
             amounts,

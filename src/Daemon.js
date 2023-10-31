@@ -1,7 +1,7 @@
 const GraphQLSource = require("./ingest/GraphQLSource");
 const Network = require("./model/Network");
 const { interval } = require("./Utils");
-const config = require("./config");
+const { getConfig } = require("./config");
 const Liquidator = require("./liquidate/Liquidator");
 
 class Daemon {
@@ -24,11 +24,12 @@ class Daemon {
     async run() {
         this.logger("SparkLend Liquidator starting up...");
 
+        const config = getConfig();
         const liquidators = new Map();
         const networks = await Promise.all(config.networks.map(async (d) => {
-            const network = new Network(d);
+            const network = new Network(config, d);
             await network.init();
-            liquidators.set(network.chainId, new Liquidator(network, this.logger));
+            liquidators.set(network.chainId, new Liquidator(config, network, this.logger));
             return network;
         }));
 

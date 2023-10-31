@@ -2,7 +2,7 @@ const ReserveSource = require("../ingest/ReserveSource");
 
 class Network {
 
-    constructor(v) {
+    constructor(config, v) {
         this.name = v.name;
         this.theGraphPrefix = v.theGraphPrefix;
         this.readRpc = v.readRpc;
@@ -10,15 +10,17 @@ class Network {
         this.poolAddressProvider = v.poolAddressProvider;
         this.uiPoolDataProvider = v.uiPoolDataProvider;
         this.liquidateLoan = v.liquidateLoan;
+        this.privateKey = v.privateKey != null ? v.prviateKey : config.account.privateKey;
+
         this.reserves = [];
     }
 
     getReadProvider() {
-        return new ethers.Wallet(hre.network.config.accounts[0]).connect(new ethers.providers.JsonRpcProvider(this.readRpc));
+        return new ethers.Wallet(this.privateKey).connect(new ethers.providers.JsonRpcProvider(this.readRpc));
     }
 
     getWriteProvider() {
-        return new ethers.Wallet(hre.network.config.accounts[0]).connect(new ethers.providers.JsonRpcProvider(this.writeRpc));
+        return new ethers.Wallet(this.privateKey).connect(new ethers.providers.JsonRpcProvider(this.writeRpc));
     }
 
     async getUIPoolDataProvider() {

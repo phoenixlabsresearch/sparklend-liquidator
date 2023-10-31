@@ -2,12 +2,13 @@ const fetch = require("node-fetch");
 
 class OneInch {
 
-    constructor(network) {
+    constructor(config, network) {
+        this.config = config;
         this.network = network;
     }
 
     async fetchSwapData(from, to, amount) {
-        const apiBaseUrl = `${process.env.ONEINCH_URL}/swap/v5.2/${this.network.chainId}`;
+        const apiBaseUrl = `${this.config.url}/swap/v5.2/${this.network.chainId}`;
         function apiRequestUrl(methodName, queryParams) {
             return apiBaseUrl + methodName + '?' + (new URLSearchParams(queryParams)).toString();
         }
@@ -23,7 +24,7 @@ class OneInch {
             disableEstimate: true,
         }), {
             headers: {
-                'Authorization': `Bearer ${process.env.ONEINCH_API_KEY}`,
+                'Authorization': `Bearer ${this.config.apiKey}`,
                 'Accept': "application/json",
             }
         });
