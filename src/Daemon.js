@@ -44,7 +44,7 @@ class Daemon {
                     this.logger(`[${network}] ${network.reserves.join(", ")}`);
                     
                     // Find all positions that need liquidation and add them to the liquidator
-                    const positionsToLiquidate = (await (new GraphQLSource(network)).fetchAllUnderwater()).filter({ minBorrowUSDValue:100 });
+                    const positionsToLiquidate = (await (new GraphQLSource(network)).fetchAllUnderwater()).filter({ minBorrowUSDValue:1000 });
                     const {
                         positionsAdded,
                         positionsUpdated
