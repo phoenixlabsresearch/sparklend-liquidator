@@ -80,7 +80,7 @@ class Position {
         }
         const baseCollateral = debt.getReserve().price.multipliedBy(debtToCover)
             .div(collateral.getReserve().price);
-        const maxCollateralToLiquidate = baseCollateral.multipliedBy(collateral.liquidationBonus);
+        let maxCollateralToLiquidate = baseCollateral.multipliedBy(collateral.liquidationBonus);
     
         if (maxCollateralToLiquidate.isGreaterThan(collateral.amount)) {
             // Amount needed > amount available, reduce the debt to cover
